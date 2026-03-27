@@ -4,9 +4,9 @@
 
   window.AgentSpec.register({
     id: '01b-memory',
-    order: 1.5,
+    order: 1.2,
 
-    nav:      { en: 'Memory Files',   zh: '记忆文件' },
+    nav:      { en: 'Saving Memory',    zh: '1.2 节约记忆文件' },
     title:    { en: '<span class="accent">Memory</span> Files', zh: '<span class="accent">记忆文件</span>' },
     subtitle: { en: 'Why stateless models need persistent memory', zh: '为什么无状态模型需要持久化记忆' },
     tag:      { en: 'Core Concept',   zh: '核心概念' },
