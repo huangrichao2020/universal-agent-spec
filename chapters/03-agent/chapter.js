@@ -8,7 +8,7 @@
 
     nav:      { en: 'Agent',       zh: 'Agent 智能体' },
     title:    { en: '<span class="accent">Agent</span>',  zh: '<span class="accent">Agent</span> 智能体' },
-    subtitle: { en: 'Shell Program + Memory File Collection', zh: '外壳程序 + 记忆文件集合' },
+    subtitle: { en: 'Shell Program + Memory File Collection', zh: 'UI 界面程序 + 记忆文件集合' },
     tag:      { en: 'Core Concept', zh: '核心概念' },
     tagClass: 'tag-core',
 
@@ -60,7 +60,7 @@
           fill="#0d1526" stroke="#2a4578" stroke-width="1.5"/>
         <text x="151" y="74" text-anchor="middle" fill="#a78bfa"
           font-family="'JetBrains Mono',monospace" font-size="11" font-weight="500">
-          ${t(lang, 'Shell Program', '外壳程序')}
+          ${t(lang, 'Shell Program', 'UI 界面程序')}
         </text>
         <text x="151" y="91" text-anchor="middle" fill="#a78bfa88"
           font-family="'JetBrains Mono',monospace" font-size="9">Shell Program</text>
@@ -86,8 +86,8 @@
         insight: 'An Agent\'s most valuable asset is its <strong>domain memory</strong> — the knowledge, experiences, and patterns accumulated in a specific field. An Agent with 6 months of deep domain memory far outvalues any Prompt template. That is the real moat.'
       },
       zh: {
-        definition: '<strong>Agent = 外壳程序 + 长期记忆文件集合（含 Skills）</strong>。外壳程序负责调用 API；记忆文件负责提供持续性和专业上下文。两者缺一不可。',
-        essence: 'Agent 有三种状态：<br><br><strong>① 静止态</strong>：只是一堆文件，没有意识，像一本合上的书。<br><strong>② 激活态</strong>：外壳程序被触发，将记忆文件 + 当前任务打包发给大模型 API，Agent "临时清醒"，产生推理和行动。<br><strong>③ 归档态</strong>：工作成果写回记忆文件，Agent 再次静止。\n\n<em>关键认知</em>：Agent 本质不是"活的程序"，而是"文件 + 调用程序"的组合。真正产生智能的是大模型 API，Agent 提供的是<strong>持续性</strong>和<strong>专业化上下文</strong>。',
+        definition: '<strong>Agent = UI 界面程序 + 长期记忆文件集合（含 Skills）</strong>。UI 界面程序负责调用 API；记忆文件负责提供持续性和专业上下文。两者缺一不可。',
+        essence: 'Agent 有三种状态：<br><br><strong>① 静止态</strong>：只是一堆文件，没有意识，像一本合上的书。<br><strong>② 激活态</strong>：UI 界面程序被触发，将记忆文件 + 当前任务打包发给大模型 API，Agent "临时清醒"，产生推理和行动。<br><strong>③ 归档态</strong>：工作成果写回记忆文件，Agent 再次静止。\n\n<em>关键认知</em>：Agent 本质不是"活的程序"，而是"文件 + 调用程序"的组合。真正产生智能的是大模型 API，Agent 提供的是<strong>持续性</strong>和<strong>专业化上下文</strong>。',
         insight: 'Agent 最值钱的是<strong>行业记忆</strong>——那些在特定领域积累的知识、经验、处理模式。一个有 6 个月深度工作记忆的 Agent，其价值远超任何 Prompt 模板。这才是真正的护城河。'
       }
     }

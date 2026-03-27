@@ -786,7 +786,7 @@
 
     nav:      { en: 'Agent',       zh: 'Agent 智能体' },
     title:    { en: '<span class="accent">Agent</span>',  zh: '<span class="accent">Agent</span> 智能体' },
-    subtitle: { en: 'Shell Program + Memory File Collection', zh: '外壳程序 + 记忆文件集合' },
+    subtitle: { en: 'Shell Program + Memory File Collection', zh: 'UI 界面程序 + 记忆文件集合' },
     tag:      { en: 'Core Concept', zh: '核心概念' },
     tagClass: 'tag-core',
 
@@ -838,7 +838,7 @@
           fill="#0d1526" stroke="#2a4578" stroke-width="1.5"/>
         <text x="151" y="74" text-anchor="middle" fill="#a78bfa"
           font-family="'JetBrains Mono',monospace" font-size="11" font-weight="500">
-          ${t(lang, 'Shell Program', '外壳程序')}
+          ${t(lang, 'Shell Program', 'UI 界面程序')}
         </text>
         <text x="151" y="91" text-anchor="middle" fill="#a78bfa88"
           font-family="'JetBrains Mono',monospace" font-size="9">Shell Program</text>
@@ -864,8 +864,8 @@
         insight: 'An Agent\'s most valuable asset is its <strong>domain memory</strong> — the knowledge, experiences, and patterns accumulated in a specific field. An Agent with 6 months of deep domain memory far outvalues any Prompt template. That is the real moat.'
       },
       zh: {
-        definition: '<strong>Agent = 外壳程序 + 长期记忆文件集合（含 Skills）</strong>。外壳程序负责调用 API；记忆文件负责提供持续性和专业上下文。两者缺一不可。',
-        essence: 'Agent 有三种状态：<br><br><strong>① 静止态</strong>：只是一堆文件，没有意识，像一本合上的书。<br><strong>② 激活态</strong>：外壳程序被触发，将记忆文件 + 当前任务打包发给大模型 API，Agent "临时清醒"，产生推理和行动。<br><strong>③ 归档态</strong>：工作成果写回记忆文件，Agent 再次静止。\n\n<em>关键认知</em>：Agent 本质不是"活的程序"，而是"文件 + 调用程序"的组合。真正产生智能的是大模型 API，Agent 提供的是<strong>持续性</strong>和<strong>专业化上下文</strong>。',
+        definition: '<strong>Agent = UI 界面程序 + 长期记忆文件集合（含 Skills）</strong>。UI 界面程序负责调用 API；记忆文件负责提供持续性和专业上下文。两者缺一不可。',
+        essence: 'Agent 有三种状态：<br><br><strong>① 静止态</strong>：只是一堆文件，没有意识，像一本合上的书。<br><strong>② 激活态</strong>：UI 界面程序被触发，将记忆文件 + 当前任务打包发给大模型 API，Agent "临时清醒"，产生推理和行动。<br><strong>③ 归档态</strong>：工作成果写回记忆文件，Agent 再次静止。\n\n<em>关键认知</em>：Agent 本质不是"活的程序"，而是"文件 + 调用程序"的组合。真正产生智能的是大模型 API，Agent 提供的是<strong>持续性</strong>和<strong>专业化上下文</strong>。',
         insight: 'Agent 最值钱的是<strong>行业记忆</strong>——那些在特定领域积累的知识、经验、处理模式。一个有 6 个月深度工作记忆的 Agent，其价值远超任何 Prompt 模板。这才是真正的护城河。'
       }
     }
@@ -884,8 +884,8 @@
   window.AgentSpec.register({
     id: '04-shell',
     order: 4,
-    nav:      { en: 'Shell Program', zh: '外壳程序' },
-    title:    { en: 'Shell <span class="accent">Program</span>', zh: '外壳 <span class="accent">程序</span>' },
+    nav:      { en: 'Shell Program', zh: 'UI 界面程序' },
+    title:    { en: 'Shell <span class="accent">Program</span>', zh: 'UI 界面 <span class="accent">程序</span>' },
     subtitle: { en: 'The execution body of an Agent', zh: 'Agent 的执行躯体' },
     tag:      { en: 'Core Concept', zh: '核心概念' },
     tagClass: 'tag-core',
@@ -927,7 +927,7 @@
         ${lines}
         ${S.label(380, 240,
           t(lang, 'Any program that can invoke the LLM API can serve as a shell program',
-                  '任何能发起大模型 API 请求的程序，都可以作为 Agent 的外壳程序'),
+                  '任何能发起大模型 API 请求的程序，都可以作为 Agent 的UI 界面程序'),
           '#6b84a8', 11)}
       `;
     },
@@ -949,10 +949,10 @@
         insight: 'Prefer official vendor CLIs over rolling your own SDK wrapper. The official CLIs have optimized tool calling, error handling, and token management — you skip months of debugging.'
       },
       zh: {
-        definition: '负责"读取记忆文件 → 构造 API 请求 → 解析响应 → 执行动作 → 更新记忆文件"这一<strong>闭环</strong>的程序。外壳程序是 Agent 的执行躯体。',
-        essence: '外壳程序本身不产生智能，它是<em>调度者</em>。最好的外壳程序来自大模型厂商官方（Claude Code、Codex CLI），原因：\n\n原生支持<strong>多开</strong>（像开多个终端窗口一样启动多个 Agent）；内置<strong>文件系统交互</strong>（直接读写记忆文件）；标准输入输出接口，天然适合<strong>工作流串联</strong>。',
+        definition: '负责"读取记忆文件 → 构造 API 请求 → 解析响应 → 执行动作 → 更新记忆文件"这一<strong>闭环</strong>的程序。UI 界面程序是 Agent 的执行躯体。',
+        essence: 'UI 界面程序本身不产生智能，它是<em>调度者</em>。最好的UI 界面程序来自大模型厂商官方（Claude Code、Codex CLI），原因：\n\n原生支持<strong>多开</strong>（像开多个终端窗口一样启动多个 Agent）；内置<strong>文件系统交互</strong>（直接读写记忆文件）；标准输入输出接口，天然适合<strong>工作流串联</strong>。',
         table: {
-          title: '主流外壳程序对比',
+          title: '主流UI 界面程序对比',
           headers: ['程序', '厂商', '特点', '适合场景'],
           rows: [
             ['Claude Code / cli', 'Anthropic', '最成熟，项目级上下文', '复杂代码工程、长期任务'],
@@ -961,7 +961,7 @@
             ['自研 Python 脚本', '你自己', '完全可控', '特定工作流、成本控制'],
           ]
         },
-        insight: '推荐优先使用厂商官方 CLI 作为外壳程序，而非自己用 SDK 封装。官方 CLI 在工具调用、错误处理、Token 管理上做了大量优化，踩的坑你不用再踩一遍。'
+        insight: '推荐优先使用厂商官方 CLI 作为UI 界面程序，而非自己用 SDK 封装。官方 CLI 在工具调用、错误处理、Token 管理上做了大量优化，踩的坑你不用再踩一遍。'
       }
     }
   });
@@ -1408,7 +1408,7 @@ Focus on: turnover rate > 15% with volume breakout
         <text x="98" y="76" fill="#6b84a8" font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'User device', '用户设备')}
         </text>
-        ${S.box(62, 84, 120, 42, '#00c8ff', t(lang, 'Shell Program', '外壳程序'), '')}
+        ${S.box(62, 84, 120, 42, '#00c8ff', t(lang, 'Shell Program', 'UI 界面程序'), '')}
         ${S.box(62, 140, 120, 42, '#ffb800', t(lang, 'Memory Files', '记忆文件'), '')}
         <line x1="242" y1="110" x2="296" y2="110" stroke="#6b84a8" stroke-width="1.2" marker-end="url(#arr)" stroke-dasharray="3 2"/>
         <text x="268" y="103" text-anchor="middle" fill="#6b84a888"
@@ -1434,7 +1434,7 @@ Focus on: turnover rate > 15% with volume breakout
         <text x="466" y="76" fill="#6b84a8" font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Your server', '你的服务器')}
         </text>
-        ${S.box(430, 84, 120, 42, '#a78bfa', t(lang, 'Shell Program', '外壳程序'), '')}
+        ${S.box(430, 84, 120, 42, '#a78bfa', t(lang, 'Shell Program', 'UI 界面程序'), '')}
         ${S.box(430, 140, 120, 42, '#ffb800', t(lang, 'Memory Files', '记忆文件'), '')}
         <line x1="610" y1="110" x2="660" y2="110" stroke="#6b84a8" stroke-width="1.2" marker-end="url(#arr)" stroke-dasharray="3 2"/>
         <text x="634" y="103" text-anchor="middle" fill="#6b84a888"
@@ -1590,7 +1590,7 @@ Focus on: turnover rate > 15% with volume breakout
 
     getSvg(lang) {
       const tobItems = [
-        t(lang, 'Shell program',          '外壳程序'),
+        t(lang, 'Shell program',          'UI 界面程序'),
         t(lang, 'Persona file',           '人格定义文件'),
         t(lang, 'Domain memory (key!)',   '行业记忆文件（核心！）'),
         t(lang, 'Skill collection',       'Skill 集合'),
@@ -1672,7 +1672,7 @@ Focus on: turnover rate > 15% with volume breakout
         insight: 'In the Agent era, ToB business sells not software features but "a copy of an expert\'s brain." Selling a top-tier sales Agent\'s memory to 100 companies is more scalable than training 100 salespeople.'
       },
       zh: {
-        definition: '两条商业路线：<strong>ToB</strong>——你是卖家，卖 Agent 本体（外壳 + 记忆文件），一次性买断，买家自己接入算力大模型使用 Agent；<strong>ToC</strong>——卖产品服务，Agent 在你的服务器，算力和大模型也用你自己的，用户充值使用。',
+        definition: '两条商业路线：<strong>ToB</strong>——你是卖家，卖 Agent 本体（UI 界面 + 记忆文件），一次性买断，买家自己接入算力大模型使用 Agent；<strong>ToC</strong>——卖产品服务，Agent 在你的服务器，算力和大模型也用你自己的，用户充值使用。',
         essence: '两条路线的核心差异是<em>谁承担算力成本</em>和<em>护城河来自哪里</em>。\n\nToB 的护城河：<strong>行业记忆</strong>。一个在医疗、法律、金融等垂直领域积累了大量专业记忆的 Agent，其价值是买家无法自己快速复制的。\n\nToC 的护城河：<strong>产品体验 + 用户习惯</strong>。算力成本是你的负担，但规模效应和用户粘性是壁垒。\n\n注意：ToB 不是"卖 Prompt 合集"，真正的价值在于<em>行业记忆文件</em>——那些经过大量实践验证、积累的专业知识库。',
         insight: 'Agent 时代的 ToB 生意，卖的不是软件功能，卖的是"专家大脑的副本"。把一个顶级销售 Agent 的记忆卖给 100 个公司，比培养 100 个销售更可扩展。'
       }

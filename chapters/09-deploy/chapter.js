@@ -28,7 +28,7 @@
         <text x="98" y="76" fill="#6b84a8" font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'User device', '用户设备')}
         </text>
-        ${S.box(62, 84, 120, 42, '#00c8ff', t(lang, 'Shell Program', '外壳程序'), '')}
+        ${S.box(62, 84, 120, 42, '#00c8ff', t(lang, 'Shell Program', 'UI 界面程序'), '')}
         ${S.box(62, 140, 120, 42, '#ffb800', t(lang, 'Memory Files', '记忆文件'), '')}
         <line x1="242" y1="110" x2="296" y2="110" stroke="#6b84a8" stroke-width="1.2" marker-end="url(#arr)" stroke-dasharray="3 2"/>
         <text x="268" y="103" text-anchor="middle" fill="#6b84a888"
@@ -54,7 +54,7 @@
         <text x="466" y="76" fill="#6b84a8" font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Your server', '你的服务器')}
         </text>
-        ${S.box(430, 84, 120, 42, '#a78bfa', t(lang, 'Shell Program', '外壳程序'), '')}
+        ${S.box(430, 84, 120, 42, '#a78bfa', t(lang, 'Shell Program', 'UI 界面程序'), '')}
         ${S.box(430, 140, 120, 42, '#ffb800', t(lang, 'Memory Files', '记忆文件'), '')}
         <line x1="610" y1="110" x2="660" y2="110" stroke="#6b84a8" stroke-width="1.2" marker-end="url(#arr)" stroke-dasharray="3 2"/>
         <text x="634" y="103" text-anchor="middle" fill="#6b84a888"

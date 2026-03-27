@@ -6,8 +6,8 @@
   window.AgentSpec.register({
     id: '04-shell',
     order: 4,
-    nav:      { en: 'Shell Program', zh: '外壳程序' },
-    title:    { en: 'Shell <span class="accent">Program</span>', zh: '外壳 <span class="accent">程序</span>' },
+    nav:      { en: 'Shell Program', zh: 'UI 界面程序' },
+    title:    { en: 'Shell <span class="accent">Program</span>', zh: 'UI 界面 <span class="accent">程序</span>' },
     subtitle: { en: 'The execution body of an Agent', zh: 'Agent 的执行躯体' },
     tag:      { en: 'Core Concept', zh: '核心概念' },
     tagClass: 'tag-core',
@@ -49,7 +49,7 @@
         ${lines}
         ${S.label(380, 240,
           t(lang, 'Any program that can invoke the LLM API can serve as a shell program',
-                  '任何能发起大模型 API 请求的程序，都可以作为 Agent 的外壳程序'),
+                  '任何能发起大模型 API 请求的程序，都可以作为 Agent 的UI 界面程序'),
           '#6b84a8', 11)}
       `;
     },
@@ -71,10 +71,10 @@
         insight: 'Prefer official vendor CLIs over rolling your own SDK wrapper. The official CLIs have optimized tool calling, error handling, and token management — you skip months of debugging.'
       },
       zh: {
-        definition: '负责"读取记忆文件 → 构造 API 请求 → 解析响应 → 执行动作 → 更新记忆文件"这一<strong>闭环</strong>的程序。外壳程序是 Agent 的执行躯体。',
-        essence: '外壳程序本身不产生智能，它是<em>调度者</em>。最好的外壳程序来自大模型厂商官方（Claude Code、Codex CLI），原因：\n\n原生支持<strong>多开</strong>（像开多个终端窗口一样启动多个 Agent）；内置<strong>文件系统交互</strong>（直接读写记忆文件）；标准输入输出接口，天然适合<strong>工作流串联</strong>。',
+        definition: '负责"读取记忆文件 → 构造 API 请求 → 解析响应 → 执行动作 → 更新记忆文件"这一<strong>闭环</strong>的程序。UI 界面程序是 Agent 的执行躯体。',
+        essence: 'UI 界面程序本身不产生智能，它是<em>调度者</em>。最好的UI 界面程序来自大模型厂商官方（Claude Code、Codex CLI），原因：\n\n原生支持<strong>多开</strong>（像开多个终端窗口一样启动多个 Agent）；内置<strong>文件系统交互</strong>（直接读写记忆文件）；标准输入输出接口，天然适合<strong>工作流串联</strong>。',
         table: {
-          title: '主流外壳程序对比',
+          title: '主流UI 界面程序对比',
           headers: ['程序', '厂商', '特点', '适合场景'],
           rows: [
             ['Claude Code / cli', 'Anthropic', '最成熟，项目级上下文', '复杂代码工程、长期任务'],
@@ -83,7 +83,7 @@
             ['自研 Python 脚本', '你自己', '完全可控', '特定工作流、成本控制'],
           ]
         },
-        insight: '推荐优先使用厂商官方 CLI 作为外壳程序，而非自己用 SDK 封装。官方 CLI 在工具调用、错误处理、Token 管理上做了大量优化，踩的坑你不用再踩一遍。'
+        insight: '推荐优先使用厂商官方 CLI 作为UI 界面程序，而非自己用 SDK 封装。官方 CLI 在工具调用、错误处理、Token 管理上做了大量优化，踩的坑你不用再踩一遍。'
       }
     }
   });

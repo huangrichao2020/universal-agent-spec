@@ -14,7 +14,7 @@
 
     getSvg(lang) {
       const tobItems = [
-        t(lang, 'Shell program',          '外壳程序'),
+        t(lang, 'Shell program',          'UI 界面程序'),
         t(lang, 'Persona file',           '人格定义文件'),
         t(lang, 'Domain memory (key!)',   '行业记忆文件（核心！）'),
         t(lang, 'Skill collection',       'Skill 集合'),
@@ -96,7 +96,7 @@
         insight: 'In the Agent era, ToB business sells not software features but "a copy of an expert\'s brain." Selling a top-tier sales Agent\'s memory to 100 companies is more scalable than training 100 salespeople.'
       },
       zh: {
-        definition: '两条商业路线：<strong>ToB</strong>——你是卖家，卖 Agent 本体（外壳 + 记忆文件），一次性买断，买家自己接入算力大模型使用 Agent；<strong>ToC</strong>——卖产品服务，Agent 在你的服务器，算力和大模型也用你自己的，用户充值使用。',
+        definition: '两条商业路线：<strong>ToB</strong>——你是卖家，卖 Agent 本体（UI 界面 + 记忆文件），一次性买断，买家自己接入算力大模型使用 Agent；<strong>ToC</strong>——卖产品服务，Agent 在你的服务器，算力和大模型也用你自己的，用户充值使用。',
         essence: '两条路线的核心差异是<em>谁承担算力成本</em>和<em>护城河来自哪里</em>。\n\nToB 的护城河：<strong>行业记忆</strong>。一个在医疗、法律、金融等垂直领域积累了大量专业记忆的 Agent，其价值是买家无法自己快速复制的。\n\nToC 的护城河：<strong>产品体验 + 用户习惯</strong>。算力成本是你的负担，但规模效应和用户粘性是壁垒。\n\n注意：ToB 不是"卖 Prompt 合集"，真正的价值在于<em>行业记忆文件</em>——那些经过大量实践验证、积累的专业知识库。',
         insight: 'Agent 时代的 ToB 生意，卖的不是软件功能，卖的是"专家大脑的副本"。把一个顶级销售 Agent 的记忆卖给 100 个公司，比培养 100 个销售更可扩展。'
       }
