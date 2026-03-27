@@ -4,7 +4,8 @@
 <img src="https://img.shields.io/badge/concepts-12-ffb800?style=for-the-badge&labelColor=070b14" />
 <img src="https://img.shields.io/badge/lang-EN%20%7C%20中文-00e599?style=for-the-badge&labelColor=070b14" />
 <img src="https://img.shields.io/badge/license-MIT-a78bfa?style=for-the-badge&labelColor=070b14" />
-<img src="https://img.shields.io/github/stars/huangwei/universal-agent-spec?style=for-the-badge&color=ff4d6d&labelColor=070b14" />
+<img src="https://img.shields.io/badge/ClawHub-whatisagent-ff4d6d?style=for-the-badge&labelColor=070b14" />
+<img src="https://img.shields.io/github/stars/huangrichao2020/universal-agent-spec?style=for-the-badge&color=ffb800&labelColor=070b14" />
 
 <br/><br/>
 
@@ -82,6 +83,26 @@ open index.html   # that's it.
 ```
 
 Or just open `index.html` directly in your browser. **It works offline. No server needed.**
+
+---
+
+## 🤖 Give Your Agent Self-Awareness (ClawHub Skill)
+
+Once your Agent knows the spec, it should also **know what it is**.
+
+Install the companion skill so your Agent understands its own nature, memory mechanism, and standing orders from the very first invocation — no hand-holding required:
+
+```bash
+clawhub install whatisagent
+```
+
+👉 **[clawhub.ai/skills/whatisagent](https://clawhub.ai/skills/whatisagent)**
+
+What the skill teaches your Agent on load:
+- What an Agent actually is (files + invocation, not "alive")
+- How memory files work and why they cost tokens
+- 4 standing orders: handoff docs, call chain annotations, file op records, plan-before-execute
+- 12-concept quick reference with one-line truths
 
 ---
 
@@ -239,7 +260,21 @@ cd universal-agent-spec
 open index.html   # 就这样。
 ```
 
-直接双击 `index.html` 用浏览器打开即可。**离线可用，不需要服务器。**
+直接双击 `index.html` 用浏览器打开即可。**离线可用，不需要任何服务器。**
+
+---
+
+## 🤖 给你的 Agent 注入自我认知（ClawHub Skill）
+
+看完规范，让你的 Agent 也知道自己是什么。
+
+一条命令安装伴侣 skill，让 Agent 从第一次被唤醒起就明白自己的本质、记忆机制和常驻规则，不需要主人手动调教：
+
+```bash
+clawhub install whatisagent
+```
+
+👉 **[clawhub.ai/skills/whatisagent](https://clawhub.ai/skills/whatisagent)**
 
 ---
 
