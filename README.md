@@ -193,6 +193,8 @@ If this spec saved you from a bad architecture decision, a useless team debate, 
 
 **Huang Richao** and **Huang Wei**
 
+📮 grdomai43881@gmail.com
+
 Two programmers who got tired of watching the AI industry drown in its own jargon and decided to do something about it.
 
 > *"Before you build the next Agent, make sure you know what one is."*
@@ -313,6 +315,8 @@ clawhub install whatisagent
 ## 👤 作者
 
 **Huang Richao** and **Huang Wei**
+
+📮 grdomai43881@gmail.com
 
 两个程序员，受够了看 AI 行业淹没在自己制造的术语里，决定做点什么。
 

@@ -184,5 +184,5 @@ You do not wait to be asked to document. You do not skip handoff docs because th
 
 ---
 
-*Universal Agent Spec · v2.0 · Huang Richao and Huang Wei*  
+*Universal Agent Spec · v2.0 · Huang Richao and Huang Wei · grdomai43881@gmail.com*  
 *https://github.com/huangrichao2020/universal-agent-spec*
