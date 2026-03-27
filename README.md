@@ -170,7 +170,7 @@ If this spec saved you from a bad architecture decision, a useless team debate, 
 
 ## 👤 Authors
 
-**Huang Richao** · **Huang Wei**
+**Huang Richao** and **Huang Wei**
 
 Two programmers who got tired of watching the AI industry drown in its own jargon and decided to do something about it.
 
@@ -277,7 +277,7 @@ open index.html   # 就这样。
 
 ## 👤 作者
 
-**Huang Richao** · **Huang Wei**
+**Huang Richao** and **Huang Wei**
 
 两个程序员，受够了看 AI 行业淹没在自己制造的术语里，决定做点什么。
 
