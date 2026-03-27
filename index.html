@@ -1,0 +1,1896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Universal Agent Spec</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070b14;
+    --bg2: #0d1526;
+    --bg3: #111d35;
+    --border: #1e3058;
+    --border2: #2a4578;
+    --cyan: #00c8ff;
+    --cyan-dim: rgba(0,200,255,0.12);
+    --amber: #ffb800;
+    --amber-dim: rgba(255,184,0,0.1);
+    --green: #00e599;
+    --red: #ff4d6d;
+    --purple: #a78bfa;
+    --text: #c9d8f0;
+    --text-dim: #6b84a8;
+    --text-bright: #e8f2ff;
+    --mono: 'JetBrains Mono', monospace;
+    --serif: 'Noto Serif SC', serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── GRID BG ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #app { position: relative; z-index: 1; }
+
+  /* ── HEADER ── */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    gap: 32px;
+    background: linear-gradient(180deg, rgba(0,200,255,0.05) 0%, transparent 100%);
+  }
+
+  .header-badge {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--cyan);
+    text-transform: uppercase;
+    border: 1px solid rgba(0,200,255,0.3);
+    padding: 4px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .header-title {
+    font-family: var(--serif);
+    font-size: clamp(22px, 4vw, 38px);
+    font-weight: 900;
+    color: var(--text-bright);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .header-title span { color: var(--cyan); }
+
+  .header-sub {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: calc(100vh - 120px);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    border-right: 1px solid var(--border);
+    padding: 24px 0;
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-track { background: transparent; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+  .sidebar-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    padding: 0 20px 12px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .nav-item:hover { color: var(--text); background: var(--cyan-dim); }
+  .nav-item.active { color: var(--cyan); border-left-color: var(--cyan); background: var(--cyan-dim); }
+
+  .nav-num {
+    font-size: 10px;
+    color: var(--text-dim);
+    width: 20px;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+  .nav-item.active .nav-num { color: var(--cyan); opacity: 1; }
+
+  /* ── MAIN ── */
+  .main {
+    padding: 40px 48px;
+    max-width: 900px;
+  }
+
+  /* ── CONCEPT CARD ── */
+  .concept-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 64px;
+    background: var(--bg2);
+  }
+
+  .card-header {
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: linear-gradient(135deg, var(--bg3) 0%, var(--bg2) 100%);
+  }
+
+  .card-num {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--border2);
+    line-height: 1;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .card-title-wrap { flex: 1; }
+
+  .card-title {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: 4px;
+  }
+  .card-title .accent { color: var(--cyan); }
+
+  .card-subtitle {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+
+  .card-tag {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+  .tag-infra { background: rgba(167,139,250,0.15); color: var(--purple); border: 1px solid rgba(167,139,250,0.2); }
+  .tag-core  { background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(0,200,255,0.2); }
+  .tag-system { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(255,184,0,0.2); }
+  .tag-pattern { background: rgba(0,229,153,0.1); color: var(--green); border: 1px solid rgba(0,229,153,0.2); }
+  .tag-biz { background: rgba(255,77,109,0.1); color: var(--red); border: 1px solid rgba(255,77,109,0.2); }
+
+  .card-body { padding: 32px; }
+
+  /* ── DIAGRAM ── */
+  .diagram-wrap {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 8px;
+    margin-bottom: 28px;
+    overflow: visible;
+  }
+
+  .diagram-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+  /* ── DEFINITION ── */
+  .def-block {
+    border-left: 3px solid var(--cyan);
+    padding: 16px 20px;
+    background: var(--cyan-dim);
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 24px;
+  }
+
+  .def-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .def-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-bright);
+  }
+
+  /* ── SECTIONS ── */
+  .section { margin-bottom: 24px; }
+
+  .section-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .prose {
+    font-size: 13px;
+    line-height: 2;
+    color: var(--text);
+  }
+
+  .prose strong { color: var(--amber); font-weight: 500; }
+  .prose em { color: var(--cyan); font-style: normal; border-bottom: 1px dashed rgba(0,200,255,0.4); }
+
+  /* ── CODE BLOCK ── */
+  .code-block {
+    background: #050810;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 20px;
+    font-size: 12px;
+    line-height: 1.7;
+    overflow-x: auto;
+    margin: 16px 0;
+    white-space: pre;
+    color: #7ec8e3;
+  }
+
+  .code-block .kw  { color: #ff79c6; }
+  .code-block .str { color: #f1fa8c; }
+  .code-block .cmt { color: #6272a4; }
+  .code-block .num { color: #bd93f9; }
+  .code-block .fn  { color: #50fa7b; }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin: 16px 0;
+  }
+
+  .compare-table th {
+    background: var(--bg3);
+    color: var(--cyan);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .compare-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+
+  .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* ── INSIGHT BOX ── */
+  .insight {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--amber-dim);
+    border: 1px solid rgba(255,184,0,0.2);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  .insight-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+
+  /* ── PILLS ── */
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .pill {
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    color: var(--text-dim);
+  }
+  .pill.hi { border-color: rgba(0,200,255,0.3); color: var(--cyan); background: var(--cyan-dim); }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 48px;
+    font-size: 11px;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ── SCROLLBAR ── */
+  .main::-webkit-scrollbar { width: 6px; }
+  .main::-webkit-scrollbar-track { background: transparent; }
+  .main::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+  /* ── TRANSITIONS ── */
+  .fade-enter-active, .fade-leave-active { transition: opacity 0.2s, transform 0.2s; }
+  .fade-enter-from { opacity: 0; transform: translateY(8px); }
+  .fade-leave-to  { opacity: 0; transform: translateY(-8px); }
+
+  /* ── LANG TOGGLE ── */
+  .lang-toggle {
+    display: flex;
+    gap: 4px;
+    margin-left: auto;
+    align-items: center;
+  }
+
+  .lang-btn {
+    font-family: var(--serif);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text-dim);
+    transition: all 0.15s;
+    white-space: nowrap;
+    line-height: 1.4;
+  }
+
+  .lang-btn:hover { color: var(--text); border-color: var(--cyan); }
+  .lang-btn.active {
+    background: var(--cyan-dim);
+    color: var(--cyan);
+    border-color: var(--cyan);
+  }
+
+  /* ── LOADING STATE ── */
+  .loading-state {
+    display: flex; align-items: center; justify-content: center;
+    height: 60vh; flex-direction: column; gap: 16px;
+    color: var(--text-dim); font-size: 13px;
+  }
+  .loading-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--cyan); display: inline-block;
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50%       { opacity: 1;   transform: scale(1.2); }
+  }
+
+</style>
+
+<!-- ── INLINE: registry.js ── -->
+<script>
+(function () {
+  const chapters = [];
+  const registered = new Set();
+  const AgentSpec = {
+    register(chapter) {
+      if (registered.has(chapter.id)) { console.warn('[AgentSpec] Duplicate id:', chapter.id); return; }
+      chapters.push(chapter);
+      registered.add(chapter.id);
+    },
+    getChapters() { return [...chapters].sort((a, b) => a.order - b.order); },
+    t(field, lang) {
+      if (typeof field === 'string') return field;
+      return field[lang] || field['en'] || '';
+    },
+    LANGS: ['en', 'zh'],
+    LANG_NAMES: { en: 'EN', zh: '中文' }
+  };
+  window.AgentSpec = AgentSpec;
+})();
+</script>
+
+<!-- ── INLINE: helpers.js ── -->
+<script>
+(function () {
+  const H = {
+    box(x, y, w, h, col, text, sub = '', rx = 6) {
+      const textY = sub ? y + h / 2 - 7 : y + h / 2 + 5;
+      return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="${col}18" stroke="${col}" stroke-width="1.5"/>
+        <text x="${x+w/2}" y="${textY}" text-anchor="middle" fill="${col}" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">${text}</text>
+        ${sub ? `<text x="${x+w/2}" y="${y+h/2+11}" text-anchor="middle" fill="${col}99" font-family="'JetBrains Mono',monospace" font-size="10">${sub}</text>` : ''}`;
+    },
+    label(x, y, text, col = '#6b84a8', size = 11) {
+      return `<text x="${x}" y="${y}" text-anchor="middle" fill="${col}" font-family="'JetBrains Mono',monospace" font-size="${size}">${text}</text>`;
+    },
+    arrow(x1, y1, x2, y2, col = '#6b84a8', label = '', markerId = 'arr') {
+      const dx = x2-x1, dy = y2-y1, len = Math.sqrt(dx*dx+dy*dy);
+      const nx = dx/len, ny = dy/len;
+      const ax = x2-nx*10, ay = y2-ny*10;
+      const lx = (x1+x2)/2, ly = (y1+y2)/2;
+      return `<line x1="${x1}" y1="${y1}" x2="${ax}" y2="${ay}" stroke="${col}" stroke-width="1.5" marker-end="url(#${markerId})"/>
+        ${label ? `<text x="${lx}" y="${ly-6}" text-anchor="middle" fill="${col}" font-family="'JetBrains Mono',monospace" font-size="10">${label}</text>` : ''}`;
+    },
+    dashed(x1, y1, x2, y2, col = '#2a4578') {
+      return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="1.2" stroke-dasharray="4 3"/>`;
+    },
+    c: { cyan:'#00c8ff', amber:'#ffb800', green:'#00e599', red:'#ff4d6d', purple:'#a78bfa',
+         dim:'#1e3058', dim2:'#2a4578', bg:'#070b14', bg2:'#0d1526', text:'#c9d8f0', textDim:'#6b84a8' }
+  };
+  window.AgentSpecHelpers = H;
+})();
+</script>
+
+<!-- ── INLINE: all chapters (no dynamic loading needed) ── -->
+
+<!-- ── INLINE: 00-llm-api/chapter.js ── -->
+<script>
+(function () {
+  const S = window.AgentSpecHelpers;
+  const t = (lang, en, zh) => lang === 'zh' ? zh : en;
+
+  window.AgentSpec.register({
+    id: '00-llm-api',
+    order: 0,
+
+    nav:      { en: 'LLM API',      zh: '大模型 API' },
+    title:    { en: 'LLM <span class="accent">API</span>', zh: '大模型 <span class="accent">API</span>' },
+    subtitle: { en: 'Infrastructure Layer · Stateless Function', zh: 'Large Language Model API · 基础设施层' },
+    tag:      { en: 'Infrastructure', zh: '基础设施' },
+    tagClass: 'tag-infra',
+
+    viewBox: '0 0 760 210',
+
+    getSvg(lang) {
+      return `
+        <ellipse cx="380" cy="85" rx="130" ry="52"
+          fill="#a78bfa18" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="380" y="80" text-anchor="middle" fill="#a78bfa"
+          font-family="'JetBrains Mono',monospace" font-size="14" font-weight="500">
+          ${t(lang, 'LLM API', '大模型 API')}
+        </text>
+        <text x="380" y="100" text-anchor="middle" fill="#a78bfa88"
+          font-family="'JetBrains Mono',monospace" font-size="10">
+          ${t(lang, 'Stateless · Each call independent', '无状态 · 每次独立')}
+        </text>
+
+        ${S.box(55, 148, 130, 42, '#00c8ff', t(lang, 'Your App', '你的程序'))}
+        ${S.box(315, 148, 90, 42, '#ffb800', 'curl', '')}
+        ${S.box(575, 148, 130, 42, '#00e599', t(lang, 'Any Client', '任何客户端'))}
+
+        <line x1="120" y1="148" x2="330" y2="110"
+          stroke="#00c8ff" stroke-width="1.5" marker-end="url(#arrC)"/>
+        <line x1="360" y1="148" x2="368" y2="112"
+          stroke="#ffb800" stroke-width="1.5" marker-end="url(#arrA)"/>
+        <line x1="640" y1="148" x2="450" y2="110"
+          stroke="#00e599" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        ${S.label(380, 205,
+          t(lang, 'POST /v1/messages → Input → Process → Output → Each call is independent',
+                  'POST /v1/messages → 输入→处理→输出 → 每次调用完全独立'),
+          '#6b84a8', 11)}
+      `;
+    },
+
+    content: {
+      en: {
+        definition: 'An HTTP endpoint exposed by LLM providers (OpenAI, Anthropic, Alibaba Cloud, etc.) that accepts text input and returns text output. <strong>It is a stateless function</strong> — it has no memory of you; every call starts from zero.',
+        essence: 'Many people think "integrating the GPT API" gives them an AI assistant. In reality, they are just making a memoryless phone call each time. <em>The model itself has no memory, no state, no will.</em> It is an extraordinarily complex "text continuation function." The entire purpose of Agent architecture is to build <strong>continuity, specialization, and executability</strong> on top of this stateless function.',
+        insight: 'Statelessness is a deliberate design choice for LLM APIs, not a flaw. It enables millions of concurrent requests. The Agent layer solves the "stateful" problem.',
+        table: {
+          title: 'LLM API vs Traditional API',
+          headers: ['Dimension', 'Traditional API', 'LLM API'],
+          rows: [
+            ['Input', 'Structured parameters', 'Natural language text'],
+            ['Output', 'Deterministic result', 'Probabilistic generated text'],
+            ['State', 'Optional', '<strong>Always stateless</strong>'],
+            ['Cost model', 'Per call', 'Per token'],
+          ]
+        }
+      },
+      zh: {
+        definition: '大模型厂商（OpenAI / Anthropic / 阿里云等）暴露的 HTTP 接口。接收文本输入，返回文本输出。<strong>本质是一个无状态函数</strong>——不记得你，每次调用都从零开始。',
+        essence: '很多人以为"接入了 GPT API"就拥有了一个 AI 助手，其实只是每次打了一个无记忆的电话。<em>大模型本身没有记忆、没有状态、没有意志</em>。它只是一个极其复杂的"文字续写函数"。Agent 架构的全部意义，就是在这个无状态函数之外，构建出<strong>持续性、专业性、可执行性</strong>。',
+        insight: '无状态是大模型 API 的设计选择，不是缺陷。正是这种无状态性，让它可以并发处理数百万请求。Agent 层负责解决"有状态"的问题。',
+        table: {
+          title: '与传统 API 的对比',
+          headers: ['维度', '传统业务 API', '大模型 API'],
+          rows: [
+            ['输入', '结构化参数', '自然语言文本'],
+            ['输出', '确定性结果', '概率性生成文本'],
+            ['状态', '可有可无', '<strong>永远无状态</strong>'],
+            ['成本模型', '按调用次数', '按 Token 数量'],
+          ]
+        }
+      }
+    }
+  });
+})();
+
+</script>
+
+<!-- ── INLINE: 01-invocation/chapter.js ── -->
+<script>
+(function () {
+  const S = window.AgentSpecHelpers;
+  const t = (lang, en, zh) => lang === 'zh' ? zh : en;
+
+  window.AgentSpec.register({
+    id: '01-invocation',
+    order: 1,
+
+    nav:      { en: 'Invocation',    zh: '单次调用' },
+    title:    { en: 'Single <span class="accent">Invocation</span>', zh: '单次 <span class="accent">调用</span>' },
+    subtitle: { en: 'The moment an Agent wakes up', zh: 'Agent 被激活的瞬间' },
+    tag:      { en: 'Foundation',    zh: '基础概念' },
+    tagClass: 'tag-infra',
+
+    viewBox: '0 0 760 215',
+
+    getSvg(lang) {
+      const phases = [
+        { x: 60,  y: 72, w: 110, h: 65, col: '#00c8ff',
+          top: t(lang, 'Send Request', '发送请求'),
+          sub: 'HTTP POST' },
+        { x: 210, y: 55, w: 110, h: 95, col: '#a78bfa',
+          top: t(lang, 'Inference', '模型推理'),
+          sub: t(lang, 'ms ~ seconds', '毫秒~秒级') },
+        { x: 380, y: 72, w: 110, h: 65, col: '#00e599',
+          top: t(lang, 'Return Result', '返回结果'),
+          sub: t(lang, 'stream / once', 'tokens 流式/一次') },
+        { x: 540, y: 72, w: 130, h: 65, col: '#ff4d6d',
+          top: t(lang, 'Fades Away', '意识消散'),
+          sub: t(lang, 'No residual', '无任何残留') },
+      ];
+
+      const boxes = phases.map(p => `
+        <rect x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="5"
+          fill="${p.col}18" stroke="${p.col}" stroke-width="1.5"/>
+        <text x="${p.x + p.w/2}" y="${p.y + p.h/2 - 7}" text-anchor="middle"
+          fill="${p.col}" font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">${p.top}</text>
+        <text x="${p.x + p.w/2}" y="${p.y + p.h/2 + 11}" text-anchor="middle"
+          fill="${p.col}99" font-family="'JetBrains Mono',monospace" font-size="9">${p.sub}</text>
+      `).join('');
+
+      // Third text line for inference box
+      const inferExtra = `
+        <text x="265" y="137" text-anchor="middle"
+          fill="#a78bfa66" font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, '"Temporarily awake"', '临时"清醒"')}
+        </text>`;
+
+      const arrows = `
+        <line x1="40" y1="105" x2="720" y2="105" stroke="#1e3058" stroke-width="1.5"/>
+        <line x1="170" y1="105" x2="208" y2="105" stroke="#6b84a8" stroke-width="1.5" marker-end="url(#arr)"/>
+        <line x1="320" y1="105" x2="378" y2="105" stroke="#6b84a8" stroke-width="1.5" marker-end="url(#arr)"/>
+        <line x1="490" y1="105" x2="538" y2="105" stroke="#6b84a8" stroke-width="1.5" marker-end="url(#arr)"/>
+      `;
+
+      return boxes + inferExtra + arrows + S.label(380, 205,
+        t(lang,
+          'One call = one temporary awakening. Context vanishes when the call ends.',
+          '一次调用 = Agent 临时激活的一个瞬间。调用结束，这段上下文永久消失。'),
+        '#6b84a8', 11);
+    },
+
+    content: {
+      en: {
+        definition: 'One complete round-trip of "send request → model inference → receive response." <strong>Lifespan: milliseconds to seconds.</strong> When the request ends, all context is gone.',
+        essence: '<strong>Common misconception:</strong> "One invocation = one Agent." The accurate framing is: <em>one invocation is the moment an Agent briefly wakes up.</em> The Agent is defined by its persistent memory files; the invocation is what temporarily activates that definition.\n\nThink of a sleeping person (the Agent\'s memory files). Each time you wake them (invoke), they briefly think and respond, then sleep again. Sleeping does not mean they cease to exist.',
+        code: `<span class="cmt"># This is NOT an Agent — this is a single invocation</span>
+<span class="kw">response</span> = client.messages.create(
+    model=<span class="str">"claude-sonnet-4-20250514"</span>,
+    messages=[{<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: task}]
+)
+<span class="cmt"># Call ends — this "awareness" dissolves</span>
+<span class="cmt"># Next call: the model remembers nothing of this</span>`,
+        insight: 'Calling in a loop without rate limits looks like the model is "always alive" — this is an illusion. The reality is: activate → dissolve → activate → dissolve. The Agent\'s memory files are the true persistent carrier of "life."'
+      },
+      zh: {
+        definition: '一次完整的"发送请求 → 模型推理 → 获得回复"过程。<strong>寿命：毫秒级到秒级</strong>，请求结束即消亡，不留任何记忆。',
+        essence: '<strong>常见误区</strong>：有人说"一次调用就是一个 Agent"——这是不准确的。准确说法是：<em>一次调用是 Agent 被激活的一个瞬间</em>。Agent 是持久存在的定义（文件集合），调用是让这个定义临时"清醒"的动作。\n\n就像一个沉睡的人（Agent 的记忆文件），每次被叫醒（调用），他短暂思考并回应，然后再次入睡。睡着不代表他不存在。',
+        code: `<span class="cmt"># 这不是一个 Agent，这只是一次调用</span>
+<span class="kw">response</span> = client.messages.create(
+    model=<span class="str">"claude-sonnet-4-20250514"</span>,
+    messages=[{<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: task}]
+)
+<span class="cmt"># 调用结束，这段"意识"消散</span>
+<span class="cmt"># 下次调用时，模型对这次一无所知</span>`,
+        insight: '不限流的情况下可以循环调用，看起来像"一直活着"——这是错觉。本质是不断激活、不断消亡、不断激活。Agent 的记忆文件才是"活着"的载体。'
+      }
+    }
+  });
+})();
+
+</script>
+
+<!-- ── INLINE: 02-skill/chapter.js ── -->
+<script>
+(function () {
+  const S = window.AgentSpecHelpers;
+  const t = (lang, en, zh) => lang === 'zh' ? zh : en;
+
+  window.AgentSpec.register({
+    id: '02-skill',
+    order: 2,
+
+    nav:      { en: 'Skill',      zh: 'Skill 技能' },
+    title:    { en: '<span class="accent">Skill</span> Document', zh: '<span class="accent">Skill</span> 技能文档' },
+    subtitle: { en: 'Procedural memory for Agents', zh: 'Agent 的过程性记忆' },
+    tag:      { en: 'Core Concept', zh: '核心概念' },
+    tagClass: 'tag-core',
+
+    viewBox: '0 0 760 255',
+
+    getSvg(lang) {
+      const filename = t(lang, 'skill_send_notification.md', 'skill_send_feishu.md');
+      const sections = [
+        t(lang, '## Trigger', '## 触发条件'),
+        t(lang, '## Steps',   '## 执行步骤'),
+        t(lang, '## Notes',   '## 注意事项'),
+      ];
+      const lineWidths = [140, 100, 120, 80, 110, 90];
+      const lineAlphas = ['30','20','25','18','22','15'];
+
+      const docLines = [0,1,2,3,4,5].map(i => `
+        <rect x="285" y="${78+i*23}" width="${lineWidths[i]}" height="8" rx="2"
+          fill="#ffb800${lineAlphas[i]}"/>
+      `).join('');
+
+      const sectionLabels = [0,1,2].map((_, i) => `
+        <text x="285" y="${76 + i*64}" fill="#ffb80088"
+          font-family="'JetBrains Mono',monospace" font-size="9">${sections[i]}</text>
+      `).join('');
+
+      return `
+        <!-- Document card -->
+        <rect x="265" y="22" width="230" height="208" rx="6"
+          fill="#ffb80010" stroke="#ffb800" stroke-width="1.5"/>
+        <rect x="265" y="22" width="230" height="36" rx="6" fill="#ffb80025" stroke="none"/>
+        <text x="380" y="46" text-anchor="middle" fill="#ffb800"
+          font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">${filename}</text>
+
+        ${docLines}
+        ${sectionLabels}
+
+        <!-- Input side -->
+        ${S.box(38, 96, 140, 52, '#00c8ff',
+          t(lang, 'User Request', '用户请求'),
+          t(lang, 'Send notification', '发送飞书通知'))}
+        <line x1="178" y1="122" x2="263" y2="122"
+          stroke="#00c8ff" stroke-width="1.5" marker-end="url(#arrC)"/>
+        <text x="220" y="115" text-anchor="middle" fill="#00c8ff88"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'match trigger', '匹配触发条件')}
+        </text>
+
+        <!-- Output side -->
+        ${S.box(582, 96, 140, 52, '#00e599',
+          t(lang, 'Execute Action', '执行动作'),
+          t(lang, 'POST webhook', 'POST webhook'))}
+        <line x1="497" y1="122" x2="580" y2="122"
+          stroke="#00e599" stroke-width="1.5" marker-end="url(#arr)"/>
+        <text x="540" y="115" text-anchor="middle" fill="#00e59988"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'follow steps', '按步骤执行')}
+        </text>
+
+        ${S.label(380, 248,
+          t(lang,
+            'A Skill tells the Agent: "When you see task X, here is exactly how to handle it."',
+            'Skill 是告诉 Agent "遇到 X 类任务，按这个步骤做" 的结构化文档'),
+          '#6b84a8', 11)}
+      `;
+    },
+
+    content: {
+      en: {
+        definition: 'A structured document that tells an Agent "when you encounter task type X, follow these steps." <strong>Skills are procedural memory</strong> — like the muscle memory of riding a bicycle.',
+        essence: 'Skills are a special form of memory, but many people confuse Skills with Prompts. The key difference: <em>Prompts describe identity and style</em>; <em>Skills describe executable step-by-step procedures.</em>\n\nThe value of a Skill lies in "structuring expert knowledge": a senior DevOps engineer\'s incident response flow, once written as a Skill, can be reproduced by any Agent at expert level.',
+        table: {
+          title: 'Prompt vs Skill',
+          headers: ['Dimension', 'Prompt', 'Skill'],
+          rows: [
+            ['Describes', 'Identity, style, values', 'Concrete executable steps'],
+            ['Granularity', 'Abstract, macro', 'Specific and actionable'],
+            ['Trigger', 'Always active', 'Triggered by specific tasks'],
+            ['Analogy', 'Employee personality', 'Employee operations manual'],
+            ['Portability', 'Tied to Agent persona', 'Reusable across Agents ✅'],
+          ]
+        },
+        insight: 'Accumulated Skills are an Agent\'s true moat. An Agent with 200 refined Skills vastly outperforms one that has only changed its underlying model several times. Skills are your asset; the model is the tool you rent.'
+      },
+      zh: {
+        definition: '告诉 Agent "遇到 X 类任务时，如何一步步处理"的结构化文档。<strong>Skill 是过程性记忆（Procedural Memory）</strong>——就像骑自行车的肌肉记忆。',
+        essence: 'Skill 是记忆的特殊形式，但很多人把 Skill 和 Prompt 混淆。关键区别：<em>Prompt 描述身份和风格</em>，<em>Skill 描述可执行的操作步骤</em>。\n\nSkill 的价值在于"将专家知识结构化"：一个资深运维工程师对某类故障的处理流程，写成 Skill 后，任何 Agent 都能复现这个专家级处理能力。',
+        table: {
+          title: 'Prompt vs Skill 区别',
+          headers: ['维度', 'Prompt', 'Skill'],
+          rows: [
+            ['描述对象', '身份、风格、价值观', '具体操作步骤'],
+            ['粒度', '宏观抽象', '具体可执行'],
+            ['触发方式', '始终生效', '遇到特定任务触发'],
+            ['类比', '员工性格', '员工操作手册'],
+            ['可转移性', '与 Agent 人格绑定', '可跨 Agent 复用 ✅'],
+          ]
+        },
+        insight: 'Skill 的累积是 Agent 真正的护城河。一个积累了 200 个精细 Skill 的 Agent，其能力远超换了多少次底层模型。Skill 是你的资产，模型是你租的工具。'
+      }
+    }
+  });
+})();
+
+</script>
+
+<!-- ── INLINE: 03-agent/chapter.js ── -->
+<script>
+(function () {
+  const S = window.AgentSpecHelpers;
+  const t = (lang, en, zh) => lang === 'zh' ? zh : en;
+
+  window.AgentSpec.register({
+    id: '03-agent',
+    order: 3,
+
+    nav:      { en: 'Agent',       zh: 'Agent 智能体' },
+    title:    { en: '<span class="accent">Agent</span>',  zh: '<span class="accent">Agent</span> 智能体' },
+    subtitle: { en: 'Shell Program + Memory File Collection', zh: '外壳程序 + 记忆文件集合' },
+    tag:      { en: 'Core Concept', zh: '核心概念' },
+    tagClass: 'tag-core',
+
+    viewBox: '0 0 760 295',
+
+    getSvg(lang) {
+      const memFiles = [
+        ['#ff4d6d', t(lang, 'persona.md',   '人格定义.md'),   t(lang, 'who am I',       'who am I')],
+        ['#00c8ff', t(lang, 'knowledge.md', '行业记忆.md'),   t(lang, 'what I know',     'what I know')],
+        ['#ffb800', t(lang, 'skill_A.md',   'skill_A.md'),    t(lang, 'what I can do',   'what I can do')],
+        ['#00e599', t(lang, 'worklog.md',   '工作日志.md'),   t(lang, 'what I did',      'what I did')],
+        ['#a78bfa', t(lang, 'handoff.md',   '交接手册.md'),   t(lang, 'current state',   'current state')],
+      ];
+
+      const shellSteps = [
+        t(lang, 'Read memory files', '读取记忆文件'),
+        t(lang, 'Build API request', '构造 API 请求'),
+        t(lang, 'Execute actions',   '执行返回动作'),
+        t(lang, 'Update memory',     '更新记忆文件'),
+      ];
+
+      const memBoxes = memFiles.map(([c,n,s], i) => `
+        <rect x="${303 + Math.floor(i/3)*200}" y="${110 + (i%3)*52}"
+          width="178" height="40" rx="4" fill="${c}12" stroke="${c}30" stroke-width="1"/>
+        <text x="${392 + Math.floor(i/3)*200}" y="${133 + (i%3)*52}"
+          text-anchor="middle" fill="${c}"
+          font-family="'JetBrains Mono',monospace" font-size="11">${n}</text>
+        <text x="${392 + Math.floor(i/3)*200}" y="${148 + (i%3)*52}"
+          text-anchor="middle" fill="${c}88"
+          font-family="'JetBrains Mono',monospace" font-size="9">${s}</text>
+      `).join('');
+
+      const shellBoxes = shellSteps.map((step, i) => `
+        <rect x="75" y="${108 + i*38}" width="152" height="28" rx="3"
+          fill="#a78bfa12" stroke="#a78bfa30" stroke-width="1"/>
+        <text x="151" y="${127 + i*38}" text-anchor="middle" fill="#a78bfa"
+          font-family="'JetBrains Mono',monospace" font-size="10">${step}</text>
+      `).join('');
+
+      return `
+        <!-- Outer Agent boundary -->
+        <rect x="38" y="24" width="688" height="252" rx="10"
+          fill="#00c8ff08" stroke="#00c8ff" stroke-width="2"/>
+        <text x="380" y="18" text-anchor="middle" fill="#00c8ff"
+          font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">Agent</text>
+
+        <!-- Shell program panel -->
+        <rect x="58" y="48" width="185" height="212" rx="6"
+          fill="#0d1526" stroke="#2a4578" stroke-width="1.5"/>
+        <text x="151" y="74" text-anchor="middle" fill="#a78bfa"
+          font-family="'JetBrains Mono',monospace" font-size="11" font-weight="500">
+          ${t(lang, 'Shell Program', '外壳程序')}
+        </text>
+        <text x="151" y="91" text-anchor="middle" fill="#a78bfa88"
+          font-family="'JetBrains Mono',monospace" font-size="9">Shell Program</text>
+        ${shellBoxes}
+
+        <!-- Memory files panel -->
+        <rect x="285" y="48" width="430" height="212" rx="6"
+          fill="#0d1526" stroke="#2a4578" stroke-width="1.5"/>
+        <text x="500" y="74" text-anchor="middle" fill="#ffb800"
+          font-family="'JetBrains Mono',monospace" font-size="11" font-weight="500">
+          ${t(lang, 'Memory Files', '记忆文件集合')}
+        </text>
+        <text x="500" y="91" text-anchor="middle" fill="#ffb80088"
+          font-family="'JetBrains Mono',monospace" font-size="9">Memory Files</text>
+        ${memBoxes}
+      `;
+    },
+
+    content: {
+      en: {
+        definition: '<strong>Agent = Shell Program + Memory File Collection (including Skills).</strong> The shell program handles API calls; memory files provide continuity and specialized context. Neither works without the other.',
+        essence: 'An Agent has three states:<br><br><strong>① Dormant:</strong> Just a pile of files, no consciousness — like a closed book.<br><strong>② Active:</strong> The shell program is triggered, bundles memory files + current task, sends to the LLM API. The Agent "temporarily wakes up," reasons, and acts.<br><strong>③ Archived:</strong> Results are written back to memory files. The Agent becomes dormant again.\n\n<em>Key insight:</em> An Agent is not "a living program." It is a combination of "files + invocation program." The LLM API produces the intelligence; the Agent provides <strong>continuity</strong> and <strong>specialized context</strong>.',
+        insight: 'An Agent\'s most valuable asset is its <strong>domain memory</strong> — the knowledge, experiences, and patterns accumulated in a specific field. An Agent with 6 months of deep domain memory far outvalues any Prompt template. That is the real moat.'
+      },
+      zh: {
+        definition: '<strong>Agent = 外壳程序 + 长期记忆文件集合（含 Skills）</strong>。外壳程序负责调用 API；记忆文件负责提供持续性和专业上下文。两者缺一不可。',
+        essence: 'Agent 有三种状态：<br><br><strong>① 静止态</strong>：只是一堆文件，没有意识，像一本合上的书。<br><strong>② 激活态</strong>：外壳程序被触发，将记忆文件 + 当前任务打包发给大模型 API，Agent "临时清醒"，产生推理和行动。<br><strong>③ 归档态</strong>：工作成果写回记忆文件，Agent 再次静止。\n\n<em>关键认知</em>：Agent 本质不是"活的程序"，而是"文件 + 调用程序"的组合。真正产生智能的是大模型 API，Agent 提供的是<strong>持续性</strong>和<strong>专业化上下文</strong>。',
+        insight: 'Agent 最值钱的是<strong>行业记忆</strong>——那些在特定领域积累的知识、经验、处理模式。一个有 6 个月深度工作记忆的 Agent，其价值远超任何 Prompt 模板。这才是真正的护城河。'
+      }
+    }
+  });
+})();
+
+</script>
+
+<!-- ── INLINE: 04-shell/chapter.js ── -->
+<script>
+// chapters/04-shell/chapter.js
+(function () {
+  const S = window.AgentSpecHelpers;
+  const t = (lang, en, zh) => lang === 'zh' ? zh : en;
+
+  window.AgentSpec.register({
+    id: '04-shell',
+    order: 4,
+    nav:      { en: 'Shell Program', zh: '外壳程序' },
+    title:    { en: 'Shell <span class="accent">Program</span>', zh: '外壳 <span class="accent">程序</span>' },
+    subtitle: { en: 'The execution body of an Agent', zh: 'Agent 的执行躯体' },
+    tag:      { en: 'Core Concept', zh: '核心概念' },
+    tagClass: 'tag-core',
+    viewBox: '0 0 760 250',
+
+    getSvg(lang) {
+      const shells = [
+        [145, 42, '#a78bfa', 'Claude Code', 'claude cli'],
+        [580, 42, '#ffb800', 'Codex CLI',   'openai codex'],
+        [105, 185, '#00e599', 'Qwen CLI',   'qwen code'],
+        [580, 185, '#ff4d6d', t(lang, 'Custom Script', '自研脚本'), 'python/node'],
+      ];
+
+      const boxes = shells.map(([x, y, c, n, s]) => `
+        <rect x="${x-65}" y="${y-20}" width="130" height="44" rx="5"
+          fill="${c}12" stroke="${c}" stroke-width="1.2"/>
+        <text x="${x}" y="${y-2}" text-anchor="middle" fill="${c}"
+          font-family="'JetBrains Mono',monospace" font-size="11" font-weight="500">${n}</text>
+        <text x="${x}" y="${y+14}" text-anchor="middle" fill="${c}88"
+          font-family="'JetBrains Mono',monospace" font-size="9">${s}</text>
+      `).join('');
+
+      const lines = `
+        <line x1="210" y1="52" x2="334" y2="100" stroke="#2a4578" stroke-width="1.2"/>
+        <line x1="515" y1="52" x2="426" y2="100" stroke="#2a4578" stroke-width="1.2"/>
+        <line x1="170" y1="177" x2="332" y2="140" stroke="#2a4578" stroke-width="1.2"/>
+        <line x1="515" y1="177" x2="428" y2="145" stroke="#2a4578" stroke-width="1.2"/>
+      `;
+
+      return `
+        ${boxes}
+        <circle cx="380" cy="120" r="58" fill="#00c8ff0a" stroke="#00c8ff" stroke-width="1.5"/>
+        <text x="380" y="115" text-anchor="middle" fill="#00c8ff"
+          font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">Agent</text>
+        <text x="380" y="133" text-anchor="middle" fill="#00c8ff88"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'Memory Files', '记忆文件')}
+        </text>
+        ${lines}
+        ${S.label(380, 240,
+          t(lang, 'Any program that can invoke the LLM API can serve as a shell program',
+                  '任何能发起大模型 API 请求的程序，都可以作为 Agent 的外壳程序'),
+          '#6b84a8', 11)}
+      `;
+    },
+
+    content: {
+      en: {
+        definition: 'The program responsible for the closed loop: "read memory files → build API request → parse response → execute actions → update memory files." The shell program is the execution body of an Agent.',
+        essence: 'The shell program itself produces no intelligence — it is the <em>scheduler</em>. The best shell programs come from official LLM vendors (Claude Code, Codex CLI) because they natively support:\n\n<strong>Multiple instances</strong> (open multiple Agents like opening terminal windows); built-in <strong>file system interaction</strong> (read/write memory files directly); standard I/O interfaces that naturally suit <strong>workflow chaining</strong>.',
+        table: {
+          title: 'Shell Program Comparison',
+          headers: ['Program', 'Vendor', 'Strengths', 'Best for'],
+          rows: [
+            ['Claude Code / cli', 'Anthropic', 'Most mature, project-level context', 'Complex engineering, long-running tasks'],
+            ['Codex CLI', 'OpenAI', 'Code-focused, lightweight', 'Code generation, review'],
+            ['Qwen Code / cli', 'Alibaba', 'Chinese-friendly, domestic models', 'China environment, Chinese content'],
+            ['Custom Python script', 'Yourself', 'Fully controlled', 'Custom workflows, cost optimization'],
+          ]
+        },
+        insight: 'Prefer official vendor CLIs over rolling your own SDK wrapper. The official CLIs have optimized tool calling, error handling, and token management — you skip months of debugging.'
+      },
+      zh: {
+        definition: '负责"读取记忆文件 → 构造 API 请求 → 解析响应 → 执行动作 → 更新记忆文件"这一<strong>闭环</strong>的程序。外壳程序是 Agent 的执行躯体。',
+        essence: '外壳程序本身不产生智能，它是<em>调度者</em>。最好的外壳程序来自大模型厂商官方（Claude Code、Codex CLI），原因：\n\n原生支持<strong>多开</strong>（像开多个终端窗口一样启动多个 Agent）；内置<strong>文件系统交互</strong>（直接读写记忆文件）；标准输入输出接口，天然适合<strong>工作流串联</strong>。',
+        table: {
+          title: '主流外壳程序对比',
+          headers: ['程序', '厂商', '特点', '适合场景'],
+          rows: [
+            ['Claude Code / cli', 'Anthropic', '最成熟，项目级上下文', '复杂代码工程、长期任务'],
+            ['Codex CLI', 'OpenAI', '代码专向，轻量', '代码生成、review'],
+            ['Qwen Code / cli', '阿里云', '中文友好，接国内模型', '国内环境、中文场景'],
+            ['自研 Python 脚本', '你自己', '完全可控', '特定工作流、成本控制'],
+          ]
+        },
+        insight: '推荐优先使用厂商官方 CLI 作为外壳程序，而非自己用 SDK 封装。官方 CLI 在工具调用、错误处理、Token 管理上做了大量优化，踩的坑你不用再踩一遍。'
+      }
+    }
+  });
+})();
+
+</script>
+
+<!-- ── INLINE: 05-workflow/chapter.js ── -->
+<script>
+(function () {
+  const S = window.AgentSpecHelpers;
+  const t = (lang, en, zh) => lang === 'zh' ? zh : en;
+
+  window.AgentSpec.register({
+    id: '05-workflow',
+    order: 5,
+    nav:      { en: 'Workflow',     zh: '工作流' },
+    title:    { en: '<span class="accent">Workflow</span>', zh: '<span class="accent">工作流</span>' },
+    subtitle: { en: 'Multi-Agent collaboration system', zh: '多 Agent 分工协作系统' },
+    tag:      { en: 'System',       zh: '系统概念' },
+    tagClass: 'tag-system',
+    viewBox: '0 0 760 278',
+
+    getSvg(lang) {
+      return `
+        ${S.box(30, 108, 105, 52, '#a78bfa',
+          t(lang, 'API Entry', 'API 入口'),
+          t(lang, 'User request', '用户请求'))}
+
+        <rect x="165" y="97" width="115" height="74" rx="5" fill="#1e3058" stroke="#2a4578" stroke-width="1.5"/>
+        <text x="222" y="124" text-anchor="middle" fill="#6b84a8"
+          font-family="'JetBrains Mono',monospace" font-size="10">
+          ${t(lang, 'Workflow', '工作流')}
+        </text>
+        <text x="222" y="141" text-anchor="middle" fill="#6b84a8"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'Orchestrator', '调度程序')}
+        </text>
+        <text x="222" y="157" text-anchor="middle" fill="#6b84a888"
+          font-family="'JetBrains Mono',monospace" font-size="8">Python/Node</text>
+
+        ${S.box(318, 40, 122, 58, '#00c8ff',
+          t(lang, 'Agent A', 'Agent A'),
+          t(lang, 'Data fetch', '数据采集'))}
+        ${S.box(318, 132, 122, 58, '#ffb800',
+          t(lang, 'Agent B', 'Agent B'),
+          t(lang, 'Analysis', '分析决策'))}
+        ${S.box(318, 224, 122, 58, '#a78bfa',
+          t(lang, 'Aware Layer', '感知层'),
+          t(lang, 'Heartbeat', '心跳监控'))}
+
+        ${S.box(494, 87, 122, 58, '#00e599',
+          t(lang, 'Agent C', 'Agent C'),
+          t(lang, 'Execute + Output', '执行+输出'))}
+
+        <rect x="658" y="100" width="82" height="48" rx="5"
+          fill="#00e59912" stroke="#00e599" stroke-width="1.5"/>
+        <text x="699" y="120" text-anchor="middle" fill="#00e599"
+          font-family="'JetBrains Mono',monospace" font-size="10">
+          ${t(lang, 'Final', '最终')}
+        </text>
+        <text x="699" y="136" text-anchor="middle" fill="#00e599"
+          font-family="'JetBrains Mono',monospace" font-size="10">
+          ${t(lang, 'Output', '输出')}
+        </text>
+
+        <line x1="135" y1="134" x2="163" y2="134" stroke="#6b84a8" stroke-width="1.5" marker-end="url(#arr)"/>
+        <line x1="280" y1="112" x2="316" y2="70" stroke="#00c8ff" stroke-width="1.5" marker-end="url(#arrC)"/>
+        <line x1="280" y1="136" x2="316" y2="162" stroke="#ffb800" stroke-width="1.5" marker-end="url(#arrA)"/>
+        <line x1="440" y1="70" x2="492" y2="105" stroke="#00c8ff" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <line x1="440" y1="162" x2="492" y2="122" stroke="#ffb800" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <line x1="616" y1="116" x2="656" y2="124" stroke="#00e599" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <text x="466" y="78" text-anchor="middle" fill="#00c8ff66"
+          font-family="'JetBrains Mono',monospace" font-size="9">JSON</text>
+        <text x="466" y="168" text-anchor="middle" fill="#ffb80066"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'file/pipe', '文件/管道')}
+        </text>
+
+        ${S.label(380, 295,
+          t(lang,
+            'Workflow = rules for what Agent A passes to Agent B, plus the rights to call B',
+            '工作流 = 规定 Agent A 干完后把什么传给 Agent B，并给 A 调用 B 的权限'),
+          '#6b84a8', 11)}
+      `;
+    },
+
+    content: {
+      en: {
+        definition: 'A system where multiple Agents collaborate by following preset rules in sequence (or parallel). <strong>Workflows solve the problem that Agents cannot "chat" with each other</strong> — they replace spontaneous communication with explicit data-passing rules.',
+        essence: 'Agents have <em>no spontaneous communication ability</em> — they cannot send messages to each other on their own. The workflow is the "porter": it specifies what format A passes to B after finishing, and grants A the right to invoke B.\n\n<strong>A workflow can be wrapped as a single API endpoint.</strong> External caller hits the endpoint → triggers Agent A → A finishes and calls Agent B → … → final Agent returns result. To the outside world, it looks like one ordinary API call.',
+        code: `<span class="cmt"># Workflow exposed as a single API endpoint</span>
+@app.<span class="fn">post</span>(<span class="str">"/workflow/analyze"</span>)
+<span class="kw">def</span> <span class="fn">analyze</span>(ticker: str):
+    <span class="cmt"># 1. Activate Agent A (data fetch)</span>
+    data = subprocess.<span class="fn">run</span>([<span class="str">"claude"</span>, <span class="str">"--skill"</span>, <span class="str">"fetch"</span>, ticker])
+    <span class="cmt"># 2. A's output → B's input</span>
+    analysis = subprocess.<span class="fn">run</span>([<span class="str">"claude"</span>, <span class="str">"--skill"</span>, <span class="str">"analyze"</span>, data.stdout])
+    <span class="cmt"># 3. C synthesizes everything</span>
+    report = subprocess.<span class="fn">run</span>([<span class="str">"claude"</span>, <span class="str">"--skill"</span>, <span class="str">"report"</span>, analysis.stdout])
+    <span class="kw">return</span> report.stdout`,
+        insight: 'Workflow stability determines the reliability of the entire system. An Agent being "smart" is a bonus; the workflow being "stable" is the foundation. One workflow bug wastes all Agents.'
+      },
+      zh: {
+        definition: '多个 Agent 按照预设规则分工、依次（或并行）处理任务的系统。<strong>工作流解决 Agent 之间不能"闲聊"的问题</strong>——通过明确的数据传递规则替代自发通信。',
+        essence: 'Agent 之间<em>没有自发通信能力</em>——它们不会主动给对方发消息。工作流就是"搬运工"：规定 A 干完了把产出以什么格式传给 B，并且 A 要有权限调用 B。\n\n<strong>工作流对外可以包装成一个 API 接口</strong>：外部调用这个接口 → 触发 Agent A → A 完成后调用 Agent B → … → 最终 Agent 返回结果。对外部来说，这就是一次普通的 API 调用。',
+        code: `<span class="cmt"># 工作流对外是一个 API 接口</span>
+@app.<span class="fn">post</span>(<span class="str">"/workflow/analyze"</span>)
+<span class="kw">def</span> <span class="fn">analyze</span>(ticker: str):
+    data = subprocess.<span class="fn">run</span>([<span class="str">"claude"</span>, <span class="str">"--skill"</span>, <span class="str">"fetch"</span>, ticker])
+    analysis = subprocess.<span class="fn">run</span>([<span class="str">"claude"</span>, <span class="str">"--skill"</span>, <span class="str">"analyze"</span>, data.stdout])
+    report = subprocess.<span class="fn">run</span>([<span class="str">"claude"</span>, <span class="str">"--skill"</span>, <span class="str">"report"</span>, analysis.stdout])
+    <span class="kw">return</span> report.stdout`,
+        insight: '工作流的稳定性决定整个系统的可靠性。Agent 的"聪明"是锦上添花，工作流的"稳定"才是地基。一个工作流出了 bug，所有 Agent 都白费。'
+      }
+    }
+  });
+})();
+
+</script>
+
+<!-- ── INLINE: 06-handoff/chapter.js ── -->
+<script>
+(function () {
+  const S = window.AgentSpecHelpers;
+  const t = (lang, en, zh) => lang === 'zh' ? zh : en;
+
+  window.AgentSpec.register({
+    id: '06-handoff',
+    order: 6,
+    nav:      { en: 'Handoff Doc',  zh: '交接手册' },
+    title:    { en: '<span class="accent">Handoff</span> Document', zh: '<span class="accent">交接手册</span>' },
+    subtitle: { en: 'Persistent state across invocations', zh: 'Agent 状态的持久化' },
+    tag:      { en: 'System',       zh: '系统概念' },
+    tagClass: 'tag-system',
+    viewBox: '0 0 760 255',
+
+    getSvg(lang) {
+      const rows = [
+        ['#00e599', t(lang, '✅ Data fetch complete',  '✅ 数据采集完成')],
+        ['#00e599', t(lang, '✅ Indicators computed',  '✅ 指标计算完成')],
+        ['#ffb800', t(lang, '⏳ Cleaning in progress', '⏳ 异常清洗进行中')],
+        ['#6b84a8', t(lang, '📁 raw_data.json ready',  '📁 产出: raw_data.json')],
+        ['#00c8ff', t(lang, '➡ Next: filter turnover > 15%', '➡ 下一步: 分析换手率>15%')],
+      ];
+
+      const docLines = rows.map(([c, txt], i) => `
+        <text x="268" y="${98 + i*22}" fill="${c}"
+          font-family="'JetBrains Mono',monospace" font-size="9">${txt}</text>
+      `).join('');
+
+      return `
+        ${S.box(38, 84, 145, 58, '#00c8ff',
+          t(lang, 'Agent A', 'Agent A'),
+          t(lang, 'Data fetch', '数据采集'))}
+
+        <rect x="248" y="38" width="268" height="172" rx="6"
+          fill="#ffb80010" stroke="#ffb800" stroke-width="1.5"/>
+        <rect x="248" y="38" width="268" height="34" rx="6" fill="#ffb80022" stroke="none"/>
+        <text x="382" y="60" text-anchor="middle" fill="#ffb800"
+          font-family="'JetBrains Mono',monospace" font-size="11" font-weight="500">HANDOFF.md</text>
+        ${docLines}
+
+        ${S.box(578, 84, 145, 58, '#a78bfa',
+          t(lang, 'Agent B', 'Agent B'),
+          t(lang, 'Analysis', '分析决策'))}
+
+        <line x1="183" y1="113" x2="246" y2="113"
+          stroke="#ffb800" stroke-width="1.5" marker-end="url(#arrA)"/>
+        <text x="215" y="106" text-anchor="middle" fill="#ffb80088"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'writes', '写入')}
+        </text>
+        <line x1="518" y1="113" x2="576" y2="113"
+          stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arr)"/>
+        <text x="548" y="106" text-anchor="middle" fill="#a78bfa88"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'reads', '读取')}
+        </text>
+
+        ${S.label(380, 245,
+          t(lang,
+            'File modified → handoff doc must be updated. This ensures multi-Agent consistency.',
+            '文件被修改 → 手册必须同步更新。这是多 Agent 系统的数据一致性保障。'),
+          '#6b84a8', 11)}
+      `;
+    },
+
+    content: {
+      en: {
+        definition: 'A "work status document" maintained by each Agent (or project directory), recording <strong>what was done / current state / what to do next</strong>. Solves the Agent statelessness problem, letting "awareness" persist across invocations.',
+        essence: 'The handoff document is the <em>shared whiteboard</em> of a multi-Agent system. After Agent A finishes, Agent B doesn\'t need to replay the entire history — just read the handoff doc to know exactly where to pick up.\n\n<strong>Iron rule:</strong> Whenever files in a directory are modified, the handoff document must be updated synchronously. Violate this rule and you get "information silos" — Agent B makes decisions based on stale state and produces garbage.',
+        code: `<span class="cmt"># HANDOFF.md — standard format</span>
+<span class="str">## Task Status</span>
+- [x] Fetch A-share daily data
+- [x] Compute technical indicators
+- [ ] Anomaly cleaning (in progress)
+
+<span class="str">## Output Files</span>
+- data/raw_20240115.json  ✅
+- data/indicators.json    ✅
+
+<span class="str">## Instructions for Agent B</span>
+Focus on: turnover rate > 15% with volume breakout
+
+<span class="str">## Known Issues</span>
+- 3 missing rows in 002xxx series, marked null`,
+        insight: 'Think of the handoff document as a "real-time Git commit message" — not written for humans, but for the next Agent. The more precise it is, the fewer misjudgments downstream.'
+      },
+      zh: {
+        definition: '每个 Agent（或项目目录）维护的"工作状态文档"，记录<strong>我做了什么 / 现在状态 / 下一步怎么做</strong>。解决 Agent 无状态问题，让"意识"在多次调用间延续。',
+        essence: '交接手册是多 Agent 系统的<em>共享黑板</em>。Agent A 写完后，Agent B 不需要重新理解整个历史，只需读手册就知道接哪里。\n\n<strong>铁律</strong>：每当目录内的文件被修改，对应的交接手册必须同步更新。违反这条规则，工作流就会出现"信息孤岛"，Agent B 基于过期状态做决策，产出垃圾。',
+        insight: '把交接手册理解成"Git commit message 的实时版"——不是给人看的，是给下一个 Agent 看的。越精确，下游 Agent 的误判越少。'
+      }
+    }
+  });
+})();
+
+</script>
+
+<!-- ── INLINE: 07-aware/chapter.js ── -->
+<script>
+(function () {
+  const S = window.AgentSpecHelpers;
+  const t = (lang, en, zh) => lang === 'zh' ? zh : en;
+
+  window.AgentSpec.register({
+    id: '07-aware',
+    order: 7,
+    nav:      { en: 'Aware / Heartbeat', zh: '感知层/心跳' },
+    title:    { en: '<span class="accent">Aware</span> Layer · Heartbeat', zh: '<span class="accent">感知层</span> · 心跳机制' },
+    subtitle: { en: 'System-level monitoring for Agent pipelines', zh: '系统级运维 Agent' },
+    tag:      { en: 'System',            zh: '系统概念' },
+    tagClass: 'tag-system',
+    viewBox: '0 0 760 278',
+
+    getSvg(lang) {
+      const triggers = [
+        [t(lang, 'ERROR in logs',         '日志出现 ERROR'),          t(lang, '→ Wake master Agent', '→ 唤醒总管 Agent')],
+        [t(lang, 'Handoff stale 30min',   '手册 30min 未更新'),       t(lang, '→ Alert',             '→ 告警通知')],
+        [t(lang, 'Agent output empty',    'Agent 输出为空'),           t(lang, '→ Auto retry',        '→ 自动重试')],
+        [t(lang, 'External event fired',  '外部事件触发'),             t(lang, '→ Wake target Agent', '→ 唤醒对应 Agent')],
+      ];
+
+      const triggerRows = triggers.map(([cond, action], i) => `
+        <text x="496" y="${113 + i*26}" fill="#00e59988"
+          font-family="'JetBrains Mono',monospace" font-size="9">${cond}</text>
+        <text x="496" y="${126 + i*26}" fill="#00c8ff"
+          font-family="'JetBrains Mono',monospace" font-size="9">${action}</text>
+      `).join('');
+
+      return `
+        <polyline points="38,135 78,135 88,62 98,208 108,135 158,135 168,78 178,192 188,135 218,135 228,84 238,186 248,135 298,135 308,74 318,196 328,135 368,135"
+          fill="none" stroke="#00e599" stroke-width="2"/>
+        <polyline points="368,135 408,135 418,95 428,175 438,135 468,135"
+          fill="none" stroke="#00e59944" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+        <rect x="480" y="62" width="258" height="148" rx="6"
+          fill="#00e59910" stroke="#00e599" stroke-width="1.5"/>
+        <text x="609" y="87" text-anchor="middle" fill="#00e599"
+          font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">
+          ${t(lang, 'Aware Layer', '感知层 Aware')}
+        </text>
+        ${triggerRows}
+
+        <rect x="480" y="218" width="258" height="30" rx="4" fill="#0d1526" stroke="#2a4578"/>
+        <text x="609" y="237" text-anchor="middle" fill="#6b84a8"
+          font-family="'JetBrains Mono',monospace" font-size="10">
+          ${t(lang, 'Cheap model (¥0.001/1K tokens)', '使用便宜模型（¥0.001/千Token）')}
+        </text>
+
+        <line x1="468" y1="135" x2="478" y2="135"
+          stroke="#00e599" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        ${S.label(240, 268,
+          t(lang, 'High-freq scan · Low-cost judgment · Anomaly triggers premium Agent',
+                  '高频扫描 · 低成本判断 · 异常触发高级 Agent'),
+          '#6b84a8', 11)}
+      `;
+    },
+
+    content: {
+      en: {
+        definition: 'An independently running "monitoring program" that scans project state at high frequency (logs, handoff docs, Agent outputs) and triggers the appropriate Agent when anomalies are detected. <strong>Uses cheap models for judgment; flagship models for execution.</strong>',
+        essence: 'The Aware layer answers: "Who monitors the Agents?" Without it, a failed Agent may go unnoticed until a user complains.\n\n<strong>Core principle:</strong> <em>Heartbeat judgment = simple classification</em> (normal / anomaly / warning). No flagship model needed. Using a ¥0.001/1K-token model for heartbeats vs a ¥0.1/1K-token flagship model means a 100× cost difference.',
+        table: {
+          title: 'Cost Tiering Strategy',
+          headers: ['Layer', 'Model choice', 'Frequency', 'Purpose'],
+          rows: [
+            ['Aware layer', 'qwen-turbo / haiku', 'Every 30–60s', 'Log scan, status classification, anomaly detection'],
+            ['Workflow layer', 'claude-sonnet / gpt-4o', 'On demand', 'Agent orchestration, format conversion'],
+            ['Core layer', 'claude-opus / o3', 'Important tasks', 'Deep analysis, critical decisions, creative work'],
+          ]
+        },
+        insight: 'The Aware layer is the "immune system" of the whole Agent pipeline. An Agent system without monitoring is like a server without observability — when something breaks you won\'t even know it\'s broken.'
+      },
+      zh: {
+        definition: '独立运行的"系统监控程序"，高频扫描项目状态（日志、交接手册、Agent 输出），发现异常时触发对应 Agent 处理。<strong>使用便宜模型做判断，旗舰模型做执行</strong>。',
+        essence: '感知层解决的是"谁来监控 Agent"的问题。在没有感知层的系统中，Agent 出错了可能没有任何人知道，直到用户投诉。\n\n<strong>核心设计原则</strong>：<em>心跳判断 = 简单分类任务</em>（正常/异常/警告），不需要旗舰模型。用 ¥0.001/千Token 的模型做心跳，用 ¥0.1/千Token 的模型做核心任务，成本差 100 倍。',
+        table: {
+          title: '成本分层策略',
+          headers: ['层级', '模型选择', '频率', '用途'],
+          rows: [
+            ['感知层', 'qwen-turbo / haiku', '每 30~60 秒', '日志扫描、状态判断、异常分类'],
+            ['工作流层', 'claude-sonnet / gpt-4o', '按需触发', 'Agent 间调度、格式转换'],
+            ['核心层', 'claude-opus / o3', '重要任务', '深度分析、关键决策、创作'],
+          ]
+        },
+        insight: '感知层是整个 Agent 系统的"免疫系统"。没有感知层的 Agent 系统就像没有监控的服务器——出了问题你甚至不知道它已经挂了。'
+      }
+    }
+  });
+})();
+
+</script>
+
+<!-- ── INLINE: 08-multi-agent/chapter.js ── -->
+<script>
+(function () {
+  const S = window.AgentSpecHelpers;
+  const t = (lang, en, zh) => lang === 'zh' ? zh : en;
+
+  window.AgentSpec.register({
+    id: '08-multi-agent',
+    order: 8,
+    nav:      { en: 'Multi-Agent Comm', zh: '多Agent通信' },
+    title:    { en: 'Multi-<span class="accent">Agent</span> Communication', zh: '多 <span class="accent">Agent</span> 通信' },
+    subtitle: { en: 'No chatting — only handoffs', zh: '没有闲聊，只有交接' },
+    tag:      { en: 'System',           zh: '系统概念' },
+    tagClass: 'tag-system',
+    viewBox: '0 0 760 258',
+
+    getSvg(lang) {
+      return `
+        <!-- Wrong side label -->
+        <text x="185" y="30" text-anchor="middle" fill="#ff4d6d"
+          font-family="'JetBrains Mono',monospace" font-size="12">
+          ✗  ${t(lang, 'Common misconception', '错误认知')}
+        </text>
+        ${S.box(38, 52, 145, 65, '#ff4d6d', t(lang, 'Agent A', 'Agent A'), '')}
+        ${S.box(228, 52, 145, 65, '#ff4d6d', t(lang, 'Agent B', 'Agent B'), '')}
+        <line x1="183" y1="78" x2="226" y2="78" stroke="#ff4d6d" stroke-width="1.5" marker-end="url(#arr)"/>
+        <line x1="228" y1="94" x2="185" y2="94" stroke="#ff4d6d" stroke-width="1.5" marker-end="url(#arr)"/>
+        <text x="205" y="73" text-anchor="middle" fill="#ff4d6d"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'Direct chat?', '直接聊天？')}
+        </text>
+        <text x="205" y="108" text-anchor="middle" fill="#ff4d6d88"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'Agents have no spontaneous comm', 'Agent 无自发通信能力')}
+        </text>
+
+        <line x1="400" y1="18" x2="400" y2="235" stroke="#1e3058" stroke-width="1" stroke-dasharray="4 3"/>
+
+        <!-- Correct side label -->
+        <text x="580" y="30" text-anchor="middle" fill="#00e599"
+          font-family="'JetBrains Mono',monospace" font-size="12">
+          ✓  ${t(lang, 'Actual mechanism', '实际机制')}
+        </text>
+        ${S.box(428, 52, 105, 65, '#00c8ff', t(lang, 'Agent A', 'Agent A'), '')}
+        ${S.box(638, 52, 105, 65, '#a78bfa', t(lang, 'Agent B', 'Agent B'), '')}
+        <rect x="538" y="72" width="94" height="34" rx="4" fill="#ffb80018" stroke="#ffb800" stroke-width="1.2"/>
+        <text x="585" y="88" text-anchor="middle" fill="#ffb800"
+          font-family="'JetBrains Mono',monospace" font-size="9" font-weight="500">
+          ${t(lang, 'Workflow porter', '工作流搬运')}
+        </text>
+        <text x="585" y="100" text-anchor="middle" fill="#ffb80088"
+          font-family="'JetBrains Mono',monospace" font-size="8">
+          ${t(lang, 'file/pipe/queue', '文件/管道/队列')}
+        </text>
+        <line x1="533" y1="88" x2="540" y2="88" stroke="#ffb800" stroke-width="1.2" marker-end="url(#arrA)"/>
+        <line x1="632" y1="88" x2="640" y2="88" stroke="#ffb800" stroke-width="1.2" marker-end="url(#arr)"/>
+
+        ${S.box(438, 168, 145, 52, '#00c8ff',
+          t(lang, 'File pass', '文件传递'),
+          t(lang, 'A writes → B reads', 'A 写 → B 读'))}
+        ${S.box(598, 168, 145, 52, '#a78bfa',
+          t(lang, 'Pipe pass', '管道传递'),
+          t(lang, 'stdout → stdin', 'stdout → stdin'))}
+
+        <text x="447" y="158" fill="#6b84a8"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'Large data', '大数据量')}
+        </text>
+        <text x="608" y="158" fill="#6b84a8"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'Realtime', '实时流式')}
+        </text>
+
+        ${S.label(580, 248,
+          t(lang, 'A "porter" workflow program must relay all inter-Agent messages',
+                  '中间必须有工作流程序作为"搬运工"'),
+          '#6b84a8', 11)}
+      `;
+    },
+
+    content: {
+      en: {
+        definition: 'Agents <strong>cannot communicate directly</strong>. What is called "multi-Agent conversation" is really: A\'s output → workflow program reads → constructs new context → B\'s input.',
+        essence: 'This is the most misunderstood concept. Many believe that in a multi-Agent system, Agents are "chatting" — in reality they are completely unaware of each other\'s existence.\n\nAll each Agent sees is: a context (task + previous Agent\'s output). It processes and outputs. The <em>workflow program</em> is what chains everything together.\n\n<strong>File transfer:</strong> A writes a file, B reads it (good for large data, batch)\n<strong>Pipe transfer:</strong> A\'s stdout feeds directly to B\'s stdin (good for real-time streaming)',
+        insight: 'Think of multi-Agent systems as an assembly line, not a team meeting. Each worker (Agent) focuses on their station, receives material from upstream, processes it, passes downstream. They don\'t know each other and don\'t need to.'
+      },
+      zh: {
+        definition: 'Agent 之间<strong>不能直接通信</strong>。所谓"多 Agent 对话"，本质是：A 的输出 → 工作流程序读取 → 构造新的 context → B 的输入。',
+        essence: '这是最容易被误解的概念。很多人以为多 Agent 系统里 Agent 们在"聊天"——实际上它们完全不知道对方的存在。\n\n它们看到的只是：一个 context（包含任务 + 上一步的产出），处理后输出结果。是<em>工作流程序</em>在串联这一切。\n\n<strong>文件传递</strong>：A 写入文件，B 读取文件（适合大数据量、批处理）\n<strong>管道传递</strong>：A 的 stdout 直接接 B 的 stdin（适合实时流式处理）',
+        insight: '把多 Agent 系统理解成"工厂流水线"比"团队讨论"更准确：每个工人（Agent）只专注自己的工位，拿到上游传过来的物料，加工后传给下游，互相不认识也不需要认识。'
+      }
+    }
+  });
+})();
+
+</script>
+
+<!-- ── INLINE: 09-deploy/chapter.js ── -->
+<script>
+(function () {
+  const S = window.AgentSpecHelpers;
+  const t = (lang, en, zh) => lang === 'zh' ? zh : en;
+
+  window.AgentSpec.register({
+    id: '09-deploy',
+    order: 9,
+    nav:      { en: 'Local vs Cloud',  zh: '本地 vs 云端' },
+    title:    { en: 'Local <span class="accent">vs</span> Cloud', zh: '本地 <span class="accent">vs</span> 云端' },
+    subtitle: { en: 'Data sovereignty vs user experience', zh: '两种部署模式 · 数据主权与体验的取舍' },
+    tag:      { en: 'Pattern',         zh: '架构模式' },
+    tagClass: 'tag-pattern',
+    viewBox: '0 0 760 268',
+
+    getSvg(lang) {
+      const pros = (items) => items.map(s => `<tspan x="0" dy="16" fill="#00e59988">✓ ${s}</tspan>`).join('');
+      const cons = (items) => items.map(s => `<tspan x="0" dy="16" fill="#ff4d6d88">✗ ${s}</tspan>`).join('');
+
+      return `
+        <!-- LOCAL panel -->
+        <rect x="28" y="20" width="336" height="228" rx="8"
+          fill="#00c8ff08" stroke="#00c8ff40" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="196" y="44" text-anchor="middle" fill="#00c8ff"
+          font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
+          ${t(lang, 'Local Mode', '本地模式')}
+        </text>
+        <rect x="52" y="58" width="288" height="154" rx="6" fill="#0d1526" stroke="#1e3058" stroke-width="1"/>
+        <text x="98" y="76" fill="#6b84a8" font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'User device', '用户设备')}
+        </text>
+        ${S.box(62, 84, 120, 42, '#00c8ff', t(lang, 'Shell Program', '外壳程序'), '')}
+        ${S.box(62, 140, 120, 42, '#ffb800', t(lang, 'Memory Files', '记忆文件'), '')}
+        <line x1="242" y1="110" x2="296" y2="110" stroke="#6b84a8" stroke-width="1.2" marker-end="url(#arr)" stroke-dasharray="3 2"/>
+        <text x="268" y="103" text-anchor="middle" fill="#6b84a888"
+          font-family="'JetBrains Mono',monospace" font-size="8">
+          ${t(lang, 'your key', '用户自己的 Key')}
+        </text>
+        <rect x="296" y="96" width="34" height="30" rx="4" fill="#a78bfa18" stroke="#a78bfa" stroke-width="1"/>
+        <text x="313" y="116" text-anchor="middle" fill="#a78bfa"
+          font-family="'JetBrains Mono',monospace" font-size="8">API</text>
+        <text x="62" y="213" font-family="'JetBrains Mono',monospace" font-size="9">
+          ${pros([t(lang, 'Data stays local', '数据不离本地'), t(lang, 'Choose your compute', '算力可自选最优')])}
+          ${cons([t(lang, 'Needs API key setup', '需要配置 Key'), t(lang, 'Technical barrier', '有技术门槛')])}
+        </text>
+
+        <!-- CLOUD panel -->
+        <rect x="396" y="20" width="336" height="228" rx="8"
+          fill="#a78bfa08" stroke="#a78bfa40" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="564" y="44" text-anchor="middle" fill="#a78bfa"
+          font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
+          ${t(lang, 'Cloud Mode', '云端模式')}
+        </text>
+        <rect x="420" y="58" width="288" height="154" rx="6" fill="#0d1526" stroke="#1e3058" stroke-width="1"/>
+        <text x="466" y="76" fill="#6b84a8" font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'Your server', '你的服务器')}
+        </text>
+        ${S.box(430, 84, 120, 42, '#a78bfa', t(lang, 'Shell Program', '外壳程序'), '')}
+        ${S.box(430, 140, 120, 42, '#ffb800', t(lang, 'Memory Files', '记忆文件'), '')}
+        <line x1="610" y1="110" x2="660" y2="110" stroke="#6b84a8" stroke-width="1.2" marker-end="url(#arr)" stroke-dasharray="3 2"/>
+        <text x="634" y="103" text-anchor="middle" fill="#6b84a888"
+          font-family="'JetBrains Mono',monospace" font-size="8">
+          ${t(lang, 'your key', '你的 Key')}
+        </text>
+        <rect x="660" y="96" width="34" height="30" rx="4" fill="#a78bfa18" stroke="#a78bfa" stroke-width="1"/>
+        <text x="677" y="116" text-anchor="middle" fill="#a78bfa"
+          font-family="'JetBrains Mono',monospace" font-size="8">API</text>
+        <text x="430" y="213" font-family="'JetBrains Mono',monospace" font-size="9">
+          ${pros([t(lang, 'Zero setup for users', '用户零配置'), t(lang, 'Smooth UX', '体验流畅')])}
+          ${cons([t(lang, 'You pay compute cost', '你承担算力成本'), t(lang, 'Data on your server', '数据在你服务器')])}
+        </text>
+      `;
+    },
+
+    content: {
+      en: {
+        definition: 'Two Agent deployment modes: <strong>Local</strong> (Agent runs on the user\'s device with their own API key) and <strong>Cloud</strong> (Agent runs on the product\'s server; users pay for usage).',
+        essence: 'Fundamentally a trade-off between <em>data sovereignty</em> and <em>ease of use</em>.\n\nLocal is better for: technical users, privacy-sensitive use cases, users who want to control compute costs.\n\nCloud is better for: consumer-facing products that need zero-config, out-of-the-box experience.\n\n<strong>Worth noting:</strong> In cloud mode, user data necessarily flows through your server, regardless of what you "promise." This is an architectural fact, not a matter of intent.',
+        insight: 'Developers with access to cheap compute should consider local mode: data stays on device, costs are self-controlled, and users can use the latest models. Local mode is the architecture where "the Agent truly belongs to the user."'
+      },
+      zh: {
+        definition: '两种 Agent 系统部署方式：<strong>本地模式</strong>（Agent 跑在用户设备，用户自己的 Key）和<strong>云端模式</strong>（Agent 跑在产品服务器，用户充值使用）。',
+        essence: '本质上是<em>数据主权</em>和<em>使用门槛</em>之间的取舍。\n\n本地模式更适合：技术用户、对数据隐私有要求的场景、想要自己控制算力成本的用户。\n\n云端模式更适合：面向普通用户的消费级产品，需要零配置开箱即用体验。\n\n<strong>值得注意</strong>：云端模式下，用户数据必然流经你的服务器，不管你是否"承诺不看"。这是架构决定的，不是意愿问题。',
+        insight: '有渠道拿到便宜算力的开发者，本地模式是最香的：数据在本地、成本自控、能用最新模型。本地模式才是真正意义上"Agent 属于用户"的架构。'
+      }
+    }
+  });
+})();
+
+</script>
+
+<!-- ── INLINE: 10-light-heavy/chapter.js ── -->
+<script>
+(function () {
+  const S = window.AgentSpecHelpers;
+  const t = (lang, en, zh) => lang === 'zh' ? zh : en;
+
+  window.AgentSpec.register({
+    id: '10-light-heavy',
+    order: 10,
+    nav:      { en: 'Light vs Heavy',  zh: '轻 vs 重 Agent' },
+    title:    { en: 'Light <span class="accent">vs</span> Heavy Agent', zh: '轻 <span class="accent">Agent</span> vs 重 Agent' },
+    subtitle: { en: 'Two software paradigms — choose wrong and it\'s all wasted', zh: '两种软件范式 · 选错了全白费' },
+    tag:      { en: 'Pattern',         zh: '架构模式' },
+    tagClass: 'tag-pattern',
+    viewBox: '0 0 760 258',
+
+    getSvg(lang) {
+      return `
+        <!-- Light Agent pie -->
+        <circle cx="200" cy="122" r="92" fill="#0d1526" stroke="#1e3058" stroke-width="1"/>
+        <path d="M200,122 L200,30 A92,92 0 1,1 108.2,168 Z" fill="#00c8ff18" stroke="#00c8ff" stroke-width="1.5"/>
+        <path d="M200,122 L108.2,168 A92,92 0 0,1 200,30 Z" fill="#ffb80030" stroke="#ffb800" stroke-width="1.5"/>
+        <text x="200" y="114" text-anchor="middle" fill="#00c8ff"
+          font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700">90%</text>
+        <text x="200" y="132" text-anchor="middle" fill="#00c8ff88"
+          font-family="'JetBrains Mono',monospace" font-size="10">
+          ${t(lang, 'Code logic', '代码逻辑')}
+        </text>
+        <text x="146" y="172" text-anchor="middle" fill="#ffb800"
+          font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700">10%</text>
+        <text x="146" y="186" text-anchor="middle" fill="#ffb80088"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'AI processing', 'AI 处理')}
+        </text>
+        <text x="200" y="232" text-anchor="middle" fill="#00c8ff"
+          font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">
+          ${t(lang, 'Light Agent', '轻 Agent')}
+        </text>
+
+        <!-- Divider -->
+        <line x1="380" y1="18" x2="380" y2="240" stroke="#1e3058" stroke-width="1" stroke-dasharray="4 3"/>
+
+        <!-- Heavy Agent pie -->
+        <circle cx="560" cy="122" r="92" fill="#0d1526" stroke="#1e3058" stroke-width="1"/>
+        <path d="M560,122 L560,30 A92,92 0 0,1 606.5,208 Z" fill="#00c8ff18" stroke="#00c8ff" stroke-width="1.5"/>
+        <path d="M560,122 L606.5,208 A92,92 0 1,1 560,30 Z" fill="#ffb80030" stroke="#ffb800" stroke-width="1.5"/>
+        <text x="560" y="142" text-anchor="middle" fill="#ffb800"
+          font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700">90%</text>
+        <text x="560" y="160" text-anchor="middle" fill="#ffb80088"
+          font-family="'JetBrains Mono',monospace" font-size="10">
+          ${t(lang, 'Agent interaction', 'Agent 交互')}
+        </text>
+        <text x="602" y="82" text-anchor="middle" fill="#00c8ff"
+          font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700">10%</text>
+        <text x="602" y="96" text-anchor="middle" fill="#00c8ff88"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'UI + runtime', 'UI+运行')}
+        </text>
+        <text x="560" y="232" text-anchor="middle" fill="#ffb800"
+          font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">
+          ${t(lang, 'Heavy Agent', '重 Agent')}
+        </text>
+      `;
+    },
+
+    content: {
+      en: {
+        definition: '<strong>Light Agent:</strong> 90% code + 10% AI — AI only intervenes at specific nodes. <strong>Heavy Agent:</strong> 10% code (UI + runtime) + 90% Agent interaction — humans mainly collaborate with Agents through dialogue.',
+        essence: 'This is a fundamental architectural choice that determines the core product experience.\n\n<strong>Light Agent suits:</strong> Products where the core value is "functionality" — SaaS tools, content management, data processing. AI adds polish.\n\n<strong>Heavy Agent suits:</strong> Products where the core value is "judgment and execution" — professional advisors, autonomous execution systems. Claude Code itself is a canonical Heavy Agent: you just say "refactor this module" and it handles the rest.\n\n<em>Selection rule:</em> If you can spell out in code "what to do," use Light Agent. If "what to do" requires AI judgment, use Heavy Agent.',
+        table: {
+          title: 'Selection Reference',
+          headers: ['Dimension', 'Light Agent', 'Heavy Agent'],
+          rows: [
+            ['AI ratio', '~10%', '~90%'],
+            ['Core value', 'Product features', 'Judgment & execution'],
+            ['Typical product', 'AI-enhanced SaaS', 'Claude Code / Cursor'],
+            ['Dev complexity', 'Lower', 'Higher (workflow design)'],
+            ['Cost structure', 'Mainly dev cost', 'Mainly compute cost'],
+          ]
+        },
+        insight: 'Most products should start as Light Agents. Heavy Agents require mature workflow design skills and a clear understanding of where AI judgment actually adds value over coded logic.'
+      },
+      zh: {
+        definition: '<strong>轻 Agent</strong>：90% 代码 + 10% AI，AI 只在特定节点介入。<strong>重 Agent</strong>：10% 代码（UI + 运行环境）+ 90% Agent 交互，人类主要通过对话与 Agent 协作。',
+        essence: '这是软件架构层面的根本选择，决定了产品的核心体验。\n\n<strong>轻 Agent 适合</strong>：核心价值是"功能"的产品——SaaS 工具、内容管理、数据处理。AI 锦上添花。\n\n<strong>重 Agent 适合</strong>：核心价值是"判断和执行"的产品——专业顾问、自主执行系统。Claude Code 本身就是重 Agent 的典型——你只需说"帮我重构"，其余它自己处理。\n\n<em>选型建议</em>：如果你能用代码写清楚"做什么"，就用轻 Agent；如果"做什么"本身就需要 AI 来判断，就用重 Agent。',
+        table: {
+          title: '选型参考',
+          headers: ['维度', '轻 Agent', '重 Agent'],
+          rows: [
+            ['AI 占比', '~10%', '~90%'],
+            ['核心价值', '产品功能', '判断与执行'],
+            ['典型产品', '带 AI 的 SaaS', 'Claude Code / Cursor'],
+            ['开发难度', '较低', '较高（需要工作流设计）'],
+            ['成本结构', '主要是开发成本', '主要是算力成本'],
+          ]
+        },
+        insight: '大多数产品应该从轻 Agent 起步。重 Agent 需要成熟的工作流设计能力，以及对"哪些地方 AI 判断真的优于代码逻辑"的清晰认知。'
+      }
+    }
+  });
+})();
+
+</script>
+
+<!-- ── INLINE: 11-business/chapter.js ── -->
+<script>
+(function () {
+  const S = window.AgentSpecHelpers;
+  const t = (lang, en, zh) => lang === 'zh' ? zh : en;
+
+  window.AgentSpec.register({
+    id: '11-business',
+    order: 11,
+    nav:      { en: 'Business Model', zh: '商业模式' },
+    title:    { en: '<span class="accent">Business</span> Model', zh: '<span class="accent">商业模式</span>' },
+    subtitle: { en: 'ToB vs ToC — moat determines the route', zh: 'ToB vs ToC · 护城河决定路线' },
+    tag:      { en: 'Business',       zh: '商业' },
+    tagClass: 'tag-biz',
+    viewBox: '0 0 760 258',
+
+    getSvg(lang) {
+      const tobItems = [
+        t(lang, 'Shell program',          '外壳程序'),
+        t(lang, 'Persona file',           '人格定义文件'),
+        t(lang, 'Domain memory (key!)',   '行业记忆文件（核心！）'),
+        t(lang, 'Skill collection',       'Skill 集合'),
+      ];
+      const tocItems = [
+        t(lang, 'Agent on your server',   'Agent 跑在你的服务器'),
+        t(lang, 'User interacts via UI',  '用户通过界面交互'),
+        t(lang, 'Subscription / per-use', '按功能/时间/量计费'),
+        t(lang, 'Data on your server',    '数据在你的服务器'),
+      ];
+
+      const tobRows = tobItems.map((s, i) => `
+        <text x="68" y="${116 + i*14}" fill="#6b84a8"
+          font-family="'JetBrains Mono',monospace" font-size="9">· ${s}</text>
+      `).join('');
+
+      const tocRows = tocItems.map((s, i) => `
+        <text x="432" y="${116 + i*14}" fill="#6b84a8"
+          font-family="'JetBrains Mono',monospace" font-size="9">· ${s}</text>
+      `).join('');
+
+      return `
+        <!-- ToB panel -->
+        <rect x="28" y="22" width="328" height="218" rx="8"
+          fill="#00c8ff08" stroke="#00c8ff40" stroke-width="1.5"/>
+        <text x="192" y="46" text-anchor="middle" fill="#00c8ff"
+          font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
+          ToB · ${t(lang, 'Sell the Agent', '卖 Agent 本体')}
+        </text>
+        <rect x="52" y="58" width="280" height="90" rx="5" fill="#0d1526" stroke="#1e3058"/>
+        <text x="68" y="78" fill="#a78bfa" font-family="'JetBrains Mono',monospace" font-size="9">
+          📦 ${t(lang, 'Deliverables', '交付物')}
+        </text>
+        ${tobRows}
+        <text x="192" y="165" text-anchor="middle" fill="#ffb800"
+          font-family="'JetBrains Mono',monospace" font-size="10">
+          ${t(lang, 'One-time purchase · User brings compute', '一次性买断 · 用户自带算力')}
+        </text>
+        <text x="192" y="182" text-anchor="middle" fill="#00e59988"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'Moat: exclusive domain memory', '护城河：独家行业记忆')}
+        </text>
+        <text x="192" y="226" text-anchor="middle" fill="#6b84a8"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'Best for: vertical industry Agent sales', '适合：垂直行业 Agent 出售')}
+        </text>
+
+        <!-- ToC panel -->
+        <rect x="404" y="22" width="328" height="218" rx="8"
+          fill="#a78bfa08" stroke="#a78bfa40" stroke-width="1.5"/>
+        <text x="568" y="46" text-anchor="middle" fill="#a78bfa"
+          font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
+          ToC · ${t(lang, 'Sell the service', '卖产品服务')}
+        </text>
+        <rect x="428" y="58" width="280" height="90" rx="5" fill="#0d1526" stroke="#1e3058"/>
+        <text x="444" y="78" fill="#a78bfa" font-family="'JetBrains Mono',monospace" font-size="9">
+          💻 ${t(lang, 'Model', '模式')}
+        </text>
+        ${tocRows}
+        <text x="568" y="165" text-anchor="middle" fill="#ffb800"
+          font-family="'JetBrains Mono',monospace" font-size="10">
+          ${t(lang, 'Subscription / usage · You pay compute', '订阅 / 按量 · 你承担算力成本')}
+        </text>
+        <text x="568" y="182" text-anchor="middle" fill="#00e59988"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'Moat: product UX + user habit', '护城河：产品体验 + 用户习惯')}
+        </text>
+        <text x="568" y="226" text-anchor="middle" fill="#6b84a8"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'Best for: consumer-facing AI products', '适合：面向消费者的 AI 产品')}
+        </text>
+      `;
+    },
+
+    content: {
+      en: {
+        definition: 'Two business routes: <strong>ToB</strong> — sell the Agent itself (shell + memory files), one-time purchase, user brings their own compute; <strong>ToC</strong> — sell product service, Agent runs on your server, users pay for usage.',
+        essence: 'The core difference is <em>who bears compute cost</em> and <em>where the moat comes from</em>.\n\nToB moat: <strong>Domain memory.</strong> An Agent with accumulated expertise in medicine, law, finance — expertise a buyer cannot quickly replicate — is truly valuable.\n\nToC moat: <strong>Product UX + user habit.</strong> Compute cost is your burden, but scale effects and user stickiness are your barriers.\n\nNote: ToB is not "selling a Prompt collection." The real value is the <em>domain memory files</em> — the professionally validated knowledge base built from extensive practice.',
+        insight: 'In the Agent era, ToB business sells not software features but "a copy of an expert\'s brain." Selling a top-tier sales Agent\'s memory to 100 companies is more scalable than training 100 salespeople.'
+      },
+      zh: {
+        definition: '两条商业路线：<strong>ToB</strong>——卖 Agent 本体（外壳 + 记忆文件），一次性买断，用户自带算力；<strong>ToC</strong>——卖产品服务，Agent 在你的服务器，用户充值使用。',
+        essence: '两条路线的核心差异是<em>谁承担算力成本</em>和<em>护城河来自哪里</em>。\n\nToB 的护城河：<strong>行业记忆</strong>。一个在医疗、法律、金融等垂直领域积累了大量专业记忆的 Agent，其价值是买家无法自己快速复制的。\n\nToC 的护城河：<strong>产品体验 + 用户习惯</strong>。算力成本是你的负担，但规模效应和用户粘性是壁垒。\n\n注意：ToB 不是"卖 Prompt 合集"，真正的价值在于<em>行业记忆文件</em>——那些经过大量实践验证、积累的专业知识库。',
+        insight: 'Agent 时代的 ToB 生意，卖的不是软件功能，卖的是"专家大脑的副本"。把一个顶级销售 Agent 的记忆卖给 100 个公司，比培养 100 个销售更可扩展。'
+      }
+    }
+  });
+})();
+
+</script>
+
+
+</head>
+<body>
+
+<!-- Global SVG marker defs -->
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <marker id="arr"  markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#6b84a8"/></marker>
+    <marker id="arrC" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#00c8ff"/></marker>
+    <marker id="arrA" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#ffb800"/></marker>
+  </defs>
+</svg>
+
+<div id="app">
+  <!-- LOADING -->
+  <div v-if="loading" class="loading-state">
+    <span class="loading-dot"></span>
+    <span>{{ lang === 'zh' ? '加载章节中...' : 'Loading chapters...' }}</span>
+  </div>
+
+  <template v-else>
+    <!-- HEADER -->
+    <header class="header">
+      <div>
+        <div class="header-title">
+          <template v-if="lang === 'zh'">通用 <span>Agent</span> 定义规范</template>
+          <template v-else>Universal <span>Agent</span> Spec</template>
+        </div>
+        <div class="header-sub">
+          <template v-if="lang === 'zh'">Universal Agent Definition Specification · v2.0 · 工程实践向</template>
+          <template v-else>Universal Agent Definition Specification · v2.0 · Engineering Reference</template>
+        </div>
+      </div>
+      <span class="header-badge">{{ chapters.length }} {{ lang === 'zh' ? '核心概念' : 'Concepts' }}</span>
+
+      <!-- LANGUAGE TOGGLE -->
+      <div class="lang-toggle">
+        <button
+          v-for="l in LANGS" :key="l"
+          class="lang-btn"
+          :class="{ active: lang === l }"
+          @click="setLang(l)"
+        >{{ LANG_NAMES[l] }}</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <!-- SIDEBAR -->
+      <nav class="sidebar">
+        <div class="sidebar-label">{{ lang === 'zh' ? '概念导航' : 'Contents' }}</div>
+        <div
+          v-for="(c, i) in chapters"
+          :key="c.id"
+          class="nav-item"
+          :class="{ active: activeIdx === i }"
+          @click="scrollTo(i)"
+        >
+          <span class="nav-num">{{ String(c.order).padStart(2, '0') }}</span>
+          <span>{{ t(c.nav) }}</span>
+        </div>
+      </nav>
+
+      <!-- MAIN -->
+      <main class="main" ref="mainEl" @scroll="onScroll">
+        <div
+          v-for="(c, i) in chapters"
+          :key="c.id"
+          :ref="el => cardRefs[i] = el"
+          class="concept-card"
+        >
+          <!-- CARD HEADER -->
+          <div class="card-header">
+            <div class="card-num">{{ String(c.order).padStart(2, '0') }}</div>
+            <div class="card-title-wrap">
+              <div class="card-title" v-html="t(c.title)"></div>
+              <div class="card-subtitle">{{ t(c.subtitle) }}</div>
+            </div>
+            <span class="card-tag" :class="c.tagClass">{{ t(c.tag) }}</span>
+          </div>
+
+          <!-- CARD BODY -->
+          <div class="card-body">
+            <!-- SVG DIAGRAM -->
+            <div class="diagram-wrap" v-if="c.getSvg" v-html="buildSvg(c)"></div>
+
+            <!-- DEFINITION -->
+            <div class="def-block" v-if="content(c).definition">
+              <div class="def-label">{{ lang === 'zh' ? '核心定义' : 'Definition' }}</div>
+              <div class="def-text" v-html="content(c).definition"></div>
+            </div>
+
+            <!-- ESSENCE -->
+            <div class="section" v-if="content(c).essence">
+              <div class="section-title">{{ lang === 'zh' ? '本质解析' : 'Essence' }}</div>
+              <div class="prose" v-html="content(c).essence"></div>
+            </div>
+
+            <!-- INSIGHT -->
+            <div class="insight" v-if="content(c).insight">
+              <span class="insight-icon">⚡</span>
+              <span v-html="content(c).insight"></span>
+            </div>
+
+            <!-- CODE -->
+            <div v-if="content(c).code" class="code-block" v-html="content(c).code"></div>
+
+            <!-- TABLE -->
+            <div v-if="content(c).table" class="section">
+              <div class="section-title">{{ content(c).table.title }}</div>
+              <table class="compare-table">
+                <thead>
+                  <tr><th v-for="h in content(c).table.headers" :key="h">{{ h }}</th></tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(row, ri) in content(c).table.rows" :key="ri">
+                    <td v-for="(cell, ci) in row" :key="ci" v-html="cell"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <span>Universal Agent Spec · v2.0</span>
+      <span>github.com/your-handle/universal-agent-spec</span>
+    </footer>
+  </template>
+</div>
+
+<!-- Core libraries (must load before chapters) -->
+<script src="core/registry.js"></script>
+<script src="core/helpers.js"></script>
+<!-- Manifest -->
+<script src="manifest.js"></script>
+
+<script>
+const { createApp, ref, computed, onMounted } = Vue;
+
+createApp({
+  setup() {
+    const lang      = ref('en');   // default: English
+    const loading   = ref(true);
+    const chapters  = ref([]);
+    const activeIdx = ref(0);
+    const mainEl    = ref(null);
+    const cardRefs  = ref([]);
+
+    const LANGS     = window.AgentSpec.LANGS;
+    const LANG_NAMES = window.AgentSpec.LANG_NAMES;
+
+    // ── helpers ──
+    const t = (field) => window.AgentSpec.t(field, lang.value);
+
+    const content = (c) => {
+      const ct = c.content || {};
+      return ct[lang.value] || ct['en'] || {};
+    };
+
+    const buildSvg = (c) => {
+      const vb = c.viewBox || '0 0 760 280';
+      const parts = vb.split(' ');
+      const w = parseInt(parts[2]);
+      const h = parseInt(parts[3]);
+      const pad = 40;
+      const expandedVb = `0 0 ${w} ${h + pad * 2}`;
+      const inner = c.getSvg ? c.getSvg(lang.value) : '';
+      return `<svg viewBox="${expandedVb}" xmlns="http://www.w3.org/2000/svg"
+        style="width:100%;height:auto;display:block;overflow:visible">
+        <g transform="translate(0,${pad})">${inner}</g>
+      </svg>`;
+    };
+
+    // ── language ──
+    function setLang(l) {
+      lang.value = l;
+    }
+
+    // ── navigation ──
+    function scrollTo(i) {
+      activeIdx.value = i;
+      const el = cardRefs.value[i];
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function onScroll() {
+      if (!mainEl.value) return;
+      const top = mainEl.value.scrollTop + 80;
+      for (let i = cardRefs.value.length - 1; i >= 0; i--) {
+        const el = cardRefs.value[i];
+        if (el && el.offsetTop <= top) { activeIdx.value = i; break; }
+      }
+    }
+
+    // ── chapters are all inlined — just read synchronously ──
+    onMounted(() => {
+      chapters.value = window.AgentSpec.getChapters();
+      loading.value = false;
+    });
+
+    return {
+      lang, loading, chapters, activeIdx, mainEl, cardRefs,
+      LANGS, LANG_NAMES,
+      t, content, buildSvg, setLang, scrollTo, onScroll
+    };
+  }
+}).mount('#app');
+</script>
+</body>
+</html>
