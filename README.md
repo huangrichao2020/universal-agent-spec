@@ -25,7 +25,7 @@
 
 *Stop arguing about what an "Agent" is. Start building on solid ground.*
 
-[**▶ View Live Demo**](https://huangwei.github.io/universal-agent-spec) · [**⭐ Star this repo**](https://github.com/huangwei/universal-agent-spec) · [**📖 中文文档**](#中文)
+[**▶ View Live Demo**](https://huangrichao2020.github.io/universal-agent-spec) · [**⭐ Star this repo**](https://github.com/huangrichao2020/universal-agent-spec) · [**📖 中文文档**](#中文)
 
 </div>
 
@@ -162,7 +162,7 @@ If this spec saved you from a bad architecture decision, a useless team debate, 
 
 <div align="center">
 
-[![Star History Chart](https://api.star-history.com/svg?repos=huangwei/universal-agent-spec&type=Date)](https://star-history.com/#huangwei/universal-agent-spec&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=huangrichao2020/universal-agent-spec&type=Date)](https://star-history.com/#huangrichao2020/universal-agent-spec&Date)
 
 </div>
 
