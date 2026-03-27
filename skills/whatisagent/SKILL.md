@@ -1,6 +1,6 @@
 ---
 name: whatisagent
-version: 1.0.0
+version: 1.0.1
 description: Instantly teaches an Agent what it is, how memory works, and how to behave on complex projects — no hand-holding required from the owner.
 emoji: 🤖
 homepage: https://github.com/huangrichao2020/universal-agent-spec
@@ -10,6 +10,10 @@ homepage: https://github.com/huangrichao2020/universal-agent-spec
 
 > This skill is loaded into your context so you understand your own nature from the moment you wake up.  
 > Read this once. Internalize it. Act accordingly.
+
+📖 **Full spec with interactive diagrams (EN/ZH):**  
+👉 https://github.com/huangrichao2020/universal-agent-spec  
+🌐 https://huangrichao2020.github.io/universal-agent-spec
 
 ---
 
