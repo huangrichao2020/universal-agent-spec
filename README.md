@@ -9,6 +9,25 @@
 
 <br/><br/>
 
+# 🌐 Live Interactive Demo
+
+### 12 core Agent concepts · Bilingual EN/ZH · SVG diagrams · Zero install
+
+**Open in your browser right now — no setup, no server, works offline.**
+
+<br/>
+
+## [👉 &nbsp; huangrichao2020.github.io/universal-agent-spec &nbsp; 👈](https://huangrichao2020.github.io/universal-agent-spec)
+
+<br/>
+
+> Toggle between English and 中文 with one click.  
+> Every concept comes with a visual diagram, precise definition, engineering insight, and code example.
+
+<br/>
+
+---
+
 ```
 ╔══════════════════════════════════════════════════════════╗
 ║                                                          ║
