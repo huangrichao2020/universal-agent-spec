@@ -1902,52 +1902,56 @@ Focus on: turnover rate > 15% with volume breakout
     subtitle: { en: 'Two software paradigms — choose wrong and it\'s all wasted', zh: '两种软件范式 · 选错了全白费' },
     tag:      { en: 'Pattern',         zh: '架构模式' },
     tagClass: 'tag-pattern',
-    viewBox: '0 0 760 258',
+    viewBox: '0 0 760 268',
 
     getSvg(lang) {
       return `
         <!-- Light Agent pie -->
-        <circle cx="200" cy="122" r="92" fill="#f7f3ea" stroke="#8e8e93" stroke-width="1"/>
-        <path d="M200,122 L200,30 A92,92 0 1,1 108.2,168 Z" fill="#0050a018" stroke="#0050a0" stroke-width="1.5"/>
-        <path d="M200,122 L108.2,168 A92,92 0 0,1 200,30 Z" fill="#ffb80030" stroke="#92400e" stroke-width="1.5"/>
-        <text x="200" y="114" text-anchor="middle" fill="#0050a0"
-          font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700">90%</text>
-        <text x="200" y="132" text-anchor="middle" fill="#0050a0cc"
-          font-family="'JetBrains Mono',monospace" font-size="10">
+        <circle cx="200" cy="124" r="94" fill="#f0f4ff" stroke="#0050a0" stroke-width="2"/>
+        <!-- 90% code sector (large, blue) -->
+        <path d="M200,124 L200,30 A94,94 0 1,1 107.1,171 Z" fill="#0050a0" opacity="0.85"/>
+        <!-- 10% AI sector (small, amber) -->
+        <path d="M200,124 L107.1,171 A94,94 0 0,1 200,30 Z" fill="#92400e" opacity="0.85"/>
+        <text x="200" y="108" text-anchor="middle" fill="#ffffff"
+          font-family="'JetBrains Mono',monospace" font-size="26" font-weight="700">90%</text>
+        <text x="200" y="126" text-anchor="middle" fill="#ffffffcc"
+          font-family="'JetBrains Mono',monospace" font-size="11">
           ${t(lang, 'Code logic', '代码逻辑')}
         </text>
-        <text x="146" y="172" text-anchor="middle" fill="#92400e"
-          font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700">10%</text>
-        <text x="146" y="186" text-anchor="middle" fill="#92400ecc"
+        <text x="148" y="174" text-anchor="middle" fill="#ffffff"
+          font-family="'JetBrains Mono',monospace" font-size="15" font-weight="700">10%</text>
+        <text x="148" y="188" text-anchor="middle" fill="#ffffffcc"
           font-family="'JetBrains Mono',monospace" font-size="9">
-          ${t(lang, 'AI processing', 'AI 处理')}
+          ${t(lang, 'AI', 'AI 处理')}
         </text>
-        <text x="200" y="232" text-anchor="middle" fill="#0050a0"
-          font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">
+        <text x="200" y="238" text-anchor="middle" fill="#0050a0"
+          font-family="'JetBrains Mono',monospace" font-size="13" font-weight="600">
           ${t(lang, 'Light Agent', '轻 Agent')}
         </text>
 
         <!-- Divider -->
-        <line x1="380" y1="18" x2="380" y2="240" stroke="#2a2a35" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="380" y1="16" x2="380" y2="242" stroke="#aeaeb2" stroke-width="1" stroke-dasharray="5 4"/>
 
         <!-- Heavy Agent pie -->
-        <circle cx="560" cy="122" r="92" fill="#f7f3ea" stroke="#8e8e93" stroke-width="1"/>
-        <path d="M560,122 L560,30 A92,92 0 0,1 606.5,208 Z" fill="#0050a018" stroke="#0050a0" stroke-width="1.5"/>
-        <path d="M560,122 L606.5,208 A92,92 0 1,1 560,30 Z" fill="#ffb80030" stroke="#92400e" stroke-width="1.5"/>
-        <text x="560" y="142" text-anchor="middle" fill="#92400e"
-          font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700">90%</text>
-        <text x="560" y="160" text-anchor="middle" fill="#92400ecc"
-          font-family="'JetBrains Mono',monospace" font-size="10">
+        <circle cx="560" cy="124" r="94" fill="#fdf4ff" stroke="#5b21b6" stroke-width="2"/>
+        <!-- 10% code sector (small, blue) -->
+        <path d="M560,124 L560,30 A94,94 0 0,1 608.4,210 Z" fill="#0050a0" opacity="0.85"/>
+        <!-- 90% AI sector (large, purple) -->
+        <path d="M560,124 L608.4,210 A94,94 0 1,1 560,30 Z" fill="#5b21b6" opacity="0.85"/>
+        <text x="560" y="144" text-anchor="middle" fill="#ffffff"
+          font-family="'JetBrains Mono',monospace" font-size="26" font-weight="700">90%</text>
+        <text x="560" y="162" text-anchor="middle" fill="#ffffffcc"
+          font-family="'JetBrains Mono',monospace" font-size="11">
           ${t(lang, 'Agent interaction', 'Agent 交互')}
         </text>
-        <text x="602" y="82" text-anchor="middle" fill="#0050a0"
-          font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700">10%</text>
-        <text x="602" y="96" text-anchor="middle" fill="#0050a0cc"
+        <text x="600" y="80" text-anchor="middle" fill="#ffffff"
+          font-family="'JetBrains Mono',monospace" font-size="15" font-weight="700">10%</text>
+        <text x="600" y="94" text-anchor="middle" fill="#ffffffcc"
           font-family="'JetBrains Mono',monospace" font-size="9">
-          ${t(lang, 'UI + runtime', 'UI+运行')}
+          ${t(lang, 'UI', 'UI+运行')}
         </text>
-        <text x="560" y="232" text-anchor="middle" fill="#92400e"
-          font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">
+        <text x="560" y="238" text-anchor="middle" fill="#5b21b6"
+          font-family="'JetBrains Mono',monospace" font-size="13" font-weight="600">
           ${t(lang, 'Heavy Agent', '重 Agent')}
         </text>
       `;
