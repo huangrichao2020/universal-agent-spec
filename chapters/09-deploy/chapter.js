@@ -39,7 +39,7 @@
         <!-- Local arrow + LLM box -->
         <line x1="260" y1="126" x2="294" y2="126"
           stroke="#0071e3" stroke-width="1.5" marker-end="url(#arrC)" stroke-dasharray="4 2"/>
-        <text x="277" y="112" text-anchor="middle" fill="#636366"
+        <text x="262" y="112" text-anchor="start" fill="#636366"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'user key', '用户 Key')}
         </text>
@@ -75,7 +75,7 @@
         <!-- Cloud arrow + LLM box -->
         <line x1="634" y1="126" x2="668" y2="126"
           stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="4 2"/>
-        <text x="651" y="112" text-anchor="middle" fill="#636366"
+        <text x="636" y="112" text-anchor="start" fill="#636366"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'your key', '你的 Key')}
         </text>
