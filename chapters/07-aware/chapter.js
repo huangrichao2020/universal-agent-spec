@@ -21,7 +21,7 @@
       ];
 
       const triggerRows = triggers.map(([cond, action], i) => `
-        <text x="496" y="${113 + i*26}" fill="#00e59988"
+        <text x="496" y="${113 + i*26}" fill="#1a8a3a88"
           font-family="'JetBrains Mono',monospace" font-size="9">${cond}</text>
         <text x="496" y="${126 + i*26}" fill="#00c8ff"
           font-family="'JetBrains Mono',monospace" font-size="9">${action}</text>
@@ -29,13 +29,13 @@
 
       return `
         <polyline points="38,135 78,135 88,62 98,208 108,135 158,135 168,78 178,192 188,135 218,135 228,84 238,186 248,135 298,135 308,74 318,196 328,135 368,135"
-          fill="none" stroke="#00e599" stroke-width="2"/>
+          fill="none" stroke="#1a8a3a" stroke-width="2"/>
         <polyline points="368,135 408,135 418,95 428,175 438,135 468,135"
-          fill="none" stroke="#00e59944" stroke-width="1.5" stroke-dasharray="4 3"/>
+          fill="none" stroke="#1a8a3a44" stroke-width="1.5" stroke-dasharray="4 3"/>
 
         <rect x="480" y="62" width="258" height="148" rx="6"
-          fill="#00e59910" stroke="#00e599" stroke-width="1.5"/>
-        <text x="609" y="87" text-anchor="middle" fill="#00e599"
+          fill="#1a8a3a10" stroke="#1a8a3a" stroke-width="1.5"/>
+        <text x="609" y="87" text-anchor="middle" fill="#1a8a3a"
           font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">
           ${t(lang, 'Aware Layer', '感知层 Aware')}
         </text>
@@ -48,7 +48,7 @@
         </text>
 
         <line x1="468" y1="135" x2="478" y2="135"
-          stroke="#00e599" stroke-width="1.5" marker-end="url(#arr)"/>
+          stroke="#1a8a3a" stroke-width="1.5" marker-end="url(#arr)"/>
 
         ${S.label(240, 268,
           t(lang, 'High-freq scan · Low-cost judgment · Anomaly triggers premium Agent',

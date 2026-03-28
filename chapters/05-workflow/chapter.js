@@ -40,17 +40,17 @@
           t(lang, 'Aware Layer', '感知层'),
           t(lang, 'Heartbeat', '心跳监控'))}
 
-        ${S.box(494, 87, 122, 58, '#00e599',
+        ${S.box(494, 87, 122, 58, '#1a8a3a',
           t(lang, 'Agent C', 'Agent C'),
           t(lang, 'Execute + Output', '执行+输出'))}
 
         <rect x="658" y="100" width="82" height="48" rx="5"
-          fill="#00e59912" stroke="#00e599" stroke-width="1.5"/>
-        <text x="699" y="120" text-anchor="middle" fill="#00e599"
+          fill="#1a8a3a12" stroke="#1a8a3a" stroke-width="1.5"/>
+        <text x="699" y="120" text-anchor="middle" fill="#1a8a3a"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Final', '最终')}
         </text>
-        <text x="699" y="136" text-anchor="middle" fill="#00e599"
+        <text x="699" y="136" text-anchor="middle" fill="#1a8a3a"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Output', '输出')}
         </text>
@@ -60,7 +60,7 @@
         <line x1="280" y1="136" x2="316" y2="162" stroke="#ffb800" stroke-width="1.5" marker-end="url(#arrA)"/>
         <line x1="440" y1="70" x2="492" y2="105" stroke="#00c8ff" stroke-width="1.2" stroke-dasharray="4 3"/>
         <line x1="440" y1="162" x2="492" y2="122" stroke="#ffb800" stroke-width="1.2" stroke-dasharray="4 3"/>
-        <line x1="616" y1="116" x2="656" y2="124" stroke="#00e599" stroke-width="1.5" marker-end="url(#arr)"/>
+        <line x1="616" y1="116" x2="656" y2="124" stroke="#1a8a3a" stroke-width="1.5" marker-end="url(#arr)"/>
 
         <text x="466" y="78" text-anchor="middle" fill="#00c8ff66"
           font-family="'JetBrains Mono',monospace" font-size="9">JSON</text>

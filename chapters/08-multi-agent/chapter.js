@@ -35,7 +35,7 @@
         <line x1="400" y1="18" x2="400" y2="235" stroke="#1e3058" stroke-width="1" stroke-dasharray="4 3"/>
 
         <!-- Correct side label -->
-        <text x="580" y="30" text-anchor="middle" fill="#00e599"
+        <text x="580" y="30" text-anchor="middle" fill="#1a8a3a"
           font-family="'JetBrains Mono',monospace" font-size="12">
           ✓  ${t(lang, 'Actual mechanism', '实际机制')}
         </text>

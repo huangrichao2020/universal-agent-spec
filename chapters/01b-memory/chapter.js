@@ -19,7 +19,7 @@
         ['#ff4d6d', t(lang, 'persona.md',     '人格定义.md'),   t(lang, 'WHO am I',        '我是谁')],
         ['#00c8ff', t(lang, 'knowledge.md',   '行业记忆.md'),   t(lang, 'WHAT I know',     '我知道什么')],
         ['#ffb800', t(lang, 'skill_A.md',     'skill_A.md'),   t(lang, 'HOW to do X',     '怎么做 X')],
-        ['#00e599', t(lang, 'worklog.md',     '工作日志.md'),   t(lang, 'WHAT I did',      '我做过什么')],
+        ['#1a8a3a', t(lang, 'worklog.md',     '工作日志.md'),   t(lang, 'WHAT I did',      '我做过什么')],
         ['#a78bfa', t(lang, 'handoff.md',     '交接手册.md'),   t(lang, 'WHERE I left off','进行到哪了')],
       ];
 
@@ -61,8 +61,8 @@
           ${t(lang, '💡 OpenClaw: persona.md = "龙虾" personality + Feishu skill', '💡 OpenClaw：persona.md = "龙虾"人格 + 飞书 skill')}
         </text>
         <rect x="390" y="258" width="340" height="30" rx="4"
-          fill="#00e59910" stroke="#00e59940" stroke-width="1"/>
-        <text x="408" y="278" fill="#00e599"
+          fill="#1a8a3a10" stroke="#1a8a3a40" stroke-width="1"/>
+        <text x="408" y="278" fill="#1a8a3a"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, '💡 Without memory files: every invocation = brand new stranger', '💡 没有记忆文件：每次调用都是全新陌生人')}
         </text>

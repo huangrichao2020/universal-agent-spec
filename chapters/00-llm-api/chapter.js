@@ -29,14 +29,14 @@
 
         ${S.box(55, 148, 130, 42, '#00c8ff', t(lang, 'Your App', '你的程序'))}
         ${S.box(315, 148, 90, 42, '#ffb800', 'curl', '')}
-        ${S.box(575, 148, 130, 42, '#00e599', t(lang, 'Any Client', '任何客户端'))}
+        ${S.box(575, 148, 130, 42, '#1a8a3a', t(lang, 'Any Client', '任何客户端'))}
 
         <line x1="120" y1="148" x2="330" y2="110"
           stroke="#00c8ff" stroke-width="1.5" marker-end="url(#arrC)"/>
         <line x1="360" y1="148" x2="368" y2="112"
           stroke="#ffb800" stroke-width="1.5" marker-end="url(#arrA)"/>
         <line x1="640" y1="148" x2="450" y2="110"
-          stroke="#00e599" stroke-width="1.5" marker-end="url(#arr)"/>
+          stroke="#1a8a3a" stroke-width="1.5" marker-end="url(#arr)"/>
 
         ${S.label(380, 205,
           t(lang, 'POST /v1/messages → Input → Process → Output → Each call is independent',

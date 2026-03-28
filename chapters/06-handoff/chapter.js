@@ -14,8 +14,8 @@
 
     getSvg(lang) {
       const rows = [
-        ['#00e599', t(lang, '✅ Data fetch complete',  '✅ 数据采集完成')],
-        ['#00e599', t(lang, '✅ Indicators computed',  '✅ 指标计算完成')],
+        ['#1a8a3a', t(lang, '✅ Data fetch complete',  '✅ 数据采集完成')],
+        ['#1a8a3a', t(lang, '✅ Indicators computed',  '✅ 指标计算完成')],
         ['#ffb800', t(lang, '⏳ Cleaning in progress', '⏳ 异常清洗进行中')],
         ['#6b84a8', t(lang, '📁 raw_data.json ready',  '📁 产出: raw_data.json')],
         ['#00c8ff', t(lang, '➡ Next: filter turnover > 15%', '➡ 下一步: 分析换手率>15%')],

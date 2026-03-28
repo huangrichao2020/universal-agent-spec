@@ -22,7 +22,7 @@
         { x: 210, y: 55, w: 110, h: 95, col: '#a78bfa',
           top: t(lang, 'Inference', '模型推理'),
           sub: t(lang, 'ms ~ seconds', '毫秒~秒级') },
-        { x: 380, y: 72, w: 110, h: 65, col: '#00e599',
+        { x: 380, y: 72, w: 110, h: 65, col: '#1a8a3a',
           top: t(lang, 'Return Result', '返回结果'),
           sub: t(lang, 'stream / once', 'tokens 流式/一次') },
         { x: 540, y: 72, w: 130, h: 65, col: '#ff4d6d',

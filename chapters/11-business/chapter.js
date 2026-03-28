@@ -53,7 +53,7 @@
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'One-time purchase · User brings compute', '一次性买断 · 买家自接大模型算力')}
         </text>
-        <text x="192" y="193" text-anchor="middle" fill="#00e59988"
+        <text x="192" y="193" text-anchor="middle" fill="#1a8a3a88"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Moat: exclusive domain memory', '护城河：独家行业记忆')}
         </text>
@@ -78,7 +78,7 @@
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Subscription / usage · You pay compute', '订阅 / 按量 · 你承担算力成本')}
         </text>
-        <text x="568" y="193" text-anchor="middle" fill="#00e59988"
+        <text x="568" y="193" text-anchor="middle" fill="#1a8a3a88"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Moat: product UX + user habit', '护城河：产品体验 + 用户习惯')}
         </text>

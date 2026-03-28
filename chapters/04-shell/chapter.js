@@ -17,7 +17,7 @@
       const shells = [
         [145, 42, '#a78bfa', 'Claude Code', 'claude cli'],
         [580, 42, '#ffb800', 'Codex CLI',   'openai codex'],
-        [105, 185, '#00e599', 'Qwen CLI',   'qwen code'],
+        [105, 185, '#1a8a3a', 'Qwen CLI',   'qwen code'],
         [580, 185, '#ff4d6d', t(lang, 'Custom Script', '自研脚本'), 'python/node'],
       ];
 

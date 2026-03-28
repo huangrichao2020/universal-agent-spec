@@ -57,12 +57,12 @@
         </text>
 
         <!-- Output side -->
-        ${S.box(582, 96, 140, 52, '#00e599',
+        ${S.box(582, 96, 140, 52, '#1a8a3a',
           t(lang, 'Execute Action', '执行动作'),
           t(lang, 'POST webhook', 'POST webhook'))}
         <line x1="497" y1="122" x2="580" y2="122"
-          stroke="#00e599" stroke-width="1.5" marker-end="url(#arr)"/>
-        <text x="540" y="115" text-anchor="middle" fill="#00e59988"
+          stroke="#1a8a3a" stroke-width="1.5" marker-end="url(#arr)"/>
+        <text x="540" y="115" text-anchor="middle" fill="#1a8a3a88"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'follow steps', '按步骤执行')}
         </text>

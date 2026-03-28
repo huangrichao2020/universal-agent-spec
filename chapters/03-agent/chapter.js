@@ -19,7 +19,7 @@
         ['#ff4d6d', t(lang, 'persona.md',   '人格定义.md'),   t(lang, 'who am I',       'who am I')],
         ['#00c8ff', t(lang, 'knowledge.md', '行业记忆.md'),   t(lang, 'what I know',     'what I know')],
         ['#ffb800', t(lang, 'skill_A.md',   'skill_A.md'),    t(lang, 'what I can do',   'what I can do')],
-        ['#00e599', t(lang, 'worklog.md',   '工作日志.md'),   t(lang, 'what I did',      'what I did')],
+        ['#1a8a3a', t(lang, 'worklog.md',   '工作日志.md'),   t(lang, 'what I did',      'what I did')],
         ['#a78bfa', t(lang, 'handoff.md',   '交接手册.md'),   t(lang, 'current state',   'current state')],
       ];
 

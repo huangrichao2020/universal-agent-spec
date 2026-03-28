@@ -19,7 +19,7 @@
         ['#ff4d6d', t(lang, 'persona.md',   '人格定义.md'),  t(lang, 'Who am I?',  '我是谁？')],
         ['#00c8ff', t(lang, 'knowledge.md', '行业记忆.md'),  t(lang, 'What I know','我知道什么')],
         ['#ffb800', t(lang, 'skill_A.md',   'skill_A.md'),   t(lang, 'How I act',  '我怎么做')],
-        ['#00e599', t(lang, 'worklog.md',   '工作日志.md'),  t(lang, 'What I did', '我做了什么')],
+        ['#1a8a3a', t(lang, 'worklog.md',   '工作日志.md'),  t(lang, 'What I did', '我做了什么')],
         ['#a78bfa', t(lang, 'handoff.md',   '交接手册.md'),  t(lang, 'Where I am', '我在哪里')],
       ];
 
@@ -57,8 +57,8 @@
 
         <line x1="380" y1="204" x2="380" y2="222" stroke="#6b84a8" stroke-width="1.5" marker-end="url(#arr)"/>
 
-        <rect x="210" y="222" width="340" height="36" rx="5" fill="#00e59912" stroke="#00e599" stroke-width="1.5"/>
-        <text x="380" y="245" text-anchor="middle" fill="#00e599" font-family="'JetBrains Mono',monospace" font-size="10">
+        <rect x="210" y="222" width="340" height="36" rx="5" fill="#1a8a3a12" stroke="#1a8a3a" stroke-width="1.5"/>
+        <text x="380" y="245" text-anchor="middle" fill="#1a8a3a" font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Results written back → memory grows → Agent compounds', '结果写回 → 记忆成长 → Agent 越用越聪明')}
         </text>
 
