@@ -921,7 +921,7 @@
       // Arrow down from files to Agent
       const arrows = files.map((_, i) => `
         <line x1="${95 + i * 146}" y1="143" x2="${95 + i * 146}" y2="178"
-          stroke="#2a2a35" stroke-width="1.2" marker-end="url(#arr)"/>
+          stroke="#2a4578" stroke-width="1.2" marker-end="url(#arr)"/>
       `).join('');
 
       // Agent box
@@ -932,7 +932,7 @@
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ${t(lang, 'Agent  (UI interface + Memory Files)', 'Agent（UI 界面程序 + 记忆文件）')}
         </text>
-        <text x="380" y="225" text-anchor="middle" fill="#0050a0aa"
+        <text x="380" y="225" text-anchor="middle" fill="#0050a066"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Each invocation: load memory → call LLM → write back result', '每次激活：加载记忆 → 调用大模型 → 结果写回')}
         </text>
@@ -941,13 +941,13 @@
       // OpenClaw example
       const example = `
         <rect x="30" y="258" width="340" height="30" rx="4"
-          fill="#a78bfa10" stroke="#5b21b680" stroke-width="1"/>
-        <text x="48" y="278" fill="#5b21b6"
+          fill="#a78bfa10" stroke="#a78bfa40" stroke-width="1"/>
+        <text x="48" y="278" fill="#a78bfa"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, '💡 OpenClaw: persona.md = "龙虾" personality + Feishu skill', '💡 OpenClaw：persona.md = "龙虾"人格 + 飞书 skill')}
         </text>
         <rect x="390" y="258" width="340" height="30" rx="4"
-          fill="#1a8a3a10" stroke="#1a8a3a80" stroke-width="1"/>
+          fill="#1a8a3a10" stroke="#1a8a3a40" stroke-width="1"/>
         <text x="408" y="278" fill="#1a8a3a"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, '💡 Without memory files: every invocation = brand new stranger', '💡 没有记忆文件：每次调用都是全新陌生人')}
