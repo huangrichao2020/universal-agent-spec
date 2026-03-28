@@ -11,10 +11,10 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;700;900&display=swap');
 
   :root {
-    --bg:          #f5f5f7;
-    --bg2:         rgba(255,255,255,0.72);
-    --bg3:         rgba(255,255,255,0.5);
-    --surface:     #ffffff;
+    --bg:          #f4f0e8;
+    --bg2:         rgba(253,249,243,0.82);
+    --bg3:         rgba(253,249,243,0.6);
+    --surface:     #fdf9f3;
     --border:      rgba(0,0,0,0.12);
     --border2:     rgba(0,0,0,0.20);
     --blue:        #0071e3;
@@ -58,7 +58,7 @@
     content: '';
     position: fixed;
     inset: 0;
-    background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(120,100,60,0.08) 1px, transparent 1px);
     background-size: 28px 28px;
     pointer-events: none;
     z-index: 0;
@@ -73,7 +73,7 @@
     z-index: 100;
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
-    background: rgba(245,245,247,0.82);
+    background: rgba(244,240,232,0.88);
     border-bottom: 1px solid var(--border);
     padding: 18px 48px;
     display: flex;
@@ -105,7 +105,7 @@
     font-weight: 600;
     letter-spacing: 0.04em;
     color: var(--blue);
-    background: var(--blue-light);
+    background: rgba(0,113,227,0.06);
     border: 1px solid rgba(0,113,227,0.18);
     padding: 5px 12px;
     border-radius: 20px;
@@ -160,7 +160,7 @@
     top: 65px;
     height: calc(100vh - 65px);
     overflow-y: auto;
-    background: rgba(245,245,247,0.6);
+    background: rgba(244,240,232,0.75);
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
   }
@@ -201,7 +201,7 @@
   .nav-item.active {
     color: var(--blue);
     border-left-color: var(--blue);
-    background: var(--blue-light);
+    background: rgba(0,113,227,0.06);
     font-weight: 500;
   }
 
@@ -236,7 +236,7 @@
     display: flex;
     align-items: flex-start;
     gap: 16px;
-    background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
+    background: linear-gradient(135deg, #f5f0e6 0%, #fdf9f3 100%);
   }
 
   .card-num {
@@ -282,7 +282,7 @@
   }
 
   .tag-infra   { background: rgba(124,58,237,0.08); color: var(--purple); border: 1px solid rgba(124,58,237,0.15); }
-  .tag-core    { background: var(--blue-light); color: var(--blue); border: 1px solid rgba(0,113,227,0.15); }
+  .tag-core    { background: rgba(0,113,227,0.06); color: var(--blue); border: 1px solid rgba(0,113,227,0.15); }
   .tag-system  { background: var(--amber-light); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
   .tag-pattern { background: rgba(52,199,89,0.08); color: #1a8a3a; border: 1px solid rgba(52,199,89,0.2); }
   .tag-biz     { background: rgba(255,59,48,0.07); color: var(--red); border: 1px solid rgba(255,59,48,0.15); }
@@ -291,7 +291,7 @@
 
   /* ── DIAGRAM ── */
   .diagram-wrap {
-    background: #f4f4f8;
+    background: #f0ebe0;
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     padding: 16px 12px;
@@ -305,7 +305,7 @@
   .def-block {
     border-left: 3px solid var(--blue);
     padding: 14px 18px;
-    background: var(--blue-light);
+    background: rgba(0,113,227,0.06);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     margin-bottom: 20px;
   }
@@ -396,7 +396,7 @@
   }
 
   .compare-table th {
-    background: #f5f5f7;
+    background: #ede8dc;
     color: var(--text3);
     font-size: 10px;
     font-weight: 600;
@@ -442,7 +442,7 @@
     display: flex;
     gap: 14px;
     align-items: flex-start;
-    background: #fafafa;
+    background: #f7f3ea;
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     padding: 16px 18px;
@@ -501,7 +501,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(245,245,247,0.8);
+    background: rgba(244,240,232,0.85);
     font-family: var(--sans);
   }
 
@@ -1180,7 +1180,7 @@
 
         <!-- Shell program panel -->
         <rect x="58" y="48" width="185" height="212" rx="6"
-          fill="#f2f2f7" stroke="#636366" stroke-width="1.5"/>
+          fill="#ede8dc" stroke="#636366" stroke-width="1.5"/>
         <text x="151" y="74" text-anchor="middle" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">
           ${t(lang, 'Shell Program', 'UI 界面程序')}
@@ -1191,7 +1191,7 @@
 
         <!-- Memory files panel -->
         <rect x="285" y="48" width="430" height="212" rx="6"
-          fill="#f2f2f7" stroke="#636366" stroke-width="1.5"/>
+          fill="#ede8dc" stroke="#636366" stroke-width="1.5"/>
         <text x="500" y="74" text-anchor="middle" fill="#f59e0b"
           font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">
           ${t(lang, 'Memory Files', '记忆文件集合')}
@@ -1390,7 +1390,7 @@
           t(lang, 'API Entry', 'API 入口'),
           t(lang, 'User request', '用户请求'))}
 
-        <rect x="165" y="97" width="115" height="74" rx="5" fill="#e8e8ed" stroke="#636366" stroke-width="1.5"/>
+        <rect x="165" y="97" width="115" height="74" rx="5" fill="#e2dbd0" stroke="#636366" stroke-width="1.5"/>
         <text x="222" y="124" text-anchor="middle" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="12">
           ${t(lang, 'Workflow', '工作流')}
@@ -1627,7 +1627,7 @@ Focus on: turnover rate > 15% with volume breakout
         </text>
         ${triggerRows}
 
-        <rect x="480" y="218" width="258" height="30" rx="4" fill="#f2f2f7" stroke="#636366"/>
+        <rect x="480" y="218" width="258" height="30" rx="4" fill="#ede8dc" stroke="#636366"/>
         <text x="609" y="237" text-anchor="middle" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="12">
           ${t(lang, 'Cheap model (¥0.001/1K tokens)', '使用便宜模型（¥0.001/千Token）')}
@@ -1803,7 +1803,7 @@ Focus on: turnover rate > 15% with volume breakout
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ${t(lang, 'Local Mode', '本地模式')}
         </text>
-        <rect x="52" y="58" width="288" height="154" rx="6" fill="#f2f2f7" stroke="#8e8e93" stroke-width="1"/>
+        <rect x="52" y="58" width="288" height="154" rx="6" fill="#ede8dc" stroke="#8e8e93" stroke-width="1"/>
         <text x="98" y="76" fill="#1d1d1f" font-family="'JetBrains Mono',monospace" font-size="12">
           ${t(lang, 'User device', '用户设备')}
         </text>
@@ -1831,7 +1831,7 @@ Focus on: turnover rate > 15% with volume breakout
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ${t(lang, 'Cloud Mode', '云端模式')}
         </text>
-        <rect x="420" y="58" width="288" height="154" rx="6" fill="#f2f2f7" stroke="#8e8e93" stroke-width="1"/>
+        <rect x="420" y="58" width="288" height="154" rx="6" fill="#ede8dc" stroke="#8e8e93" stroke-width="1"/>
         <text x="466" y="76" fill="#1d1d1f" font-family="'JetBrains Mono',monospace" font-size="12">
           ${t(lang, 'Your server', '你的服务器')}
         </text>
@@ -1890,7 +1890,7 @@ Focus on: turnover rate > 15% with volume breakout
     getSvg(lang) {
       return `
         <!-- Light Agent pie -->
-        <circle cx="200" cy="122" r="92" fill="#f2f2f7" stroke="#8e8e93" stroke-width="1"/>
+        <circle cx="200" cy="122" r="92" fill="#ede8dc" stroke="#8e8e93" stroke-width="1"/>
         <path d="M200,122 L200,30 A92,92 0 1,1 108.2,168 Z" fill="#0071e350" stroke="#0071e3" stroke-width="1.5"/>
         <path d="M200,122 L108.2,168 A92,92 0 0,1 200,30 Z" fill="#f59e0b60" stroke="#f59e0b" stroke-width="1.5"/>
         <text x="200" y="114" text-anchor="middle" fill="#0071e3"
@@ -1914,7 +1914,7 @@ Focus on: turnover rate > 15% with volume breakout
         <line x1="380" y1="18" x2="380" y2="240" stroke="#8e8e93" stroke-width="1" stroke-dasharray="4 3"/>
 
         <!-- Heavy Agent pie -->
-        <circle cx="560" cy="122" r="92" fill="#f2f2f7" stroke="#8e8e93" stroke-width="1"/>
+        <circle cx="560" cy="122" r="92" fill="#ede8dc" stroke="#8e8e93" stroke-width="1"/>
         <path d="M560,122 L560,30 A92,92 0 0,1 606.5,208 Z" fill="#0071e350" stroke="#0071e3" stroke-width="1.5"/>
         <path d="M560,122 L606.5,208 A92,92 0 1,1 560,30 Z" fill="#f59e0b60" stroke="#f59e0b" stroke-width="1.5"/>
         <text x="560" y="142" text-anchor="middle" fill="#f59e0b"
@@ -2023,7 +2023,7 @@ Focus on: turnover rate > 15% with volume breakout
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ToB · ${t(lang, 'Sell the Agent', '卖 Agent 本体')}
         </text>
-        <rect x="52" y="58" width="280" height="100" rx="5" fill="#f2f2f7" stroke="#8e8e93"/>
+        <rect x="52" y="58" width="280" height="100" rx="5" fill="#ede8dc" stroke="#8e8e93"/>
         <text x="68" y="78" fill="#7c3aed" font-family="'JetBrains Mono',monospace" font-size="12">
           📦 ${t(lang, 'Deliverables', '交付物')}
         </text>
@@ -2048,7 +2048,7 @@ Focus on: turnover rate > 15% with volume breakout
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ToC · ${t(lang, 'Sell the service', '卖产品服务')}
         </text>
-        <rect x="428" y="58" width="280" height="100" rx="5" fill="#f2f2f7" stroke="#8e8e93"/>
+        <rect x="428" y="58" width="280" height="100" rx="5" fill="#ede8dc" stroke="#8e8e93"/>
         <text x="444" y="78" fill="#7c3aed" font-family="'JetBrains Mono',monospace" font-size="12">
           💻 ${t(lang, 'Model', '模式')}
         </text>
