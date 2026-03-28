@@ -597,11 +597,11 @@
       return `
         <ellipse cx="380" cy="85" rx="130" ry="52"
           fill="#a78bfa18" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <text x="380" y="80" text-anchor="middle" fill="#a78bfa"
+        <text x="380" y="80" text-anchor="middle" fill="#5b21b6"
           font-family="'JetBrains Mono',monospace" font-size="14" font-weight="500">
           ${t(lang, 'LLM API', '大模型 API')}
         </text>
-        <text x="380" y="100" text-anchor="middle" fill="#a78bfa88"
+        <text x="380" y="100" text-anchor="middle" fill="#5b21b6"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Stateless · Each call independent', '无状态 · 每次独立')}
         </text>
@@ -710,7 +710,7 @@
       // Third text line for inference box — also +5px
       const inferExtra = `
         <text x="265" y="142" text-anchor="middle"
-          fill="#a78bfa66" font-family="'JetBrains Mono',monospace" font-size="9">
+          fill="#5b21b6" font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, '"Temporarily awake"', '临时"清醒"')}
         </text>`;
 
@@ -801,20 +801,20 @@
         ${cards}
 
         <rect x="150" y="108" width="460" height="38" rx="5" fill="#f0f4ff" stroke="#0071e3" stroke-width="1.5"/>
-        <text x="380" y="123" text-anchor="middle" fill="#0071e3" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="500">
+        <text x="380" y="123" text-anchor="middle" fill="#0050a0" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="500">
           ${t(lang, 'UI program: memory files + task → context window → LLM', 'UI 界面程序：记忆文件 + 当前任务 → context window → 大模型')}
         </text>
-        <text x="380" y="138" text-anchor="middle" fill="#3a3a3c" font-family="'JetBrains Mono',monospace" font-size="9">
+        <text x="380" y="138" text-anchor="middle" fill="#1d1d1f" font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Model "wakes up" knowing who it is and what it was doing', '模型"醒来"时已知道自己是谁、在做什么')}
         </text>
 
         <line x1="380" y1="146" x2="380" y2="164" stroke="#6b84a8" stroke-width="1.5" marker-end="url(#arr)"/>
 
         <rect x="240" y="164" width="280" height="40" rx="5" fill="#a78bfa18" stroke="#a78bfa" stroke-width="1.5"/>
-        <text x="380" y="180" text-anchor="middle" fill="#a78bfa" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="500">
+        <text x="380" y="180" text-anchor="middle" fill="#5b21b6" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="500">
           ${t(lang, 'LLM API (stateless)', '大模型 API（无状态）')}
         </text>
-        <text x="380" y="196" text-anchor="middle" fill="#a78bfa88" font-family="'JetBrains Mono',monospace" font-size="9">
+        <text x="380" y="196" text-anchor="middle" fill="#5b21b6" font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'forgets everything — memory files are the only persistence', '调用结束即遗忘 — 记忆文件是唯一的持续性来源')}
         </text>
 
@@ -928,11 +928,11 @@
       const agentBox = `
         <rect x="120" y="180" width="520" height="58" rx="8"
           fill="#00c8ff08" stroke="#00c8ff" stroke-width="1.8"/>
-        <text x="380" y="207" text-anchor="middle" fill="#00c8ff"
+        <text x="380" y="207" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ${t(lang, 'Agent  (UI interface + Memory Files)', 'Agent（UI 界面程序 + 记忆文件）')}
         </text>
-        <text x="380" y="225" text-anchor="middle" fill="#00c8ff66"
+        <text x="380" y="225" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Each invocation: load memory → call LLM → write back result', '每次激活：加载记忆 → 调用大模型 → 结果写回')}
         </text>
@@ -942,7 +942,7 @@
       const example = `
         <rect x="30" y="258" width="340" height="30" rx="4"
           fill="#a78bfa10" stroke="#a78bfa40" stroke-width="1"/>
-        <text x="48" y="278" fill="#a78bfa"
+        <text x="48" y="278" fill="#5b21b6"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, '💡 OpenClaw: persona.md = "龙虾" personality + Feishu skill', '💡 OpenClaw：persona.md = "龙虾"人格 + 飞书 skill')}
         </text>
@@ -1035,7 +1035,7 @@
       `).join('');
 
       const sectionLabels = [0,1,2].map((_, i) => `
-        <text x="285" y="${76 + i*64}" fill="#ffb80088"
+        <text x="285" y="${76 + i*64}" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="9">${sections[i]}</text>
       `).join('');
 
@@ -1044,7 +1044,7 @@
         <rect x="265" y="22" width="230" height="208" rx="6"
           fill="#ffb80010" stroke="#ffb800" stroke-width="1.5"/>
         <rect x="265" y="22" width="230" height="36" rx="6" fill="#ffb80025" stroke="none"/>
-        <text x="380" y="46" text-anchor="middle" fill="#ffb800"
+        <text x="380" y="46" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">${filename}</text>
 
         ${docLines}
@@ -1056,7 +1056,7 @@
           t(lang, 'Send notification', '发送飞书通知'))}
         <line x1="178" y1="122" x2="263" y2="122"
           stroke="#00c8ff" stroke-width="1.5" marker-end="url(#arrC)"/>
-        <text x="220" y="115" text-anchor="middle" fill="#00c8ff88"
+        <text x="220" y="115" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'match trigger', '匹配触发条件')}
         </text>
@@ -1067,7 +1067,7 @@
           t(lang, 'POST webhook', 'POST webhook'))}
         <line x1="497" y1="122" x2="580" y2="122"
           stroke="#1a8a3a" stroke-width="1.5" marker-end="url(#arr)"/>
-        <text x="540" y="115" text-anchor="middle" fill="#1a8a3a88"
+        <text x="540" y="115" text-anchor="middle" fill="#1a8a3a"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'follow steps', '按步骤执行')}
         </text>
@@ -1167,7 +1167,7 @@
       const shellBoxes = shellSteps.map((step, i) => `
         <rect x="75" y="${108 + i*38}" width="152" height="28" rx="3"
           fill="#a78bfa12" stroke="#a78bfa30" stroke-width="1"/>
-        <text x="151" y="${127 + i*38}" text-anchor="middle" fill="#a78bfa"
+        <text x="151" y="${127 + i*38}" text-anchor="middle" fill="#5b21b6"
           font-family="'JetBrains Mono',monospace" font-size="10">${step}</text>
       `).join('');
 
@@ -1175,28 +1175,28 @@
         <!-- Outer Agent boundary -->
         <rect x="38" y="24" width="688" height="252" rx="10"
           fill="#00c8ff08" stroke="#00c8ff" stroke-width="2"/>
-        <text x="380" y="18" text-anchor="middle" fill="#00c8ff"
+        <text x="380" y="18" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">Agent</text>
 
         <!-- Shell program panel -->
         <rect x="58" y="48" width="185" height="212" rx="6"
           fill="#0d1526" stroke="#2a4578" stroke-width="1.5"/>
-        <text x="151" y="74" text-anchor="middle" fill="#a78bfa"
+        <text x="151" y="74" text-anchor="middle" fill="#5b21b6"
           font-family="'JetBrains Mono',monospace" font-size="11" font-weight="500">
           ${t(lang, 'Shell Program', 'UI 界面程序')}
         </text>
-        <text x="151" y="91" text-anchor="middle" fill="#a78bfa88"
+        <text x="151" y="91" text-anchor="middle" fill="#5b21b6"
           font-family="'JetBrains Mono',monospace" font-size="9">Shell Program</text>
         ${shellBoxes}
 
         <!-- Memory files panel -->
         <rect x="285" y="48" width="430" height="212" rx="6"
           fill="#0d1526" stroke="#2a4578" stroke-width="1.5"/>
-        <text x="500" y="74" text-anchor="middle" fill="#ffb800"
+        <text x="500" y="74" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="11" font-weight="500">
           ${t(lang, 'Memory Files', '记忆文件集合')}
         </text>
-        <text x="500" y="91" text-anchor="middle" fill="#ffb80088"
+        <text x="500" y="91" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="9">Memory Files</text>
         ${memBoxes}
       `;
@@ -1317,9 +1317,9 @@
       return `
         ${boxes}
         <circle cx="380" cy="120" r="58" fill="#00c8ff0a" stroke="#00c8ff" stroke-width="1.5"/>
-        <text x="380" y="115" text-anchor="middle" fill="#00c8ff"
+        <text x="380" y="115" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">Agent</text>
-        <text x="380" y="133" text-anchor="middle" fill="#00c8ff88"
+        <text x="380" y="133" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Memory Files', '记忆文件')}
         </text>
@@ -1391,15 +1391,15 @@
           t(lang, 'User request', '用户请求'))}
 
         <rect x="165" y="97" width="115" height="74" rx="5" fill="#1e3058" stroke="#2a4578" stroke-width="1.5"/>
-        <text x="222" y="124" text-anchor="middle" fill="#6b84a8"
+        <text x="222" y="124" text-anchor="middle" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Workflow', '工作流')}
         </text>
-        <text x="222" y="141" text-anchor="middle" fill="#6b84a8"
+        <text x="222" y="141" text-anchor="middle" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Orchestrator', '调度程序')}
         </text>
-        <text x="222" y="157" text-anchor="middle" fill="#6b84a888"
+        <text x="222" y="157" text-anchor="middle" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="8">Python/Node</text>
 
         ${S.box(318, 40, 122, 58, '#00c8ff',
@@ -1434,9 +1434,9 @@
         <line x1="440" y1="162" x2="492" y2="122" stroke="#ffb800" stroke-width="1.2" stroke-dasharray="4 3"/>
         <line x1="616" y1="116" x2="656" y2="124" stroke="#1a8a3a" stroke-width="1.5" marker-end="url(#arr)"/>
 
-        <text x="466" y="78" text-anchor="middle" fill="#00c8ff66"
+        <text x="466" y="78" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="9">JSON</text>
-        <text x="466" y="168" text-anchor="middle" fill="#ffb80066"
+        <text x="466" y="168" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'file/pipe', '文件/管道')}
         </text>
@@ -1521,7 +1521,7 @@
         <rect x="248" y="38" width="268" height="172" rx="6"
           fill="#ffb80010" stroke="#ffb800" stroke-width="1.5"/>
         <rect x="248" y="38" width="268" height="34" rx="6" fill="#ffb80022" stroke="none"/>
-        <text x="382" y="60" text-anchor="middle" fill="#ffb800"
+        <text x="382" y="60" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="11" font-weight="500">HANDOFF.md</text>
         ${docLines}
 
@@ -1531,13 +1531,13 @@
 
         <line x1="183" y1="113" x2="246" y2="113"
           stroke="#ffb800" stroke-width="1.5" marker-end="url(#arrA)"/>
-        <text x="215" y="106" text-anchor="middle" fill="#ffb80088"
+        <text x="215" y="106" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'writes', '写入')}
         </text>
         <line x1="518" y1="113" x2="576" y2="113"
           stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arr)"/>
-        <text x="548" y="106" text-anchor="middle" fill="#a78bfa88"
+        <text x="548" y="106" text-anchor="middle" fill="#5b21b6"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'reads', '读取')}
         </text>
@@ -1607,9 +1607,9 @@ Focus on: turnover rate > 15% with volume breakout
       ];
 
       const triggerRows = triggers.map(([cond, action], i) => `
-        <text x="496" y="${113 + i*26}" fill="#1a8a3a88"
+        <text x="496" y="${113 + i*26}" fill="#1a8a3a"
           font-family="'JetBrains Mono',monospace" font-size="9">${cond}</text>
-        <text x="496" y="${126 + i*26}" fill="#00c8ff"
+        <text x="496" y="${126 + i*26}" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="9">${action}</text>
       `).join('');
 
@@ -1628,7 +1628,7 @@ Focus on: turnover rate > 15% with volume breakout
         ${triggerRows}
 
         <rect x="480" y="218" width="258" height="30" rx="4" fill="#0d1526" stroke="#2a4578"/>
-        <text x="609" y="237" text-anchor="middle" fill="#6b84a8"
+        <text x="609" y="237" text-anchor="middle" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Cheap model (¥0.001/1K tokens)', '使用便宜模型（¥0.001/千Token）')}
         </text>
@@ -1697,7 +1697,7 @@ Focus on: turnover rate > 15% with volume breakout
     getSvg(lang) {
       return `
         <!-- Wrong side label -->
-        <text x="185" y="30" text-anchor="middle" fill="#ff4d6d"
+        <text x="185" y="30" text-anchor="middle" fill="#c0392b"
           font-family="'JetBrains Mono',monospace" font-size="12">
           ✗  ${t(lang, 'Common misconception', '错误认知')}
         </text>
@@ -1705,11 +1705,11 @@ Focus on: turnover rate > 15% with volume breakout
         ${S.box(228, 52, 145, 65, '#ff4d6d', t(lang, 'Agent B', 'Agent B'), '')}
         <line x1="183" y1="78" x2="226" y2="78" stroke="#ff4d6d" stroke-width="1.5" marker-end="url(#arr)"/>
         <line x1="228" y1="94" x2="185" y2="94" stroke="#ff4d6d" stroke-width="1.5" marker-end="url(#arr)"/>
-        <text x="205" y="73" text-anchor="middle" fill="#ff4d6d"
+        <text x="205" y="73" text-anchor="middle" fill="#c0392b"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Direct chat?', '直接聊天？')}
         </text>
-        <text x="205" y="108" text-anchor="middle" fill="#ff4d6d88"
+        <text x="205" y="108" text-anchor="middle" fill="#c0392b"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Agents have no spontaneous comm', 'Agent 无自发通信能力')}
         </text>
@@ -1724,11 +1724,11 @@ Focus on: turnover rate > 15% with volume breakout
         ${S.box(428, 52, 105, 65, '#00c8ff', t(lang, 'Agent A', 'Agent A'), '')}
         ${S.box(638, 52, 105, 65, '#a78bfa', t(lang, 'Agent B', 'Agent B'), '')}
         <rect x="538" y="72" width="94" height="34" rx="4" fill="#ffb80018" stroke="#ffb800" stroke-width="1.2"/>
-        <text x="585" y="88" text-anchor="middle" fill="#ffb800"
+        <text x="585" y="88" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="9" font-weight="500">
           ${t(lang, 'Workflow porter', '工作流搬运')}
         </text>
-        <text x="585" y="100" text-anchor="middle" fill="#ffb80088"
+        <text x="585" y="100" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="8">
           ${t(lang, 'file/pipe/queue', '文件/管道/队列')}
         </text>
@@ -1742,11 +1742,11 @@ Focus on: turnover rate > 15% with volume breakout
           t(lang, 'Pipe pass', '管道传递'),
           t(lang, 'stdout → stdin', 'stdout → stdin'))}
 
-        <text x="447" y="158" fill="#6b84a8"
+        <text x="447" y="158" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Large data', '大数据量')}
         </text>
-        <text x="608" y="158" fill="#6b84a8"
+        <text x="608" y="158" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Realtime', '实时流式')}
         </text>
@@ -1800,7 +1800,7 @@ Focus on: turnover rate > 15% with volume breakout
         <!-- LOCAL panel -->
         <rect x="24" y="18" width="338" height="268" rx="10"
           fill="#edf4ff" stroke="#0071e3" stroke-width="1.5" stroke-dasharray="5 3"/>
-        <text x="193" y="42" text-anchor="middle" fill="#0071e3"
+        <text x="193" y="42" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="600">
           ${t(lang, 'Local Mode', '本地模式')}
         </text>
@@ -1808,7 +1808,7 @@ Focus on: turnover rate > 15% with volume breakout
         <!-- Local inner device box -->
         <rect x="44" y="52" width="200" height="148" rx="7"
           fill="#f7f3ea" stroke="#8e8e93" stroke-width="1"/>
-        <text x="64" y="70" fill="#636366"
+        <text x="64" y="70" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'User device', '用户设备')}
         </text>
@@ -1818,15 +1818,15 @@ Focus on: turnover rate > 15% with volume breakout
         <!-- Local arrow + LLM box -->
         <line x1="260" y1="126" x2="294" y2="126"
           stroke="#0071e3" stroke-width="1.5" marker-end="url(#arrC)" stroke-dasharray="4 2"/>
-        <text x="277" y="112" text-anchor="middle" fill="#636366"
+        <text x="277" y="112" text-anchor="middle" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'user key', '用户 Key')}
         </text>
         <rect x="294" y="106" width="56" height="40" rx="5"
           fill="#edf4ff" stroke="#0071e3" stroke-width="1.2"/>
-        <text x="322" y="122" text-anchor="middle" fill="#0071e3"
+        <text x="322" y="122" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="9" font-weight="600">LLM</text>
-        <text x="322" y="136" text-anchor="middle" fill="#0071e3"
+        <text x="322" y="136" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="8">API</text>
 
         <!-- Local pros/cons -->
@@ -1836,7 +1836,7 @@ Focus on: turnover rate > 15% with volume breakout
         <!-- CLOUD panel -->
         <rect x="398" y="18" width="338" height="268" rx="10"
           fill="#f5f0ff" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5 3"/>
-        <text x="567" y="42" text-anchor="middle" fill="#7c3aed"
+        <text x="567" y="42" text-anchor="middle" fill="#5b21b6"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="600">
           ${t(lang, 'Cloud Mode', '云端模式')}
         </text>
@@ -1844,7 +1844,7 @@ Focus on: turnover rate > 15% with volume breakout
         <!-- Cloud inner server box -->
         <rect x="418" y="52" width="200" height="148" rx="7"
           fill="#f7f3ea" stroke="#8e8e93" stroke-width="1"/>
-        <text x="438" y="70" fill="#636366"
+        <text x="438" y="70" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Your server', '你的服务器')}
         </text>
@@ -1854,15 +1854,15 @@ Focus on: turnover rate > 15% with volume breakout
         <!-- Cloud arrow + LLM box -->
         <line x1="634" y1="126" x2="668" y2="126"
           stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="4 2"/>
-        <text x="651" y="112" text-anchor="middle" fill="#636366"
+        <text x="651" y="112" text-anchor="middle" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'your key', '你的 Key')}
         </text>
         <rect x="668" y="106" width="56" height="40" rx="5"
           fill="#f5f0ff" stroke="#7c3aed" stroke-width="1.2"/>
-        <text x="696" y="122" text-anchor="middle" fill="#7c3aed"
+        <text x="696" y="122" text-anchor="middle" fill="#5b21b6"
           font-family="'JetBrains Mono',monospace" font-size="9" font-weight="600">LLM</text>
-        <text x="696" y="136" text-anchor="middle" fill="#7c3aed"
+        <text x="696" y="136" text-anchor="middle" fill="#5b21b6"
           font-family="'JetBrains Mono',monospace" font-size="8">API</text>
 
         <!-- Cloud pros/cons -->
@@ -1910,19 +1910,19 @@ Focus on: turnover rate > 15% with volume breakout
         <circle cx="200" cy="122" r="92" fill="#ede8dc" stroke="#8e8e93" stroke-width="1"/>
         <path d="M200,122 L200,30 A92,92 0 1,1 108.2,168 Z" fill="#0071e350" stroke="#0071e3" stroke-width="1.5"/>
         <path d="M200,122 L108.2,168 A92,92 0 0,1 200,30 Z" fill="#f59e0b60" stroke="#f59e0b" stroke-width="1.5"/>
-        <text x="200" y="114" text-anchor="middle" fill="#0071e3"
+        <text x="200" y="114" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700">90%</text>
-        <text x="200" y="132" text-anchor="middle" fill="#0071e3cc"
+        <text x="200" y="132" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="12">
           ${t(lang, 'Code logic', '代码逻辑')}
         </text>
-        <text x="146" y="172" text-anchor="middle" fill="#f59e0b"
+        <text x="146" y="172" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700">10%</text>
-        <text x="146" y="186" text-anchor="middle" fill="#f59e0bcc"
+        <text x="146" y="186" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="12">
           ${t(lang, 'AI processing', 'AI 处理')}
         </text>
-        <text x="200" y="232" text-anchor="middle" fill="#0071e3"
+        <text x="200" y="232" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">
           ${t(lang, 'Light Agent', '轻 Agent')}
         </text>
@@ -1934,19 +1934,19 @@ Focus on: turnover rate > 15% with volume breakout
         <circle cx="560" cy="122" r="92" fill="#ede8dc" stroke="#8e8e93" stroke-width="1"/>
         <path d="M560,122 L560,30 A92,92 0 0,1 606.5,208 Z" fill="#0071e350" stroke="#0071e3" stroke-width="1.5"/>
         <path d="M560,122 L606.5,208 A92,92 0 1,1 560,30 Z" fill="#f59e0b60" stroke="#f59e0b" stroke-width="1.5"/>
-        <text x="560" y="142" text-anchor="middle" fill="#f59e0b"
+        <text x="560" y="142" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700">90%</text>
-        <text x="560" y="160" text-anchor="middle" fill="#f59e0bcc"
+        <text x="560" y="160" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="12">
           ${t(lang, 'Agent interaction', 'Agent 交互')}
         </text>
-        <text x="602" y="82" text-anchor="middle" fill="#0071e3"
+        <text x="602" y="82" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700">10%</text>
-        <text x="602" y="96" text-anchor="middle" fill="#0071e3cc"
+        <text x="602" y="96" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="12">
           ${t(lang, 'UI + runtime', 'UI+运行')}
         </text>
-        <text x="560" y="232" text-anchor="middle" fill="#f59e0b"
+        <text x="560" y="232" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">
           ${t(lang, 'Heavy Agent', '重 Agent')}
         </text>
@@ -2023,12 +2023,12 @@ Focus on: turnover rate > 15% with volume breakout
       ];
 
       const tobRows = tobItems.map((s, i) => `
-        <text x="68" y="${118 + i*16}" fill="#6b84a8"
+        <text x="68" y="${118 + i*16}" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="9">· ${s}</text>
       `).join('');
 
       const tocRows = tocItems.map((s, i) => `
-        <text x="432" y="${118 + i*16}" fill="#6b84a8"
+        <text x="432" y="${118 + i*16}" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="9">· ${s}</text>
       `).join('');
 
@@ -2036,24 +2036,24 @@ Focus on: turnover rate > 15% with volume breakout
         <!-- ToB panel -->
         <rect x="28" y="22" width="328" height="238" rx="8"
           fill="#00c8ff08" stroke="#00c8ff40" stroke-width="1.5"/>
-        <text x="192" y="46" text-anchor="middle" fill="#00c8ff"
+        <text x="192" y="46" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ToB · ${t(lang, 'Sell the Agent', '卖 Agent 本体')}
         </text>
         <rect x="52" y="58" width="280" height="100" rx="5" fill="#0d1526" stroke="#1e3058"/>
-        <text x="68" y="78" fill="#a78bfa" font-family="'JetBrains Mono',monospace" font-size="9">
+        <text x="68" y="78" fill="#5b21b6" font-family="'JetBrains Mono',monospace" font-size="9">
           📦 ${t(lang, 'Deliverables', '交付物')}
         </text>
         ${tobRows}
-        <text x="192" y="175" text-anchor="middle" fill="#ffb800"
+        <text x="192" y="175" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'One-time purchase · User brings compute', '一次性买断 · 买家自接大模型算力')}
         </text>
-        <text x="192" y="193" text-anchor="middle" fill="#1a8a3a88"
+        <text x="192" y="193" text-anchor="middle" fill="#1a8a3a"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Moat: exclusive domain memory', '护城河：独家行业记忆')}
         </text>
-        <text x="192" y="246" text-anchor="middle" fill="#6b84a8"
+        <text x="192" y="246" text-anchor="middle" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Best for: vertical industry Agent sales', '适合：垂直行业 Agent 出售')}
         </text>
@@ -2061,24 +2061,24 @@ Focus on: turnover rate > 15% with volume breakout
         <!-- ToC panel -->
         <rect x="404" y="22" width="328" height="238" rx="8"
           fill="#a78bfa08" stroke="#a78bfa40" stroke-width="1.5"/>
-        <text x="568" y="46" text-anchor="middle" fill="#a78bfa"
+        <text x="568" y="46" text-anchor="middle" fill="#5b21b6"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ToC · ${t(lang, 'Sell the service', '卖产品服务')}
         </text>
         <rect x="428" y="58" width="280" height="100" rx="5" fill="#0d1526" stroke="#1e3058"/>
-        <text x="444" y="78" fill="#a78bfa" font-family="'JetBrains Mono',monospace" font-size="9">
+        <text x="444" y="78" fill="#5b21b6" font-family="'JetBrains Mono',monospace" font-size="9">
           💻 ${t(lang, 'Model', '模式')}
         </text>
         ${tocRows}
-        <text x="568" y="175" text-anchor="middle" fill="#ffb800"
+        <text x="568" y="175" text-anchor="middle" fill="#92400e"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Subscription / usage · You pay compute', '订阅 / 按量 · 你承担算力成本')}
         </text>
-        <text x="568" y="193" text-anchor="middle" fill="#1a8a3a88"
+        <text x="568" y="193" text-anchor="middle" fill="#1a8a3a"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Moat: product UX + user habit', '护城河：产品体验 + 用户习惯')}
         </text>
-        <text x="568" y="246" text-anchor="middle" fill="#6b84a8"
+        <text x="568" y="246" text-anchor="middle" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Best for: consumer-facing AI products', '适合：面向消费者的 AI 产品')}
         </text>
