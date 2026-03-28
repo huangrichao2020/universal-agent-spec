@@ -18,16 +18,16 @@
           t(lang, 'API Entry', 'API 入口'),
           t(lang, 'User request', '用户请求'))}
 
-        <rect x="165" y="97" width="115" height="74" rx="5" fill="#1e3058" stroke="#2a4578" stroke-width="1.5"/>
-        <text x="222" y="124" text-anchor="middle" fill="#6b84a8"
+        <rect x="165" y="97" width="115" height="74" rx="5" fill="#f7f3ea" stroke="#2a2a35" stroke-width="1.5"/>
+        <text x="222" y="124" text-anchor="middle" fill="#1d1d1f"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Workflow', '工作流')}
         </text>
-        <text x="222" y="141" text-anchor="middle" fill="#6b84a8"
+        <text x="222" y="141" text-anchor="middle" fill="#3a3a3c"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Orchestrator', '调度程序')}
         </text>
-        <text x="222" y="157" text-anchor="middle" fill="#6b84a888"
+        <text x="222" y="157" text-anchor="middle" fill="#636366"
           font-family="'JetBrains Mono',monospace" font-size="8">Python/Node</text>
 
         ${S.box(318, 40, 122, 58, '#0050a0',
