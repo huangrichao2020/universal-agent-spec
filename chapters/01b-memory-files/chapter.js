@@ -62,10 +62,14 @@
           ${t(lang, 'Results written back → memory grows → Agent compounds', '结果写回 → 记忆成长 → Agent 越用越聪明')}
         </text>
 
-        ${S.label(380, 280,
-          t(lang, 'OpenClaw: persona + trading methodology + skills + 6mo worklog → loaded every call',
-                  'OpenClaw：人格 + 交易方法论 + Skills + 6个月日志 → 每次调用全部加载'),
+        ${S.label(380, 276,
+          t(lang, 'OpenClaw: persona + trading methodology + skills + 6mo worklog',
+                  'OpenClaw：人格 + 交易方法论 + Skills + 6个月日志'),
           '#6b84a8', 11)}
+        ${S.label(380, 290,
+          t(lang, '→ all loaded into context on every invocation',
+                  '→ 每次调用全部加载进 context'),
+          '#6b84a8', 10)}
       `;
     },
 
