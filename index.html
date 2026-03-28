@@ -2045,16 +2045,18 @@ Focus on: turnover rate > 15% with volume breakout
           <template v-else>Universal Agent Definition Specification · v2.0 · Engineering Reference</template>
         </div>
       </div>
-      <span class="header-badge">{{ chapters.length }} {{ lang === 'zh' ? '核心概念' : 'Concepts' }}</span>
 
-      <!-- LANGUAGE TOGGLE -->
-      <div class="lang-toggle">
-        <button
-          v-for="l in LANGS" :key="l"
-          class="lang-btn"
-          :class="{ active: lang === l }"
-          @click="setLang(l)"
-        >{{ LANG_NAMES[l] }}</button>
+      <!-- BADGE + LANG TOGGLE grouped together -->
+      <div style="display:flex;align-items:center;gap:10px;margin-left:auto;">
+        <span class="header-badge">{{ chapters.length }} {{ lang === 'zh' ? '核心概念' : 'Concepts' }}</span>
+        <div class="lang-toggle" style="margin-left:0">
+          <button
+            v-for="l in LANGS" :key="l"
+            class="lang-btn"
+            :class="{ active: lang === l }"
+            @click="setLang(l)"
+          >{{ LANG_NAMES[l] }}</button>
+        </div>
       </div>
     </header>
 
@@ -2177,7 +2179,7 @@ const { createApp, ref, computed, onMounted } = Vue;
 
 createApp({
   setup() {
-    const lang      = ref('en');   // default: English
+    const lang      = ref('zh');   // default: 中文
     const loading   = ref(true);
     const chapters  = ref([]);
     const activeIdx = ref(0);
