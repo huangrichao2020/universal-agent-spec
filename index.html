@@ -7,45 +7,59 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
+  /* ── APPLE-STYLE DESIGN SYSTEM ── */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;700;900&display=swap');
+
   :root {
-    --bg: #070b14;
-    --bg2: #0d1526;
-    --bg3: #111d35;
-    --border: #1e3058;
-    --border2: #2a4578;
-    --cyan: #00c8ff;
-    --cyan-dim: rgba(0,200,255,0.12);
-    --amber: #ffb800;
-    --amber-dim: rgba(255,184,0,0.1);
-    --green: #00e599;
-    --red: #ff4d6d;
-    --purple: #a78bfa;
-    --text: #c9d8f0;
-    --text-dim: #6b84a8;
-    --text-bright: #e8f2ff;
-    --mono: 'JetBrains Mono', monospace;
-    --serif: 'Noto Serif SC', serif;
+    --bg:          #f5f5f7;
+    --bg2:         rgba(255,255,255,0.72);
+    --bg3:         rgba(255,255,255,0.5);
+    --surface:     #ffffff;
+    --border:      rgba(0,0,0,0.08);
+    --border2:     rgba(0,0,0,0.14);
+    --blue:        #0071e3;
+    --blue-light:  rgba(0,113,227,0.08);
+    --blue-mid:    rgba(0,113,227,0.15);
+    --amber:       #f59e0b;
+    --amber-light: rgba(245,158,11,0.08);
+    --green:       #34c759;
+    --red:         #ff3b30;
+    --purple:      #7c3aed;
+    --text:        #1d1d1f;
+    --text2:       #424245;
+    --text3:       #6e6e73;
+    --text4:       #a1a1a6;
+    --shadow-sm:   0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md:   0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+    --shadow-lg:   0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+    --radius:      14px;
+    --radius-sm:   8px;
+    --blur:        saturate(180%) blur(20px);
+    --mono:        'JetBrains Mono', 'SF Mono', monospace;
+    --sans:        'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    --serif:       'Noto Serif SC', serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html { scroll-behavior: smooth; }
+
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: var(--mono);
+    font-family: var(--sans);
     min-height: 100vh;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* ── GRID BG ── */
+  /* subtle dot grid */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image:
-      linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
     pointer-events: none;
     z-index: 0;
   }
@@ -54,48 +68,88 @@
 
   /* ── HEADER ── */
   .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    background: rgba(245,245,247,0.82);
     border-bottom: 1px solid var(--border);
-    padding: 32px 48px 28px;
+    padding: 18px 48px;
     display: flex;
-    align-items: flex-end;
-    gap: 32px;
-    background: linear-gradient(180deg, rgba(0,200,255,0.05) 0%, transparent 100%);
+    align-items: center;
+    gap: 20px;
+  }
+
+  .header-title {
+    font-family: var(--sans);
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .header-title span { color: var(--blue); }
+
+  .header-sub {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 3px;
+    letter-spacing: 0.02em;
+    font-family: var(--mono);
   }
 
   .header-badge {
     font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--cyan);
-    text-transform: uppercase;
-    border: 1px solid rgba(0,200,255,0.3);
-    padding: 4px 10px;
-    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--blue);
+    background: var(--blue-light);
+    border: 1px solid rgba(0,113,227,0.18);
+    padding: 5px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-family: var(--sans);
+  }
+
+  /* ── LANG TOGGLE ── */
+  .lang-toggle {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    background: var(--border);
+    border-radius: 10px;
+    padding: 3px;
+  }
+
+  .lang-btn {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--text3);
+    transition: all 0.2s;
     white-space: nowrap;
   }
 
-  .header-title {
-    font-family: var(--serif);
-    font-size: clamp(22px, 4vw, 38px);
-    font-weight: 900;
-    color: var(--text-bright);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-  }
+  .lang-btn:hover { color: var(--text); }
 
-  .header-title span { color: var(--cyan); }
-
-  .header-sub {
-    font-size: 12px;
-    color: var(--text-dim);
-    margin-top: 6px;
-    letter-spacing: 0.05em;
+  .lang-btn.active {
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: var(--shadow-sm);
   }
 
   /* ── LAYOUT ── */
   .layout {
     display: grid;
-    grid-template-columns: 240px 1fr;
-    min-height: calc(100vh - 120px);
+    grid-template-columns: 220px 1fr;
+    min-height: calc(100vh - 65px);
   }
 
   /* ── SIDEBAR ── */
@@ -103,161 +157,194 @@
     border-right: 1px solid var(--border);
     padding: 24px 0;
     position: sticky;
-    top: 0;
-    height: calc(100vh - 120px);
+    top: 65px;
+    height: calc(100vh - 65px);
     overflow-y: auto;
+    background: rgba(245,245,247,0.6);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
   }
 
-  .sidebar::-webkit-scrollbar { width: 4px; }
-  .sidebar::-webkit-scrollbar-track { background: transparent; }
+  .sidebar::-webkit-scrollbar { width: 3px; }
   .sidebar::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
 
   .sidebar-label {
     font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--text-dim);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--text4);
     text-transform: uppercase;
-    padding: 0 20px 12px;
+    padding: 0 18px 12px;
+    font-family: var(--sans);
   }
 
   .nav-item {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 20px;
+    padding: 8px 18px;
     cursor: pointer;
     transition: all 0.15s;
     border-left: 2px solid transparent;
     font-size: 12px;
-    color: var(--text-dim);
+    font-weight: 400;
+    color: var(--text3);
+    font-family: var(--sans);
+    border-radius: 0;
   }
 
-  .nav-item:hover { color: var(--text); background: var(--cyan-dim); }
-  .nav-item.active { color: var(--cyan); border-left-color: var(--cyan); background: var(--cyan-dim); }
-
-  .nav-num {
-    font-size: 10px;
-    color: var(--text-dim);
-    width: 20px;
-    flex-shrink: 0;
-    opacity: 0.6;
+  .nav-item:hover {
+    color: var(--text);
+    background: rgba(0,113,227,0.05);
   }
-  .nav-item.active .nav-num { color: var(--cyan); opacity: 1; }
+
+  .nav-item.active {
+    color: var(--blue);
+    border-left-color: var(--blue);
+    background: var(--blue-light);
+    font-weight: 500;
+  }
+
+  .nav-num { font-size: 10px; width: 18px; flex-shrink: 0; opacity: 0.45; font-family: var(--mono); }
+  .nav-item.active .nav-num { opacity: 1; }
 
   /* ── MAIN ── */
   .main {
     padding: 40px 48px;
-    max-width: 900px;
+    max-width: 920px;
   }
 
   /* ── CONCEPT CARD ── */
   .concept-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    margin-bottom: 28px;
+    box-shadow: var(--shadow-md);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    margin-bottom: 64px;
-    background: var(--bg2);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .concept-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-1px);
   }
 
   .card-header {
-    padding: 24px 32px;
+    padding: 24px 28px;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: flex-start;
-    gap: 20px;
-    background: linear-gradient(135deg, var(--bg3) 0%, var(--bg2) 100%);
+    gap: 16px;
+    background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
   }
 
   .card-num {
-    font-size: 48px;
+    font-size: 40px;
     font-weight: 700;
-    color: var(--border2);
+    color: rgba(0,0,0,0.08);
     line-height: 1;
     flex-shrink: 0;
-    font-variant-numeric: tabular-nums;
+    font-family: var(--sans);
+    letter-spacing: -0.03em;
   }
 
   .card-title-wrap { flex: 1; }
 
   .card-title {
-    font-family: var(--serif);
-    font-size: 24px;
+    font-family: var(--sans);
+    font-size: 20px;
     font-weight: 700;
-    color: var(--text-bright);
-    margin-bottom: 4px;
+    color: var(--text);
+    margin-bottom: 3px;
+    letter-spacing: -0.02em;
   }
-  .card-title .accent { color: var(--cyan); }
+
+  .card-title .accent { color: var(--blue); }
 
   .card-subtitle {
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 0.08em;
+    font-size: 12px;
+    color: var(--text3);
+    font-family: var(--mono);
   }
 
   .card-tag {
     font-size: 10px;
-    padding: 3px 8px;
-    border-radius: 3px;
-    letter-spacing: 0.08em;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
     flex-shrink: 0;
     align-self: flex-start;
-    margin-top: 4px;
+    margin-top: 2px;
+    text-transform: uppercase;
+    font-family: var(--sans);
   }
-  .tag-infra { background: rgba(167,139,250,0.15); color: var(--purple); border: 1px solid rgba(167,139,250,0.2); }
-  .tag-core  { background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(0,200,255,0.2); }
-  .tag-system { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(255,184,0,0.2); }
-  .tag-pattern { background: rgba(0,229,153,0.1); color: var(--green); border: 1px solid rgba(0,229,153,0.2); }
-  .tag-biz { background: rgba(255,77,109,0.1); color: var(--red); border: 1px solid rgba(255,77,109,0.2); }
 
-  .card-body { padding: 32px; }
+  .tag-infra   { background: rgba(124,58,237,0.08); color: var(--purple); border: 1px solid rgba(124,58,237,0.15); }
+  .tag-core    { background: var(--blue-light); color: var(--blue); border: 1px solid rgba(0,113,227,0.15); }
+  .tag-system  { background: var(--amber-light); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
+  .tag-pattern { background: rgba(52,199,89,0.08); color: #1a8a3a; border: 1px solid rgba(52,199,89,0.2); }
+  .tag-biz     { background: rgba(255,59,48,0.07); color: var(--red); border: 1px solid rgba(255,59,48,0.15); }
+
+  .card-body { padding: 28px; }
 
   /* ── DIAGRAM ── */
   .diagram-wrap {
-    background: var(--bg);
+    background: #f9f9fb;
     border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px 8px;
-    margin-bottom: 28px;
+    border-radius: var(--radius-sm);
+    padding: 16px 12px;
+    margin-bottom: 24px;
     overflow: visible;
   }
 
   .diagram-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
 
-  /* ── DEFINITION ── */
+  /* ── DEFINITION BLOCK ── */
   .def-block {
-    border-left: 3px solid var(--cyan);
-    padding: 16px 20px;
-    background: var(--cyan-dim);
-    border-radius: 0 6px 6px 0;
-    margin-bottom: 24px;
+    border-left: 3px solid var(--blue);
+    padding: 14px 18px;
+    background: var(--blue-light);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-bottom: 20px;
   }
 
   .def-label {
     font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--cyan);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--blue);
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    font-family: var(--sans);
   }
 
   .def-text {
     font-size: 14px;
-    line-height: 1.8;
-    color: var(--text-bright);
+    line-height: 1.75;
+    color: var(--text);
+    font-family: var(--sans);
   }
 
+  .def-text strong { color: var(--blue); font-weight: 600; }
+
   /* ── SECTIONS ── */
-  .section { margin-bottom: 24px; }
+  .section { margin-bottom: 20px; }
 
   .section-title {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--amber);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text3);
     text-transform: uppercase;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 8px;
+    font-family: var(--sans);
   }
+
   .section-title::after {
     content: '';
     flex: 1;
@@ -266,195 +353,170 @@
   }
 
   .prose {
-    font-size: 13px;
-    line-height: 2;
-    color: var(--text);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text2);
+    font-family: var(--sans);
   }
 
-  .prose strong { color: var(--amber); font-weight: 500; }
-  .prose em { color: var(--cyan); font-style: normal; border-bottom: 1px dashed rgba(0,200,255,0.4); }
+  .prose strong { color: var(--text); font-weight: 600; }
+  .prose em {
+    color: var(--blue);
+    font-style: normal;
+    border-bottom: 1px dashed rgba(0,113,227,0.35);
+  }
 
   /* ── CODE BLOCK ── */
   .code-block {
-    background: #050810;
-    border: 1px solid var(--border);
-    border-radius: 6px;
+    background: #1c1c1e;
+    border-radius: var(--radius-sm);
     padding: 16px 20px;
     font-size: 12px;
-    line-height: 1.7;
+    line-height: 1.75;
     overflow-x: auto;
-    margin: 16px 0;
+    margin: 14px 0;
     white-space: pre;
-    color: #7ec8e3;
+    color: #e2e8f0;
+    font-family: var(--mono);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
   }
 
   .code-block .kw  { color: #ff79c6; }
   .code-block .str { color: #f1fa8c; }
   .code-block .cmt { color: #6272a4; }
-  .code-block .num { color: #bd93f9; }
   .code-block .fn  { color: #50fa7b; }
 
-  /* ── COMPARISON TABLE ── */
+  /* ── TABLE ── */
   .compare-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 12px;
-    margin: 16px 0;
+    font-size: 13px;
+    margin: 12px 0;
+    font-family: var(--sans);
   }
 
   .compare-table th {
-    background: var(--bg3);
-    color: var(--cyan);
+    background: #f5f5f7;
+    color: var(--text3);
     font-size: 10px;
-    letter-spacing: 0.1em;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 10px 16px;
+    padding: 10px 14px;
     text-align: left;
     border-bottom: 1px solid var(--border2);
   }
 
   .compare-table td {
-    padding: 10px 16px;
+    padding: 10px 14px;
     border-bottom: 1px solid var(--border);
-    color: var(--text);
+    color: var(--text2);
     vertical-align: top;
+    line-height: 1.5;
   }
 
-  .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { background: rgba(0,113,227,0.03); }
 
   /* ── INSIGHT BOX ── */
   .insight {
     display: flex;
     gap: 12px;
     align-items: flex-start;
-    background: var(--amber-dim);
-    border: 1px solid rgba(255,184,0,0.2);
-    border-radius: 6px;
-    padding: 14px 18px;
-    margin: 16px 0;
+    background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.18);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin: 14px 0;
     font-size: 13px;
     line-height: 1.7;
-    color: var(--text);
+    color: var(--text2);
+    font-family: var(--sans);
   }
 
-  .insight-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
-
-  /* ── PILLS ── */
-  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
-  .pill {
-    font-size: 11px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    border: 1px solid var(--border2);
-    color: var(--text-dim);
-  }
-  .pill.hi { border-color: rgba(0,200,255,0.3); color: var(--cyan); background: var(--cyan-dim); }
-
-  /* ── FOOTER ── */
-  .footer {
-    border-top: 1px solid var(--border);
-    padding: 20px 48px;
-    font-size: 11px;
-    color: var(--text-dim);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  /* ── SCROLLBAR ── */
-  .main::-webkit-scrollbar { width: 6px; }
-  .main::-webkit-scrollbar-track { background: transparent; }
-  .main::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
-
-  /* ── TRANSITIONS ── */
-  .fade-enter-active, .fade-leave-active { transition: opacity 0.2s, transform 0.2s; }
-  .fade-enter-from { opacity: 0; transform: translateY(8px); }
-  .fade-leave-to  { opacity: 0; transform: translateY(-8px); }
+  .insight strong { color: var(--text); }
+  .insight-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
 
   /* ── INSTRUCTION CARDS ── */
   .instruction-card {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     align-items: flex-start;
+    background: #fafafa;
     border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 16px 20px;
-    margin-bottom: 12px;
-    background: var(--bg);
-    transition: border-color 0.15s;
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    transition: box-shadow 0.15s, background 0.15s;
   }
-  .instruction-card:hover { border-color: var(--border2); }
 
-  .instruction-icon {
-    font-size: 22px;
-    flex-shrink: 0;
-    width: 36px;
-    text-align: center;
-    margin-top: 2px;
+  .instruction-card:hover {
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
   }
+
+  .instruction-icon { font-size: 20px; flex-shrink: 0; width: 32px; text-align: center; margin-top: 1px; }
 
   .instruction-body { flex: 1; }
 
   .instruction-title {
     font-size: 13px;
-    font-weight: 500;
-    color: var(--cyan);
-    margin-bottom: 6px;
-    letter-spacing: 0.03em;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 5px;
+    font-family: var(--sans);
   }
 
   .instruction-text {
     font-size: 12px;
-    line-height: 1.85;
-    color: var(--text);
-  }
-
-  /* ── LANG TOGGLE ── */
-  .lang-toggle {
-    display: flex;
-    gap: 4px;
-    margin-left: auto;
-    align-items: center;
-  }
-
-  .lang-btn {
-    font-family: var(--serif);
-    font-size: 13px;
-    letter-spacing: 0.05em;
-    padding: 8px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    border: 1px solid var(--border2);
-    background: transparent;
-    color: var(--text-dim);
-    transition: all 0.15s;
-    white-space: nowrap;
-    line-height: 1.4;
-  }
-
-  .lang-btn:hover { color: var(--text); border-color: var(--cyan); }
-  .lang-btn.active {
-    background: var(--cyan-dim);
-    color: var(--cyan);
-    border-color: var(--cyan);
+    line-height: 1.8;
+    color: var(--text2);
+    font-family: var(--sans);
   }
 
   /* ── LOADING STATE ── */
   .loading-state {
     display: flex; align-items: center; justify-content: center;
     height: 60vh; flex-direction: column; gap: 16px;
-    color: var(--text-dim); font-size: 13px;
+    color: var(--text3); font-size: 13px; font-family: var(--sans);
   }
+
   .loading-dot {
     width: 6px; height: 6px; border-radius: 50%;
-    background: var(--cyan); display: inline-block;
+    background: var(--blue); display: inline-block;
     animation: pulse 1.2s ease-in-out infinite;
   }
+
   @keyframes pulse {
     0%, 100% { opacity: 0.2; transform: scale(0.8); }
     50%       { opacity: 1;   transform: scale(1.2); }
   }
 
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 48px;
+    font-size: 12px;
+    color: var(--text4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245,245,247,0.8);
+    font-family: var(--sans);
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .main { padding: 24px 20px; }
+    .header { padding: 14px 20px; flex-wrap: wrap; }
+  }
 </style>
 
 <!-- ── INLINE: registry.js ── -->
@@ -504,8 +566,8 @@
     dashed(x1, y1, x2, y2, col = '#2a4578') {
       return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="1.2" stroke-dasharray="4 3"/>`;
     },
-    c: { cyan:'#00c8ff', amber:'#ffb800', green:'#00e599', red:'#ff4d6d', purple:'#a78bfa',
-         dim:'#1e3058', dim2:'#2a4578', bg:'#070b14', bg2:'#0d1526', text:'#c9d8f0', textDim:'#6b84a8' }
+    c: { cyan:'#0071e3', amber:'#f59e0b', green:'#34c759', red:'#ff3b30', purple:'#7c3aed',
+         dim:'#e5e5ea', dim2:'#d1d1d6', bg:'#f5f5f7', bg2:'#ffffff', text:'#1d1d1f', textDim:'#6e6e73' }
   };
   window.AgentSpecHelpers = H;
 })();
@@ -534,12 +596,12 @@
     getSvg(lang) {
       return `
         <ellipse cx="380" cy="85" rx="130" ry="52"
-          fill="#a78bfa18" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <text x="380" y="80" text-anchor="middle" fill="#a78bfa"
+          fill="#7c3aed18" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="380" y="80" text-anchor="middle" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="14" font-weight="500">
           ${t(lang, 'LLM API', '大模型 API')}
         </text>
-        <text x="380" y="100" text-anchor="middle" fill="#a78bfa88"
+        <text x="380" y="100" text-anchor="middle" fill="#7c3aed88"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Stateless · Each call independent', '无状态 · 每次独立')}
         </text>
@@ -549,11 +611,11 @@
         ${S.box(575, 148, 130, 42, '#00e599', t(lang, 'Any Client', '任何客户端'))}
 
         <line x1="120" y1="148" x2="330" y2="110"
-          stroke="#00c8ff" stroke-width="1.5" marker-end="url(#arrC)"/>
+          stroke="#0071e3" stroke-width="1.5" marker-end="url(#arrC)"/>
         <line x1="360" y1="148" x2="368" y2="112"
-          stroke="#ffb800" stroke-width="1.5" marker-end="url(#arrA)"/>
+          stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arrA)"/>
         <line x1="640" y1="148" x2="450" y2="110"
-          stroke="#00e599" stroke-width="1.5" marker-end="url(#arr)"/>
+          stroke="#34c759" stroke-width="1.5" marker-end="url(#arr)"/>
 
         ${S.label(380, 205,
           t(lang, 'POST /v1/messages → Input → Process → Output → Each call is independent',
@@ -645,12 +707,12 @@
       // Third text line for inference box
       const inferExtra = `
         <text x="265" y="137" text-anchor="middle"
-          fill="#a78bfa66" font-family="'JetBrains Mono',monospace" font-size="9">
+          fill="#7c3aed66" font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, '"Temporarily awake"', '临时"清醒"')}
         </text>`;
 
       const arrows = `
-        <line x1="40" y1="105" x2="720" y2="105" stroke="#1e3058" stroke-width="1.5"/>
+        <line x1="40" y1="105" x2="720" y2="105" stroke="#e5e5ea" stroke-width="1.5"/>
         <line x1="170" y1="105" x2="208" y2="105" stroke="#6b84a8" stroke-width="1.5" marker-end="url(#arr)"/>
         <line x1="320" y1="105" x2="378" y2="105" stroke="#6b84a8" stroke-width="1.5" marker-end="url(#arr)"/>
         <line x1="490" y1="105" x2="538" y2="105" stroke="#6b84a8" stroke-width="1.5" marker-end="url(#arr)"/>
@@ -735,8 +797,8 @@
       return `
         ${cards}
 
-        <rect x="150" y="108" width="460" height="38" rx="5" fill="#1e3058" stroke="#2a4578" stroke-width="1.5"/>
-        <text x="380" y="123" text-anchor="middle" fill="#6b84a8" font-family="'JetBrains Mono',monospace" font-size="10">
+        <rect x="150" y="108" width="460" height="38" rx="5" fill="#f0f0f5" stroke="#d1d1d6" stroke-width="1.5"/>
+        <text x="380" y="123" text-anchor="middle" fill="#6e6e73" font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'UI program: memory files + task → context window → LLM', 'UI 界面程序：记忆文件 + 当前任务 → context window → 大模型')}
         </text>
         <text x="380" y="138" text-anchor="middle" fill="#6b84a888" font-family="'JetBrains Mono',monospace" font-size="9">
@@ -745,18 +807,18 @@
 
         <line x1="380" y1="146" x2="380" y2="164" stroke="#6b84a8" stroke-width="1.5" marker-end="url(#arr)"/>
 
-        <rect x="240" y="164" width="280" height="40" rx="5" fill="#a78bfa18" stroke="#a78bfa" stroke-width="1.5"/>
-        <text x="380" y="180" text-anchor="middle" fill="#a78bfa" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="500">
+        <rect x="240" y="164" width="280" height="40" rx="5" fill="#7c3aed18" stroke="#7c3aed" stroke-width="1.5"/>
+        <text x="380" y="180" text-anchor="middle" fill="#7c3aed" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="500">
           ${t(lang, 'LLM API (stateless)', '大模型 API（无状态）')}
         </text>
-        <text x="380" y="196" text-anchor="middle" fill="#a78bfa88" font-family="'JetBrains Mono',monospace" font-size="9">
+        <text x="380" y="196" text-anchor="middle" fill="#7c3aed88" font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'forgets everything — memory files are the only persistence', '调用结束即遗忘 — 记忆文件是唯一的持续性来源')}
         </text>
 
         <line x1="380" y1="204" x2="380" y2="222" stroke="#6b84a8" stroke-width="1.5" marker-end="url(#arr)"/>
 
-        <rect x="210" y="222" width="340" height="36" rx="5" fill="#00e59912" stroke="#00e599" stroke-width="1.5"/>
-        <text x="380" y="245" text-anchor="middle" fill="#00e599" font-family="'JetBrains Mono',monospace" font-size="10">
+        <rect x="210" y="222" width="340" height="36" rx="5" fill="#34c75912" stroke="#34c759" stroke-width="1.5"/>
+        <text x="380" y="245" text-anchor="middle" fill="#34c759" font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Results written back → memory grows → Agent compounds', '结果写回 → 记忆成长 → Agent 越用越聪明')}
         </text>
 
@@ -852,14 +914,14 @@
       // Arrow down from files to Agent
       const arrows = files.map((_, i) => `
         <line x1="${95 + i * 146}" y1="143" x2="${95 + i * 146}" y2="178"
-          stroke="#2a4578" stroke-width="1.2" marker-end="url(#arr)"/>
+          stroke="#d1d1d6" stroke-width="1.2" marker-end="url(#arr)"/>
       `).join('');
 
       // Agent box
       const agentBox = `
         <rect x="120" y="180" width="520" height="58" rx="8"
-          fill="#00c8ff08" stroke="#00c8ff" stroke-width="1.8"/>
-        <text x="380" y="207" text-anchor="middle" fill="#00c8ff"
+          fill="#0071e308" stroke="#0071e3" stroke-width="1.8"/>
+        <text x="380" y="207" text-anchor="middle" fill="#0071e3"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ${t(lang, 'Agent  (UI interface + Memory Files)', 'Agent（UI 界面程序 + 记忆文件）')}
         </text>
@@ -872,14 +934,14 @@
       // OpenClaw example
       const example = `
         <rect x="30" y="258" width="340" height="30" rx="4"
-          fill="#a78bfa10" stroke="#a78bfa40" stroke-width="1"/>
-        <text x="48" y="278" fill="#a78bfa"
+          fill="#a78bfa10" stroke="#7c3aed40" stroke-width="1"/>
+        <text x="48" y="278" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, '💡 OpenClaw: persona.md = "龙虾" personality + Feishu skill', '💡 OpenClaw：persona.md = "龙虾"人格 + 飞书 skill')}
         </text>
         <rect x="390" y="258" width="340" height="30" rx="4"
-          fill="#00e59910" stroke="#00e59940" stroke-width="1"/>
-        <text x="408" y="278" fill="#00e599"
+          fill="#34c75910" stroke="#00e59940" stroke-width="1"/>
+        <text x="408" y="278" fill="#34c759"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, '💡 Without memory files: every invocation = brand new stranger', '💡 没有记忆文件：每次调用都是全新陌生人')}
         </text>
@@ -966,16 +1028,16 @@
       `).join('');
 
       const sectionLabels = [0,1,2].map((_, i) => `
-        <text x="285" y="${76 + i*64}" fill="#ffb80088"
+        <text x="285" y="${76 + i*64}" fill="#f59e0b88"
           font-family="'JetBrains Mono',monospace" font-size="9">${sections[i]}</text>
       `).join('');
 
       return `
         <!-- Document card -->
         <rect x="265" y="22" width="230" height="208" rx="6"
-          fill="#ffb80010" stroke="#ffb800" stroke-width="1.5"/>
-        <rect x="265" y="22" width="230" height="36" rx="6" fill="#ffb80025" stroke="none"/>
-        <text x="380" y="46" text-anchor="middle" fill="#ffb800"
+          fill="#f59e0b10" stroke="#f59e0b" stroke-width="1.5"/>
+        <rect x="265" y="22" width="230" height="36" rx="6" fill="#f59e0b25" stroke="none"/>
+        <text x="380" y="46" text-anchor="middle" fill="#f59e0b"
           font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">${filename}</text>
 
         ${docLines}
@@ -986,8 +1048,8 @@
           t(lang, 'User Request', '用户请求'),
           t(lang, 'Send notification', '发送飞书通知'))}
         <line x1="178" y1="122" x2="263" y2="122"
-          stroke="#00c8ff" stroke-width="1.5" marker-end="url(#arrC)"/>
-        <text x="220" y="115" text-anchor="middle" fill="#00c8ff88"
+          stroke="#0071e3" stroke-width="1.5" marker-end="url(#arrC)"/>
+        <text x="220" y="115" text-anchor="middle" fill="#0071e388"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'match trigger', '匹配触发条件')}
         </text>
@@ -997,8 +1059,8 @@
           t(lang, 'Execute Action', '执行动作'),
           t(lang, 'POST webhook', 'POST webhook'))}
         <line x1="497" y1="122" x2="580" y2="122"
-          stroke="#00e599" stroke-width="1.5" marker-end="url(#arr)"/>
-        <text x="540" y="115" text-anchor="middle" fill="#00e59988"
+          stroke="#34c759" stroke-width="1.5" marker-end="url(#arr)"/>
+        <text x="540" y="115" text-anchor="middle" fill="#34c75988"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'follow steps', '按步骤执行')}
         </text>
@@ -1097,37 +1159,37 @@
 
       const shellBoxes = shellSteps.map((step, i) => `
         <rect x="75" y="${108 + i*38}" width="152" height="28" rx="3"
-          fill="#a78bfa12" stroke="#a78bfa30" stroke-width="1"/>
-        <text x="151" y="${127 + i*38}" text-anchor="middle" fill="#a78bfa"
+          fill="#7c3aed12" stroke="#7c3aed30" stroke-width="1"/>
+        <text x="151" y="${127 + i*38}" text-anchor="middle" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="10">${step}</text>
       `).join('');
 
       return `
         <!-- Outer Agent boundary -->
         <rect x="38" y="24" width="688" height="252" rx="10"
-          fill="#00c8ff08" stroke="#00c8ff" stroke-width="2"/>
-        <text x="380" y="18" text-anchor="middle" fill="#00c8ff"
+          fill="#0071e308" stroke="#0071e3" stroke-width="2"/>
+        <text x="380" y="18" text-anchor="middle" fill="#0071e3"
           font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">Agent</text>
 
         <!-- Shell program panel -->
         <rect x="58" y="48" width="185" height="212" rx="6"
-          fill="#0d1526" stroke="#2a4578" stroke-width="1.5"/>
-        <text x="151" y="74" text-anchor="middle" fill="#a78bfa"
+          fill="#ffffff" stroke="#d1d1d6" stroke-width="1.5"/>
+        <text x="151" y="74" text-anchor="middle" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="11" font-weight="500">
           ${t(lang, 'Shell Program', 'UI 界面程序')}
         </text>
-        <text x="151" y="91" text-anchor="middle" fill="#a78bfa88"
+        <text x="151" y="91" text-anchor="middle" fill="#7c3aed88"
           font-family="'JetBrains Mono',monospace" font-size="9">Shell Program</text>
         ${shellBoxes}
 
         <!-- Memory files panel -->
         <rect x="285" y="48" width="430" height="212" rx="6"
-          fill="#0d1526" stroke="#2a4578" stroke-width="1.5"/>
-        <text x="500" y="74" text-anchor="middle" fill="#ffb800"
+          fill="#ffffff" stroke="#d1d1d6" stroke-width="1.5"/>
+        <text x="500" y="74" text-anchor="middle" fill="#f59e0b"
           font-family="'JetBrains Mono',monospace" font-size="11" font-weight="500">
           ${t(lang, 'Memory Files', '记忆文件集合')}
         </text>
-        <text x="500" y="91" text-anchor="middle" fill="#ffb80088"
+        <text x="500" y="91" text-anchor="middle" fill="#f59e0b88"
           font-family="'JetBrains Mono',monospace" font-size="9">Memory Files</text>
         ${memBoxes}
       `;
@@ -1239,18 +1301,18 @@
       `).join('');
 
       const lines = `
-        <line x1="210" y1="52" x2="334" y2="100" stroke="#2a4578" stroke-width="1.2"/>
-        <line x1="515" y1="52" x2="426" y2="100" stroke="#2a4578" stroke-width="1.2"/>
-        <line x1="170" y1="177" x2="332" y2="140" stroke="#2a4578" stroke-width="1.2"/>
-        <line x1="515" y1="177" x2="428" y2="145" stroke="#2a4578" stroke-width="1.2"/>
+        <line x1="210" y1="52" x2="334" y2="100" stroke="#d1d1d6" stroke-width="1.2"/>
+        <line x1="515" y1="52" x2="426" y2="100" stroke="#d1d1d6" stroke-width="1.2"/>
+        <line x1="170" y1="177" x2="332" y2="140" stroke="#d1d1d6" stroke-width="1.2"/>
+        <line x1="515" y1="177" x2="428" y2="145" stroke="#d1d1d6" stroke-width="1.2"/>
       `;
 
       return `
         ${boxes}
-        <circle cx="380" cy="120" r="58" fill="#00c8ff0a" stroke="#00c8ff" stroke-width="1.5"/>
-        <text x="380" y="115" text-anchor="middle" fill="#00c8ff"
+        <circle cx="380" cy="120" r="58" fill="#0071e30a" stroke="#0071e3" stroke-width="1.5"/>
+        <text x="380" y="115" text-anchor="middle" fill="#0071e3"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">Agent</text>
-        <text x="380" y="133" text-anchor="middle" fill="#00c8ff88"
+        <text x="380" y="133" text-anchor="middle" fill="#0071e388"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Memory Files', '记忆文件')}
         </text>
@@ -1321,12 +1383,12 @@
           t(lang, 'API Entry', 'API 入口'),
           t(lang, 'User request', '用户请求'))}
 
-        <rect x="165" y="97" width="115" height="74" rx="5" fill="#1e3058" stroke="#2a4578" stroke-width="1.5"/>
-        <text x="222" y="124" text-anchor="middle" fill="#6b84a8"
+        <rect x="165" y="97" width="115" height="74" rx="5" fill="#f0f0f5" stroke="#d1d1d6" stroke-width="1.5"/>
+        <text x="222" y="124" text-anchor="middle" fill="#6e6e73"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Workflow', '工作流')}
         </text>
-        <text x="222" y="141" text-anchor="middle" fill="#6b84a8"
+        <text x="222" y="141" text-anchor="middle" fill="#6e6e73"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Orchestrator', '调度程序')}
         </text>
@@ -1348,26 +1410,26 @@
           t(lang, 'Execute + Output', '执行+输出'))}
 
         <rect x="658" y="100" width="82" height="48" rx="5"
-          fill="#00e59912" stroke="#00e599" stroke-width="1.5"/>
-        <text x="699" y="120" text-anchor="middle" fill="#00e599"
+          fill="#34c75912" stroke="#34c759" stroke-width="1.5"/>
+        <text x="699" y="120" text-anchor="middle" fill="#34c759"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Final', '最终')}
         </text>
-        <text x="699" y="136" text-anchor="middle" fill="#00e599"
+        <text x="699" y="136" text-anchor="middle" fill="#34c759"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Output', '输出')}
         </text>
 
         <line x1="135" y1="134" x2="163" y2="134" stroke="#6b84a8" stroke-width="1.5" marker-end="url(#arr)"/>
-        <line x1="280" y1="112" x2="316" y2="70" stroke="#00c8ff" stroke-width="1.5" marker-end="url(#arrC)"/>
-        <line x1="280" y1="136" x2="316" y2="162" stroke="#ffb800" stroke-width="1.5" marker-end="url(#arrA)"/>
-        <line x1="440" y1="70" x2="492" y2="105" stroke="#00c8ff" stroke-width="1.2" stroke-dasharray="4 3"/>
-        <line x1="440" y1="162" x2="492" y2="122" stroke="#ffb800" stroke-width="1.2" stroke-dasharray="4 3"/>
-        <line x1="616" y1="116" x2="656" y2="124" stroke="#00e599" stroke-width="1.5" marker-end="url(#arr)"/>
+        <line x1="280" y1="112" x2="316" y2="70" stroke="#0071e3" stroke-width="1.5" marker-end="url(#arrC)"/>
+        <line x1="280" y1="136" x2="316" y2="162" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arrA)"/>
+        <line x1="440" y1="70" x2="492" y2="105" stroke="#0071e3" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <line x1="440" y1="162" x2="492" y2="122" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <line x1="616" y1="116" x2="656" y2="124" stroke="#34c759" stroke-width="1.5" marker-end="url(#arr)"/>
 
         <text x="466" y="78" text-anchor="middle" fill="#00c8ff66"
           font-family="'JetBrains Mono',monospace" font-size="9">JSON</text>
-        <text x="466" y="168" text-anchor="middle" fill="#ffb80066"
+        <text x="466" y="168" text-anchor="middle" fill="#f59e0b66"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'file/pipe', '文件/管道')}
         </text>
@@ -1450,9 +1512,9 @@
           t(lang, 'Data fetch', '数据采集'))}
 
         <rect x="248" y="38" width="268" height="172" rx="6"
-          fill="#ffb80010" stroke="#ffb800" stroke-width="1.5"/>
-        <rect x="248" y="38" width="268" height="34" rx="6" fill="#ffb80022" stroke="none"/>
-        <text x="382" y="60" text-anchor="middle" fill="#ffb800"
+          fill="#f59e0b10" stroke="#f59e0b" stroke-width="1.5"/>
+        <rect x="248" y="38" width="268" height="34" rx="6" fill="#f59e0b22" stroke="none"/>
+        <text x="382" y="60" text-anchor="middle" fill="#f59e0b"
           font-family="'JetBrains Mono',monospace" font-size="11" font-weight="500">HANDOFF.md</text>
         ${docLines}
 
@@ -1461,14 +1523,14 @@
           t(lang, 'Analysis', '分析决策'))}
 
         <line x1="183" y1="113" x2="246" y2="113"
-          stroke="#ffb800" stroke-width="1.5" marker-end="url(#arrA)"/>
-        <text x="215" y="106" text-anchor="middle" fill="#ffb80088"
+          stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arrA)"/>
+        <text x="215" y="106" text-anchor="middle" fill="#f59e0b88"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'writes', '写入')}
         </text>
         <line x1="518" y1="113" x2="576" y2="113"
-          stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arr)"/>
-        <text x="548" y="106" text-anchor="middle" fill="#a78bfa88"
+          stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr)"/>
+        <text x="548" y="106" text-anchor="middle" fill="#7c3aed88"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'reads', '读取')}
         </text>
@@ -1538,34 +1600,34 @@ Focus on: turnover rate > 15% with volume breakout
       ];
 
       const triggerRows = triggers.map(([cond, action], i) => `
-        <text x="496" y="${113 + i*26}" fill="#00e59988"
+        <text x="496" y="${113 + i*26}" fill="#34c75988"
           font-family="'JetBrains Mono',monospace" font-size="9">${cond}</text>
-        <text x="496" y="${126 + i*26}" fill="#00c8ff"
+        <text x="496" y="${126 + i*26}" fill="#0071e3"
           font-family="'JetBrains Mono',monospace" font-size="9">${action}</text>
       `).join('');
 
       return `
         <polyline points="38,135 78,135 88,62 98,208 108,135 158,135 168,78 178,192 188,135 218,135 228,84 238,186 248,135 298,135 308,74 318,196 328,135 368,135"
-          fill="none" stroke="#00e599" stroke-width="2"/>
+          fill="none" stroke="#34c759" stroke-width="2"/>
         <polyline points="368,135 408,135 418,95 428,175 438,135 468,135"
           fill="none" stroke="#00e59944" stroke-width="1.5" stroke-dasharray="4 3"/>
 
         <rect x="480" y="62" width="258" height="148" rx="6"
-          fill="#00e59910" stroke="#00e599" stroke-width="1.5"/>
-        <text x="609" y="87" text-anchor="middle" fill="#00e599"
+          fill="#34c75910" stroke="#34c759" stroke-width="1.5"/>
+        <text x="609" y="87" text-anchor="middle" fill="#34c759"
           font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">
           ${t(lang, 'Aware Layer', '感知层 Aware')}
         </text>
         ${triggerRows}
 
-        <rect x="480" y="218" width="258" height="30" rx="4" fill="#0d1526" stroke="#2a4578"/>
-        <text x="609" y="237" text-anchor="middle" fill="#6b84a8"
+        <rect x="480" y="218" width="258" height="30" rx="4" fill="#ffffff" stroke="#d1d1d6"/>
+        <text x="609" y="237" text-anchor="middle" fill="#6e6e73"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Cheap model (¥0.001/1K tokens)', '使用便宜模型（¥0.001/千Token）')}
         </text>
 
         <line x1="468" y1="135" x2="478" y2="135"
-          stroke="#00e599" stroke-width="1.5" marker-end="url(#arr)"/>
+          stroke="#34c759" stroke-width="1.5" marker-end="url(#arr)"/>
 
         ${S.label(240, 268,
           t(lang, 'High-freq scan · Low-cost judgment · Anomaly triggers premium Agent',
@@ -1628,43 +1690,43 @@ Focus on: turnover rate > 15% with volume breakout
     getSvg(lang) {
       return `
         <!-- Wrong side label -->
-        <text x="185" y="30" text-anchor="middle" fill="#ff4d6d"
+        <text x="185" y="30" text-anchor="middle" fill="#ff3b30"
           font-family="'JetBrains Mono',monospace" font-size="12">
           ✗  ${t(lang, 'Common misconception', '错误认知')}
         </text>
         ${S.box(38, 52, 145, 65, '#ff4d6d', t(lang, 'Agent A', 'Agent A'), '')}
         ${S.box(228, 52, 145, 65, '#ff4d6d', t(lang, 'Agent B', 'Agent B'), '')}
-        <line x1="183" y1="78" x2="226" y2="78" stroke="#ff4d6d" stroke-width="1.5" marker-end="url(#arr)"/>
-        <line x1="228" y1="94" x2="185" y2="94" stroke="#ff4d6d" stroke-width="1.5" marker-end="url(#arr)"/>
-        <text x="205" y="73" text-anchor="middle" fill="#ff4d6d"
+        <line x1="183" y1="78" x2="226" y2="78" stroke="#ff3b30" stroke-width="1.5" marker-end="url(#arr)"/>
+        <line x1="228" y1="94" x2="185" y2="94" stroke="#ff3b30" stroke-width="1.5" marker-end="url(#arr)"/>
+        <text x="205" y="73" text-anchor="middle" fill="#ff3b30"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Direct chat?', '直接聊天？')}
         </text>
-        <text x="205" y="108" text-anchor="middle" fill="#ff4d6d88"
+        <text x="205" y="108" text-anchor="middle" fill="#ff3b3088"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Agents have no spontaneous comm', 'Agent 无自发通信能力')}
         </text>
 
-        <line x1="400" y1="18" x2="400" y2="235" stroke="#1e3058" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="400" y1="18" x2="400" y2="235" stroke="#e5e5ea" stroke-width="1" stroke-dasharray="4 3"/>
 
         <!-- Correct side label -->
-        <text x="580" y="30" text-anchor="middle" fill="#00e599"
+        <text x="580" y="30" text-anchor="middle" fill="#34c759"
           font-family="'JetBrains Mono',monospace" font-size="12">
           ✓  ${t(lang, 'Actual mechanism', '实际机制')}
         </text>
         ${S.box(428, 52, 105, 65, '#00c8ff', t(lang, 'Agent A', 'Agent A'), '')}
         ${S.box(638, 52, 105, 65, '#a78bfa', t(lang, 'Agent B', 'Agent B'), '')}
-        <rect x="538" y="72" width="94" height="34" rx="4" fill="#ffb80018" stroke="#ffb800" stroke-width="1.2"/>
-        <text x="585" y="88" text-anchor="middle" fill="#ffb800"
+        <rect x="538" y="72" width="94" height="34" rx="4" fill="#f59e0b18" stroke="#f59e0b" stroke-width="1.2"/>
+        <text x="585" y="88" text-anchor="middle" fill="#f59e0b"
           font-family="'JetBrains Mono',monospace" font-size="9" font-weight="500">
           ${t(lang, 'Workflow porter', '工作流搬运')}
         </text>
-        <text x="585" y="100" text-anchor="middle" fill="#ffb80088"
+        <text x="585" y="100" text-anchor="middle" fill="#f59e0b88"
           font-family="'JetBrains Mono',monospace" font-size="8">
           ${t(lang, 'file/pipe/queue', '文件/管道/队列')}
         </text>
-        <line x1="533" y1="88" x2="540" y2="88" stroke="#ffb800" stroke-width="1.2" marker-end="url(#arrA)"/>
-        <line x1="632" y1="88" x2="640" y2="88" stroke="#ffb800" stroke-width="1.2" marker-end="url(#arr)"/>
+        <line x1="533" y1="88" x2="540" y2="88" stroke="#f59e0b" stroke-width="1.2" marker-end="url(#arrA)"/>
+        <line x1="632" y1="88" x2="640" y2="88" stroke="#f59e0b" stroke-width="1.2" marker-end="url(#arr)"/>
 
         ${S.box(438, 168, 145, 52, '#00c8ff',
           t(lang, 'File pass', '文件传递'),
@@ -1673,11 +1735,11 @@ Focus on: turnover rate > 15% with volume breakout
           t(lang, 'Pipe pass', '管道传递'),
           t(lang, 'stdout → stdin', 'stdout → stdin'))}
 
-        <text x="447" y="158" fill="#6b84a8"
+        <text x="447" y="158" fill="#6e6e73"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Large data', '大数据量')}
         </text>
-        <text x="608" y="158" fill="#6b84a8"
+        <text x="608" y="158" fill="#6e6e73"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Realtime', '实时流式')}
         </text>
@@ -1723,19 +1785,19 @@ Focus on: turnover rate > 15% with volume breakout
     viewBox: '0 0 760 268',
 
     getSvg(lang) {
-      const pros = (items) => items.map(s => `<tspan x="0" dy="16" fill="#00e59988">✓ ${s}</tspan>`).join('');
-      const cons = (items) => items.map(s => `<tspan x="0" dy="16" fill="#ff4d6d88">✗ ${s}</tspan>`).join('');
+      const pros = (items) => items.map(s => `<tspan x="0" dy="16" fill="#34c75988">✓ ${s}</tspan>`).join('');
+      const cons = (items) => items.map(s => `<tspan x="0" dy="16" fill="#ff3b3088">✗ ${s}</tspan>`).join('');
 
       return `
         <!-- LOCAL panel -->
         <rect x="28" y="20" width="336" height="228" rx="8"
-          fill="#00c8ff08" stroke="#00c8ff40" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <text x="196" y="44" text-anchor="middle" fill="#00c8ff"
+          fill="#0071e308" stroke="#0071e340" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="196" y="44" text-anchor="middle" fill="#0071e3"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ${t(lang, 'Local Mode', '本地模式')}
         </text>
-        <rect x="52" y="58" width="288" height="154" rx="6" fill="#0d1526" stroke="#1e3058" stroke-width="1"/>
-        <text x="98" y="76" fill="#6b84a8" font-family="'JetBrains Mono',monospace" font-size="9">
+        <rect x="52" y="58" width="288" height="154" rx="6" fill="#ffffff" stroke="#e5e5ea" stroke-width="1"/>
+        <text x="98" y="76" fill="#6e6e73" font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'User device', '用户设备')}
         </text>
         ${S.box(62, 84, 120, 42, '#00c8ff', t(lang, 'Shell Program', 'UI 界面程序'), '')}
@@ -1745,10 +1807,10 @@ Focus on: turnover rate > 15% with volume breakout
           font-family="'JetBrains Mono',monospace" font-size="8">
           ${t(lang, 'your key', '用户自己的 Key')}
         </text>
-        <rect x="288" y="90" width="72" height="36" rx="4" fill="#a78bfa18" stroke="#a78bfa" stroke-width="1"/>
-        <text x="324" y="106" text-anchor="middle" fill="#a78bfa"
+        <rect x="288" y="90" width="72" height="36" rx="4" fill="#7c3aed18" stroke="#7c3aed" stroke-width="1"/>
+        <text x="324" y="106" text-anchor="middle" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="8" font-weight="500">大模型</text>
-        <text x="324" y="119" text-anchor="middle" fill="#a78bfa"
+        <text x="324" y="119" text-anchor="middle" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="8">API</text>
         <text x="62" y="213" font-family="'JetBrains Mono',monospace" font-size="9">
           ${pros([t(lang, 'Data stays local', '数据不离本地'), t(lang, 'Choose your compute', '算力可自选最优')])}
@@ -1757,13 +1819,13 @@ Focus on: turnover rate > 15% with volume breakout
 
         <!-- CLOUD panel -->
         <rect x="396" y="20" width="336" height="228" rx="8"
-          fill="#a78bfa08" stroke="#a78bfa40" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <text x="564" y="44" text-anchor="middle" fill="#a78bfa"
+          fill="#7c3aed08" stroke="#7c3aed40" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="564" y="44" text-anchor="middle" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ${t(lang, 'Cloud Mode', '云端模式')}
         </text>
-        <rect x="420" y="58" width="288" height="154" rx="6" fill="#0d1526" stroke="#1e3058" stroke-width="1"/>
-        <text x="466" y="76" fill="#6b84a8" font-family="'JetBrains Mono',monospace" font-size="9">
+        <rect x="420" y="58" width="288" height="154" rx="6" fill="#ffffff" stroke="#e5e5ea" stroke-width="1"/>
+        <text x="466" y="76" fill="#6e6e73" font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Your server', '你的服务器')}
         </text>
         ${S.box(430, 84, 120, 42, '#a78bfa', t(lang, 'Shell Program', 'UI 界面程序'), '')}
@@ -1773,10 +1835,10 @@ Focus on: turnover rate > 15% with volume breakout
           font-family="'JetBrains Mono',monospace" font-size="8">
           ${t(lang, 'your key', '你的 Key')}
         </text>
-        <rect x="652" y="90" width="72" height="36" rx="4" fill="#a78bfa18" stroke="#a78bfa" stroke-width="1"/>
-        <text x="688" y="106" text-anchor="middle" fill="#a78bfa"
+        <rect x="652" y="90" width="72" height="36" rx="4" fill="#7c3aed18" stroke="#7c3aed" stroke-width="1"/>
+        <text x="688" y="106" text-anchor="middle" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="8" font-weight="500">大模型</text>
-        <text x="688" y="119" text-anchor="middle" fill="#a78bfa"
+        <text x="688" y="119" text-anchor="middle" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="8">API</text>
         <text x="430" y="213" font-family="'JetBrains Mono',monospace" font-size="9">
           ${pros([t(lang, 'Zero setup for users', '用户零配置'), t(lang, 'Smooth UX', '体验流畅')])}
@@ -1821,46 +1883,46 @@ Focus on: turnover rate > 15% with volume breakout
     getSvg(lang) {
       return `
         <!-- Light Agent pie -->
-        <circle cx="200" cy="122" r="92" fill="#0d1526" stroke="#1e3058" stroke-width="1"/>
-        <path d="M200,122 L200,30 A92,92 0 1,1 108.2,168 Z" fill="#00c8ff18" stroke="#00c8ff" stroke-width="1.5"/>
-        <path d="M200,122 L108.2,168 A92,92 0 0,1 200,30 Z" fill="#ffb80030" stroke="#ffb800" stroke-width="1.5"/>
-        <text x="200" y="114" text-anchor="middle" fill="#00c8ff"
+        <circle cx="200" cy="122" r="92" fill="#ffffff" stroke="#e5e5ea" stroke-width="1"/>
+        <path d="M200,122 L200,30 A92,92 0 1,1 108.2,168 Z" fill="#0071e318" stroke="#0071e3" stroke-width="1.5"/>
+        <path d="M200,122 L108.2,168 A92,92 0 0,1 200,30 Z" fill="#f59e0b30" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="200" y="114" text-anchor="middle" fill="#0071e3"
           font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700">90%</text>
-        <text x="200" y="132" text-anchor="middle" fill="#00c8ff88"
+        <text x="200" y="132" text-anchor="middle" fill="#0071e388"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Code logic', '代码逻辑')}
         </text>
-        <text x="146" y="172" text-anchor="middle" fill="#ffb800"
+        <text x="146" y="172" text-anchor="middle" fill="#f59e0b"
           font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700">10%</text>
-        <text x="146" y="186" text-anchor="middle" fill="#ffb80088"
+        <text x="146" y="186" text-anchor="middle" fill="#f59e0b88"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'AI processing', 'AI 处理')}
         </text>
-        <text x="200" y="232" text-anchor="middle" fill="#00c8ff"
+        <text x="200" y="232" text-anchor="middle" fill="#0071e3"
           font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">
           ${t(lang, 'Light Agent', '轻 Agent')}
         </text>
 
         <!-- Divider -->
-        <line x1="380" y1="18" x2="380" y2="240" stroke="#1e3058" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="380" y1="18" x2="380" y2="240" stroke="#e5e5ea" stroke-width="1" stroke-dasharray="4 3"/>
 
         <!-- Heavy Agent pie -->
-        <circle cx="560" cy="122" r="92" fill="#0d1526" stroke="#1e3058" stroke-width="1"/>
-        <path d="M560,122 L560,30 A92,92 0 0,1 606.5,208 Z" fill="#00c8ff18" stroke="#00c8ff" stroke-width="1.5"/>
-        <path d="M560,122 L606.5,208 A92,92 0 1,1 560,30 Z" fill="#ffb80030" stroke="#ffb800" stroke-width="1.5"/>
-        <text x="560" y="142" text-anchor="middle" fill="#ffb800"
+        <circle cx="560" cy="122" r="92" fill="#ffffff" stroke="#e5e5ea" stroke-width="1"/>
+        <path d="M560,122 L560,30 A92,92 0 0,1 606.5,208 Z" fill="#0071e318" stroke="#0071e3" stroke-width="1.5"/>
+        <path d="M560,122 L606.5,208 A92,92 0 1,1 560,30 Z" fill="#f59e0b30" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="560" y="142" text-anchor="middle" fill="#f59e0b"
           font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700">90%</text>
-        <text x="560" y="160" text-anchor="middle" fill="#ffb80088"
+        <text x="560" y="160" text-anchor="middle" fill="#f59e0b88"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Agent interaction', 'Agent 交互')}
         </text>
-        <text x="602" y="82" text-anchor="middle" fill="#00c8ff"
+        <text x="602" y="82" text-anchor="middle" fill="#0071e3"
           font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700">10%</text>
-        <text x="602" y="96" text-anchor="middle" fill="#00c8ff88"
+        <text x="602" y="96" text-anchor="middle" fill="#0071e388"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'UI + runtime', 'UI+运行')}
         </text>
-        <text x="560" y="232" text-anchor="middle" fill="#ffb800"
+        <text x="560" y="232" text-anchor="middle" fill="#f59e0b"
           font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">
           ${t(lang, 'Heavy Agent', '重 Agent')}
         </text>
@@ -1937,62 +1999,62 @@ Focus on: turnover rate > 15% with volume breakout
       ];
 
       const tobRows = tobItems.map((s, i) => `
-        <text x="68" y="${118 + i*16}" fill="#6b84a8"
+        <text x="68" y="${118 + i*16}" fill="#6e6e73"
           font-family="'JetBrains Mono',monospace" font-size="9">· ${s}</text>
       `).join('');
 
       const tocRows = tocItems.map((s, i) => `
-        <text x="432" y="${118 + i*16}" fill="#6b84a8"
+        <text x="432" y="${118 + i*16}" fill="#6e6e73"
           font-family="'JetBrains Mono',monospace" font-size="9">· ${s}</text>
       `).join('');
 
       return `
         <!-- ToB panel -->
         <rect x="28" y="22" width="328" height="238" rx="8"
-          fill="#00c8ff08" stroke="#00c8ff40" stroke-width="1.5"/>
-        <text x="192" y="46" text-anchor="middle" fill="#00c8ff"
+          fill="#0071e308" stroke="#0071e340" stroke-width="1.5"/>
+        <text x="192" y="46" text-anchor="middle" fill="#0071e3"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ToB · ${t(lang, 'Sell the Agent', '卖 Agent 本体')}
         </text>
-        <rect x="52" y="58" width="280" height="100" rx="5" fill="#0d1526" stroke="#1e3058"/>
-        <text x="68" y="78" fill="#a78bfa" font-family="'JetBrains Mono',monospace" font-size="9">
+        <rect x="52" y="58" width="280" height="100" rx="5" fill="#ffffff" stroke="#e5e5ea"/>
+        <text x="68" y="78" fill="#7c3aed" font-family="'JetBrains Mono',monospace" font-size="9">
           📦 ${t(lang, 'Deliverables', '交付物')}
         </text>
         ${tobRows}
-        <text x="192" y="175" text-anchor="middle" fill="#ffb800"
+        <text x="192" y="175" text-anchor="middle" fill="#f59e0b"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'One-time purchase · User brings compute', '一次性买断 · 买家自接大模型算力')}
         </text>
-        <text x="192" y="193" text-anchor="middle" fill="#00e59988"
+        <text x="192" y="193" text-anchor="middle" fill="#34c75988"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Moat: exclusive domain memory', '护城河：独家行业记忆')}
         </text>
-        <text x="192" y="246" text-anchor="middle" fill="#6b84a8"
+        <text x="192" y="246" text-anchor="middle" fill="#6e6e73"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Best for: vertical industry Agent sales', '适合：垂直行业 Agent 出售')}
         </text>
 
         <!-- ToC panel -->
         <rect x="404" y="22" width="328" height="238" rx="8"
-          fill="#a78bfa08" stroke="#a78bfa40" stroke-width="1.5"/>
-        <text x="568" y="46" text-anchor="middle" fill="#a78bfa"
+          fill="#7c3aed08" stroke="#7c3aed40" stroke-width="1.5"/>
+        <text x="568" y="46" text-anchor="middle" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ToC · ${t(lang, 'Sell the service', '卖产品服务')}
         </text>
-        <rect x="428" y="58" width="280" height="100" rx="5" fill="#0d1526" stroke="#1e3058"/>
-        <text x="444" y="78" fill="#a78bfa" font-family="'JetBrains Mono',monospace" font-size="9">
+        <rect x="428" y="58" width="280" height="100" rx="5" fill="#ffffff" stroke="#e5e5ea"/>
+        <text x="444" y="78" fill="#7c3aed" font-family="'JetBrains Mono',monospace" font-size="9">
           💻 ${t(lang, 'Model', '模式')}
         </text>
         ${tocRows}
-        <text x="568" y="175" text-anchor="middle" fill="#ffb800"
+        <text x="568" y="175" text-anchor="middle" fill="#f59e0b"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Subscription / usage · You pay compute', '订阅 / 按量 · 你承担算力成本')}
         </text>
-        <text x="568" y="193" text-anchor="middle" fill="#00e59988"
+        <text x="568" y="193" text-anchor="middle" fill="#34c75988"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Moat: product UX + user habit', '护城河：产品体验 + 用户习惯')}
         </text>
-        <text x="568" y="246" text-anchor="middle" fill="#6b84a8"
+        <text x="568" y="246" text-anchor="middle" fill="#6e6e73"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Best for: consumer-facing AI products', '适合：面向消费者的 AI 产品')}
         </text>
@@ -2023,9 +2085,9 @@ Focus on: turnover rate > 15% with volume breakout
 <!-- Global SVG marker defs -->
 <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
   <defs>
-    <marker id="arr"  markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#6b84a8"/></marker>
-    <marker id="arrC" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#00c8ff"/></marker>
-    <marker id="arrA" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#ffb800"/></marker>
+    <marker id="arr"  markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#6e6e73"/></marker>
+    <marker id="arrC" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#0071e3"/></marker>
+    <marker id="arrA" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#f59e0b"/></marker>
   </defs>
 </svg>
 
