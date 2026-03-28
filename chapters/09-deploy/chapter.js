@@ -30,13 +30,15 @@
         </text>
         ${S.box(62, 84, 120, 42, '#00c8ff', t(lang, 'Shell Program', 'UI 界面程序'), '')}
         ${S.box(62, 140, 120, 42, '#ffb800', t(lang, 'Memory Files', '记忆文件'), '')}
-        <line x1="242" y1="110" x2="296" y2="110" stroke="#6b84a8" stroke-width="1.2" marker-end="url(#arr)" stroke-dasharray="3 2"/>
-        <text x="268" y="103" text-anchor="middle" fill="#6b84a888"
+        <line x1="242" y1="110" x2="288" y2="110" stroke="#6b84a8" stroke-width="1.2" marker-end="url(#arr)" stroke-dasharray="3 2"/>
+        <text x="265" y="103" text-anchor="middle" fill="#6b84a888"
           font-family="'JetBrains Mono',monospace" font-size="8">
           ${t(lang, 'your key', '用户自己的 Key')}
         </text>
-        <rect x="296" y="96" width="34" height="30" rx="4" fill="#a78bfa18" stroke="#a78bfa" stroke-width="1"/>
-        <text x="313" y="116" text-anchor="middle" fill="#a78bfa"
+        <rect x="288" y="90" width="72" height="36" rx="4" fill="#a78bfa18" stroke="#a78bfa" stroke-width="1"/>
+        <text x="324" y="106" text-anchor="middle" fill="#a78bfa"
+          font-family="'JetBrains Mono',monospace" font-size="8" font-weight="500">大模型</text>
+        <text x="324" y="119" text-anchor="middle" fill="#a78bfa"
           font-family="'JetBrains Mono',monospace" font-size="8">API</text>
         <text x="62" y="213" font-family="'JetBrains Mono',monospace" font-size="9">
           ${pros([t(lang, 'Data stays local', '数据不离本地'), t(lang, 'Choose your compute', '算力可自选最优')])}
@@ -56,13 +58,15 @@
         </text>
         ${S.box(430, 84, 120, 42, '#a78bfa', t(lang, 'Shell Program', 'UI 界面程序'), '')}
         ${S.box(430, 140, 120, 42, '#ffb800', t(lang, 'Memory Files', '记忆文件'), '')}
-        <line x1="610" y1="110" x2="660" y2="110" stroke="#6b84a8" stroke-width="1.2" marker-end="url(#arr)" stroke-dasharray="3 2"/>
-        <text x="634" y="103" text-anchor="middle" fill="#6b84a888"
+        <line x1="610" y1="110" x2="652" y2="110" stroke="#6b84a8" stroke-width="1.2" marker-end="url(#arr)" stroke-dasharray="3 2"/>
+        <text x="630" y="103" text-anchor="middle" fill="#6b84a888"
           font-family="'JetBrains Mono',monospace" font-size="8">
           ${t(lang, 'your key', '你的 Key')}
         </text>
-        <rect x="660" y="96" width="34" height="30" rx="4" fill="#a78bfa18" stroke="#a78bfa" stroke-width="1"/>
-        <text x="677" y="116" text-anchor="middle" fill="#a78bfa"
+        <rect x="652" y="90" width="72" height="36" rx="4" fill="#a78bfa18" stroke="#a78bfa" stroke-width="1"/>
+        <text x="688" y="106" text-anchor="middle" fill="#a78bfa"
+          font-family="'JetBrains Mono',monospace" font-size="8" font-weight="500">大模型</text>
+        <text x="688" y="119" text-anchor="middle" fill="#a78bfa"
           font-family="'JetBrains Mono',monospace" font-size="8">API</text>
         <text x="430" y="213" font-family="'JetBrains Mono',monospace" font-size="9">
           ${pros([t(lang, 'Zero setup for users', '用户零配置'), t(lang, 'Smooth UX', '体验流畅')])}

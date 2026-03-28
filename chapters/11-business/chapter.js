@@ -10,7 +10,7 @@
     subtitle: { en: 'ToB vs ToC — moat determines the route', zh: 'ToB vs ToC · 护城河决定路线' },
     tag:      { en: 'Business',       zh: '商业' },
     tagClass: 'tag-biz',
-    viewBox: '0 0 760 258',
+    viewBox: '0 0 760 280',
 
     getSvg(lang) {
       const tobItems = [
@@ -27,62 +27,62 @@
       ];
 
       const tobRows = tobItems.map((s, i) => `
-        <text x="68" y="${116 + i*14}" fill="#6b84a8"
+        <text x="68" y="${118 + i*16}" fill="#6b84a8"
           font-family="'JetBrains Mono',monospace" font-size="9">· ${s}</text>
       `).join('');
 
       const tocRows = tocItems.map((s, i) => `
-        <text x="432" y="${116 + i*14}" fill="#6b84a8"
+        <text x="432" y="${118 + i*16}" fill="#6b84a8"
           font-family="'JetBrains Mono',monospace" font-size="9">· ${s}</text>
       `).join('');
 
       return `
         <!-- ToB panel -->
-        <rect x="28" y="22" width="328" height="218" rx="8"
+        <rect x="28" y="22" width="328" height="238" rx="8"
           fill="#00c8ff08" stroke="#00c8ff40" stroke-width="1.5"/>
         <text x="192" y="46" text-anchor="middle" fill="#00c8ff"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ToB · ${t(lang, 'Sell the Agent', '卖 Agent 本体')}
         </text>
-        <rect x="52" y="58" width="280" height="90" rx="5" fill="#0d1526" stroke="#1e3058"/>
+        <rect x="52" y="58" width="280" height="100" rx="5" fill="#0d1526" stroke="#1e3058"/>
         <text x="68" y="78" fill="#a78bfa" font-family="'JetBrains Mono',monospace" font-size="9">
           📦 ${t(lang, 'Deliverables', '交付物')}
         </text>
         ${tobRows}
-        <text x="192" y="165" text-anchor="middle" fill="#ffb800"
-          font-family="'JetBrains Mono',monospace" font-size="10">
-          ${t(lang, 'One-time purchase · User brings compute', '一次性买断 · 用户自带算力')}
+        <text x="192" y="175" text-anchor="middle" fill="#ffb800"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'One-time purchase · User brings compute', '一次性买断 · 买家自接大模型算力')}
         </text>
-        <text x="192" y="182" text-anchor="middle" fill="#00e59988"
+        <text x="192" y="193" text-anchor="middle" fill="#00e59988"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Moat: exclusive domain memory', '护城河：独家行业记忆')}
         </text>
-        <text x="192" y="226" text-anchor="middle" fill="#6b84a8"
+        <text x="192" y="246" text-anchor="middle" fill="#6b84a8"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Best for: vertical industry Agent sales', '适合：垂直行业 Agent 出售')}
         </text>
 
         <!-- ToC panel -->
-        <rect x="404" y="22" width="328" height="218" rx="8"
+        <rect x="404" y="22" width="328" height="238" rx="8"
           fill="#a78bfa08" stroke="#a78bfa40" stroke-width="1.5"/>
         <text x="568" y="46" text-anchor="middle" fill="#a78bfa"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ToC · ${t(lang, 'Sell the service', '卖产品服务')}
         </text>
-        <rect x="428" y="58" width="280" height="90" rx="5" fill="#0d1526" stroke="#1e3058"/>
+        <rect x="428" y="58" width="280" height="100" rx="5" fill="#0d1526" stroke="#1e3058"/>
         <text x="444" y="78" fill="#a78bfa" font-family="'JetBrains Mono',monospace" font-size="9">
           💻 ${t(lang, 'Model', '模式')}
         </text>
         ${tocRows}
-        <text x="568" y="165" text-anchor="middle" fill="#ffb800"
-          font-family="'JetBrains Mono',monospace" font-size="10">
+        <text x="568" y="175" text-anchor="middle" fill="#ffb800"
+          font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Subscription / usage · You pay compute', '订阅 / 按量 · 你承担算力成本')}
         </text>
-        <text x="568" y="182" text-anchor="middle" fill="#00e59988"
+        <text x="568" y="193" text-anchor="middle" fill="#00e59988"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Moat: product UX + user habit', '护城河：产品体验 + 用户习惯')}
         </text>
-        <text x="568" y="226" text-anchor="middle" fill="#6b84a8"
+        <text x="568" y="246" text-anchor="middle" fill="#6b84a8"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Best for: consumer-facing AI products', '适合：面向消费者的 AI 产品')}
         </text>
