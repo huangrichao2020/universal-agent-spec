@@ -1906,23 +1906,23 @@ Focus on: turnover rate > 15% with volume breakout
 
     getSvg(lang) {
       return `
-        <!-- Light Agent pie -->
+        <!-- Light Agent pie — circle + two sectors -->
         <circle cx="200" cy="124" r="94" fill="#f0f4ff" stroke="#0050a0" stroke-width="2"/>
-        <!-- 90% code sector (large, blue) -->
-        <path d="M200,124 L200,30 A94,94 0 1,1 107.1,171 Z" fill="#0050a0" opacity="0.85"/>
-        <!-- 10% AI sector (small, amber) -->
-        <path d="M200,124 L107.1,171 A94,94 0 0,1 200,30 Z" fill="#92400e" opacity="0.85"/>
-        <text x="200" y="108" text-anchor="middle" fill="#ffffff"
+        <!-- 90% code sector: top (200,30) clockwise 324° to (144.7,48) -->
+        <path d="M200,124 L200,30 A94,94 0 1,1 144.7,48 Z" fill="#0050a0" opacity="0.85"/>
+        <!-- 10% AI sector: (144.7,48) clockwise 36° back to top (200,30) -->
+        <path d="M200,124 L144.7,48 A94,94 0 0,1 200,30 Z" fill="#92400e" opacity="0.85"/>
+        <text x="210" y="120" text-anchor="middle" fill="#ffffff"
           font-family="'JetBrains Mono',monospace" font-size="26" font-weight="700">90%</text>
-        <text x="200" y="126" text-anchor="middle" fill="#ffffffcc"
+        <text x="210" y="138" text-anchor="middle" fill="#ffffffcc"
           font-family="'JetBrains Mono',monospace" font-size="11">
           ${t(lang, 'Code logic', '代码逻辑')}
         </text>
-        <text x="148" y="174" text-anchor="middle" fill="#ffffff"
-          font-family="'JetBrains Mono',monospace" font-size="15" font-weight="700">10%</text>
-        <text x="148" y="188" text-anchor="middle" fill="#ffffffcc"
+        <text x="160" y="50" text-anchor="middle" fill="#ffffff"
+          font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700">10%</text>
+        <text x="155" y="64" text-anchor="middle" fill="#ffffffcc"
           font-family="'JetBrains Mono',monospace" font-size="9">
-          ${t(lang, 'AI', 'AI 处理')}
+          ${t(lang, 'AI', 'AI')}
         </text>
         <text x="200" y="238" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="600">
@@ -1932,23 +1932,23 @@ Focus on: turnover rate > 15% with volume breakout
         <!-- Divider -->
         <line x1="380" y1="16" x2="380" y2="242" stroke="#aeaeb2" stroke-width="1" stroke-dasharray="5 4"/>
 
-        <!-- Heavy Agent pie -->
+        <!-- Heavy Agent pie — circle + two sectors -->
         <circle cx="560" cy="124" r="94" fill="#fdf4ff" stroke="#5b21b6" stroke-width="2"/>
-        <!-- 10% code sector (small, blue) -->
-        <path d="M560,124 L560,30 A94,94 0 0,1 608.4,210 Z" fill="#0050a0" opacity="0.85"/>
-        <!-- 90% AI sector (large, purple) -->
-        <path d="M560,124 L608.4,210 A94,94 0 1,1 560,30 Z" fill="#5b21b6" opacity="0.85"/>
-        <text x="560" y="144" text-anchor="middle" fill="#ffffff"
+        <!-- 10% code sector: top (560,30) clockwise 36° to (615.3,48) -->
+        <path d="M560,124 L560,30 A94,94 0 0,1 615.3,48 Z" fill="#0050a0" opacity="0.85"/>
+        <!-- 90% AI sector: (615.3,48) clockwise 324° back to top (560,30) -->
+        <path d="M560,124 L615.3,48 A94,94 0 1,1 560,30 Z" fill="#5b21b6" opacity="0.85"/>
+        <text x="548" y="148" text-anchor="middle" fill="#ffffff"
           font-family="'JetBrains Mono',monospace" font-size="26" font-weight="700">90%</text>
-        <text x="560" y="162" text-anchor="middle" fill="#ffffffcc"
+        <text x="548" y="166" text-anchor="middle" fill="#ffffffcc"
           font-family="'JetBrains Mono',monospace" font-size="11">
           ${t(lang, 'Agent interaction', 'Agent 交互')}
         </text>
-        <text x="600" y="80" text-anchor="middle" fill="#ffffff"
-          font-family="'JetBrains Mono',monospace" font-size="15" font-weight="700">10%</text>
-        <text x="600" y="94" text-anchor="middle" fill="#ffffffcc"
+        <text x="600" y="50" text-anchor="middle" fill="#ffffff"
+          font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700">10%</text>
+        <text x="606" y="64" text-anchor="middle" fill="#ffffffcc"
           font-family="'JetBrains Mono',monospace" font-size="9">
-          ${t(lang, 'UI', 'UI+运行')}
+          ${t(lang, 'UI', 'UI')}
         </text>
         <text x="560" y="238" text-anchor="middle" fill="#5b21b6"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="600">
