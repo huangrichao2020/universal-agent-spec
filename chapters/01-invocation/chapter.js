@@ -31,8 +31,8 @@
       ];
 
       const boxes = phases.map((p, idx) => {
-        const textY1 = idx === 1 ? p.y + p.h/2 - 2  : p.y + p.h/2 - 7;
-        const textY2 = idx === 1 ? p.y + p.h/2 + 16 : p.y + p.h/2 + 11;
+        const textY1 = idx === 1 ? p.y + p.h/2 - 3  : p.y + p.h/2 - 7;
+        const textY2 = idx === 1 ? p.y + p.h/2 + 15 : p.y + p.h/2 + 11;
         return `
         <rect x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="5"
           fill="${p.col}18" stroke="${p.col}" stroke-width="1.5"/>
