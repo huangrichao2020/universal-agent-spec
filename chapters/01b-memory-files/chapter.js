@@ -37,11 +37,11 @@
       return `
         ${cards}
 
-        <rect x="150" y="108" width="460" height="38" rx="5" fill="#1e3058" stroke="#2a4578" stroke-width="1.5"/>
-        <text x="380" y="123" text-anchor="middle" fill="#6b84a8" font-family="'JetBrains Mono',monospace" font-size="10">
+        <rect x="150" y="108" width="460" height="38" rx="5" fill="#f0f4ff" stroke="#0071e3" stroke-width="1.5"/>
+        <text x="380" y="123" text-anchor="middle" fill="#0071e3" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="500">
           ${t(lang, 'UI program: memory files + task → context window → LLM', 'UI 界面程序：记忆文件 + 当前任务 → context window → 大模型')}
         </text>
-        <text x="380" y="138" text-anchor="middle" fill="#6b84a888" font-family="'JetBrains Mono',monospace" font-size="9">
+        <text x="380" y="138" text-anchor="middle" fill="#3a3a3c" font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Model "wakes up" knowing who it is and what it was doing', '模型"醒来"时已知道自己是谁、在做什么')}
         </text>
 
