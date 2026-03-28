@@ -1789,7 +1789,7 @@ Focus on: turnover rate > 15% with volume breakout
     subtitle: { en: 'Data sovereignty vs user experience', zh: '两种部署模式 · 数据主权与体验的取舍' },
     tag:      { en: 'Pattern',         zh: '架构模式' },
     tagClass: 'tag-pattern',
-    viewBox: '0 0 760 280',
+    viewBox: '0 0 760 300',
 
     getSvg(lang) {
       const checkItems = (items, color, startY, baseX) =>
@@ -1798,7 +1798,7 @@ Focus on: turnover rate > 15% with volume breakout
 
       return `
         <!-- LOCAL panel -->
-        <rect x="24" y="18" width="338" height="248" rx="10"
+        <rect x="24" y="18" width="338" height="268" rx="10"
           fill="#edf4ff" stroke="#0071e3" stroke-width="1.5" stroke-dasharray="5 3"/>
         <text x="193" y="42" text-anchor="middle" fill="#0071e3"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="600">
@@ -1830,11 +1830,11 @@ Focus on: turnover rate > 15% with volume breakout
           font-family="'JetBrains Mono',monospace" font-size="8">API</text>
 
         <!-- Local pros/cons -->
-        ${checkItems([t(lang,'Data stays local','数据不离本地'), t(lang,'Choose your compute','算力可自选')], '#1a8a3a', 222, 40)}
-        ${checkItems([t(lang,'Needs API key setup','需要配置 Key'), t(lang,'Technical barrier','有技术门槛')], '#ff3b30', 258, 40)}
+        ${checkItems([t(lang,'Data stays local','数据不离本地'), t(lang,'Choose your compute','算力可自选')], '#1a8a3a', 218, 40)}
+        ${checkItems([t(lang,'Needs API key setup','需要配置 Key'), t(lang,'Technical barrier','有技术门槛')], '#ff3b30', 252, 40)}
 
         <!-- CLOUD panel -->
-        <rect x="398" y="18" width="338" height="248" rx="10"
+        <rect x="398" y="18" width="338" height="268" rx="10"
           fill="#f5f0ff" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5 3"/>
         <text x="567" y="42" text-anchor="middle" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="600">
@@ -1866,8 +1866,8 @@ Focus on: turnover rate > 15% with volume breakout
           font-family="'JetBrains Mono',monospace" font-size="8">API</text>
 
         <!-- Cloud pros/cons -->
-        ${checkItems([t(lang,'Zero setup for users','用户零配置'), t(lang,'Smooth UX','体验流畅')], '#1a8a3a', 222, 414)}
-        ${checkItems([t(lang,'You pay compute cost','你承担算力成本'), t(lang,'Data on your server','数据在你服务器')], '#ff3b30', 258, 414)}
+        ${checkItems([t(lang,'Zero setup for users','用户零配置'), t(lang,'Smooth UX','体验流畅')], '#1a8a3a', 218, 414)}
+        ${checkItems([t(lang,'You pay compute cost','你承担算力成本'), t(lang,'Data on your server','数据在你服务器')], '#ff3b30', 252, 414)}
       `;
     },
 
