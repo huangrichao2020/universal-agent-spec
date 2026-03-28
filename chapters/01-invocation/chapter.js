@@ -31,8 +31,8 @@
       ];
 
       const boxes = phases.map((p, idx) => {
-        const textY1 = idx === 1 ? p.y + p.h/2 - 2  : p.y + p.h/2 - 7;
-        const textY2 = idx === 1 ? p.y + p.h/2 + 16 : p.y + p.h/2 + 11;
+        const textY1 = idx === 1 ? p.y + p.h/2 - 0  : p.y + p.h/2 - 7;
+        const textY2 = idx === 1 ? p.y + p.h/2 + 18 : p.y + p.h/2 + 11;
         return `
         <rect x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="5"
           fill="${p.col}18" stroke="${p.col}" stroke-width="1.5"/>
@@ -44,7 +44,7 @@
 
       // Third text line for inference box — also +5px
       const inferExtra = `
-        <text x="265" y="142" text-anchor="middle"
+        <text x="265" y="144" text-anchor="middle"
           fill="#a78bfa66" font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, '"Temporarily awake"', '临时"清醒"')}
         </text>`;
