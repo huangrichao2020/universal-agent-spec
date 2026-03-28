@@ -106,7 +106,7 @@
             ['可转移性', '与 Agent 人格绑定', '可跨 Agent 复用 ✅'],
           ]
         },
-        insight: 'Skill 的累积是 Agent 真正的护城河。一个积累了 200 个精细 Skill 的 Agent，其能力远超换了多少次底层模型。Skill 是你的资产，模型是你租的工具。'
+        insight: 'Skill 的累积是 Agent 真正的护城河。一个积累了 200 个精细 Skill 的 Agent，其能力远超那个只是频繁更换底层模型、却没有 Skill 积累的 Agent。Skill 是你的资产，模型是你租的工具。'
       }
     }
   });
