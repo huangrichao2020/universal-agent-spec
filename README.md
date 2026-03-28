@@ -12,8 +12,10 @@
 # 🌐 Live Interactive Demo
 
 ### 12 core Agent concepts · Bilingual EN/ZH · SVG diagrams · Zero install
+### 12个核心 Agent 概念 · 中英双语 · SVG 图示 · 零安装
 
-**Open in your browser right now — no setup, no server, works offline.**
+**Open in your browser right now — no setup, no server, works offline.**  
+**直接用浏览器打开 — 无需配置，无需服务器，离线可用。**
 
 <br/>
 
@@ -21,8 +23,8 @@
 
 <br/>
 
-> Toggle between English and 中文 with one click.  
-> Every concept comes with a visual diagram, precise definition, engineering insight, and code example.
+> Toggle between English and 中文 with one click. Every concept comes with a visual diagram, precise definition, engineering insight, and code example.  
+> 一键切换中英文。每个概念都配有可视化图示、精确定义、工程洞见和代码示例。
 
 <br/>
 
