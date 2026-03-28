@@ -10,68 +10,85 @@
     subtitle: { en: 'Data sovereignty vs user experience', zh: '两种部署模式 · 数据主权与体验的取舍' },
     tag:      { en: 'Pattern',         zh: '架构模式' },
     tagClass: 'tag-pattern',
-    viewBox: '0 0 760 268',
+    viewBox: '0 0 760 280',
 
     getSvg(lang) {
-      const pros = (items) => items.map(s => `<tspan x="0" dy="16" fill="#00e59988">✓ ${s}</tspan>`).join('');
-      const cons = (items) => items.map(s => `<tspan x="0" dy="16" fill="#ff4d6d88">✗ ${s}</tspan>`).join('');
+      const checkItems = (items, color, startY, baseX) =>
+        items.map((s, i) => `<text x="${baseX}" y="${startY + i*18}" fill="${color}"
+          font-family="'JetBrains Mono',monospace" font-size="10">· ${s}</text>`).join('');
 
       return `
         <!-- LOCAL panel -->
-        <rect x="28" y="20" width="336" height="228" rx="8"
-          fill="#00c8ff08" stroke="#00c8ff40" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <text x="196" y="44" text-anchor="middle" fill="#00c8ff"
-          font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
+        <rect x="24" y="18" width="338" height="248" rx="10"
+          fill="#edf4ff" stroke="#0071e3" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <text x="193" y="42" text-anchor="middle" fill="#0071e3"
+          font-family="'JetBrains Mono',monospace" font-size="13" font-weight="600">
           ${t(lang, 'Local Mode', '本地模式')}
         </text>
-        <rect x="52" y="58" width="288" height="154" rx="6" fill="#0d1526" stroke="#1e3058" stroke-width="1"/>
-        <text x="98" y="76" fill="#6b84a8" font-family="'JetBrains Mono',monospace" font-size="9">
+
+        <!-- Local inner device box -->
+        <rect x="44" y="52" width="200" height="148" rx="7"
+          fill="#f7f3ea" stroke="#8e8e93" stroke-width="1"/>
+        <text x="64" y="70" fill="#636366"
+          font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'User device', '用户设备')}
         </text>
-        ${S.box(62, 84, 120, 42, '#00c8ff', t(lang, 'Shell Program', 'UI 界面程序'), '')}
-        ${S.box(62, 140, 120, 42, '#ffb800', t(lang, 'Memory Files', '记忆文件'), '')}
-        <line x1="242" y1="110" x2="288" y2="110" stroke="#6b84a8" stroke-width="1.2" marker-end="url(#arr)" stroke-dasharray="3 2"/>
-        <text x="265" y="103" text-anchor="middle" fill="#6b84a888"
-          font-family="'JetBrains Mono',monospace" font-size="8">
-          ${t(lang, 'your key', '用户自己的 Key')}
+        ${S.box(54, 80, 118, 40, '#0071e3', t(lang, 'UI Program', 'UI 界面程序'), '')}
+        ${S.box(54, 134, 118, 40, '#f59e0b', t(lang, 'Memory Files', '记忆文件'), '')}
+
+        <!-- Local arrow + LLM box -->
+        <line x1="260" y1="126" x2="294" y2="126"
+          stroke="#0071e3" stroke-width="1.5" marker-end="url(#arrC)" stroke-dasharray="4 2"/>
+        <text x="277" y="119" text-anchor="middle" fill="#636366"
+          font-family="'JetBrains Mono',monospace" font-size="9">
+          ${t(lang, 'user key', '用户 Key')}
         </text>
-        <rect x="288" y="90" width="72" height="36" rx="4" fill="#a78bfa18" stroke="#a78bfa" stroke-width="1"/>
-        <text x="324" y="106" text-anchor="middle" fill="#a78bfa"
-          font-family="'JetBrains Mono',monospace" font-size="8" font-weight="500">大模型</text>
-        <text x="324" y="119" text-anchor="middle" fill="#a78bfa"
+        <rect x="294" y="106" width="56" height="40" rx="5"
+          fill="#edf4ff" stroke="#0071e3" stroke-width="1.2"/>
+        <text x="322" y="122" text-anchor="middle" fill="#0071e3"
+          font-family="'JetBrains Mono',monospace" font-size="9" font-weight="600">LLM</text>
+        <text x="322" y="136" text-anchor="middle" fill="#0071e3"
           font-family="'JetBrains Mono',monospace" font-size="8">API</text>
-        <text x="62" y="213" font-family="'JetBrains Mono',monospace" font-size="9">
-          ${pros([t(lang, 'Data stays local', '数据不离本地'), t(lang, 'Choose your compute', '算力可自选最优')])}
-          ${cons([t(lang, 'Needs API key setup', '需要配置 Key'), t(lang, 'Technical barrier', '有技术门槛')])}
-        </text>
+
+        <!-- Local pros/cons -->
+        ${checkItems([t(lang,'Data stays local','数据不离本地'), t(lang,'Choose your compute','算力可自选')], '#1a8a3a', 222, 40)}
+        ${checkItems([t(lang,'Needs API key setup','需要配置 Key'), t(lang,'Technical barrier','有技术门槛')], '#ff3b30', 258, 40)}
 
         <!-- CLOUD panel -->
-        <rect x="396" y="20" width="336" height="228" rx="8"
-          fill="#a78bfa08" stroke="#a78bfa40" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <text x="564" y="44" text-anchor="middle" fill="#a78bfa"
-          font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
+        <rect x="398" y="18" width="338" height="248" rx="10"
+          fill="#f5f0ff" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <text x="567" y="42" text-anchor="middle" fill="#7c3aed"
+          font-family="'JetBrains Mono',monospace" font-size="13" font-weight="600">
           ${t(lang, 'Cloud Mode', '云端模式')}
         </text>
-        <rect x="420" y="58" width="288" height="154" rx="6" fill="#0d1526" stroke="#1e3058" stroke-width="1"/>
-        <text x="466" y="76" fill="#6b84a8" font-family="'JetBrains Mono',monospace" font-size="9">
+
+        <!-- Cloud inner server box -->
+        <rect x="418" y="52" width="200" height="148" rx="7"
+          fill="#f7f3ea" stroke="#8e8e93" stroke-width="1"/>
+        <text x="438" y="70" fill="#636366"
+          font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Your server', '你的服务器')}
         </text>
-        ${S.box(430, 84, 120, 42, '#a78bfa', t(lang, 'Shell Program', 'UI 界面程序'), '')}
-        ${S.box(430, 140, 120, 42, '#ffb800', t(lang, 'Memory Files', '记忆文件'), '')}
-        <line x1="610" y1="110" x2="652" y2="110" stroke="#6b84a8" stroke-width="1.2" marker-end="url(#arr)" stroke-dasharray="3 2"/>
-        <text x="630" y="103" text-anchor="middle" fill="#6b84a888"
-          font-family="'JetBrains Mono',monospace" font-size="8">
+        ${S.box(428, 80, 118, 40, '#7c3aed', t(lang, 'UI Program', 'UI 界面程序'), '')}
+        ${S.box(428, 134, 118, 40, '#f59e0b', t(lang, 'Memory Files', '记忆文件'), '')}
+
+        <!-- Cloud arrow + LLM box -->
+        <line x1="634" y1="126" x2="668" y2="126"
+          stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="4 2"/>
+        <text x="651" y="119" text-anchor="middle" fill="#636366"
+          font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'your key', '你的 Key')}
         </text>
-        <rect x="652" y="90" width="72" height="36" rx="4" fill="#a78bfa18" stroke="#a78bfa" stroke-width="1"/>
-        <text x="688" y="106" text-anchor="middle" fill="#a78bfa"
-          font-family="'JetBrains Mono',monospace" font-size="8" font-weight="500">大模型</text>
-        <text x="688" y="119" text-anchor="middle" fill="#a78bfa"
+        <rect x="668" y="106" width="56" height="40" rx="5"
+          fill="#f5f0ff" stroke="#7c3aed" stroke-width="1.2"/>
+        <text x="696" y="122" text-anchor="middle" fill="#7c3aed"
+          font-family="'JetBrains Mono',monospace" font-size="9" font-weight="600">LLM</text>
+        <text x="696" y="136" text-anchor="middle" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="8">API</text>
-        <text x="430" y="213" font-family="'JetBrains Mono',monospace" font-size="9">
-          ${pros([t(lang, 'Zero setup for users', '用户零配置'), t(lang, 'Smooth UX', '体验流畅')])}
-          ${cons([t(lang, 'You pay compute cost', '你承担算力成本'), t(lang, 'Data on your server', '数据在你服务器')])}
-        </text>
+
+        <!-- Cloud pros/cons -->
+        ${checkItems([t(lang,'Zero setup for users','用户零配置'), t(lang,'Smooth UX','体验流畅')], '#1a8a3a', 222, 414)}
+        ${checkItems([t(lang,'You pay compute cost','你承担算力成本'), t(lang,'Data on your server','数据在你服务器')], '#ff3b30', 258, 414)}
       `;
     },
 
