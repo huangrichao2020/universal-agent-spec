@@ -17,7 +17,7 @@
     getSvg(lang) {
       const files = [
         ['#ff4d6d', t(lang, 'persona.md',     '人格定义.md'),   t(lang, 'WHO am I',        '我是谁')],
-        ['#00c8ff', t(lang, 'knowledge.md',   '行业记忆.md'),   t(lang, 'WHAT I know',     '我知道什么')],
+        ['#0050a0', t(lang, 'knowledge.md',   '行业记忆.md'),   t(lang, 'WHAT I know',     '我知道什么')],
         ['#ffb800', t(lang, 'skill_A.md',     'skill_A.md'),   t(lang, 'HOW to do X',     '怎么做 X')],
         ['#1a8a3a', t(lang, 'worklog.md',     '工作日志.md'),   t(lang, 'WHAT I did',      '我做过什么')],
         ['#a78bfa', t(lang, 'handoff.md',     '交接手册.md'),   t(lang, 'WHERE I left off','进行到哪了')],
@@ -41,12 +41,12 @@
       // Agent box
       const agentBox = `
         <rect x="120" y="180" width="520" height="58" rx="8"
-          fill="#00c8ff08" stroke="#00c8ff" stroke-width="1.8"/>
-        <text x="380" y="207" text-anchor="middle" fill="#00c8ff"
+          fill="#0050a008" stroke="#0050a0" stroke-width="1.8"/>
+        <text x="380" y="207" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ${t(lang, 'Agent  (UI interface + Memory Files)', 'Agent（UI 界面程序 + 记忆文件）')}
         </text>
-        <text x="380" y="225" text-anchor="middle" fill="#00c8ff66"
+        <text x="380" y="225" text-anchor="middle" fill="#0050a066"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Each invocation: load memory → call LLM → write back result', '每次激活：加载记忆 → 调用大模型 → 结果写回')}
         </text>

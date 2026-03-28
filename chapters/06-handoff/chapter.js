@@ -18,7 +18,7 @@
         ['#1a8a3a', t(lang, '✅ Indicators computed',  '✅ 指标计算完成')],
         ['#ffb800', t(lang, '⏳ Cleaning in progress', '⏳ 异常清洗进行中')],
         ['#6b84a8', t(lang, '📁 raw_data.json ready',  '📁 产出: raw_data.json')],
-        ['#00c8ff', t(lang, '➡ Next: filter turnover > 15%', '➡ 下一步: 分析换手率>15%')],
+        ['#0050a0', t(lang, '➡ Next: filter turnover > 15%', '➡ 下一步: 分析换手率>15%')],
       ];
 
       const docLines = rows.map(([c, txt], i) => `
@@ -27,7 +27,7 @@
       `).join('');
 
       return `
-        ${S.box(38, 84, 145, 58, '#00c8ff',
+        ${S.box(38, 84, 145, 58, '#0050a0',
           t(lang, 'Agent A', 'Agent A'),
           t(lang, 'Data fetch', '数据采集'))}
 

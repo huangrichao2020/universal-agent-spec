@@ -46,12 +46,12 @@
         ${sectionLabels}
 
         <!-- Input side -->
-        ${S.box(38, 96, 140, 52, '#00c8ff',
+        ${S.box(38, 96, 140, 52, '#0050a0',
           t(lang, 'User Request', '用户请求'),
           t(lang, 'Send notification', '发送飞书通知'))}
         <line x1="178" y1="122" x2="263" y2="122"
-          stroke="#00c8ff" stroke-width="1.5" marker-end="url(#arrC)"/>
-        <text x="220" y="115" text-anchor="middle" fill="#00c8ff88"
+          stroke="#0050a0" stroke-width="1.5" marker-end="url(#arrC)"/>
+        <text x="220" y="115" text-anchor="middle" fill="#0050a088"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'match trigger', '匹配触发条件')}
         </text>

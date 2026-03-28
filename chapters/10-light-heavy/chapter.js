@@ -16,11 +16,11 @@
       return `
         <!-- Light Agent pie -->
         <circle cx="200" cy="122" r="92" fill="#0d1526" stroke="#1e3058" stroke-width="1"/>
-        <path d="M200,122 L200,30 A92,92 0 1,1 108.2,168 Z" fill="#00c8ff18" stroke="#00c8ff" stroke-width="1.5"/>
+        <path d="M200,122 L200,30 A92,92 0 1,1 108.2,168 Z" fill="#0050a018" stroke="#0050a0" stroke-width="1.5"/>
         <path d="M200,122 L108.2,168 A92,92 0 0,1 200,30 Z" fill="#ffb80030" stroke="#ffb800" stroke-width="1.5"/>
-        <text x="200" y="114" text-anchor="middle" fill="#00c8ff"
+        <text x="200" y="114" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700">90%</text>
-        <text x="200" y="132" text-anchor="middle" fill="#00c8ff88"
+        <text x="200" y="132" text-anchor="middle" fill="#0050a088"
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Code logic', '代码逻辑')}
         </text>
@@ -30,7 +30,7 @@
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'AI processing', 'AI 处理')}
         </text>
-        <text x="200" y="232" text-anchor="middle" fill="#00c8ff"
+        <text x="200" y="232" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">
           ${t(lang, 'Light Agent', '轻 Agent')}
         </text>
@@ -40,7 +40,7 @@
 
         <!-- Heavy Agent pie -->
         <circle cx="560" cy="122" r="92" fill="#0d1526" stroke="#1e3058" stroke-width="1"/>
-        <path d="M560,122 L560,30 A92,92 0 0,1 606.5,208 Z" fill="#00c8ff18" stroke="#00c8ff" stroke-width="1.5"/>
+        <path d="M560,122 L560,30 A92,92 0 0,1 606.5,208 Z" fill="#0050a018" stroke="#0050a0" stroke-width="1.5"/>
         <path d="M560,122 L606.5,208 A92,92 0 1,1 560,30 Z" fill="#ffb80030" stroke="#ffb800" stroke-width="1.5"/>
         <text x="560" y="142" text-anchor="middle" fill="#ffb800"
           font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700">90%</text>
@@ -48,9 +48,9 @@
           font-family="'JetBrains Mono',monospace" font-size="10">
           ${t(lang, 'Agent interaction', 'Agent 交互')}
         </text>
-        <text x="602" y="82" text-anchor="middle" fill="#00c8ff"
+        <text x="602" y="82" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700">10%</text>
-        <text x="602" y="96" text-anchor="middle" fill="#00c8ff88"
+        <text x="602" y="96" text-anchor="middle" fill="#0050a088"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'UI + runtime', 'UI+运行')}
         </text>

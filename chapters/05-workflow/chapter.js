@@ -30,7 +30,7 @@
         <text x="222" y="157" text-anchor="middle" fill="#6b84a888"
           font-family="'JetBrains Mono',monospace" font-size="8">Python/Node</text>
 
-        ${S.box(318, 40, 122, 58, '#00c8ff',
+        ${S.box(318, 40, 122, 58, '#0050a0',
           t(lang, 'Agent A', 'Agent A'),
           t(lang, 'Data fetch', '数据采集'))}
         ${S.box(318, 132, 122, 58, '#ffb800',
@@ -56,13 +56,13 @@
         </text>
 
         <line x1="135" y1="134" x2="163" y2="134" stroke="#6b84a8" stroke-width="1.5" marker-end="url(#arr)"/>
-        <line x1="280" y1="112" x2="316" y2="70" stroke="#00c8ff" stroke-width="1.5" marker-end="url(#arrC)"/>
+        <line x1="280" y1="112" x2="316" y2="70" stroke="#0050a0" stroke-width="1.5" marker-end="url(#arrC)"/>
         <line x1="280" y1="136" x2="316" y2="162" stroke="#ffb800" stroke-width="1.5" marker-end="url(#arrA)"/>
-        <line x1="440" y1="70" x2="492" y2="105" stroke="#00c8ff" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <line x1="440" y1="70" x2="492" y2="105" stroke="#0050a0" stroke-width="1.2" stroke-dasharray="4 3"/>
         <line x1="440" y1="162" x2="492" y2="122" stroke="#ffb800" stroke-width="1.2" stroke-dasharray="4 3"/>
         <line x1="616" y1="116" x2="656" y2="124" stroke="#1a8a3a" stroke-width="1.5" marker-end="url(#arr)"/>
 
-        <text x="466" y="78" text-anchor="middle" fill="#00c8ff66"
+        <text x="466" y="78" text-anchor="middle" fill="#0050a066"
           font-family="'JetBrains Mono',monospace" font-size="9">JSON</text>
         <text x="466" y="168" text-anchor="middle" fill="#ffb80066"
           font-family="'JetBrains Mono',monospace" font-size="9">

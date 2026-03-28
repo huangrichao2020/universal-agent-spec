@@ -17,7 +17,7 @@
     getSvg(lang) {
       const memFiles = [
         ['#ff4d6d', t(lang, 'persona.md',   '人格定义.md'),   t(lang, 'who am I',       'who am I')],
-        ['#00c8ff', t(lang, 'knowledge.md', '行业记忆.md'),   t(lang, 'what I know',     'what I know')],
+        ['#0050a0', t(lang, 'knowledge.md', '行业记忆.md'),   t(lang, 'what I know',     'what I know')],
         ['#ffb800', t(lang, 'skill_A.md',   'skill_A.md'),    t(lang, 'what I can do',   'what I can do')],
         ['#1a8a3a', t(lang, 'worklog.md',   '工作日志.md'),   t(lang, 'what I did',      'what I did')],
         ['#a78bfa', t(lang, 'handoff.md',   '交接手册.md'),   t(lang, 'current state',   'current state')],
@@ -51,8 +51,8 @@
       return `
         <!-- Outer Agent boundary -->
         <rect x="38" y="24" width="688" height="252" rx="10"
-          fill="#00c8ff08" stroke="#00c8ff" stroke-width="2"/>
-        <text x="380" y="18" text-anchor="middle" fill="#00c8ff"
+          fill="#0050a008" stroke="#0050a0" stroke-width="2"/>
+        <text x="380" y="18" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="12" font-weight="500">Agent</text>
 
         <!-- Shell program panel -->

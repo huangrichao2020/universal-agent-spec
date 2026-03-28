@@ -16,7 +16,7 @@
 
     getSvg(lang) {
       const phases = [
-        { x: 60,  y: 72, w: 110, h: 65, col: '#00c8ff',
+        { x: 60,  y: 72, w: 110, h: 65, col: '#0050a0',
           top: t(lang, 'Send Request', '发送请求'),
           sub: 'HTTP POST' },
         { x: 210, y: 55, w: 110, h: 95, col: '#a78bfa',

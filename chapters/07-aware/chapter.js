@@ -23,7 +23,7 @@
       const triggerRows = triggers.map(([cond, action], i) => `
         <text x="496" y="${113 + i*26}" fill="#1a8a3a88"
           font-family="'JetBrains Mono',monospace" font-size="9">${cond}</text>
-        <text x="496" y="${126 + i*26}" fill="#00c8ff"
+        <text x="496" y="${126 + i*26}" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="9">${action}</text>
       `).join('');
 

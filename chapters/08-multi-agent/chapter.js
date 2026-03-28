@@ -39,7 +39,7 @@
           font-family="'JetBrains Mono',monospace" font-size="12">
           ✓  ${t(lang, 'Actual mechanism', '实际机制')}
         </text>
-        ${S.box(428, 52, 105, 65, '#00c8ff', t(lang, 'Agent A', 'Agent A'), '')}
+        ${S.box(428, 52, 105, 65, '#0050a0', t(lang, 'Agent A', 'Agent A'), '')}
         ${S.box(638, 52, 105, 65, '#a78bfa', t(lang, 'Agent B', 'Agent B'), '')}
         <rect x="538" y="72" width="94" height="34" rx="4" fill="#ffb80018" stroke="#ffb800" stroke-width="1.2"/>
         <text x="585" y="88" text-anchor="middle" fill="#ffb800"
@@ -53,7 +53,7 @@
         <line x1="533" y1="88" x2="540" y2="88" stroke="#ffb800" stroke-width="1.2" marker-end="url(#arrA)"/>
         <line x1="632" y1="88" x2="640" y2="88" stroke="#ffb800" stroke-width="1.2" marker-end="url(#arr)"/>
 
-        ${S.box(438, 168, 145, 52, '#00c8ff',
+        ${S.box(438, 168, 145, 52, '#0050a0',
           t(lang, 'File pass', '文件传递'),
           t(lang, 'A writes → B reads', 'A 写 → B 读'))}
         ${S.box(598, 168, 145, 52, '#a78bfa',

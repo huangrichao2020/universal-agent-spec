@@ -17,7 +17,7 @@
     getSvg(lang) {
       const files = [
         ['#ff4d6d', t(lang, 'persona.md',   '人格定义.md'),  t(lang, 'Who am I?',  '我是谁？')],
-        ['#00c8ff', t(lang, 'knowledge.md', '行业记忆.md'),  t(lang, 'What I know','我知道什么')],
+        ['#0050a0', t(lang, 'knowledge.md', '行业记忆.md'),  t(lang, 'What I know','我知道什么')],
         ['#ffb800', t(lang, 'skill_A.md',   'skill_A.md'),   t(lang, 'How I act',  '我怎么做')],
         ['#1a8a3a', t(lang, 'worklog.md',   '工作日志.md'),  t(lang, 'What I did', '我做了什么')],
         ['#a78bfa', t(lang, 'handoff.md',   '交接手册.md'),  t(lang, 'Where I am', '我在哪里')],

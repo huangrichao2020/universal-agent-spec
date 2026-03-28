@@ -39,10 +39,10 @@
 
       return `
         ${boxes}
-        <circle cx="380" cy="120" r="58" fill="#00c8ff0a" stroke="#00c8ff" stroke-width="1.5"/>
-        <text x="380" y="115" text-anchor="middle" fill="#00c8ff"
+        <circle cx="380" cy="120" r="58" fill="#0050a00a" stroke="#0050a0" stroke-width="1.5"/>
+        <text x="380" y="115" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">Agent</text>
-        <text x="380" y="133" text-anchor="middle" fill="#00c8ff88"
+        <text x="380" y="133" text-anchor="middle" fill="#0050a088"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'Memory Files', '记忆文件')}
         </text>

@@ -27,12 +27,12 @@
           ${t(lang, 'Stateless · Each call independent', '无状态 · 每次独立')}
         </text>
 
-        ${S.box(55, 148, 130, 42, '#00c8ff', t(lang, 'Your App', '你的程序'))}
+        ${S.box(55, 148, 130, 42, '#0050a0', t(lang, 'Your App', '你的程序'))}
         ${S.box(315, 148, 90, 42, '#ffb800', 'curl', '')}
         ${S.box(575, 148, 130, 42, '#1a8a3a', t(lang, 'Any Client', '任何客户端'))}
 
         <line x1="120" y1="148" x2="330" y2="110"
-          stroke="#00c8ff" stroke-width="1.5" marker-end="url(#arrC)"/>
+          stroke="#0050a0" stroke-width="1.5" marker-end="url(#arrC)"/>
         <line x1="360" y1="148" x2="368" y2="112"
           stroke="#ffb800" stroke-width="1.5" marker-end="url(#arrA)"/>
         <line x1="640" y1="148" x2="450" y2="110"

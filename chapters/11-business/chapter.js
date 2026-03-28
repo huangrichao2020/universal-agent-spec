@@ -39,8 +39,8 @@
       return `
         <!-- ToB panel -->
         <rect x="28" y="22" width="328" height="238" rx="8"
-          fill="#00c8ff08" stroke="#00c8ff40" stroke-width="1.5"/>
-        <text x="192" y="46" text-anchor="middle" fill="#00c8ff"
+          fill="#0050a008" stroke="#0050a040" stroke-width="1.5"/>
+        <text x="192" y="46" text-anchor="middle" fill="#0050a0"
           font-family="'JetBrains Mono',monospace" font-size="13" font-weight="500">
           ToB · ${t(lang, 'Sell the Agent', '卖 Agent 本体')}
         </text>
