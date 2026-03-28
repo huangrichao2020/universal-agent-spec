@@ -37,17 +37,17 @@
         ${S.box(54, 134, 118, 40, '#f59e0b', t(lang, 'Memory Files', '记忆文件'), '')}
 
         <!-- Local arrow + LLM box -->
-        <line x1="260" y1="126" x2="294" y2="126"
-          stroke="#0071e3" stroke-width="1.5" marker-end="url(#arrC)" stroke-dasharray="4 2"/>
-        <text x="262" y="112" text-anchor="start" fill="#636366"
+        <text x="277" y="102" text-anchor="middle" fill="#636366"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'user key', '用户 Key')}
         </text>
-        <rect x="294" y="106" width="56" height="40" rx="5"
+        <line x1="260" y1="114" x2="292" y2="114"
+          stroke="#0071e3" stroke-width="1.5" marker-end="url(#arrC)" stroke-dasharray="4 2"/>
+        <rect x="292" y="96" width="56" height="36" rx="5"
           fill="#edf4ff" stroke="#0071e3" stroke-width="1.2"/>
-        <text x="322" y="122" text-anchor="middle" fill="#0071e3"
+        <text x="320" y="112" text-anchor="middle" fill="#0071e3"
           font-family="'JetBrains Mono',monospace" font-size="9" font-weight="600">LLM</text>
-        <text x="322" y="136" text-anchor="middle" fill="#0071e3"
+        <text x="320" y="126" text-anchor="middle" fill="#0071e3"
           font-family="'JetBrains Mono',monospace" font-size="8">API</text>
 
         <!-- Local pros/cons -->
@@ -73,17 +73,17 @@
         ${S.box(428, 134, 118, 40, '#f59e0b', t(lang, 'Memory Files', '记忆文件'), '')}
 
         <!-- Cloud arrow + LLM box -->
-        <line x1="634" y1="126" x2="668" y2="126"
-          stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="4 2"/>
-        <text x="636" y="112" text-anchor="start" fill="#636366"
+        <text x="651" y="102" text-anchor="middle" fill="#636366"
           font-family="'JetBrains Mono',monospace" font-size="9">
           ${t(lang, 'your key', '你的 Key')}
         </text>
-        <rect x="668" y="106" width="56" height="40" rx="5"
+        <line x1="634" y1="114" x2="666" y2="114"
+          stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="4 2"/>
+        <rect x="666" y="96" width="56" height="36" rx="5"
           fill="#f5f0ff" stroke="#7c3aed" stroke-width="1.2"/>
-        <text x="696" y="122" text-anchor="middle" fill="#7c3aed"
+        <text x="694" y="112" text-anchor="middle" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="9" font-weight="600">LLM</text>
-        <text x="696" y="136" text-anchor="middle" fill="#7c3aed"
+        <text x="694" y="126" text-anchor="middle" fill="#7c3aed"
           font-family="'JetBrains Mono',monospace" font-size="8">API</text>
 
         <!-- Cloud pros/cons -->
