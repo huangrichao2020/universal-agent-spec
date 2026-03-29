@@ -12,7 +12,7 @@
     tag:      { en: 'Core Concept', zh: '核心概念' },
     tagClass: 'tag-core',
 
-    viewBox: '0 0 760 255',
+    viewBox: '0 0 760 270',
 
     getSvg(lang) {
       const filename = t(lang, 'skill_send_notification.md', 'skill_send_feishu.md');
@@ -35,6 +35,12 @@
       `).join('');
 
       return `
+        <!-- Hint label -->
+        <text x="380" y="14" text-anchor="middle" fill="#c0785a"
+          font-family="'Inter','Noto Serif SC',sans-serif" font-size="13" font-weight="500">
+          ${t(lang, 'Below is an example of triggering a Skill', '以下为触发 Skills 的示例')}
+        </text>
+
         <!-- Document card -->
         <rect x="265" y="22" width="230" height="208" rx="6"
           fill="#ffb80010" stroke="#ffb800" stroke-width="1.5"/>
@@ -67,7 +73,7 @@
           ${t(lang, 'follow steps', '按步骤执行')}
         </text>
 
-        ${S.label(380, 248,
+        ${S.label(380, 260,
           t(lang,
             'A Skill tells the Agent: "When you see task X, here is exactly how to handle it."',
             'Skill 是告诉 Agent "遇到 X 类任务，按这个步骤做" 的结构化文档'),
