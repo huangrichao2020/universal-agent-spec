@@ -8,7 +8,7 @@
 
     nav:      { en: 'Skill',      zh: 'Skill 技能' },
     title:    { en: '<span class="accent">Skill</span> Document', zh: '<span class="accent">Skill</span> 技能文档' },
-    subtitle: { en: 'Procedural memory for Agents', zh: 'Agent 的过程性记忆' },
+    subtitle: { en: 'Procedural memory for Agents', zh: 'Agent 的过程性记忆(以下为示例)' },
     tag:      { en: 'Core Concept', zh: '核心概念' },
     tagClass: 'tag-core',
 
