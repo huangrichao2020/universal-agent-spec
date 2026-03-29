@@ -116,7 +116,44 @@ build → deploy → health_check
 
 <span class="cmt">## ④ Sub-Agent Dispatch</span>
 → search-agent: <span class="str">find latest stable image</span>
-→ notify-agent: <span class="str">alert team on Slack</span>`
+→ notify-agent: <span class="str">alert team on Slack</span>`,
+
+        instructions: {
+          title: 'Six capability dimensions — a Skill is a full capability package',
+          intro: 'Many people think a Skill is just "prompts organized by category." Wrong. A mature Skill is a micro-application written in Markdown. These six dimensions set real Skills apart from prompt templates:',
+          items: [
+            {
+              icon: '⚡',
+              title: 'Embedded executable scripts',
+              body: 'A Skill can contain bash/python scripts that the Agent extracts and executes directly. A DevOps Skill embeds docker build, health check, and rollback scripts — the Agent runs them as-is instead of inventing deployment steps from scratch.'
+            },
+            {
+              icon: '🔀',
+              title: 'Multi-step workflows with branching',
+              body: 'Skills define workflows with condition branches and rollback paths: build → deploy → health_check, pass → notify, fail → rollback → alert. This is a state machine in Markdown — not a prompt template. Production systems use "mandatory wait gates" that force the Agent to stop and wait for human approval between stages.'
+            },
+            {
+              icon: '🔗',
+              title: 'Tool chain orchestration with iron rules',
+              body: 'Skills enforce strict tool dependency order. A code-execution Skill mandates: create sandbox first, then run code — never skip. Without this constraint, Agents skip steps 30% of the time, causing unrecoverable errors. The "iron rule" pattern is the most effective way to prevent tool misuse.'
+            },
+            {
+              icon: '✅',
+              title: 'Quality gates and checklists',
+              body: 'Skills include mandatory checks the Agent must verify before proceeding: port conflicts cleared, env vars complete, rollback script tested. These are not decorative — unchecked items block the workflow. An HTML-generation Skill includes 7 quality rules covering context understanding, color scheme, layout, and animations.'
+            },
+            {
+              icon: '🤖',
+              title: 'Sub-Agent dispatch',
+              body: 'One Skill can orchestrate an entire multi-Agent system: search-agent gathers information, code-agent writes scripts, devops-agent deploys containers, notify-agent alerts the team via Slack/Lark — all coordinated by workflow rules defined in a single Skill file.'
+            },
+            {
+              icon: '💬',
+              title: 'Dialogue strategy and conversation control',
+              body: 'Skills define how the Agent guides conversations: ask only one missing element per turn, max 5 clarification rounds, then submit with available info. A requirement-collection Skill transforms the Agent from a passive tool into a proactive product manager who knows exactly what questions to ask and when to stop asking.'
+            }
+          ]
+        }
       },
       zh: {
         definition: '告诉 Agent "遇到 X 类任务时，如何一步步处理"的结构化文档。<strong>Skill 是过程性记忆（Procedural Memory）</strong>——就像骑自行车的肌肉记忆。',
@@ -152,7 +189,44 @@ build → deploy → health_check
 
 <span class="cmt">## ④ 子 Agent 调度</span>
 → search-agent: <span class="str">查找最新稳定镜像版本</span>
-→ notify-agent: <span class="str">通知团队成员</span>`
+→ notify-agent: <span class="str">通知团队成员</span>`,
+
+        instructions: {
+          title: 'Skill 的六大能力维度 — 不是提示词归类，是完整的能力封装',
+          intro: '很多人以为 Skill 就是"把提示词按分类整理好"。这是最大的误解。一个成熟的 Skill 是用 Markdown 编写的微型应用程序。以下六个维度，是真正的 Skill 与提示词模板的本质区别：',
+          items: [
+            {
+              icon: '⚡',
+              title: '内嵌可执行脚本',
+              body: 'Skill 可以包含 bash/python 脚本，Agent 提取后直接执行。DevOps Skill 内嵌了 docker build、健康检查、回滚脚本——Agent 直接运行预定义的脚本，而不是从零"发明"部署步骤。'
+            },
+            {
+              icon: '🔀',
+              title: '含分支的多步骤工作流',
+              body: 'Skill 可以定义含条件分支和回退路径的工作流：build → deploy → health_check，通过 → notify，失败 → rollback → alert。这是用 Markdown 写的状态机，不是提示词模板。生产系统使用"强制等待门"，迫使 Agent 在阶段之间停下来等待人工审批。'
+            },
+            {
+              icon: '🔗',
+              title: '工具链编排与铁律约束',
+              body: 'Skill 用"铁律"强制工具调用顺序。代码执行 Skill 要求：必须先创建沙箱，再执行代码——绝不能跳过。没有这个约束，Agent 有 30% 概率跳步，导致不可恢复的错误。"铁律"模式是防止工具误用的最有效手段。'
+            },
+            {
+              icon: '✅',
+              title: '质量门禁与检查清单',
+              body: 'Skill 包含 Agent 必须逐项核对的检查项：端口冲突已排查、环境变量完整、回滚脚本已测试。这些不是装饰——未通过的项会阻断后续流程。HTML 生成 Skill 包含 7 条质量规则，覆盖上下文理解、配色、排版、动效。'
+            },
+            {
+              icon: '🤖',
+              title: '子 Agent 调度',
+              body: '一个 Skill 可以编排整个多 Agent 系统：search-agent 收集信息、code-agent 编写脚本、devops-agent 部署容器、notify-agent 通过飞书/Slack 通知团队——全部由一个 Skill 文件中的工作流规则协调。'
+            },
+            {
+              icon: '💬',
+              title: '对话策略与会话控制',
+              body: 'Skill 定义 Agent 如何引导对话：每次只追问一个缺失要素，最多追问 5 轮，超过后用已有信息直接提交。需求收集 Skill 把 Agent 从被动工具变成了主动的产品经理——知道该问什么、什么时候该停止追问。'
+            }
+          ]
+        }
       }
     }
   });

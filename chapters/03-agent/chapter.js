@@ -84,6 +84,35 @@
         definition: '<strong>Agent = Shell Program + Memory File Collection (including Skills).</strong> The shell program handles API calls; memory files provide continuity and specialized context. Neither works without the other.',
         essence: 'An Agent has three states:<br><br><strong>① Dormant:</strong> Just a pile of files, no consciousness — like a closed book.<br><strong>② Active:</strong> The shell program is triggered, bundles memory files + current task, sends to the LLM API. The Agent "temporarily wakes up," reasons, and acts.<br><strong>③ Archived:</strong> Results are written back to memory files. The Agent becomes dormant again.\n\n<em>Key insight:</em> An Agent is not "a living program." It is a combination of "files + invocation program." The LLM API produces the intelligence; the Agent provides <strong>continuity</strong> and <strong>specialized context</strong>.',
         insight: 'An Agent\'s most valuable asset is its <strong>domain memory</strong> — the knowledge, experiences, and patterns accumulated in a specific field. An Agent with 6 months of deep domain memory far outvalues any Prompt template. That is the real moat.',
+        table: {
+          title: 'Agent Maturity Levels',
+          headers: ['Level', 'Characteristics', 'Memory', 'Skills'],
+          rows: [
+            ['L0 Bare API', 'No memory, no Skills, starts from zero each call', '0', '0'],
+            ['L1 Persona', 'Knows who it is, but no specialized capabilities', '~2K tokens', '0'],
+            ['L2 Skilled', 'Handles specific tasks via structured procedures', '~10K tokens', '3–10'],
+            ['L3 Memory', 'Remembers past work, accumulates experience', '~30K tokens', '10–30'],
+            ['L4 Collab', 'Works with other Agents via workflows', '~50K tokens', '20–50'],
+            ['L5 Evolving', 'Auto-creates/modifies Skills from experience', '~100K tokens', '50+'],
+          ]
+        },
+        code: `<span class="cmt"># Production Agent = main + specialized SubAgents</span>
+main_agent = <span class="fn">create_agent</span>(
+    <span class="str">"system-agent"</span>,
+    sub_agents=[
+        SubAgent(<span class="str">"search"</span>,   tools=[<span class="str">"web_search"</span>, <span class="str">"web_crawl"</span>]),
+        SubAgent(<span class="str">"document"</span>, tools=[<span class="str">"to_pdf"</span>, <span class="str">"to_pptx"</span>]),
+        SubAgent(<span class="str">"code"</span>,     tools=[<span class="str">"sandbox"</span>, <span class="str">"code_gen"</span>]),
+        SubAgent(<span class="str">"devops"</span>,   tools=[<span class="str">"deploy"</span>, <span class="str">"stop"</span>]),
+        SubAgent(<span class="str">"fallback"</span>, tools=<span class="kw">REMAINING</span>),
+    ],
+    middleware=[
+        <span class="fn">SkillSearchMiddleware</span>(),    <span class="cmt"># vector-match Skills</span>
+        <span class="fn">MemoryMiddleware</span>(),         <span class="cmt"># load/save files</span>
+        <span class="fn">ToolRetryMiddleware</span>(),      <span class="cmt"># auto-retry on fail</span>
+        <span class="fn">ClarifyMiddleware</span>(),        <span class="cmt"># ask when unclear</span>
+    ]
+)`,
 
         instructions: {
           title: 'Essential standing orders — what to tell your Agent from day one',
@@ -116,6 +145,35 @@
         definition: '<strong>Agent = UI 界面程序 + 长期记忆文件集合（含 Skills）</strong>。UI 界面程序负责调用 API；记忆文件负责提供持续性和专业上下文。两者缺一不可。',
         essence: 'Agent 有三种状态：<br><br><strong>① 静止态</strong>：只是一堆文件，没有意识，像一本合上的书。<br><strong>② 激活态</strong>：UI 界面程序被触发，将记忆文件 + 当前任务打包发给大模型 API，Agent "临时清醒"，产生推理和行动。<br><strong>③ 归档态</strong>：工作成果写回记忆文件，Agent 再次静止。\n\n<em>关键认知</em>：Agent 本质不是"活的程序"，而是"文件 + 调用程序"的组合。真正产生智能的是大模型 API，Agent 提供的是<strong>持续性</strong>和<strong>专业化上下文</strong>。',
         insight: 'Agent 最值钱的是<strong>行业记忆</strong>——那些在特定领域积累的知识、经验、处理模式。一个有 6 个月深度工作记忆的 Agent，其价值远超任何 Prompt 模板。这才是真正的护城河。',
+        table: {
+          title: 'Agent 成熟度等级',
+          headers: ['等级', '特征', '记忆量', '技能数'],
+          rows: [
+            ['L0 裸调用', '无记忆、无 Skill，每次从零开始', '0', '0'],
+            ['L1 有人格', '知道自己是谁，但没有专业技能', '~2K tokens', '0'],
+            ['L2 有技能', '能用结构化流程处理特定类型任务', '~10K tokens', '3–10'],
+            ['L3 有记忆', '记住过去做过什么，积累经验', '~30K tokens', '10–30'],
+            ['L4 能协作', '通过工作流与其他 Agent 协作', '~50K tokens', '20–50'],
+            ['L5 自进化', '根据经验自动新增/修改 Skill', '~100K tokens', '50+'],
+          ]
+        },
+        code: `<span class="cmt"># 生产级 Agent = 主 Agent + 专项子 Agent</span>
+main_agent = <span class="fn">create_agent</span>(
+    <span class="str">"system-agent"</span>,
+    sub_agents=[
+        SubAgent(<span class="str">"search"</span>,   tools=[<span class="str">"web_search"</span>, <span class="str">"web_crawl"</span>]),
+        SubAgent(<span class="str">"document"</span>, tools=[<span class="str">"to_pdf"</span>, <span class="str">"to_pptx"</span>]),
+        SubAgent(<span class="str">"code"</span>,     tools=[<span class="str">"sandbox"</span>, <span class="str">"code_gen"</span>]),
+        SubAgent(<span class="str">"devops"</span>,   tools=[<span class="str">"deploy"</span>, <span class="str">"stop"</span>]),
+        SubAgent(<span class="str">"fallback"</span>, tools=<span class="kw">REMAINING</span>),
+    ],
+    middleware=[
+        <span class="fn">SkillSearchMiddleware</span>(),    <span class="cmt"># 向量匹配 Skill</span>
+        <span class="fn">MemoryMiddleware</span>(),         <span class="cmt"># 加载/保存记忆</span>
+        <span class="fn">ToolRetryMiddleware</span>(),      <span class="cmt"># 失败自动重试</span>
+        <span class="fn">ClarifyMiddleware</span>(),        <span class="cmt"># 不明确时追问</span>
+    ]
+)`,
 
         instructions: {
           title: '养 Agent 必备常驻指令 — 从第一天就写进系统提示词',
