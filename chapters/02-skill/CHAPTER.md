@@ -21,6 +21,177 @@
 
 ---
 
+## 核心观点：Skill 远不止是"提示词的归类整理"
+
+这是很多人对 Skill 最大的误解。
+
+他们以为 Skill 就是"把一堆提示词按分类整理好，需要的时候塞给 LLM"。如果是这样，Skill 和一个 Markdown 模板库没什么区别。**真正的 Skill 是一个完整的能力封装单元**，它可以包含六个维度的内容：
+
+### 维度一：内嵌可执行脚本
+
+Skill 不是纯文本说明书，它可以直接包含可执行的 bash/python 脚本。Agent 读取 Skill 后，会提取并执行这些脚本。
+
+```markdown
+## 部署脚本
+​```bash
+docker build -t $SERVICE_NAME .
+docker push $REGISTRY/$SERVICE_NAME:$TAG
+​```
+
+## 健康检查脚本
+​```bash
+for i in 1 2 3; do
+  curl -sf http://$SERVICE_URL/health && exit 0
+  sleep 10
+done
+exit 1   # 三次重试均失败
+​```
+
+## 回滚脚本
+​```bash
+docker service rollback $SERVICE_NAME
+​```
+```
+
+**真实案例**：在生产级 DevOps Agent 中，`docker-deploy` Skill 定义了完整的部署-验证-回滚脚本链。Agent 不需要"发明"如何部署——它直接执行 Skill 中预定义的脚本。
+
+### 维度二：多步骤工作流（含分支和回退）
+
+Skill 可以定义复杂的工作流逻辑，包括条件分支、失败回退、人工审批节点：
+
+```markdown
+## 工作流
+
+### 场景 A：标准发布
+build → deploy → health_check
+  ├── pass → notify_team("发布成功") → END
+  └── fail → rollback → alert("已回滚") → END
+
+### 场景 B：灰度发布
+build → deploy_canary(10%) → monitor(5min)
+  ├── metrics_ok → deploy_full(100%) → notify → END
+  └── metrics_bad → rollback_canary → analyze_logs → alert → END
+
+### 场景 C：需要审批的发布
+build → deploy_staging → generate_diff_report
+  → 【等待人工审批】
+  ├── approved → deploy_production → health_check → notify
+  └── rejected → cleanup_staging → END
+```
+
+这已经不是"提示词归类"了——这是**用 Markdown 编写的微型状态机**。Agent 按照工作流的路径执行，在分支点做判断，在失败点触发回退。
+
+### 维度三：工具链编排（严格依赖顺序）
+
+Skill 可以定义多个工具的调用顺序和依赖关系，确保 Agent 不会跳步或乱序执行：
+
+```markdown
+## 核心工具链
+
+必须严格按以下依赖顺序执行：
+
+Step 1: browser_sandbox_create (创建沙箱)
+    ↓ 获得 sandbox_id
+Step 2: universal_code_generation_agent (生成并执行代码)
+    ↓ 获得执行结果和文件列表
+Step 3: 提取下载链接，展示给用户
+
+铁律：在 Step 1 返回有效 sandbox_id 之前，
+绝对不能调用 Step 2。违反此规则 = 100% 报错。
+```
+
+**真实案例**：`code-execution` Skill 定义了"先建沙箱，再执行代码"的铁律。没有这个约束，Agent 有 30% 的概率跳过沙箱创建直接尝试执行代码，导致不可恢复的错误。
+
+### 维度四：质量门禁与自动化检查清单
+
+Skill 可以定义必须完成的检查项，Agent 在执行完毕后逐项核对：
+
+```markdown
+## 质量门禁（全部通过才能继续）
+
+### 发布前检查
+- [ ] 单元测试全部通过
+- [ ] 端口冲突检查完成
+- [ ] 环境变量已配置完整
+- [ ] 回滚脚本经过测试
+- [ ] 依赖版本锁定
+
+### 发布后验证
+- [ ] 健康检查端点返回 200
+- [ ] 核心 API 响应时间 < 500ms
+- [ ] 错误率 < 0.1%
+- [ ] 日志中无 FATAL/ERROR 级别输出
+```
+
+这些检查项不是装饰——Agent 会真的逐项检查，未通过的项目会阻止后续流程。
+
+### 维度五：子 Agent 调度
+
+一个 Skill 可以指挥主 Agent 将子任务委派给专项 SubAgent：
+
+```markdown
+## 子 Agent 调度
+
+本技能在执行过程中需要调用以下子 Agent：
+
+1. **信息收集阶段**
+   → search-agent: 使用 deep-research Skill 搜索目标服务的最新版本信息
+
+2. **执行阶段**
+   → code-agent: 生成并执行部署脚本
+   → devops-agent: 管理 Docker 容器生命周期
+
+3. **通知阶段**
+   → collaboration-agent: 通过飞书/Slack 通知团队成员
+
+各子 Agent 并行执行互不依赖的任务，串行执行有依赖的任务。
+```
+
+**这意味着一个 Skill 可以编排整个多 Agent 系统的行为。**
+
+### 维度六：角色扮演与对话策略
+
+Skill 不仅可以指定"做什么"，还可以定义 Agent 在特定场景下的对话策略——如何追问、如何引导、何时停止：
+
+```markdown
+## 角色定位
+你是专业的产品经理助手，通过友好对话收集结构化需求。
+
+## 追问策略
+- 每次只追问 **一个** 缺失要素，不要一次问多个问题
+- 追问最多 5 轮，超过后基于已有信息直接提交
+- 语气友好自然，像一位有经验的产品经理在了解需求
+
+## 追问示例
+- 缺功能描述：「这个功能主要解决什么问题？」
+- 缺影响范围：「这个改动会影响哪些模块？」
+- 缺验收标准：「怎么判断这个需求已经完成了？」
+```
+
+**真实案例**：`sdlc-requirement-collection` Skill 将一整套需求收集方法论编码为 Agent 的行为指南。Agent 不再是"你说什么我做什么"的被动工具，而是按照 Skill 定义的策略主动引导对话。
+
+### Skill 能力谱系总结
+
+```
+提示词模板            Skill 的真实能力
+    │                     │
+    ├─ 文字说明            ├─ 文字说明
+    │                     ├─ 可执行脚本（bash/python）
+    │                     ├─ 工作流（分支/回退/审批）
+    │                     ├─ 工具链编排（依赖顺序）
+    │                     ├─ 质量门禁（检查清单）
+    │                     ├─ 子 Agent 调度
+    │                     ├─ 对话策略与追问逻辑
+    │                     ├─ 错误处理与容错
+    │                     └─ 输出格式强制约束
+    │                     │
+  这不是 Skill ─────→  这才是 Skill
+```
+
+**一句话总结：Skill 是用 Markdown 编写的"微型应用程序"。** 它不是给人看的文档，而是给 Agent 解析并执行的指令集。提示词模板只告诉 Agent "你应该怎么说"，而 Skill 告诉 Agent "你应该怎么做、遇到错误怎么处理、做完后怎么验证、需要谁帮忙、结果怎么交付"。
+
+---
+
 ## 二、一个优秀 Skill 的解剖结构
 
 以下是从生产级项目（企业级多 Agent 平台）中提炼的 Skill 标准结构。每个 Skill 是一个独立的 Markdown 文件，包含 YAML frontmatter 和 Markdown 正文。

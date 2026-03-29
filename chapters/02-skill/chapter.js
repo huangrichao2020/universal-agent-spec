@@ -84,7 +84,7 @@
     content: {
       en: {
         definition: 'A structured document that tells an Agent "when you encounter task type X, follow these steps." <strong>Skills are procedural memory</strong> — like the muscle memory of riding a bicycle.',
-        essence: 'Skills are a special form of memory, but many people confuse Skills with Prompts. The key difference: <em>Prompts describe identity and style</em>; <em>Skills describe executable step-by-step procedures.</em>\n\nThe value of a Skill lies in "structuring expert knowledge": a senior DevOps engineer\'s incident response flow, once written as a Skill, can be reproduced by any Agent at expert level.',
+        essence: 'Skills are a special form of memory, but many people confuse Skills with Prompts. The key difference: <em>Prompts describe identity and style</em>; <em>Skills describe executable step-by-step procedures.</em>\n\nThe value of a Skill lies in "structuring expert knowledge": a senior DevOps engineer\'s incident response flow, once written as a Skill, can be reproduced by any Agent at expert level.\n\n<strong>Going deeper: Skills are NOT "organized prompt templates."</strong> A mature Skill is a full <em>capability package</em>. It can embed executable scripts (bash/python), define multi-step workflows with branching and rollback, orchestrate tool chains with strict dependency order, include quality checklists, and even dispatch sub-Agents. Think of it as a "micro-application" written in Markdown that the Agent interprets and executes.',
         table: {
           title: 'Prompt vs Skill',
           headers: ['Dimension', 'Prompt', 'Skill'],
@@ -96,11 +96,31 @@
             ['Portability', 'Tied to Agent persona', 'Reusable across Agents ✅'],
           ]
         },
-        insight: 'Accumulated Skills are an Agent\'s true moat. An Agent with 200 refined Skills vastly outperforms one that has only changed its underlying model several times. Skills are your asset; the model is the tool you rent.'
+        insight: 'Accumulated Skills are an Agent\'s true moat. An Agent with 200 refined Skills vastly outperforms one that has only changed its underlying model several times. Skills are your asset; the model is the tool you rent.',
+        code: `<span class="cmt"># A Skill is a capability package — not just organized prompts</span>
+<span class="kw">name:</span> deploy-and-verify
+<span class="kw">description:</span> <span class="str">Deploy, verify, rollback on failure</span>
+
+<span class="cmt">## ① Workflow (branching logic)</span>
+build → deploy → health_check
+  ├─ <span class="str">pass</span> → notify(<span class="str">"deployed"</span>)  ✅
+  └─ <span class="str">fail</span> → rollback → alert(<span class="str">"rolled back"</span>)
+
+<span class="cmt">## ② Embedded Script</span>
+<span class="fn">docker build</span> -t $SVC . && <span class="fn">docker push</span> $REG/$SVC
+<span class="fn">curl</span> -sf $URL/health || <span class="kw">exit 1</span>
+
+<span class="cmt">## ③ Quality Checklist</span>
+<span class="kw">□</span> Port conflict cleared   <span class="kw">□</span> Env vars complete
+<span class="kw">□</span> Rollback script tested
+
+<span class="cmt">## ④ Sub-Agent Dispatch</span>
+→ search-agent: <span class="str">find latest stable image</span>
+→ notify-agent: <span class="str">alert team on Slack</span>`
       },
       zh: {
         definition: '告诉 Agent "遇到 X 类任务时，如何一步步处理"的结构化文档。<strong>Skill 是过程性记忆（Procedural Memory）</strong>——就像骑自行车的肌肉记忆。',
-        essence: 'Skill 是记忆的特殊形式，但很多人把 Skill 和 Prompt 混淆。关键区别：<em>Prompt 描述身份和风格</em>，<em>Skill 描述可执行的操作步骤</em>。\n\nSkill 的价值在于"将专家知识结构化"：一个资深运维工程师对某类故障的处理流程，写成 Skill 后，任何 Agent 都能复现这个专家级处理能力。',
+        essence: 'Skill 是记忆的特殊形式，但很多人把 Skill 和 Prompt 混淆。关键区别：<em>Prompt 描述身份和风格</em>，<em>Skill 描述可执行的操作步骤</em>。\n\nSkill 的价值在于"将专家知识结构化"：一个资深运维工程师对某类故障的处理流程，写成 Skill 后，任何 Agent 都能复现这个专家级处理能力。\n\n<strong>更深一层：Skill 绝不是"提示词的归类整理"。</strong>一个成熟的 Skill 是完整的<em>能力封装单元</em>。它可以内嵌可执行脚本（bash/python）、定义含分支和回退的多步骤工作流、编排工具链的严格调用顺序、包含质量检查清单、甚至调度子 Agent。Skill 本质上是一个用 Markdown 编写的"微型应用"，Agent 解析并执行其中的指令。',
         table: {
           title: 'Prompt vs Skill 区别',
           headers: ['维度', 'Prompt', 'Skill'],
@@ -112,7 +132,27 @@
             ['可转移性', '与 Agent 人格绑定', '可跨 Agent 复用 ✅'],
           ]
         },
-        insight: 'Skill 的累积是 Agent 真正的护城河。一个积累了 200 个精细 Skill 的 Agent，其能力远超那个只是频繁更换底层模型、却没有 Skill 积累的 Agent。Skill 是你的资产，模型是你租的工具。'
+        insight: 'Skill 的累积是 Agent 真正的护城河。一个积累了 200 个精细 Skill 的 Agent，其能力远超那个只是频繁更换底层模型、却没有 Skill 积累的 Agent。Skill 是你的资产，模型是你租的工具。',
+        code: `<span class="cmt"># Skill 是能力封装单元 — 不只是提示词归类</span>
+<span class="kw">name:</span> deploy-and-verify
+<span class="kw">description:</span> <span class="str">部署服务，自动验证，失败则回滚</span>
+
+<span class="cmt">## ① 工作流（含分支逻辑）</span>
+build → deploy → health_check
+  ├─ <span class="str">通过</span> → notify(<span class="str">"上线成功"</span>)  ✅
+  └─ <span class="str">失败</span> → rollback → alert(<span class="str">"已回滚"</span>)
+
+<span class="cmt">## ② 内嵌脚本</span>
+<span class="fn">docker build</span> -t $SVC . && <span class="fn">docker push</span> $REG/$SVC
+<span class="fn">curl</span> -sf $URL/health || <span class="kw">exit 1</span>
+
+<span class="cmt">## ③ 质量检查清单</span>
+<span class="kw">□</span> 端口冲突检查完成    <span class="kw">□</span> 环境变量完整
+<span class="kw">□</span> 回滚脚本已测试
+
+<span class="cmt">## ④ 子 Agent 调度</span>
+→ search-agent: <span class="str">查找最新稳定镜像版本</span>
+→ notify-agent: <span class="str">通知团队成员</span>`
       }
     }
   });
