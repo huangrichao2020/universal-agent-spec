@@ -1,0 +1,26 @@
+# 32-computer-use · Phase C Plan
+
+- 目标：新增“屏幕级 Agent”章节，解释 Computer Use / Operator 的像素交互范式。
+- 核心图：使用 `S.layerStack` 画 `App → Screen → Agent → Action` 四层结构。
+- 内容重点：
+  - 像素级交互 vs API 交互
+  - 安全边界：沙箱、审批、允许列表
+  - 成本结构：截图、推理、重试循环
+- 真实案例：
+  - https://www.anthropic.com/news/computer-use
+  - https://openai.com/blog
+- 延伸阅读：
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://docs.claude.com/en/docs/claude-code
+- 交叉引用：
+  - `12-tool-use`
+  - `26-guardrails`
+  - `28-coding-agents`
+- 可运行代码：
+  - Python 坐标缩放示例，说明截图坐标如何映射到真实屏幕
+- 文档同步：
+  - 新建 `CHAPTER.md`
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/32-computer-use/chapter.js`
+  - 浏览器加载临时验证页，确认注册和 SVG 正常
