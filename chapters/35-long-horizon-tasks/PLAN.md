@@ -1,0 +1,27 @@
+# 35-long-horizon-tasks · Phase C Plan
+
+- 目标：新增“多日任务 / checkpoint / resume”章节，补齐长时执行的持久化视角。
+- 核心图：使用 `S.timeline` 画 `Plan -> Execute -> Checkpoint -> Resume -> Verify`。
+- 内容重点：
+  - 多日任务不等于长 prompt
+  - checkpoint 需要保存结构化状态
+  - resume 需要校验外部世界漂移
+  - 进度追踪与心跳
+- 真实案例：
+  - https://langchain-ai.github.io/langgraph
+  - https://docs.claude.com/en/docs/claude-code
+- 延伸阅读：
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://www.anthropic.com/engineering
+- 交叉引用：
+  - `06-handoff`
+  - `23-graph-orchestration`
+  - `25-observability`
+- 可运行代码：
+  - Python 写入与读取 checkpoint 的最小示例
+- 文档同步：
+  - 新建 `CHAPTER.md`
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/35-long-horizon-tasks/chapter.js`
+  - 浏览器临时加载外部 `registry.js/helpers.js/chapter.js`
