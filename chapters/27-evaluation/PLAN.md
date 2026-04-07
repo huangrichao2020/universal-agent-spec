@@ -1,0 +1,30 @@
+# 27-evaluation · Phase B Plan
+
+- 目标：保留评估维度与 benchmark 总览，补齐 Phase B 扩展字段与维护文档。
+- 保留：完成率、质量、工具准确度、成本/延迟四类指标与 benchmark 表。
+- 新增字段：
+  - `content.en.perspective2026`
+  - `content.zh.perspective2026`
+  - `content.en.pitfalls` / `content.zh.pitfalls`
+  - `content.en.furtherReading` / `content.zh.furtherReading`
+  - `content.en.crossRefs` / `content.zh.crossRefs`
+- 2026 视角重点：
+  - 评估从离线 benchmark 扩展到持续回归、线上抽检和成本/安全指标
+  - 重点不只是“能做对”，还要“稳定、便宜、可控”
+- 常见误区：
+  - 只看公开 benchmark
+  - 只评最终答案不评过程
+  - 没有固定数据集和回归基线
+- 交叉引用：
+  - `25-observability`
+  - `26-guardrails`
+  - `28-coding-agents`
+- 参考资料：
+  - https://www.swebench.com
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://openai.com/blog
+- 文档同步：
+  - 更新 `CHAPTER.md` 顶部日期与变更说明
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/27-evaluation/chapter.js`
