@@ -1,0 +1,30 @@
+# 22-arch-patterns · Phase B Plan
+
+- 目标：保留五种架构模式对比，补齐 Phase B 扩展字段与维护文档。
+- 保留：现有 SVG 五种模式、定义、解析、表格和原有结论。
+- 新增字段：
+  - `content.en.perspective2026`
+  - `content.zh.perspective2026`
+  - `content.en.pitfalls` / `content.zh.pitfalls`
+  - `content.en.furtherReading` / `content.zh.furtherReading`
+  - `content.en.crossRefs` / `content.zh.crossRefs`
+- 2026 视角重点：
+  - 架构选择开始围绕恢复能力、人工监督、成本分层、评测与故障隔离
+  - “更多 Agent”不再等于“更强系统”
+- 常见误区：
+  - 先堆 Agent 数量再想分工
+  - 把组织结构直接映射成运行时架构
+  - 因为新奇而过早选择 swarm
+- 交叉引用：
+  - `20-frameworks`
+  - `23-graph-orchestration`
+  - `29-case-studies`
+- 参考资料：
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://arxiv.org/abs/2210.03629
+  - https://arxiv.org/abs/2305.04091
+- 文档同步：
+  - 更新 `CHAPTER.md` 顶部日期与变更说明
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/22-arch-patterns/chapter.js`
