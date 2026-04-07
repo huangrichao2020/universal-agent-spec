@@ -1,0 +1,27 @@
+# 33-skills-system · Phase C Plan
+
+- 目标：新增“Skills / Plugin / Subagent 体系”章节，补齐 2025-2026 的能力打包与复用层。
+- 核心图：用 `S.box` 画 `Skill -> Agent -> Shell` 三层关系，并补充 Plugin/Subagent 两侧结构。
+- 内容重点：
+  - 技能发现与按需加载
+  - Plugin/目录分发
+  - 权限模型与 `allowed-tools`
+  - `context: fork` 式子 Agent 复用
+- 真实案例：
+  - https://www.anthropic.com/news/skills
+  - https://docs.claude.com/en/docs/claude-code
+- 延伸阅读：
+  - https://www.anthropic.com/engineering
+  - https://modelcontextprotocol.io
+- 交叉引用：
+  - `02-skill`
+  - `08-multi-agent`
+  - `16-mcp`
+- 可运行代码：
+  - shell 示例，创建一个最小可用 Skill 目录与 `SKILL.md`
+- 文档同步：
+  - 新建 `CHAPTER.md`
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/33-skills-system/chapter.js`
+  - 浏览器临时加载外部 `registry.js/helpers.js/chapter.js`
