@@ -1,0 +1,25 @@
+# 18-ag-ui Phase B Plan
+
+- 目标：补齐 AG-UI 章节的 Phase B 元数据，并修复占位版 `CHAPTER.md`。
+- 保留：现有 AG-UI 图示、定义、事件分类、表格。
+- 新增字段：
+  - `content.en/zh.perspective2026`
+  - `content.en/zh.pitfalls`
+  - `content.en/zh.furtherReading`
+  - `content.en/zh.crossRefs`
+- 内容重点：
+  - 强调可见性、审批、状态同步、断线恢复
+  - 明确 AG-UI 是 agent↔user 层，不是 tool 或 agent 协议
+- 交叉引用：
+  - `14-react`
+  - `19-protocol-stack`
+- 延伸阅读：
+  - `https://docs.ag-ui.com`
+  - `https://docs.claude.com/en/docs/claude-code`
+  - `https://www.anthropic.com/research/building-effective-agents`
+- 文档更新：
+  - `CHAPTER.md` 顶部加 `上次更新：2026-04-08`
+  - 补全占位模板为可交接文档
+- 验证：
+  - `node --check chapters/18-ag-ui/chapter.js`
+  - Node `vm` 注册执行 + 静态服务可访问性检查
