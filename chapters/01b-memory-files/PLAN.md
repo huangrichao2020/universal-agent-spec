@@ -1,0 +1,23 @@
+# 01b-memory-files · Phase B Plan
+
+- 目标：在保留现有文件类型与 OpenClaw 案例的前提下，补齐 Phase B 扩展字段。
+- 保留：`definition / essence / insight / table / getSvg` 现有内容不删。
+- 新增 section：
+  - `perspective2026`
+  - `pitfalls`
+  - `furtherReading`
+  - `crossRefs`
+- 2026 视角重点：尽管 provider 提供了更长上下文和 session，Markdown/文本文件仍然是最易审计、最易迁移的长期记忆载体。
+- 误区重点：
+  - 把记忆文件当一次性 prompt dump
+  - 不控制 worklog 膨胀
+  - 让技能/知识文件无审核自动漂移
+- 交叉引用：
+  - `01-invocation`
+  - `01b-memory`
+- 参考资料：
+  - https://docs.claude.com/en/docs/claude-code
+  - https://www.anthropic.com/news/skills
+  - https://www.anthropic.com/research/building-effective-agents
+- 文档同步：更新 `CHAPTER.md` 顶部日期与说明，新建 `WORKLOG.md`。
+- 验证：`node --check chapters/01b-memory-files/chapter.js`

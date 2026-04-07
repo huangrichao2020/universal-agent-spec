@@ -75,11 +75,32 @@
 
     content: {
       en: {
+        perspective2026: 'Over the last year, many teams experimented with provider sessions, vector stores, and long-context memory buffers, but plain text memory files remain the most practical backbone for durable agent state. They are easy to diff, review, sync, compress, and migrate across runtimes, which matters more in production than fancy abstraction layers.',
         definition: 'Memory files are plain text documents (usually Markdown) that define an Agent\'s identity, knowledge, skills, and history. <strong>They are the only thing that gives an Agent continuity across invocations.</strong>',
 
         essence: 'The LLM API is stateless — it forgets everything the moment a call ends. Memory files solve this: <em>instead of the model holding state, the files hold state.</em> The UI program reads memory files, packs them with the current task, and sends the whole bundle as the context window. The model wakes up knowing who it is and what it was doing.\n\n<strong>OpenClaw is a real-world example.</strong> It is a heavy-Agent product built on GLM. Its memory is split into layers:\n— A persona file defines its personality and values\n— An industry memory file holds accumulated domain expertise (A-share trading methodology, sector rotation rules, stock pool)\n— Skill files describe exactly how to call AKShare, Tushare, 东方财富妙想\n— A worklog records every trade decision and outcome\n\nEvery time OpenClaw is invoked, these files are loaded into context. It "remembers" 6 months of trading experience in seconds.',
 
         insight: 'The most valuable memory file is the one that took the longest to build — the domain knowledge file. A persona takes 10 minutes to write. A skill takes an hour. But a domain memory file that captures real expertise? That takes months of real work. <strong>That is the moat.</strong>',
+        pitfalls: [
+          'Treating memory files as a one-time prompt dump. Durable memory needs structure, update rules, and selective loading.',
+          'Letting worklogs grow forever without summarization or compaction. Unbounded history becomes noise and cost.',
+          'Allowing skill and knowledge files to drift automatically without review. Unverified edits slowly corrupt the Agent\'s operating model.'
+        ],
+        furtherReading: [
+          { title: 'Claude Code Documentation', url: 'https://docs.claude.com/en/docs/claude-code' },
+          { title: 'Anthropic Skills', url: 'https://www.anthropic.com/news/skills' },
+          { title: 'Building Effective Agents', url: 'https://www.anthropic.com/research/building-effective-agents' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '01-invocation',
+            reason: 'This chapter explains what must be reloaded before each new invocation starts.'
+          },
+          {
+            chapterId: '01b-memory',
+            reason: 'The neighboring memory chapter generalizes these concrete files into a broader persistence strategy.'
+          }
+        ],
 
         table: {
           title: 'Memory file types',
@@ -95,11 +116,32 @@
       },
 
       zh: {
+        perspective2026: '过去一年里，很多团队尝试了 provider session、向量库和超长上下文缓冲区，但纯文本记忆文件依然是生产环境里最务实的长期状态骨架。原因很简单：它们最容易 diff、审核、同步、压缩和跨运行时迁移，而这些工程属性往往比“更炫的抽象层”更重要。',
         definition: '记忆文件是一组纯文本文档（通常是 Markdown），定义了 Agent 的身份、知识、技能和历史。<strong>它们是 Agent 跨调用保持持续性的唯一载体。</strong>',
 
         essence: '大模型 API 是无状态的——调用结束就忘得一干二净。记忆文件为此而生：<em>与其让模型持有状态，不如让文件持有状态。</em>UI 界面程序读取记忆文件，和当前任务打包成 context window 发给大模型，模型"醒来"就知道自己是谁、在做什么。\n\n<strong>OpenClaw 是一个真实案例。</strong>它是一个基于 GLM 构建的重 Agent 产品，记忆分层设计如下：\n— 人格文件：定义性格与价值观\n— 行业记忆文件：积累的 A 股交易方法论、板块轮动规则、股票池\n— Skill 文件：精确描述如何调用 AKShare、Tushare、东方财富妙想\n— 工作日志：记录每一次交易决策和结果\n\n每次激活 OpenClaw，这些文件被加载进 context，它在几秒内"想起"了 6 个月的交易经验。',
 
         insight: '最有价值的记忆文件，是花时间最长建立的那个——行业知识文件。人格文件 10 分钟写完，Skill 文件一小时搞定。但一份真正沉淀了领域专业知识的记忆文件？那需要几个月的真实工作。<strong>这才是护城河。</strong>',
+        pitfalls: [
+          '把记忆文件当成一次性 prompt 大杂烩。真正可持续的记忆需要结构、更新规则和按需加载。',
+          '放任 worklog 无限膨胀却不做总结和压缩。历史一旦失控，就会变成噪声和成本。',
+          '让技能文件、知识文件在无审核情况下自动漂移。未经验证的改写会慢慢腐蚀 Agent 的工作模型。'
+        ],
+        furtherReading: [
+          { title: 'Claude Code 文档', url: 'https://docs.claude.com/en/docs/claude-code' },
+          { title: 'Anthropic Skills 发布', url: 'https://www.anthropic.com/news/skills' },
+          { title: 'Anthropic：构建高效 Agent', url: 'https://www.anthropic.com/research/building-effective-agents' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '01-invocation',
+            reason: '这一章回答的是：在每次新调用开始前，到底有哪些文件需要被重新装回上下文。'
+          },
+          {
+            chapterId: '01b-memory',
+            reason: '相邻的记忆章节会把这些具体文件进一步抽象成更完整的持久化策略。'
+          }
+        ],
 
         table: {
           title: '记忆文件类型',
