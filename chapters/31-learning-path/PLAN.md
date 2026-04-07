@@ -1,0 +1,30 @@
+# 31-learning-path · Phase B Plan
+
+- 目标：保留三阶段学习路径与框架选型速查，补齐 Phase B 扩展字段与维护文档。
+- 保留：入门/中级/高级三段式路径、框架速查与章节映射。
+- 新增字段：
+  - `content.en.perspective2026`
+  - `content.zh.perspective2026`
+  - `content.en.pitfalls` / `content.zh.pitfalls`
+  - `content.en.furtherReading` / `content.zh.furtherReading`
+  - `content.en.crossRefs` / `content.zh.crossRefs`
+- 2026 视角重点：
+  - 学习路径从“读章节”变成“读 + 搭 + 评 + 复盘”的循环
+  - 编程 Agent、MCP、评估和护栏成为进阶分水岭
+- 常见误区：
+  - 只读不做
+  - 过早上多 Agent
+  - 只学框架 API 不学底层模式
+- 交叉引用：
+  - `14-react`
+  - `16-mcp`
+  - `27-evaluation`
+- 参考资料：
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://modelcontextprotocol.io
+  - https://docs.claude.com/en/docs/claude-code
+- 文档同步：
+  - 更新 `CHAPTER.md` 顶部日期与变更说明
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/31-learning-path/chapter.js`
