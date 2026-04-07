@@ -1,0 +1,23 @@
+# 07-aware · Phase B Plan
+
+- 目标：保留现有感知层成本分层讲解和主图，只补 Phase B 扩展字段。
+- 保留：成本分层表、免疫系统比喻、SVG 心跳图。
+- 新增 section：
+  - `perspective2026`
+  - `pitfalls`
+  - `furtherReading`
+  - `crossRefs`
+- 2026 视角重点：低成本监控模型、后台任务唤醒与异常分流成为长周期 Agent 系统的标配。
+- 误区重点：
+  - 用贵模型做所有心跳
+  - 只监控日志不监控状态文件
+  - 把感知层做成另一个重 Agent
+- 交叉引用：
+  - `06-handoff`
+  - `08-multi-agent`
+- 参考资料：
+  - https://langchain-ai.github.io/langgraph
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://openai.com/blog
+- 文档同步：更新 `CHAPTER.md` 顶部日期与说明，新建 `WORKLOG.md`。
+- 验证：`node --check chapters/07-aware/chapter.js`

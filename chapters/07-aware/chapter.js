@@ -59,6 +59,7 @@
 
     content: {
       en: {
+        perspective2026: 'Over the last 12 months, awareness layers have become standard in serious agent systems: cheap background models classify heartbeats, cron-like workers watch stale state, and only suspicious cases escalate to stronger models or humans. This is how teams make long-running agents affordable and recoverable.',
         definition: 'An independently running "monitoring program" that scans project state at high frequency (logs, handoff docs, Agent outputs) and triggers the appropriate Agent when anomalies are detected. <strong>Uses cheap models for judgment; flagship models for execution.</strong>',
         essence: 'The Aware layer answers: "Who monitors the Agents?" Without it, a failed Agent may go unnoticed until a user complains.\n\n<strong>Core principle:</strong> <em>Heartbeat judgment = simple classification</em> (normal / anomaly / warning). No flagship model needed. Using a ¥0.001/1K-token model for heartbeats vs a ¥0.1/1K-token flagship model means a 100× cost difference.',
         table: {
@@ -70,9 +71,30 @@
             ['Core layer', 'claude-opus / o3', 'Important tasks', 'Deep analysis, critical decisions, creative work'],
           ]
         },
-        insight: 'The Aware layer is the "immune system" of the whole Agent pipeline. An Agent system without monitoring is like a server without observability — when something breaks you won\'t even know it\'s broken.'
+        insight: 'The Aware layer is the "immune system" of the whole Agent pipeline. An Agent system without monitoring is like a server without observability — when something breaks you won\'t even know it\'s broken.',
+        pitfalls: [
+          'Using an expensive flagship model for every heartbeat. Monitoring should be cheap by default and escalate only when needed.',
+          'Watching logs but ignoring handoff docs, task state, and empty outputs. Failures often show up in state drift before they show up in stderr.',
+          'Turning the aware layer into another heavy autonomous agent. Its job is classification and escalation, not open-ended reasoning.'
+        ],
+        furtherReading: [
+          { title: 'LangGraph', url: 'https://langchain-ai.github.io/langgraph' },
+          { title: 'Building Effective Agents', url: 'https://www.anthropic.com/research/building-effective-agents' },
+          { title: 'OpenAI News', url: 'https://openai.com/blog' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '06-handoff',
+            reason: 'Handoff docs are one of the primary data sources an awareness layer watches for stale or inconsistent state.'
+          },
+          {
+            chapterId: '08-multi-agent',
+            reason: 'As soon as you run multiple agents concurrently, awareness becomes the coordination and health-check layer above them.'
+          }
+        ]
       },
       zh: {
+        perspective2026: '过去 12 个月里，感知层已经成了严肃 Agent 系统的标配：便宜模型在后台做心跳分类，定时任务监控陈旧状态，只有可疑情况才升级给强模型或人工。这是让长周期 Agent 既负担得起又能恢复的关键做法。',
         definition: '独立运行的"系统监控程序"，高频扫描项目状态（日志、交接手册、Agent 输出），发现异常时触发对应 Agent 处理。<strong>使用便宜模型做判断，旗舰模型做执行</strong>。',
         essence: '感知层解决的是"谁来监控 Agent"的问题。在没有感知层的系统中，Agent 出错了可能没有任何人知道，直到用户投诉。\n\n<strong>核心设计原则</strong>：<em>心跳判断 = 简单分类任务</em>（正常/异常/警告），不需要旗舰模型。用 ¥0.001/千Token 的模型做心跳，用 ¥0.1/千Token 的模型做核心任务，成本差 100 倍。',
         table: {
@@ -84,7 +106,27 @@
             ['核心层', 'claude-opus / o3', '重要任务', '深度分析、关键决策、创作'],
           ]
         },
-        insight: '感知层是整个 Agent 系统的"免疫系统"。没有感知层的 Agent 系统就像没有监控的服务器——出了问题你甚至不知道它已经挂了。'
+        insight: '感知层是整个 Agent 系统的"免疫系统"。没有感知层的 Agent 系统就像没有监控的服务器——出了问题你甚至不知道它已经挂了。',
+        pitfalls: [
+          '用昂贵旗舰模型执行所有心跳判断。监控默认应该便宜，只有异常时才升级。',
+          '只盯日志，不看交接手册、任务状态和空输出。很多故障先表现为状态漂移，而不是 stderr 报错。',
+          '把感知层做成另一个重 Agent。它的职责是分类与升级，不是开放式长推理。'
+        ],
+        furtherReading: [
+          { title: 'LangGraph', url: 'https://langchain-ai.github.io/langgraph' },
+          { title: 'Anthropic：构建高效 Agent', url: 'https://www.anthropic.com/research/building-effective-agents' },
+          { title: 'OpenAI 新闻与博客', url: 'https://openai.com/blog' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '06-handoff',
+            reason: '交接手册是感知层最重要的观测源之一，用来判断状态是否陈旧或不一致。'
+          },
+          {
+            chapterId: '08-multi-agent',
+            reason: '一旦系统里同时运行多个 Agent，感知层就会自然上升为它们之上的协调与健康检查层。'
+          }
+        ]
       }
     }
   });
