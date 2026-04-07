@@ -1,0 +1,23 @@
+# 02-skill · Phase B Plan
+
+- 目标：在保留现有 Skill 深度内容与 instructions 卡片的基础上，补齐 Phase B 扩展字段。
+- 保留：Prompt vs Skill 表格、代码示例、六大能力维度卡片、SVG。
+- 新增 section：
+  - `perspective2026`
+  - `pitfalls`
+  - `furtherReading`
+  - `crossRefs`
+- 2026 视角重点：Skill 从“提示词整理”升级为可复用的能力包、可分发资产和组织级操作手册。
+- 误区重点：
+  - 把 Skill 当 prompt 模板
+  - 不做版本管理/验证
+  - 把所有流程都塞进一个巨型 Skill
+- 交叉引用：
+  - `01b-memory-files`
+  - `03-agent`
+- 参考资料：
+  - https://www.anthropic.com/news/skills
+  - https://docs.claude.com/en/docs/claude-code
+  - https://www.anthropic.com/research/building-effective-agents
+- 文档同步：更新 `CHAPTER.md` 顶部日期与说明，新建 `WORKLOG.md`。
+- 验证：`node --check chapters/02-skill/chapter.js`

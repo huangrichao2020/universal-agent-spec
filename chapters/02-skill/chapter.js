@@ -83,6 +83,7 @@
 
     content: {
       en: {
+        perspective2026: 'In the past year, Skills have moved from an informal prompting trick into a first-class packaging unit for agent capabilities. Teams now treat them like operational assets: versioned, reviewed, shared across agents, and combined with scripts, checklists, and sub-agent dispatch rules.',
         definition: 'A structured document that tells an Agent "when you encounter task type X, follow these steps." <strong>Skills are procedural memory</strong> — like the muscle memory of riding a bicycle.',
         essence: 'Skills are a special form of memory, but many people confuse Skills with Prompts. The key difference: <em>Prompts describe identity and style</em>; <em>Skills describe executable step-by-step procedures.</em>\n\nThe value of a Skill lies in "structuring expert knowledge": a senior DevOps engineer\'s incident response flow, once written as a Skill, can be reproduced by any Agent at expert level.\n\n<strong>Going deeper: Skills are NOT "organized prompt templates."</strong> A mature Skill is a full <em>capability package</em>. It can embed executable scripts (bash/python), define multi-step workflows with branching and rollback, orchestrate tool chains with strict dependency order, include quality checklists, and even dispatch sub-Agents. Think of it as a "micro-application" written in Markdown that the Agent interprets and executes.',
         table: {
@@ -97,6 +98,26 @@
           ]
         },
         insight: 'Accumulated Skills are an Agent\'s true moat. An Agent with 200 refined Skills vastly outperforms one that has only changed its underlying model several times. Skills are your asset; the model is the tool you rent.',
+        pitfalls: [
+          'Treating a Skill as a categorized prompt template. Real Skills encode procedures, constraints, and quality checks.',
+          'Skipping versioning and verification. A Skill that is never tested or reviewed quietly becomes organizational debt.',
+          'Packing unrelated workflows into one massive Skill file. Overloaded Skills become hard to trigger correctly and hard to maintain.'
+        ],
+        furtherReading: [
+          { title: 'Anthropic Skills', url: 'https://www.anthropic.com/news/skills' },
+          { title: 'Claude Code Documentation', url: 'https://docs.claude.com/en/docs/claude-code' },
+          { title: 'Building Effective Agents', url: 'https://www.anthropic.com/research/building-effective-agents' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '01b-memory-files',
+            reason: 'Skill files are one concrete memory-file category with stronger procedural semantics than generic knowledge files.'
+          },
+          {
+            chapterId: '03-agent',
+            reason: 'Once Skills exist, the next question is how a full Agent composes memory, tools, and execution loops around them.'
+          }
+        ],
         code: `<span class="cmt"># A Skill is a capability package — not just organized prompts</span>
 <span class="kw">name:</span> deploy-and-verify
 <span class="kw">description:</span> <span class="str">Deploy, verify, rollback on failure</span>
@@ -156,6 +177,7 @@ build → deploy → health_check
         }
       },
       zh: {
+        perspective2026: '过去一年里，Skill 已经从一种“整理提示词的小技巧”演进成 Agent 能力的一级打包单元。成熟团队把它当成组织资产来管理：可版本化、可评审、可跨 Agent 复用，还能与脚本、检查清单和子 Agent 调度规则组合。',
         definition: '告诉 Agent "遇到 X 类任务时，如何一步步处理"的结构化文档。<strong>Skill 是过程性记忆（Procedural Memory）</strong>——就像骑自行车的肌肉记忆。',
         essence: 'Skill 是记忆的特殊形式，但很多人把 Skill 和 Prompt 混淆。关键区别：<em>Prompt 描述身份和风格</em>，<em>Skill 描述可执行的操作步骤</em>。\n\nSkill 的价值在于"将专家知识结构化"：一个资深运维工程师对某类故障的处理流程，写成 Skill 后，任何 Agent 都能复现这个专家级处理能力。\n\n<strong>更深一层：Skill 绝不是"提示词的归类整理"。</strong>一个成熟的 Skill 是完整的<em>能力封装单元</em>。它可以内嵌可执行脚本（bash/python）、定义含分支和回退的多步骤工作流、编排工具链的严格调用顺序、包含质量检查清单、甚至调度子 Agent。Skill 本质上是一个用 Markdown 编写的"微型应用"，Agent 解析并执行其中的指令。',
         table: {
@@ -170,6 +192,26 @@ build → deploy → health_check
           ]
         },
         insight: 'Skill 的累积是 Agent 真正的护城河。一个积累了 200 个精细 Skill 的 Agent，其能力远超那个只是频繁更换底层模型、却没有 Skill 积累的 Agent。Skill 是你的资产，模型是你租的工具。',
+        pitfalls: [
+          '把 Skill 当成“按类别整理好的 prompt 模板”。真正的 Skill 必须编码流程、约束和质量门禁。',
+          '缺少版本管理和验证。一个从不测试、从不评审的 Skill，很快就会变成组织债务。',
+          '把无关流程都塞进同一个超大 Skill 文件。过载的 Skill 很难正确触发，也很难维护。'
+        ],
+        furtherReading: [
+          { title: 'Anthropic Skills 发布', url: 'https://www.anthropic.com/news/skills' },
+          { title: 'Claude Code 文档', url: 'https://docs.claude.com/en/docs/claude-code' },
+          { title: 'Anthropic：构建高效 Agent', url: 'https://www.anthropic.com/research/building-effective-agents' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '01b-memory-files',
+            reason: 'Skill 文件本身就是记忆文件的一种具体类型，只是它比普通知识文件更偏“过程性”。'
+          },
+          {
+            chapterId: '03-agent',
+            reason: '当 Skill 准备好后，下一步就是看一个完整 Agent 如何把记忆、工具和执行循环组合起来。'
+          }
+        ],
         code: `<span class="cmt"># Skill 是能力封装单元 — 不只是提示词归类</span>
 <span class="kw">name:</span> deploy-and-verify
 <span class="kw">description:</span> <span class="str">部署服务，自动验证，失败则回滚</span>
