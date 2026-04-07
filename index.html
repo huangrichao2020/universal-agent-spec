@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Universal Agent Spec</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230071e3'/%3E%3Cpath d='M21 18h10l12 28H33z' fill='white'/%3E%3C/svg%3E">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
@@ -40,6 +41,25 @@
     --serif:       'Noto Serif SC', serif;
   }
 
+  html.dark {
+    --bg: #0a0a0f;
+    --bg2: #141420;
+    --bg3: #1c1c2c;
+    --surface: #1a1a2e;
+    --border: rgba(255,255,255,0.1);
+    --border2: rgba(255,255,255,0.18);
+    --blue: #4d9fff;
+    --blue-light: rgba(77,159,255,0.14);
+    --blue-mid: rgba(77,159,255,0.22);
+    --text: #e0e0e8;
+    --text2: #b0b0c0;
+    --text3: #707088;
+    --text4: #505068;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; }
@@ -62,6 +82,10 @@
     background-size: 28px 28px;
     pointer-events: none;
     z-index: 0;
+  }
+
+  html.dark body::before {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
   }
 
   #app { position: relative; z-index: 1; }
@@ -193,6 +217,10 @@
     box-shadow: var(--shadow-sm);
   }
 
+  html.dark .header {
+    background: rgba(10,10,15,0.82);
+  }
+
   /* ── LANG TOGGLE ── */
   .lang-toggle {
     display: flex;
@@ -243,6 +271,10 @@
     background: rgba(244,240,232,0.75);
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
+  }
+
+  html.dark .sidebar {
+    background: rgba(20,20,32,0.82);
   }
 
   .sidebar::-webkit-scrollbar { width: 3px; }
@@ -338,6 +370,10 @@
     background: linear-gradient(135deg, #f5f0e6 0%, #fdf9f3 100%);
   }
 
+  html.dark .card-header {
+    background: linear-gradient(135deg, #202038 0%, #161622 100%);
+  }
+
   .card-num {
     font-size: 40px;
     font-weight: 700;
@@ -347,6 +383,8 @@
     font-family: var(--sans);
     letter-spacing: -0.03em;
   }
+
+  html.dark .card-num { color: rgba(255,255,255,0.08); }
 
   .card-title-wrap { flex: 1; }
 
@@ -416,6 +454,8 @@
     margin-bottom: 24px;
     overflow: visible;
   }
+
+  html.dark .diagram-wrap { background: #12121d; }
 
   .diagram-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
 
@@ -525,6 +565,8 @@
     border-bottom: 1px solid var(--border2);
   }
 
+  html.dark .compare-table th { background: #1d1d2f; }
+
   .compare-table td {
     padding: 10px 14px;
     border-bottom: 1px solid var(--border);
@@ -552,6 +594,11 @@
     font-family: var(--sans);
   }
 
+  html.dark .insight {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.08);
+  }
+
   .insight strong { color: var(--text); }
   .insight-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
 
@@ -567,6 +614,8 @@
     margin-bottom: 10px;
     transition: box-shadow 0.15s, background 0.15s;
   }
+
+  html.dark .instruction-card { background: #161624; }
 
   .instruction-card:hover {
     background: var(--surface);
@@ -622,6 +671,8 @@
     background: rgba(244,240,232,0.85);
     font-family: var(--sans);
   }
+
+  html.dark .footer { background: rgba(10,10,15,0.82); }
 
   /* ── SCROLLBAR ── */
   ::-webkit-scrollbar { width: 5px; }
@@ -689,7 +740,7 @@
 <!-- Global SVG marker defs -->
 <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
   <defs>
-    <marker id="arr"  markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1d1d1f"/></marker>
+    <marker id="arr"  markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="var(--text2)"/></marker>
     <marker id="arrC" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#0071e3"/></marker>
     <marker id="arrA" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#f59e0b"/></marker>
   </defs>
@@ -740,6 +791,11 @@
             :class="{ active: dualMode }"
             @click="toggleDualMode"
           >{{ lang === 'zh' ? '双栏' : 'Dual' }}</button>
+          <button
+            class="filter-btn"
+            :class="{ active: isDark }"
+            @click="toggleDark"
+          >{{ isDark ? (lang === 'zh' ? '浅色' : 'Light') : (lang === 'zh' ? '深色' : 'Dark') }}</button>
           <div class="lang-toggle" style="margin-left:0">
             <button
               v-for="l in LANGS" :key="l"
@@ -1008,6 +1064,7 @@ createApp({
     const searchQuery = ref('');
     const activeFilter = ref('all');
     const dualMode = ref(false);
+    const isDark = ref(localStorage.getItem('theme') === 'dark');
 
     const LANGS     = window.AgentSpec.LANGS;
     const LANG_NAMES = window.AgentSpec.LANG_NAMES;
@@ -1090,6 +1147,12 @@ createApp({
       dualMode.value = !dualMode.value;
     }
 
+    function toggleDark() {
+      isDark.value = !isDark.value;
+      localStorage.setItem('theme', isDark.value ? 'dark' : 'light');
+      document.documentElement.classList.toggle('dark', isDark.value);
+    }
+
     function setCardRef(id, el) {
       if (el) cardRefs.value[id] = el;
       else delete cardRefs.value[id];
@@ -1145,16 +1208,17 @@ createApp({
 
     // ── chapters are registered by manifest-driven script loaders ──
     onMounted(async () => {
+      document.documentElement.classList.toggle('dark', isDark.value);
       chapters.value = await waitForChapters();
       loading.value = false;
     });
 
     return {
       lang, loading, chapters, activeId, mainEl, cardRefs,
-      searchQuery, activeFilter, filteredChapters, visibleCountLabel, dualMode,
+      searchQuery, activeFilter, filteredChapters, visibleCountLabel, dualMode, isDark,
       LANGS, LANG_NAMES, FILTERS,
       t, content, contentFor, buildSvg, sectionLabel, columnLabel,
-      setLang, setFilter, toggleDualMode, setCardRef, scrollTo, onScroll
+      setLang, setFilter, toggleDualMode, toggleDark, setCardRef, scrollTo, onScroll
     };
   }
 }).mount('#app');
