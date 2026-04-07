@@ -1,0 +1,30 @@
+# 24-memory-arch · Phase B Plan
+
+- 目标：保留五类记忆与存储映射，补齐 Phase B 扩展字段与维护文档。
+- 保留：现有五种记忆类型、向量/图/混合对比、巩固说明与表格。
+- 新增字段：
+  - `content.en.perspective2026`
+  - `content.zh.perspective2026`
+  - `content.en.pitfalls` / `content.zh.pitfalls`
+  - `content.en.furtherReading` / `content.zh.furtherReading`
+  - `content.en.crossRefs` / `content.zh.crossRefs`
+- 2026 视角重点：
+  - 记忆焦点从“能存多少”转为“何时写入、如何检索、怎样防污染”
+  - 长程任务需要压缩、巩固、刷新与可回滚写入策略
+- 常见误区：
+  - 把聊天记录当长期记忆
+  - 什么都塞进向量库
+  - 未验证结果直接写回长期记忆
+- 交叉引用：
+  - `01b-memory`
+  - `23-graph-orchestration`
+  - `27-evaluation`
+- 参考资料：
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://arxiv.org/abs/2303.11366
+  - https://docs.pydantic.dev/latest/concepts/agents/
+- 文档同步：
+  - 更新 `CHAPTER.md` 顶部日期与变更说明
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/24-memory-arch/chapter.js`
