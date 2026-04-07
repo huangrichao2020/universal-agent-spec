@@ -1,0 +1,26 @@
+# 14-react Phase B Plan
+
+- 目标：补齐 ReAct 章节的 2026 视角与导航元数据。
+- 保留：现有 ReAct 循环 SVG、定义、变体说明、对比表。
+- 新增字段：
+  - `content.en/zh.perspective2026`
+  - `content.en/zh.pitfalls`
+  - `content.en/zh.furtherReading`
+  - `content.en/zh.crossRefs`
+- 内容边界：
+  - 强调 ReAct 是默认循环
+  - 同时指出其监督、步数预算、上下文压缩需求
+  - 不把 `15-plan-execute` 的内容提前展开
+- 交叉引用：
+  - `13-reasoning`
+  - `15-plan-execute`
+- 延伸阅读：
+  - `https://arxiv.org/abs/2210.03629`
+  - `https://arxiv.org/abs/2303.11366`
+  - `https://www.anthropic.com/research/building-effective-agents`
+- 文档更新：
+  - `CHAPTER.md` 顶部加 `上次更新：2026-04-08`
+  - 补充 Phase B 变更说明
+- 验证：
+  - `node --check chapters/14-react/chapter.js`
+  - Node `vm` 注册执行 + 静态服务可访问性检查
