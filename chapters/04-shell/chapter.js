@@ -56,6 +56,7 @@
 
     content: {
       en: {
+        perspective2026: 'In the last 12 months, shell programs have become much more than SDK wrappers. Mature shells now embed planning modes, tool permissions, sandboxed execution, streaming UX, sub-agent orchestration, and recovery loops, which makes them the real operating system around the model.',
         definition: 'The program responsible for the closed loop: "read memory files → build API request → parse response → execute actions → update memory files." The shell program is the execution body of an Agent.',
         essence: 'The shell program itself produces no intelligence — it is the <em>scheduler</em>. The best shell programs come from official LLM vendors (Claude Code, Codex CLI) because they natively support:\n\n<strong>Multiple instances</strong> (open multiple Agents like opening terminal windows); built-in <strong>file system interaction</strong> (read/write memory files directly); standard I/O interfaces that naturally suit <strong>workflow chaining</strong>.',
         table: {
@@ -68,9 +69,30 @@
             ['Custom Python script', 'Yourself', 'Fully controlled', 'Custom workflows, cost optimization'],
           ]
         },
-        insight: 'Prefer official vendor CLIs over rolling your own SDK wrapper. The official CLIs have optimized tool calling, error handling, and token management — you skip months of debugging.'
+        insight: 'Prefer official vendor CLIs over rolling your own SDK wrapper. The official CLIs have optimized tool calling, error handling, and token management — you skip months of debugging.',
+        pitfalls: [
+          'Treating the shell as a thin API wrapper. In practice it owns scheduling, retries, tool mediation, state hydration, and user interaction.',
+          'Rebuilding a full custom shell too early. Most teams underestimate the operational complexity that official CLIs already solved.',
+          'Stuffing all business state into the shell runtime instead of keeping durable state in explicit memory artifacts.'
+        ],
+        furtherReading: [
+          { title: 'Claude Code Documentation', url: 'https://docs.claude.com/en/docs/claude-code' },
+          { title: 'OpenAI News', url: 'https://openai.com/blog' },
+          { title: 'Model Context Protocol', url: 'https://modelcontextprotocol.io' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '03-agent',
+            reason: 'The Agent chapter defines the full system; this chapter isolates the shell runtime that executes it.'
+          },
+          {
+            chapterId: '05-workflow',
+            reason: 'Once the shell loop is clear, the next step is orchestrating multiple shell-driven steps into repeatable workflows.'
+          }
+        ]
       },
       zh: {
+        perspective2026: '过去 12 个月里，Shell Program 已经远不只是 SDK 包装器。成熟的壳程序开始内建计划模式、工具权限、沙箱执行、流式交互、子 Agent 编排和失败恢复循环，它实际上成了模型外围的操作系统。',
         definition: '负责"读取记忆文件 → 构造 API 请求 → 解析响应 → 执行动作 → 更新记忆文件"这一<strong>闭环</strong>的程序。UI 界面程序是 Agent 的执行躯体。',
         essence: 'UI 界面程序本身不产生智能，它是<em>调度者</em>。最好的UI 界面程序来自大模型厂商官方（Claude Code、Codex CLI），原因：\n\n原生支持<strong>多开</strong>（像开多个终端窗口一样启动多个 Agent）；内置<strong>文件系统交互</strong>（直接读写记忆文件）；标准输入输出接口，天然适合<strong>工作流串联</strong>。',
         table: {
@@ -83,7 +105,27 @@
             ['自研 Python 脚本', '你自己', '完全可控', '特定工作流、成本控制'],
           ]
         },
-        insight: '推荐优先使用厂商官方 CLI 作为UI 界面程序，而非自己用 SDK 封装。官方 CLI 在工具调用、错误处理、Token 管理上做了大量优化，踩的坑你不用再踩一遍。'
+        insight: '推荐优先使用厂商官方 CLI 作为UI 界面程序，而非自己用 SDK 封装。官方 CLI 在工具调用、错误处理、Token 管理上做了大量优化，踩的坑你不用再踩一遍。',
+        pitfalls: [
+          '把 Shell 误当成一层很薄的 API wrapper。现实里它往往负责调度、重试、工具中介、状态注入和用户交互。',
+          '过早自研完整壳程序。大多数团队都会低估官方 CLI 已经替你解决掉的运行时复杂度。',
+          '把所有业务状态都塞进壳程序内部，而不是保存在显式的记忆载体里。这样很难迁移、审计和恢复。'
+        ],
+        furtherReading: [
+          { title: 'Claude Code 文档', url: 'https://docs.claude.com/en/docs/claude-code' },
+          { title: 'OpenAI 新闻与博客', url: 'https://openai.com/blog' },
+          { title: 'Model Context Protocol', url: 'https://modelcontextprotocol.io' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '03-agent',
+            reason: '上一章定义了完整 Agent，这一章把其中负责执行的 Shell Runtime 单独拆出来看。'
+          },
+          {
+            chapterId: '05-workflow',
+            reason: '当单次 Shell 闭环明确后，下一步就是把多个闭环编排成稳定可复用的工作流。'
+          }
+        ]
       }
     }
   });

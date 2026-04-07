@@ -1,0 +1,23 @@
+# 04-shell · Phase B Plan
+
+- 目标：在保持现有 Shell Program 定义和对比表的前提下，补齐 Phase B 扩展字段。
+- 保留：现有厂商 CLI 对比、SVG、定义与洞见。
+- 新增 section：
+  - `perspective2026`
+  - `pitfalls`
+  - `furtherReading`
+  - `crossRefs`
+- 2026 视角重点：Shell Program 已从简单 SDK 包装器演进为带计划模式、沙箱、审批和子 Agent 的执行宿主。
+- 误区重点：
+  - 把 Shell 当成薄薄一层 API wrapper
+  - 过早自研完整壳程序
+  - 让 Shell 直接吞掉所有业务状态
+- 交叉引用：
+  - `03-agent`
+  - `05-workflow`
+- 参考资料：
+  - https://docs.claude.com/en/docs/claude-code
+  - https://openai.com/blog
+  - https://modelcontextprotocol.io
+- 文档同步：更新 `CHAPTER.md` 顶部日期与说明，新建 `WORKLOG.md`。
+- 验证：`node --check chapters/04-shell/chapter.js`
