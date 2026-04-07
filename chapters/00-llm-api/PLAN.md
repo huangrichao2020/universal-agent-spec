@@ -1,0 +1,24 @@
+# 00-llm-api · Phase B Plan
+
+- 目标：在不删除任何原字段的前提下，为本章补齐 Phase B 所需扩展数据。
+- 保留：`id/order/nav/title/subtitle/tag/tagClass/viewBox/getSvg/content` 现有结构。
+- 新增 section：
+  - `content.en.perspective2026`
+  - `content.zh.perspective2026`
+  - `content.en.pitfalls` / `content.zh.pitfalls`
+  - `content.en.furtherReading` / `content.zh.furtherReading`
+  - `content.en.crossRefs` / `content.zh.crossRefs`
+- 2026 视角重点：多模态、结构化输出、工具调用增强，但 API 仍然是无状态调用。
+- 误区重点：把聊天记录当记忆、把输出当确定性 API、把更强模型当架构替代品。
+- 交叉引用：
+  - `01-invocation`：单次调用生命周期
+  - `01b-memory`：无状态 API 之外如何补持续性
+- 参考资料：
+  - https://www.anthropic.com/engineering
+  - https://www.anthropic.com/research
+  - https://openai.com/blog
+- 文档同步：
+  - 更新 `CHAPTER.md` 顶部日期与变更说明
+  - 新建 `WORKLOG.md` 记录原因、改动、验证
+- 验证：
+  - `node --check chapters/00-llm-api/chapter.js`
