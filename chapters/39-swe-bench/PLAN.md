@@ -1,0 +1,27 @@
+# 39-swe-bench · Phase C Plan
+
+- 目标：新增“Agent 评测基准全景”章节，覆盖 SWE-bench Verified / GAIA / WebArena。
+- 核心图：使用 `S.timeline` 画 `Benchmark -> Run -> Score -> Analyze`。
+- 内容重点：
+  - benchmark 不等于生产
+  - 过拟合风险
+  - 评测组合
+  - 运行条件要写清楚
+- 真实案例：
+  - https://www.swebench.com
+  - https://openai.com/blog
+- 延伸阅读：
+  - https://www.anthropic.com/engineering
+  - https://www.anthropic.com/research/building-effective-agents
+- 交叉引用：
+  - `27-evaluation`
+  - `28-coding-agents`
+  - `29-case-studies`
+- 可运行代码：
+  - Python 示例，计算多 benchmark 的加权综合分
+- 文档同步：
+  - 新建 `CHAPTER.md`
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/39-swe-bench/chapter.js`
+  - 浏览器临时加载外部 `registry.js/helpers.js/chapter.js`

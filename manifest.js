@@ -47,5 +47,6 @@ window.AGENT_SPEC_MANIFEST = {
     { id: '36-sandboxing',     path: 'chapters/36-sandboxing/chapter.js' },
     { id: '37-cost-routing',   path: 'chapters/37-cost-routing/chapter.js' },
     { id: '38-agent-harness',  path: 'chapters/38-agent-harness/chapter.js' },
+    { id: '39-swe-bench',      path: 'chapters/39-swe-bench/chapter.js' },
   ]
 };
