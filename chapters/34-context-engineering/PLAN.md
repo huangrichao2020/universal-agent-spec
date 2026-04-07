@@ -1,0 +1,27 @@
+# 34-context-engineering · Phase C Plan
+
+- 目标：新增“Context Engineering”章节，强调上下文窗口管理而不只是提示词写法。
+- 核心图：使用 `S.timeline` 画 `Prompt -> Compress -> Inject -> Generate` 流程。
+- 内容重点：
+  - 上下文窗口是最稀缺资源
+  - 压缩策略与摘要状态
+  - 检索注入与 RAG
+  - 全文塞入 vs 选择性注入
+- 真实案例：
+  - https://docs.claude.com/en/docs/claude-code
+  - https://www.anthropic.com/engineering
+- 延伸阅读：
+  - https://modelcontextprotocol.io
+  - https://www.anthropic.com/research/building-effective-agents
+- 交叉引用：
+  - `01b-memory-files`
+  - `24-memory-arch`
+  - `28-coding-agents`
+- 可运行代码：
+  - Python 示例，按 token 预算打包上下文片段
+- 文档同步：
+  - 新建 `CHAPTER.md`
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/34-context-engineering/chapter.js`
+  - 浏览器临时加载外部 `registry.js/helpers.js/chapter.js`

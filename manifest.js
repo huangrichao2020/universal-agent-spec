@@ -42,5 +42,6 @@ window.AGENT_SPEC_MANIFEST = {
     { id: '31-learning-path',  path: 'chapters/31-learning-path/chapter.js' },
     { id: '32-computer-use',   path: 'chapters/32-computer-use/chapter.js' },
     { id: '33-skills-system',  path: 'chapters/33-skills-system/chapter.js' },
+    { id: '34-context-engineering', path: 'chapters/34-context-engineering/chapter.js' },
   ]
 };
