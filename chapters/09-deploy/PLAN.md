@@ -1,0 +1,23 @@
+# 09-deploy · Phase B Plan
+
+- 目标：保留现有本地/云端对照主图与部署权衡说明，只补 Phase B 扩展字段。
+- 保留：Local vs Cloud 主图、三段核心文案。
+- 新增 section：
+  - `perspective2026`
+  - `pitfalls`
+  - `furtherReading`
+  - `crossRefs`
+- 2026 视角重点：混合部署、本地优先和企业数据主权诉求变强，部署模式已直接影响产品路线。
+- 误区重点：
+  - 云端一定体验最好
+  - 本地模式就等于零成本
+  - 忽视密钥管理与数据出境边界
+- 交叉引用：
+  - `08-multi-agent`
+  - `10-light-heavy`
+- 参考资料：
+  - https://www.anthropic.com/engineering
+  - https://docs.claude.com/en/docs/claude-code
+  - https://openai.com/blog
+- 文档同步：更新 `CHAPTER.md` 顶部日期与说明，新建 `WORKLOG.md`。
+- 验证：`node --check chapters/09-deploy/chapter.js`

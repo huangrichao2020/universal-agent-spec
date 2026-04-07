@@ -94,14 +94,56 @@
 
     content: {
       en: {
+        perspective2026: 'Over the last year, deployment choice has become a product-defining decision rather than an infrastructure footnote. Enterprises increasingly demand local-first or hybrid execution for sovereignty, while consumer products optimize for cloud convenience, shared billing, and zero-config onboarding.',
         definition: 'Two Agent deployment modes: <strong>Local</strong> (Agent runs on the user\'s device with their own API key) and <strong>Cloud</strong> (Agent runs on the product\'s server; users pay for usage).',
         essence: 'Fundamentally a trade-off between <em>data sovereignty</em> and <em>ease of use</em>.\n\nLocal is better for: technical users, privacy-sensitive use cases, users who want to control compute costs.\n\nCloud is better for: consumer-facing products that need zero-config, out-of-the-box experience.\n\n<strong>Worth noting:</strong> In cloud mode, user data necessarily flows through your server, regardless of what you "promise." This is an architectural fact, not a matter of intent.',
-        insight: 'Developers with access to cheap compute should consider local mode: data stays on device, costs are self-controlled, and users can use the latest models. Local mode is the architecture where "the Agent truly belongs to the user."'
+        insight: 'Developers with access to cheap compute should consider local mode: data stays on device, costs are self-controlled, and users can use the latest models. Local mode is the architecture where "the Agent truly belongs to the user."',
+        pitfalls: [
+          'Assuming cloud mode always gives better UX. For some technical or privacy-sensitive users, local-first is the better experience.',
+          'Assuming local mode is free. Users still pay with setup complexity, local compute limits, and key management overhead.',
+          'Ignoring secret storage, network egress, and compliance boundaries when choosing deployment. These become product constraints later.'
+        ],
+        furtherReading: [
+          { title: 'Anthropic Engineering', url: 'https://www.anthropic.com/engineering' },
+          { title: 'Claude Code Documentation', url: 'https://docs.claude.com/en/docs/claude-code' },
+          { title: 'OpenAI News', url: 'https://openai.com/blog' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '08-multi-agent',
+            reason: 'Multi-agent systems amplify deployment concerns because artifacts, queues, and workers must cross real environment boundaries.'
+          },
+          {
+            chapterId: '10-light-heavy',
+            reason: 'Your deployment model strongly affects whether your product feels like a light augmentation layer or a heavy agent runtime.'
+          }
+        ]
       },
       zh: {
+        perspective2026: '过去一年里，部署模式已经不再是基础设施细节，而是直接决定产品路线的核心选择。企业侧越来越强调本地优先、混合执行和数据主权；消费级产品则继续押注云端托管、统一计费和零配置体验。',
         definition: '两种 Agent 系统部署方式：<strong>本地模式</strong>（Agent 跑在用户设备，用户自己的 Key）和<strong>云端模式</strong>（Agent 跑在产品服务器，用户充值使用）。',
         essence: '本质上是<em>数据主权</em>和<em>使用门槛</em>之间的取舍。\n\n本地模式更适合：技术用户、对数据隐私有要求的场景、想要自己控制算力成本的用户。\n\n云端模式更适合：面向普通用户的消费级产品，需要零配置开箱即用体验。\n\n<strong>值得注意</strong>：云端模式下，用户数据必然流经你的服务器，不管你是否"承诺不看"。这是架构决定的，不是意愿问题。',
-        insight: '有渠道拿到便宜算力的开发者，本地模式是最香的：数据在本地、成本自控、能用最新模型。本地模式才是真正意义上"Agent 属于用户"的架构。'
+        insight: '有渠道拿到便宜算力的开发者，本地模式是最香的：数据在本地、成本自控、能用最新模型。本地模式才是真正意义上"Agent 属于用户"的架构。',
+        pitfalls: [
+          '默认云端一定体验最好。对技术用户或强隐私场景，本地优先反而才是更好的体验。',
+          '以为本地模式就等于零成本。用户仍然要承担配置复杂度、本地算力限制和密钥管理成本。',
+          '做部署决策时忽视密钥保存、网络出境和合规边界。这些问题最后都会变成产品约束。'
+        ],
+        furtherReading: [
+          { title: 'Anthropic 工程博客', url: 'https://www.anthropic.com/engineering' },
+          { title: 'Claude Code 文档', url: 'https://docs.claude.com/en/docs/claude-code' },
+          { title: 'OpenAI 新闻与博客', url: 'https://openai.com/blog' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '08-multi-agent',
+            reason: '多 Agent 系统一旦落地，队列、产物和工作节点就会把部署边界问题放大很多倍。'
+          },
+          {
+            chapterId: '10-light-heavy',
+            reason: '部署模式会直接影响产品最终呈现为“轻 Agent 增强层”还是“重 Agent 运行时”。'
+          }
+        ]
       }
     }
   });
