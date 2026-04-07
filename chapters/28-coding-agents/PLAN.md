@@ -1,0 +1,30 @@
+# 28-coding-agents · Phase B Plan
+
+- 目标：保留现有编程 Agent 对比与关键教训，补齐 Phase B 扩展字段与维护文档。
+- 保留：Cursor / Codex / Devin / Claude Code 对比、SWE-bench 分数、关键趋势。
+- 新增字段：
+  - `content.en.perspective2026`
+  - `content.zh.perspective2026`
+  - `content.en.pitfalls` / `content.zh.pitfalls`
+  - `content.en.furtherReading` / `content.zh.furtherReading`
+  - `content.en.crossRefs` / `content.zh.crossRefs`
+- 2026 视角重点：
+  - 编程 Agent 成为多 Agent 委派、沙箱执行、上下文压缩与验证闭环的主战场
+  - 分数重要，但恢复能力与验证成本同样重要
+- 常见误区：
+  - 只看 benchmark 分数
+  - 把 Agent 当测试替代品
+  - 追求全自动却忽略验证链路
+- 交叉引用：
+  - `23-graph-orchestration`
+  - `24-memory-arch`
+  - `27-evaluation`
+- 参考资料：
+  - https://docs.claude.com/en/docs/claude-code
+  - https://www.swebench.com
+  - https://openai.com/blog
+- 文档同步：
+  - 更新 `CHAPTER.md` 顶部日期与变更说明
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/28-coding-agents/chapter.js`
