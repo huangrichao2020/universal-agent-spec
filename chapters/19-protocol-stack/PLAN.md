@@ -1,0 +1,26 @@
+# 19-protocol-stack Phase B Plan
+
+- 目标：补齐协议栈章节的 Phase B 元数据，并修复占位版 `CHAPTER.md`。
+- 保留：现有三层协议图、定义、洞见、表格。
+- 新增字段：
+  - `content.en/zh.perspective2026`
+  - `content.en/zh.pitfalls`
+  - `content.en/zh.furtherReading`
+  - `content.en/zh.crossRefs`
+- 内容重点：
+  - 强调分层收敛、跨层治理、组合优于单一万能协议
+  - 作为 16/17/18 三章的收束与总括
+- 交叉引用：
+  - `16-mcp`
+  - `17-a2a`
+  - `18-ag-ui`
+- 延伸阅读：
+  - `https://modelcontextprotocol.io`
+  - `https://google.github.io/A2A`
+  - `https://docs.ag-ui.com`
+- 文档更新：
+  - `CHAPTER.md` 顶部加 `上次更新：2026-04-08`
+  - 补全占位模板为可交接文档
+- 验证：
+  - `node --check chapters/19-protocol-stack/chapter.js`
+  - Node `vm` 注册执行 + 静态服务可访问性检查
