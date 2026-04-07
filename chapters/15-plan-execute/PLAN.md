@@ -1,0 +1,25 @@
+# 15-plan-execute Phase B Plan
+
+- 目标：补齐本章 2026 视角与四类扩展字段，不改现有模式说明。
+- 保留：Planner / Executor / Re-Planner 图示、定义、洞见、对比表。
+- 新增字段：
+  - `content.en/zh.perspective2026`
+  - `content.en/zh.pitfalls`
+  - `content.en/zh.furtherReading`
+  - `content.en/zh.crossRefs`
+- 内容重点：
+  - 强调 checkpoint、重规划、长任务恢复
+  - 说明何时优于 ReAct，何时属于过度设计
+- 交叉引用：
+  - `14-react`
+  - `16-mcp`
+- 延伸阅读：
+  - `https://arxiv.org/abs/2305.04091`
+  - `https://www.anthropic.com/research/building-effective-agents`
+  - `https://docs.claude.com/en/docs/claude-code`
+- 文档更新：
+  - `CHAPTER.md` 顶部加 `上次更新：2026-04-08`
+  - 补充 Phase B 变更说明
+- 验证：
+  - `node --check chapters/15-plan-execute/chapter.js`
+  - Node `vm` 注册执行 + 静态服务可访问性检查
