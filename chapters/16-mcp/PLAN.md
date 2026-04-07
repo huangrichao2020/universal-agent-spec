@@ -1,0 +1,25 @@
+# 16-mcp Phase B Plan
+
+- 目标：补齐本章 Phase B 元数据，并修复占位版 `CHAPTER.md`。
+- 保留：现有 MCP 图示、定义、里程碑、表格。
+- 新增字段：
+  - `content.en/zh.perspective2026`
+  - `content.en/zh.pitfalls`
+  - `content.en/zh.furtherReading`
+  - `content.en/zh.crossRefs`
+- 内容重点：
+  - 强调标准化工具接入、可移植性、运维控制
+  - 明确 MCP 不是通用 Agent-to-Agent 协议
+- 交叉引用：
+  - `12-tool-use`
+  - `19-protocol-stack`
+- 延伸阅读：
+  - `https://modelcontextprotocol.io`
+  - `https://docs.claude.com/en/docs/claude-code`
+  - `https://www.anthropic.com/research/building-effective-agents`
+- 文档更新：
+  - `CHAPTER.md` 顶部加 `上次更新：2026-04-08`
+  - 补全占位模板为可交接文档
+- 验证：
+  - `node --check chapters/16-mcp/chapter.js`
+  - Node `vm` 注册执行 + 静态服务可访问性检查
