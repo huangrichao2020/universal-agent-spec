@@ -1,0 +1,30 @@
+# 21-lowcode · Phase B Plan
+
+- 目标：保留现有 Dify / Coze / n8n 对比，补齐 Phase B 扩展字段与维护文档。
+- 保留：`chapter.js` 现有导航、SVG、定义、表格与对比结论。
+- 新增字段：
+  - `content.en.perspective2026`
+  - `content.zh.perspective2026`
+  - `content.en.pitfalls` / `content.zh.pitfalls`
+  - `content.en.furtherReading` / `content.zh.furtherReading`
+  - `content.en.crossRefs` / `content.zh.crossRefs`
+- 2026 视角重点：
+  - 低代码平台从 demo 工具升级为业务协作层
+  - 与 MCP、评测、护栏、人工审批的集成成为分水岭
+- 常见误区：
+  - 把低代码当成免架构方案
+  - 在可视化画布里硬塞复杂状态机
+  - 忽视版本治理、测试与发布流程
+- 交叉引用：
+  - `20-frameworks`
+  - `16-mcp`
+  - `25-observability`
+- 参考资料：
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://modelcontextprotocol.io
+  - https://openai.com/blog
+- 文档同步：
+  - 更新 `CHAPTER.md` 顶部日期与变更说明
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/21-lowcode/chapter.js`
