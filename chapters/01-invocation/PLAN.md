@@ -1,0 +1,23 @@
+# 01-invocation · Phase B Plan
+
+- 目标：补齐本章 Phase B 扩展字段，不删除原有定义、代码和 SVG。
+- 保留：现有 `definition / essence / code / insight` 全部字段与文案。
+- 新增 section：
+  - `perspective2026`
+  - `pitfalls`
+  - `furtherReading`
+  - `crossRefs`
+- 2026 视角重点：流式响应、长上下文、服务端工具和会话对象增强了“单次调用”的能力，但它依然是有边界的一次激活。
+- 误区重点：
+  - 把一次调用误当完整 Agent
+  - 把长连接/流式输出误当持续运行进程
+  - 把 provider session 误当业务长期记忆
+- 交叉引用：
+  - `00-llm-api`
+  - `01b-memory`
+- 参考资料：
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://docs.claude.com/en/docs/claude-code
+  - https://openai.com/blog
+- 文档同步：更新 `CHAPTER.md` 顶部日期与说明，新建 `WORKLOG.md`。
+- 验证：`node --check chapters/01-invocation/chapter.js`
