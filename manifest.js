@@ -44,5 +44,6 @@ window.AGENT_SPEC_MANIFEST = {
     { id: '33-skills-system',  path: 'chapters/33-skills-system/chapter.js' },
     { id: '34-context-engineering', path: 'chapters/34-context-engineering/chapter.js' },
     { id: '35-long-horizon-tasks', path: 'chapters/35-long-horizon-tasks/chapter.js' },
+    { id: '36-sandboxing',     path: 'chapters/36-sandboxing/chapter.js' },
   ]
 };

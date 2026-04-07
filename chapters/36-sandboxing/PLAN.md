@@ -1,0 +1,27 @@
+# 36-sandboxing · Phase C Plan
+
+- 目标：新增“安全执行 / 权限模型 / bash 沙盒”章节。
+- 核心图：用 `S.box` 画 Host 外层、Sandbox Container 内层，以及其中的 `Untrusted Code`。
+- 内容重点：
+  - 最小权限原则
+  - 文件系统隔离
+  - 网络隔离
+  - 模型生成代码默认不可信
+- 真实案例：
+  - https://docs.claude.com/en/docs/claude-code
+  - https://www.anthropic.com/news/computer-use
+- 延伸阅读：
+  - https://www.anthropic.com/engineering
+  - https://www.anthropic.com/research/building-effective-agents
+- 交叉引用：
+  - `04-shell`
+  - `26-guardrails`
+  - `32-computer-use`
+- 可运行代码：
+  - Python 示例，用允许目录白名单拦截越界写入
+- 文档同步：
+  - 新建 `CHAPTER.md`
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/36-sandboxing/chapter.js`
+  - 浏览器临时加载外部 `registry.js/helpers.js/chapter.js`
