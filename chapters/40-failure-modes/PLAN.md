@@ -1,0 +1,27 @@
+# 40-failure-modes · Phase C Plan
+
+- 目标：新增“失败模式图谱”章节，覆盖 loop、hallucinated tool、context rot 等高频失效。
+- 核心图：使用 `S.stateMachine` 画 4 个失败状态节点。
+- 内容重点：
+  - 识别
+  - 预防
+  - 恢复
+  - 失败不要默默发生
+- 真实案例：
+  - https://www.anthropic.com/engineering
+  - https://www.anthropic.com/research/building-effective-agents
+- 延伸阅读：
+  - https://docs.claude.com/en/docs/claude-code
+  - https://www.anthropic.com/news/computer-use
+- 交叉引用：
+  - `25-observability`
+  - `26-guardrails`
+  - `34-context-engineering`
+- 可运行代码：
+  - Python 示例，根据简单 trace 信号判断 failure mode
+- 文档同步：
+  - 新建 `CHAPTER.md`
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/40-failure-modes/chapter.js`
+  - 浏览器临时加载外部 `registry.js/helpers.js/chapter.js`
