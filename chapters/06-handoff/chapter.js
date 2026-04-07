@@ -65,6 +65,7 @@
 
     content: {
       en: {
+        perspective2026: 'Over the last year, long-running agent tasks, resumable execution, and specialist sub-agents have made handoff documents operationally mandatory. Once work spans minutes, hours, or multiple actors, state must be written down in a machine-usable form or the system cannot resume reliably.',
         definition: 'A "work status document" maintained by each Agent (or project directory), recording <strong>what was done / current state / what to do next</strong>. Solves the Agent statelessness problem, letting "awareness" persist across invocations.',
         essence: 'The handoff document is the <em>shared whiteboard</em> of a multi-Agent system. After Agent A finishes, Agent B doesn\'t need to replay the entire history — just read the handoff doc to know exactly where to pick up.\n\n<strong>Iron rule:</strong> Whenever files in a directory are modified, the handoff document must be updated synchronously. Violate this rule and you get "information silos" — Agent B makes decisions based on stale state and produces garbage.',
         code: `<span class="cmt"># HANDOFF.md — standard format</span>
@@ -82,12 +83,53 @@ Focus on: turnover rate > 15% with volume breakout
 
 <span class="str">## Known Issues</span>
 - 3 missing rows in 002xxx series, marked null`,
-        insight: 'Think of the handoff document as a "real-time Git commit message" — not written for humans, but for the next Agent. The more precise it is, the fewer misjudgments downstream.'
+        insight: 'Think of the handoff document as a "real-time Git commit message" — not written for humans, but for the next Agent. The more precise it is, the fewer misjudgments downstream.',
+        pitfalls: [
+          'Writing essays instead of operational state. A handoff doc should optimize for fast continuation, not storytelling.',
+          'Updating files without updating the handoff in the same turn. That creates stale state and breaks downstream decisions.',
+          'Recording completed work but omitting blockers, next action, and unresolved risks. The next agent then has to rediscover the real status.'
+        ],
+        furtherReading: [
+          { title: 'LangGraph', url: 'https://langchain-ai.github.io/langgraph' },
+          { title: 'Claude Code Documentation', url: 'https://docs.claude.com/en/docs/claude-code' },
+          { title: 'Building Effective Agents', url: 'https://www.anthropic.com/research/building-effective-agents' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '05-workflow',
+            reason: 'Workflows break work into steps; handoff docs preserve the exact state between those steps.'
+          },
+          {
+            chapterId: '07-aware',
+            reason: 'Awareness layers depend on clean state summaries, and handoff docs are one of the simplest durable awareness substrates.'
+          }
+        ]
       },
       zh: {
+        perspective2026: '过去一年里，长周期任务、可恢复执行和专项子 Agent 协作让 handoff 文档从“良好习惯”变成了“运行必需品”。只要任务跨越分钟、小时或多个执行者，状态就必须以机器可复用的形式写下来，否则系统根本无法可靠恢复。',
         definition: '每个 Agent（或项目目录）维护的"工作状态文档"，记录<strong>我做了什么 / 现在状态 / 下一步怎么做</strong>。解决 Agent 无状态问题，让"意识"在多次调用间延续。',
         essence: '交接手册是多 Agent 系统的<em>共享黑板</em>。Agent A 写完后，Agent B 不需要重新理解整个历史，只需读手册就知道接哪里。\n\n<strong>铁律</strong>：每当目录内的文件被修改，对应的交接手册必须同步更新。违反这条规则，工作流就会出现"信息孤岛"，Agent B 基于过期状态做决策，产出垃圾。',
-        insight: '把交接手册理解成"Git commit message 的实时版"——不是给人看的，是给下一个 Agent 看的。越精确，下游 Agent 的误判越少。'
+        insight: '把交接手册理解成"Git commit message 的实时版"——不是给人看的，是给下一个 Agent 看的。越精确，下游 Agent 的误判越少。',
+        pitfalls: [
+          '把交接手册写成长篇说明文，而不是可继续执行的状态摘要。它的目标是让下一个执行者快速接手，不是讲故事。',
+          '文件已经改了，但同一轮里没有同步更新手册。这会制造过期状态，直接误导下游。',
+          '只记录完成结果，不写阻塞点、下一步动作和未解决风险。下一个 Agent 只能重新摸索真实状态。'
+        ],
+        furtherReading: [
+          { title: 'LangGraph', url: 'https://langchain-ai.github.io/langgraph' },
+          { title: 'Claude Code 文档', url: 'https://docs.claude.com/en/docs/claude-code' },
+          { title: 'Anthropic：构建高效 Agent', url: 'https://www.anthropic.com/research/building-effective-agents' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '05-workflow',
+            reason: '工作流把任务拆成多步，而交接手册负责把这些步骤之间的真实状态保存下来。'
+          },
+          {
+            chapterId: '07-aware',
+            reason: '感知层要想判断系统当前处于什么状态，最朴素也最稳定的输入之一就是干净的 handoff 文档。'
+          }
+        ]
       }
     }
   });

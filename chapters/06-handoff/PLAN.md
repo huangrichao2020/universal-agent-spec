@@ -1,0 +1,23 @@
+# 06-handoff · Phase B Plan
+
+- 目标：在保留现有 HANDOFF.md 定义和示例的前提下，补齐 Phase B 扩展字段。
+- 保留：共享黑板比喻、英文代码示例、SVG 主图。
+- 新增 section：
+  - `perspective2026`
+  - `pitfalls`
+  - `furtherReading`
+  - `crossRefs`
+- 2026 视角重点：长周期任务、可恢复执行和子 Agent 协作让 handoff 文档从“好习惯”变成“运行必需品”。
+- 误区重点：
+  - 写成长篇解释而不是可执行状态
+  - 文件改了但手册不同步
+  - 只写结果不写下一步和阻塞点
+- 交叉引用：
+  - `05-workflow`
+  - `07-aware`
+- 参考资料：
+  - https://langchain-ai.github.io/langgraph
+  - https://docs.claude.com/en/docs/claude-code
+  - https://www.anthropic.com/research/building-effective-agents
+- 文档同步：更新 `CHAPTER.md` 顶部日期与说明，新建 `WORKLOG.md`。
+- 验证：`node --check chapters/06-handoff/chapter.js`
