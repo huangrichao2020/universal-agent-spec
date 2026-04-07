@@ -79,6 +79,7 @@
 
     content: {
       en: {
+        perspective2026: 'Over the last year, workflows have matured from simple linear scripts into production orchestration layers with checkpoints, human approval steps, fan-out/fan-in branches, and failure recovery. The core idea still holds: reliability comes from explicit coordination rules, not from hoping agents improvise well together.',
         definition: 'A system where multiple Agents collaborate by following preset rules in sequence (or parallel). <strong>Workflows solve the problem that Agents cannot "chat" with each other</strong> — they replace spontaneous communication with explicit data-passing rules.',
         essence: 'Agents have <em>no spontaneous communication ability</em> — they cannot send messages to each other on their own. The workflow is the "porter": it specifies what format A passes to B after finishing, and grants A the right to invoke B.\n\n<strong>A workflow can be wrapped as a single API endpoint.</strong> External caller hits the endpoint → triggers Agent A → A finishes and calls Agent B → … → final Agent returns result. To the outside world, it looks like one ordinary API call.',
         code: `<span class="cmt"># Workflow exposed as a single API endpoint</span>
@@ -91,9 +92,30 @@
     <span class="cmt"># 3. C synthesizes everything</span>
     report = subprocess.<span class="fn">run</span>([<span class="str">"claude"</span>, <span class="str">"--skill"</span>, <span class="str">"report"</span>, analysis.stdout])
     <span class="kw">return</span> report.stdout`,
-        insight: 'Workflow stability determines the reliability of the entire system. An Agent being "smart" is a bonus; the workflow being "stable" is the foundation. One workflow bug wastes all Agents.'
+        insight: 'Workflow stability determines the reliability of the entire system. An Agent being "smart" is a bonus; the workflow being "stable" is the foundation. One workflow bug wastes all Agents.',
+        pitfalls: [
+          'Assuming agents will naturally coordinate if you put them in the same system. Without explicit routing and handoff rules, they will drift.',
+          'Skipping interface design between steps. Poorly specified outputs make downstream agents brittle and expensive to debug.',
+          'Using workflows to hide bad decomposition. If the step boundaries are wrong, more orchestration only amplifies the mess.'
+        ],
+        furtherReading: [
+          { title: 'LangGraph', url: 'https://langchain-ai.github.io/langgraph' },
+          { title: 'Microsoft AutoGen', url: 'https://microsoft.github.io/autogen' },
+          { title: 'Building Effective Agents', url: 'https://www.anthropic.com/research/building-effective-agents' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '04-shell',
+            reason: 'Workflows are composed from repeated shell-driven execution loops.'
+          },
+          {
+            chapterId: '06-handoff',
+            reason: 'Once multiple steps exist, handoff discipline becomes the mechanism that keeps state legible across those steps.'
+          }
+        ]
       },
       zh: {
+        perspective2026: '过去一年里，工作流已经从简单串行脚本演进成生产级编排层：带检查点、人工审批、扇出/汇聚分支和失败恢复。核心规律并没有变，系统的可靠性来自显式协调规则，而不是指望多个 Agent 自己临场发挥得很好。',
         definition: '多个 Agent 按照预设规则分工、依次（或并行）处理任务的系统。<strong>工作流解决 Agent 之间不能"闲聊"的问题</strong>——通过明确的数据传递规则替代自发通信。',
         essence: 'Agent 之间<em>没有自发通信能力</em>——它们不会主动给对方发消息。工作流就是"搬运工"：规定 A 干完了把产出以什么格式传给 B，并且 A 要有权限调用 B。\n\n<strong>工作流对外可以包装成一个 API 接口</strong>：外部调用这个接口 → 触发 Agent A → A 完成后调用 Agent B → … → 最终 Agent 返回结果。对外部来说，这就是一次普通的 API 调用。',
         code: `<span class="cmt"># 工作流对外是一个 API 接口</span>
@@ -103,7 +125,27 @@
     analysis = subprocess.<span class="fn">run</span>([<span class="str">"claude"</span>, <span class="str">"--skill"</span>, <span class="str">"analyze"</span>, data.stdout])
     report = subprocess.<span class="fn">run</span>([<span class="str">"claude"</span>, <span class="str">"--skill"</span>, <span class="str">"report"</span>, analysis.stdout])
     <span class="kw">return</span> report.stdout`,
-        insight: '工作流的稳定性决定整个系统的可靠性。Agent 的"聪明"是锦上添花，工作流的"稳定"才是地基。一个工作流出了 bug，所有 Agent 都白费。'
+        insight: '工作流的稳定性决定整个系统的可靠性。Agent 的"聪明"是锦上添花，工作流的"稳定"才是地基。一个工作流出了 bug，所有 Agent 都白费。',
+        pitfalls: [
+          '以为把多个 Agent 放进同一个系统，它们就会自然协作。没有显式路由和交接规则，只会漂移。',
+          '不设计步骤之间的输入输出契约。上下游边界不清，后续调试会极其脆弱和昂贵。',
+          '用工作流去掩盖糟糕的任务拆分。步骤边界错了，编排越复杂，混乱只会被放大。'
+        ],
+        furtherReading: [
+          { title: 'LangGraph', url: 'https://langchain-ai.github.io/langgraph' },
+          { title: 'Microsoft AutoGen', url: 'https://microsoft.github.io/autogen' },
+          { title: 'Anthropic：构建高效 Agent', url: 'https://www.anthropic.com/research/building-effective-agents' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '04-shell',
+            reason: '工作流本质上是由多个 Shell 驱动闭环拼接出来的系统。'
+          },
+          {
+            chapterId: '06-handoff',
+            reason: '一旦工作流跨多个步骤和多个 Agent，交接纪律就成了保持状态清晰的关键机制。'
+          }
+        ]
       }
     }
   });

@@ -1,0 +1,23 @@
+# 05-workflow · Phase B Plan
+
+- 目标：保留现有工作流定义、示例代码和 SVG，仅补 Phase B 扩展字段。
+- 保留：API 封装示例、工作流主图、既有 definition/essence/insight。
+- 新增 section：
+  - `perspective2026`
+  - `pitfalls`
+  - `furtherReading`
+  - `crossRefs`
+- 2026 视角重点：工作流已从简单串行脚本演进到带检查点、人工审批、图编排和并发控制的生产运行方式。
+- 误区重点：
+  - 把工作流当成 Agent 自己会“自然聊起来”
+  - 不定义 Agent 间输入输出契约
+  - 用工作流掩盖糟糕的步骤拆分
+- 交叉引用：
+  - `04-shell`
+  - `06-handoff`
+- 参考资料：
+  - https://langchain-ai.github.io/langgraph
+  - https://microsoft.github.io/autogen
+  - https://www.anthropic.com/research/building-effective-agents
+- 文档同步：更新 `CHAPTER.md` 顶部日期与说明，新建 `WORKLOG.md`。
+- 验证：`node --check chapters/05-workflow/chapter.js`
