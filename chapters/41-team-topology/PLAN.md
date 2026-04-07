@@ -1,0 +1,27 @@
+# 41-team-topology · Phase C Plan
+
+- 目标：新增“人 + Agent 协作组织拓扑”章节。
+- 核心图：使用 `S.sequence` 画 Human <-> Agent 的消息与审批往返。
+- 内容重点：
+  - 审批节点
+  - 信任层级
+  - 人机分工
+  - 失败后的人工接管
+- 真实案例：
+  - https://docs.claude.com/en/docs/claude-code
+  - https://www.anthropic.com/research/building-effective-agents
+- 延伸阅读：
+  - https://www.anthropic.com/engineering
+  - https://modelcontextprotocol.io
+- 交叉引用：
+  - `06-handoff`
+  - `35-long-horizon-tasks`
+  - `40-failure-modes`
+- 可运行代码：
+  - Python 示例，按风险级别把任务分配给 Agent 或人工审批
+- 文档同步：
+  - 新建 `CHAPTER.md`
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/41-team-topology/chapter.js`
+  - 浏览器临时加载外部 `registry.js/helpers.js/chapter.js`

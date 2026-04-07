@@ -49,5 +49,6 @@ window.AGENT_SPEC_MANIFEST = {
     { id: '38-agent-harness',  path: 'chapters/38-agent-harness/chapter.js' },
     { id: '39-swe-bench',      path: 'chapters/39-swe-bench/chapter.js' },
     { id: '40-failure-modes',  path: 'chapters/40-failure-modes/chapter.js' },
+    { id: '41-team-topology',  path: 'chapters/41-team-topology/chapter.js' },
   ]
 };
