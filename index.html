@@ -113,6 +113,86 @@
     font-family: var(--sans);
   }
 
+  .header-info { min-width: 0; }
+
+  .header-controls {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    min-width: min(520px, 100%);
+  }
+
+  .header-tools {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .search-wrap {
+    width: min(520px, 100%);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .search-input {
+    width: min(320px, 100%);
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 13px;
+    font-family: var(--sans);
+    outline: none;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+
+  .search-input::placeholder { color: var(--text4); }
+
+  .search-input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px var(--blue-light);
+  }
+
+  .filter-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .filter-btn {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 7px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text3);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover {
+    color: var(--text);
+    border-color: var(--border2);
+    transform: translateY(-1px);
+  }
+
+  .filter-btn.active {
+    color: var(--blue);
+    border-color: rgba(0,113,227,0.3);
+    background: var(--blue-light);
+    box-shadow: var(--shadow-sm);
+  }
+
   /* ── LANG TOGGLE ── */
   .lang-toggle {
     display: flex;
@@ -178,6 +258,14 @@
     font-family: var(--sans);
   }
 
+  .sidebar-empty {
+    padding: 0 18px;
+    color: var(--text4);
+    font-size: 12px;
+    line-height: 1.7;
+    font-family: var(--sans);
+  }
+
   .nav-item {
     display: flex;
     align-items: center;
@@ -212,6 +300,17 @@
   .main {
     padding: 40px 48px;
     max-width: 920px;
+  }
+
+  .empty-state {
+    padding: 28px 30px;
+    border-radius: var(--radius);
+    border: 1px dashed var(--border2);
+    background: var(--surface);
+    color: var(--text3);
+    font-size: 14px;
+    line-height: 1.8;
+    box-shadow: var(--shadow-sm);
   }
 
   /* ── CONCEPT CARD ── */
@@ -516,6 +615,11 @@
     .sidebar { display: none; }
     .main { padding: 24px 20px; }
     .header { padding: 14px 20px; flex-wrap: wrap; }
+    .header-controls { width: 100%; min-width: 0; align-items: stretch; }
+    .header-tools { justify-content: flex-start; }
+    .search-wrap { width: 100%; justify-content: stretch; }
+    .search-input { width: 100%; }
+    .filter-group { justify-content: flex-start; }
   }
 </style>
 
@@ -581,7 +685,7 @@
   <template v-else>
     <!-- HEADER -->
     <header class="header">
-      <div>
+      <div class="header-info">
         <div class="header-title">
           <template v-if="lang === 'zh'">通用 <span>Agent</span> 定义规范</template>
           <template v-else>Universal <span>Agent</span> Spec</template>
@@ -592,16 +696,33 @@
         </div>
       </div>
 
-      <!-- BADGE + LANG TOGGLE grouped together -->
-      <div style="display:flex;align-items:center;gap:10px;margin-left:auto;">
-        <span class="header-badge">{{ chapters.length }} {{ lang === 'zh' ? '核心概念' : 'Concepts' }}</span>
-        <div class="lang-toggle" style="margin-left:0">
-          <button
-            v-for="l in LANGS" :key="l"
-            class="lang-btn"
-            :class="{ active: lang === l }"
-            @click="setLang(l)"
-          >{{ LANG_NAMES[l] }}</button>
+      <div class="header-controls">
+        <div class="search-wrap">
+          <input
+            v-model="searchQuery"
+            class="search-input"
+            type="search"
+            :placeholder="lang === 'zh' ? '搜索章节标题或导航...' : 'Search titles or navigation...'"
+          />
+        </div>
+        <div class="header-tools">
+          <div class="filter-group">
+            <button
+              v-for="filter in FILTERS" :key="filter.value"
+              class="filter-btn"
+              :class="{ active: activeFilter === filter.value }"
+              @click="setFilter(filter.value)"
+            >{{ t(filter.label) }}</button>
+          </div>
+          <span class="header-badge">{{ visibleCountLabel }} {{ lang === 'zh' ? '核心概念' : 'Concepts' }}</span>
+          <div class="lang-toggle" style="margin-left:0">
+            <button
+              v-for="l in LANGS" :key="l"
+              class="lang-btn"
+              :class="{ active: lang === l }"
+              @click="setLang(l)"
+            >{{ LANG_NAMES[l] }}</button>
+          </div>
         </div>
       </div>
     </header>
@@ -611,23 +732,26 @@
       <nav class="sidebar">
         <div class="sidebar-label">{{ lang === 'zh' ? '概念导航' : 'Contents' }}</div>
         <div
-          v-for="(c, i) in chapters"
+          v-for="c in filteredChapters"
           :key="c.id"
           class="nav-item"
-          :class="{ active: activeIdx === i }"
-          @click="scrollTo(i)"
+          :class="{ active: activeId === c.id }"
+          @click="scrollTo(c.id)"
         >
           <span class="nav-num">{{ String(c.order).padStart(2, '0') }}</span>
           <span>{{ t(c.nav) }}</span>
+        </div>
+        <div v-if="!filteredChapters.length" class="sidebar-empty">
+          {{ lang === 'zh' ? '没有匹配的章节。' : 'No matching chapters.' }}
         </div>
       </nav>
 
       <!-- MAIN -->
       <main class="main" ref="mainEl" @scroll="onScroll">
         <div
-          v-for="(c, i) in chapters"
+          v-for="c in filteredChapters"
           :key="c.id"
-          :ref="el => cardRefs[i] = el"
+          :ref="el => setCardRef(c.id, el)"
           class="concept-card"
         >
           <!-- CARD HEADER -->
@@ -710,6 +834,11 @@
             </div>
           </div>
         </div>
+        <div v-if="!filteredChapters.length" class="empty-state">
+          {{ lang === 'zh'
+            ? '没有找到符合当前搜索条件和标签筛选的章节，请调整关键词或过滤器。'
+            : 'No chapters match the current search query and tag filter. Adjust the keyword or filter and try again.' }}
+        </div>
       </main>
     </div>
 
@@ -721,19 +850,29 @@
 </div>
 
 <script>
-const { createApp, ref, computed, onMounted } = Vue;
+const { createApp, ref, computed, onMounted, watch, nextTick } = Vue;
 
 createApp({
   setup() {
     const lang      = ref('zh');   // default: 中文
     const loading   = ref(true);
     const chapters  = ref([]);
-    const activeIdx = ref(0);
+    const activeId  = ref('');
     const mainEl    = ref(null);
-    const cardRefs  = ref([]);
+    const cardRefs  = ref({});
+    const searchQuery = ref('');
+    const activeFilter = ref('all');
 
     const LANGS     = window.AgentSpec.LANGS;
     const LANG_NAMES = window.AgentSpec.LANG_NAMES;
+    const FILTERS = [
+      { value: 'all', label: { en: 'All', zh: '全部' } },
+      { value: 'tag-infra', label: { en: 'Infra', zh: '基础设施' } },
+      { value: 'tag-core', label: { en: 'Core', zh: '核心概念' } },
+      { value: 'tag-system', label: { en: 'System', zh: '系统' } },
+      { value: 'tag-pattern', label: { en: 'Pattern', zh: '模式' } },
+      { value: 'tag-biz', label: { en: 'Business', zh: '商业' } }
+    ];
 
     // ── helpers ──
     const t = (field) => window.AgentSpec.t(field, lang.value);
@@ -757,37 +896,101 @@ createApp({
       </svg>`;
     };
 
+    const filteredChapters = computed(() => {
+      let result = chapters.value;
+      if (activeFilter.value !== 'all') {
+        result = result.filter(c => c.tagClass === activeFilter.value);
+      }
+      if (searchQuery.value.trim()) {
+        const q = searchQuery.value.toLowerCase();
+        result = result.filter(c => {
+          const nav = (c.nav?.en || '') + (c.nav?.zh || '');
+          const title = (c.title?.en || '') + (c.title?.zh || '');
+          return nav.toLowerCase().includes(q) || title.toLowerCase().includes(q);
+        });
+      }
+      return result;
+    });
+
+    const visibleCountLabel = computed(() => {
+      return filteredChapters.value.length === chapters.value.length
+        ? String(chapters.value.length)
+        : `${filteredChapters.value.length}/${chapters.value.length}`;
+    });
+
     // ── language ──
     function setLang(l) {
       lang.value = l;
     }
 
+    function setFilter(value) {
+      activeFilter.value = value;
+    }
+
+    function setCardRef(id, el) {
+      if (el) cardRefs.value[id] = el;
+      else delete cardRefs.value[id];
+    }
+
     // ── navigation ──
-    function scrollTo(i) {
-      activeIdx.value = i;
-      const el = cardRefs.value[i];
+    function scrollTo(id) {
+      activeId.value = id;
+      const el = cardRefs.value[id];
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function onScroll() {
       if (!mainEl.value) return;
       const top = mainEl.value.scrollTop + 80;
-      for (let i = cardRefs.value.length - 1; i >= 0; i--) {
-        const el = cardRefs.value[i];
-        if (el && el.offsetTop <= top) { activeIdx.value = i; break; }
+      for (let i = filteredChapters.value.length - 1; i >= 0; i--) {
+        const chapter = filteredChapters.value[i];
+        const el = cardRefs.value[chapter.id];
+        if (el && el.offsetTop <= top) {
+          activeId.value = chapter.id;
+          break;
+        }
       }
     }
 
-    // ── chapters are all inlined — just read synchronously ──
-    onMounted(() => {
-      chapters.value = window.AgentSpec.getChapters();
+    function waitForChapters(timeoutMs = 5000) {
+      const expected = window.AGENT_SPEC_MANIFEST?.chapters?.length || 0;
+      const startedAt = Date.now();
+      return new Promise(resolve => {
+        const check = () => {
+          const registered = window.AgentSpec.getChapters();
+          const timedOut = Date.now() - startedAt >= timeoutMs;
+          if (!expected || registered.length >= expected || timedOut) {
+            resolve(registered);
+            return;
+          }
+          window.setTimeout(check, 16);
+        };
+        check();
+      });
+    }
+
+    watch(filteredChapters, async (list) => {
+      if (!list.length) {
+        activeId.value = '';
+        return;
+      }
+      if (list.some(c => c.id === activeId.value)) return;
+      activeId.value = list[0].id;
+      await nextTick();
+      if (mainEl.value) mainEl.value.scrollTo({ top: 0, behavior: 'smooth' });
+    }, { immediate: true });
+
+    // ── chapters are registered by manifest-driven script loaders ──
+    onMounted(async () => {
+      chapters.value = await waitForChapters();
       loading.value = false;
     });
 
     return {
-      lang, loading, chapters, activeIdx, mainEl, cardRefs,
-      LANGS, LANG_NAMES,
-      t, content, buildSvg, setLang, scrollTo, onScroll
+      lang, loading, chapters, activeId, mainEl, cardRefs,
+      searchQuery, activeFilter, filteredChapters, visibleCountLabel,
+      LANGS, LANG_NAMES, FILTERS,
+      t, content, buildSvg, setLang, setFilter, setCardRef, scrollTo, onScroll
     };
   }
 }).mount('#app');
