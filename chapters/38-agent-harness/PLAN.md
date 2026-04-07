@@ -1,0 +1,27 @@
+# 38-agent-harness · Phase C Plan
+
+- 目标：新增“Claude Code / Codex / Cursor Agent / Devin 横向对比”章节。
+- 核心图：使用 `S.box` 画 4 个 Agent harness 并排对比。
+- 内容重点：
+  - 执行环境差异
+  - 工具集差异
+  - 自主性级别
+  - review loop 与恢复能力
+- 真实案例：
+  - https://docs.claude.com/en/docs/claude-code
+  - https://openai.com/blog
+- 延伸阅读：
+  - https://www.swebench.com
+  - https://www.anthropic.com/engineering
+- 交叉引用：
+  - `28-coding-agents`
+  - `35-long-horizon-tasks`
+  - `36-sandboxing`
+- 可运行代码：
+  - Python 示例，按任务需求选择 harness
+- 文档同步：
+  - 新建 `CHAPTER.md`
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/38-agent-harness/chapter.js`
+  - 浏览器临时加载外部 `registry.js/helpers.js/chapter.js`

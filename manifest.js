@@ -46,5 +46,6 @@ window.AGENT_SPEC_MANIFEST = {
     { id: '35-long-horizon-tasks', path: 'chapters/35-long-horizon-tasks/chapter.js' },
     { id: '36-sandboxing',     path: 'chapters/36-sandboxing/chapter.js' },
     { id: '37-cost-routing',   path: 'chapters/37-cost-routing/chapter.js' },
+    { id: '38-agent-harness',  path: 'chapters/38-agent-harness/chapter.js' },
   ]
 };
