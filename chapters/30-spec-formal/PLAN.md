@@ -1,0 +1,30 @@
+# 30-spec-formal · Phase B Plan
+
+- 目标：保留 8 个规范组件与映射表，补齐 Phase B 扩展字段与维护文档。
+- 保留：Agent Card、I/O、工具接口、状态、生命周期、任务模型、记忆 API、护栏钩子。
+- 新增字段：
+  - `content.en.perspective2026`
+  - `content.zh.perspective2026`
+  - `content.en.pitfalls` / `content.zh.pitfalls`
+  - `content.en.furtherReading` / `content.zh.furtherReading`
+  - `content.en.crossRefs` / `content.zh.crossRefs`
+- 2026 视角重点：
+  - 规范价值在互操作与组合，不在替代现有协议
+  - 重点是版本协商、最小合规、状态和安全钩子
+- 常见误区：
+  - 写成“大一统框架”
+  - 对简单 Agent 过度规范化
+  - 忽略兼容性和演进策略
+- 交叉引用：
+  - `16-mcp`
+  - `18-ag-ui`
+  - `26-guardrails`
+- 参考资料：
+  - https://modelcontextprotocol.io
+  - https://docs.pydantic.dev/latest/concepts/agents/
+  - https://www.anthropic.com/research/building-effective-agents
+- 文档同步：
+  - 更新 `CHAPTER.md` 顶部日期与变更说明
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/30-spec-formal/chapter.js`
