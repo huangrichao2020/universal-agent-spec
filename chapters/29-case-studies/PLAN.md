@@ -1,0 +1,30 @@
+# 29-case-studies · Phase B Plan
+
+- 目标：保留三个生产案例与共性模式总结，补齐 Phase B 扩展字段与维护文档。
+- 保留：客服、研究、数据分析三类案例及其架构映射。
+- 新增字段：
+  - `content.en.perspective2026`
+  - `content.zh.perspective2026`
+  - `content.en.pitfalls` / `content.zh.pitfalls`
+  - `content.en.furtherReading` / `content.zh.furtherReading`
+  - `content.en.crossRefs` / `content.zh.crossRefs`
+- 2026 视角重点：
+  - 真实案例趋向混合架构、人工升级、评测和护栏一体化
+  - 案例复用要看任务结构与风险，不是照搬拓扑图
+- 常见误区：
+  - 生搬别人的案例架构
+  - 没有人工兜底
+  - 忽略数据权限和集成成本
+- 交叉引用：
+  - `22-arch-patterns`
+  - `25-observability`
+  - `26-guardrails`
+- 参考资料：
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://www.anthropic.com/engineering
+  - https://www.swebench.com
+- 文档同步：
+  - 更新 `CHAPTER.md` 顶部日期与变更说明
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/29-case-studies/chapter.js`
