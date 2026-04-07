@@ -1,0 +1,27 @@
+# 37-cost-routing · Phase C Plan
+
+- 目标：新增“多模型路由 / 便宜模型把关 / 缓存”章节。
+- 核心图：用 `S.box + S.arrow` 画 `Request -> Router -> {Cheap Model, Expensive Model, Cache}`。
+- 内容重点：
+  - 成本 vs 质量权衡
+  - 语义缓存
+  - 级联路由
+  - 风险敏感的模型升级
+- 真实案例：
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://openai.com/blog
+- 延伸阅读：
+  - https://www.anthropic.com/engineering
+  - https://docs.claude.com/en/docs/claude-code
+- 交叉引用：
+  - `10-light-heavy`
+  - `15-plan-execute`
+  - `27-evaluation`
+- 可运行代码：
+  - Python 示例，按 cache / risk / confidence 选择路由
+- 文档同步：
+  - 新建 `CHAPTER.md`
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/37-cost-routing/chapter.js`
+  - 浏览器临时加载外部 `registry.js/helpers.js/chapter.js`
