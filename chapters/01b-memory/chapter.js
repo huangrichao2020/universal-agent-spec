@@ -78,9 +78,30 @@
 
     content: {
       en: {
+        perspective2026: 'Over the last year, context windows have expanded and providers have introduced richer session primitives, but those features did not remove the need for explicit memory design. Teams still rely on compressed, file-based memory because durable identity, domain knowledge, and task state must stay inspectable, editable, and cheap to reload.',
         definition: 'A set of plain text files (Markdown, JSON, etc.) that store everything an Agent needs to persist across invocations: identity, domain knowledge, skills, work history, and current state. <strong>Memory files are why an Agent can "remember" — the LLM itself cannot.</strong>',
         essence: 'The LLM API is stateless by design — send a request, get a response, everything vanishes. This is efficient but brutal: without memory files, every invocation starts cold. The Agent would have no name, no expertise, no idea what it did yesterday.\n\nMemory files were invented to solve exactly this: <em>wrap the stateless LLM call in a persistent context layer.</em> Before calling the API, the UI interface program reads relevant memory files and injects them into the prompt. After the call, new knowledge and results are written back. The LLM stays stateless; the Agent gains continuity.\n\nThis is why <strong>memory files are an Agent\'s most valuable asset</strong> — not the model, not the code, but the accumulated files that make a generic LLM behave like a specialist with history.',
         insight: 'OpenClaw is a good example: its "龙虾" persona isn\'t hardcoded in software — it lives in a <code>persona.md</code> file. Its Feishu-sending ability lives in a <code>skill_feishu.md</code>. Swap those files and you have a completely different Agent, running on the same codebase. The files <em>are</em> the Agent.',
+        pitfalls: [
+          'Treating a larger context window as long-term memory. Bigger windows delay the problem; they do not create durable state.',
+          'Dumping every historical artifact into one giant memory blob. Without compression and layering, retrieval quality collapses and cost spikes.',
+          'Mixing identity, domain knowledge, live task state, and logs into the same file. Different memory types need different update rules.'
+        ],
+        furtherReading: [
+          { title: 'Building Effective Agents', url: 'https://www.anthropic.com/research/building-effective-agents' },
+          { title: 'Claude Code Documentation', url: 'https://docs.claude.com/en/docs/claude-code' },
+          { title: 'Anthropic Skills', url: 'https://www.anthropic.com/news/skills' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '01-invocation',
+            reason: 'This chapter answers what survives after a single invocation ends.'
+          },
+          {
+            chapterId: '01b-memory-files',
+            reason: 'The next chapter goes one level deeper into concrete memory file structure and how those files are composed.'
+          }
+        ],
         table: {
           title: 'Memory File Types',
           headers: ['File', 'Stores', 'Analogy'],
@@ -94,9 +115,30 @@
         }
       },
       zh: {
+        perspective2026: '过去一年里，上下文窗口更长了，provider 也开始提供更丰富的 session 形态，但这并没有消除“显式记忆设计”的必要性。工程团队依然大量依赖可压缩、可编辑、可审计的文件化记忆，因为身份、领域知识和任务状态必须能被长期保存、按需重载且成本可控。',
         definition: '一组纯文本文件（Markdown、JSON 等），存储 Agent 在多次调用之间需要持久保留的一切：身份、领域知识、技能、工作历史和当前状态。<strong>记忆文件是 Agent 能"记住事情"的原因——大模型本身做不到。</strong>',
         essence: '大模型 API 天生无状态——发一个请求，收一个回复，一切消散。这很高效，但很残忍：没有记忆文件，每次调用都是冷启动。Agent 不知道自己叫什么、不知道自己会什么、不知道昨天干了什么。\n\n记忆文件正是为解决这个问题而被发明出来的：<em>在无状态的大模型调用外面，包一层持久化的上下文层。</em>调用 API 之前，UI 界面程序读取相关记忆文件注入 prompt；调用结束后，新的知识和结果写回文件。大模型保持无状态；Agent 获得了连续性。\n\n这就是为什么<strong>记忆文件是 Agent 最值钱的资产</strong>——不是模型，不是代码，而是那些让一个通用大模型表现得像领域专家的积累文件。\n\n以 OpenClaw 为例：它的"龙虾"人格不是硬编码在程序里的，而是存在一个 <code>persona.md</code> 文件里。它发飞书消息的能力，存在 <code>skill_feishu.md</code> 里。换掉这些文件，同一套代码就变成了完全不同的 Agent。<em>文件就是 Agent 本身。</em>',
         insight: '很多人第一次理解记忆文件时会说"那不就是 prompt 吗"——不完全是。Prompt 是单次调用时临时构造的，用完就丢。记忆文件是持久存在的，跨越无数次调用，会被读取、被更新、被积累。这一字之差，决定了 Agent 有没有"成长"的能力。',
+        pitfalls: [
+          '把更大的上下文窗口当成长期记忆。窗口再大，也只是把问题往后推，并没有创造可持久状态。',
+          '把所有历史一股脑塞进一个超大记忆文件。不分层、不压缩，最终只会让检索质量下降、成本上升。',
+          '把身份、领域知识、实时任务状态和日志混在同一份文件里。不同记忆类型需要不同的更新规则。'
+        ],
+        furtherReading: [
+          { title: 'Anthropic：构建高效 Agent', url: 'https://www.anthropic.com/research/building-effective-agents' },
+          { title: 'Claude Code 文档', url: 'https://docs.claude.com/en/docs/claude-code' },
+          { title: 'Anthropic Skills 发布', url: 'https://www.anthropic.com/news/skills' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '01-invocation',
+            reason: '这一章回答的是：一次调用结束后，到底有什么东西能继续存活下来。'
+          },
+          {
+            chapterId: '01b-memory-files',
+            reason: '下一章会继续下钻到“具体有哪些记忆文件、如何组合”这个层面。'
+          }
+        ],
         table: {
           title: '记忆文件类型',
           headers: ['文件', '存储内容', '类比'],

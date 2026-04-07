@@ -1,0 +1,23 @@
+# 01b-memory · Phase B Plan
+
+- 目标：保留现有“记忆文件为何存在”的主体内容，只补 Phase B 扩展字段。
+- 保留：现有 OpenClaw 案例、表格、SVG 与中英文解释。
+- 新增 section：
+  - `perspective2026`
+  - `pitfalls`
+  - `furtherReading`
+  - `crossRefs`
+- 2026 视角重点：上下文窗口变长、provider session 更丰富，但文件化长期记忆和压缩策略仍然是工程主流。
+- 误区重点：
+  - 把大上下文当长期记忆
+  - 不做压缩分层，把所有历史都塞进去
+  - 混淆身份记忆、任务状态和日志
+- 交叉引用：
+  - `01-invocation`
+  - `01b-memory-files`
+- 参考资料：
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://docs.claude.com/en/docs/claude-code
+  - https://www.anthropic.com/news/skills
+- 文档同步：更新 `CHAPTER.md` 顶部日期与说明，新建 `WORKLOG.md`。
+- 验证：`node --check chapters/01b-memory/chapter.js`
