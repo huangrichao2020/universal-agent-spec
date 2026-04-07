@@ -1,0 +1,30 @@
+# 23-graph-orchestration · Phase B Plan
+
+- 目标：保留图编排主图和核心解释，补齐 Phase B 扩展字段与维护文档。
+- 保留：`StateGraph`、条件边、检查点、人机协作、Scatter-Gather 现有内容。
+- 新增字段：
+  - `content.en.perspective2026`
+  - `content.zh.perspective2026`
+  - `content.en.pitfalls` / `content.zh.pitfalls`
+  - `content.en.furtherReading` / `content.zh.furtherReading`
+  - `content.en.crossRefs` / `content.zh.crossRefs`
+- 2026 视角重点：
+  - 图编排成为长程任务、编码 Agent、人工审批流的核心底座
+  - 重点不只在图本身，而在状态 schema、恢复能力、审计与回放
+- 常见误区：
+  - 简单任务也强行上图
+  - 状态模型设计含糊
+  - 只做回放不做评测和审计
+- 交叉引用：
+  - `22-arch-patterns`
+  - `24-memory-arch`
+  - `28-coding-agents`
+- 参考资料：
+  - https://langchain-ai.github.io/langgraph
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://arxiv.org/abs/2305.04091
+- 文档同步：
+  - 更新 `CHAPTER.md` 顶部日期与变更说明
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/23-graph-orchestration/chapter.js`
