@@ -91,14 +91,56 @@
 
     content: {
       en: {
+        perspective2026: 'Over the last year, agent monetization has shifted away from "selling access to a smart model" toward selling memory, workflow integration, domain reliability, and outcome delivery. The market is learning that generic intelligence is cheap to rent; operationalized expertise is what gets paid for.',
         definition: 'Two business routes: <strong>ToB</strong> — sell the Agent itself (shell + memory files), one-time purchase, user brings their own compute; <strong>ToC</strong> — sell product service, Agent runs on your server, users pay for usage.',
         essence: 'The core difference is <em>who bears compute cost</em> and <em>where the moat comes from</em>.\n\nToB moat: <strong>Domain memory.</strong> An Agent with accumulated expertise in medicine, law, finance — expertise a buyer cannot quickly replicate — is truly valuable.\n\nToC moat: <strong>Product UX + user habit.</strong> Compute cost is your burden, but scale effects and user stickiness are your barriers.\n\nNote: ToB is not "selling a Prompt collection." The real value is the <em>domain memory files</em> — the professionally validated knowledge base built from extensive practice.',
-        insight: 'In the Agent era, ToB business sells not software features but "a copy of an expert\'s brain." Selling a top-tier sales Agent\'s memory to 100 companies is more scalable than training 100 salespeople.'
+        insight: 'In the Agent era, ToB business sells not software features but "a copy of an expert\'s brain." Selling a top-tier sales Agent\'s memory to 100 companies is more scalable than training 100 salespeople.',
+        pitfalls: [
+          'Treating prompt packs as a moat. Prompts are easy to copy; validated domain memory and workflow integration are not.',
+          'Ignoring compute, support, and deployment cost when pricing. Agent margins collapse quickly when runtime costs are mis-modeled.',
+          'Using the same pricing logic for ToB and ToC. Enterprise value capture and consumer retention operate on different economics.'
+        ],
+        furtherReading: [
+          { title: 'Anthropic Engineering', url: 'https://www.anthropic.com/engineering' },
+          { title: 'Anthropic Skills', url: 'https://www.anthropic.com/news/skills' },
+          { title: 'OpenAI News', url: 'https://openai.com/blog' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '10-light-heavy',
+            reason: 'Your light-vs-heavy product choice sets the cost structure and value proposition that the business model must support.'
+          },
+          {
+            chapterId: '12-tool-use',
+            reason: 'After choosing a business route, the next layer of defensibility often comes from which tools and external systems the Agent can actually operate.'
+          }
+        ]
       },
       zh: {
+        perspective2026: '过去一年里，Agent 商业化的重心已经从“卖一个更聪明的模型入口”转向“卖记忆、工作流集成、领域可靠性和结果交付”。市场正在认识到：通用智能可以租，真正能收费的是被运营起来的专业能力。',
         definition: '两条商业路线：<strong>ToB</strong>——你是卖家，卖 Agent 本体（UI 界面 + 记忆文件），一次性买断，买家自己接入算力大模型使用 Agent；<strong>ToC</strong>——卖产品服务，Agent 在你的服务器，算力和大模型也用你自己的，用户充值使用。',
         essence: '两条路线的核心差异是<em>谁承担算力成本</em>和<em>护城河来自哪里</em>。\n\nToB 的护城河：<strong>行业记忆</strong>。一个在医疗、法律、金融等垂直领域积累了大量专业记忆的 Agent，其价值是买家无法自己快速复制的。\n\nToC 的护城河：<strong>产品体验 + 用户习惯</strong>。算力成本是你的负担，但规模效应和用户粘性是壁垒。\n\n注意：ToB 不是"卖 Prompt 合集"，真正的价值在于<em>行业记忆文件</em>——那些经过大量实践验证、积累的专业知识库。',
-        insight: 'Agent 时代的 ToB 生意，卖的不是软件功能，卖的是"专家大脑的副本"。把一个顶级销售 Agent 的记忆卖给 100 个公司，比培养 100 个销售更可扩展。'
+        insight: 'Agent 时代的 ToB 生意，卖的不是软件功能，卖的是"专家大脑的副本"。把一个顶级销售 Agent 的记忆卖给 100 个公司，比培养 100 个销售更可扩展。',
+        pitfalls: [
+          '把 Prompt 包错当成护城河。Prompt 很容易复制，真正难复制的是被验证过的行业记忆和工作流集成。',
+          '定价时忽视算力、交付和支持成本。只要运行时成本建模错了，Agent 毛利会很快塌掉。',
+          '用同一套定价逻辑同时套 ToB 和 ToC。企业价值捕获和消费者留存遵循的是不同经济规律。'
+        ],
+        furtherReading: [
+          { title: 'Anthropic 工程博客', url: 'https://www.anthropic.com/engineering' },
+          { title: 'Anthropic Skills 发布', url: 'https://www.anthropic.com/news/skills' },
+          { title: 'OpenAI 新闻与博客', url: 'https://openai.com/blog' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '10-light-heavy',
+            reason: '你选择做轻 Agent 还是重 Agent，会直接决定商业模式要承受的成本结构和价值主张。'
+          },
+          {
+            chapterId: '12-tool-use',
+            reason: '商业路线确定后，下一层可防御性通常来自 Agent 到底能操作哪些工具和外部系统。'
+          }
+        ]
       }
     }
   });

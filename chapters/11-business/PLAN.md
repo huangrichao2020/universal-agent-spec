@@ -1,0 +1,23 @@
+# 11-business · Phase B Plan
+
+- 目标：保留现有 ToB / ToC 商业路线主图和护城河分析，只补 Phase B 扩展字段。
+- 保留：ToB / ToC 对照结构、现有 definition/essence/insight。
+- 新增 section：
+  - `perspective2026`
+  - `pitfalls`
+  - `furtherReading`
+  - `crossRefs`
+- 2026 视角重点：Agent 商业化正在从“卖模型能力”转向“卖记忆、工作流、集成与结果”。
+- 误区重点：
+  - 把 Prompt 包当护城河
+  - 忽视算力与交付成本
+  - 用同一种定价逻辑套 ToB 和 ToC
+- 交叉引用：
+  - `10-light-heavy`
+  - `12-tool-use`
+- 参考资料：
+  - https://www.anthropic.com/engineering
+  - https://www.anthropic.com/news/skills
+  - https://openai.com/blog
+- 文档同步：更新 `CHAPTER.md` 顶部日期与说明，新建 `WORKLOG.md`。
+- 验证：`node --check chapters/11-business/chapter.js`
