@@ -388,6 +388,25 @@
 
   .card-body { padding: 28px; }
 
+  .dual-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 28px;
+  }
+
+  .dual-col { min-width: 0; }
+
+  .dual-col-head {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--text4);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-family: var(--sans);
+  }
+
   /* ── DIAGRAM ── */
   .diagram-wrap {
     background: #f0ebe0;
@@ -620,6 +639,7 @@
     .search-wrap { width: 100%; justify-content: stretch; }
     .search-input { width: 100%; }
     .filter-group { justify-content: flex-start; }
+    .dual-columns { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -715,6 +735,11 @@
             >{{ t(filter.label) }}</button>
           </div>
           <span class="header-badge">{{ visibleCountLabel }} {{ lang === 'zh' ? '核心概念' : 'Concepts' }}</span>
+          <button
+            class="filter-btn"
+            :class="{ active: dualMode }"
+            @click="toggleDualMode"
+          >{{ lang === 'zh' ? '双栏' : 'Dual' }}</button>
           <div class="lang-toggle" style="margin-left:0">
             <button
               v-for="l in LANGS" :key="l"
@@ -765,32 +790,154 @@
           </div>
 
           <!-- CARD BODY -->
-          <div class="card-body">
-            <!-- SVG DIAGRAM -->
+          <div v-if="dualMode" class="dual-columns">
+            <div class="dual-col">
+              <div class="dual-col-head">{{ columnLabel('zh') }}</div>
+
+              <div class="diagram-wrap" v-if="c.getSvg" v-html="buildSvg(c, 'zh')"></div>
+
+              <div class="def-block" v-if="contentFor(c, 'zh').definition">
+                <div class="def-label">{{ sectionLabel('zh', 'definition') }}</div>
+                <div class="def-text" v-html="contentFor(c, 'zh').definition"></div>
+              </div>
+
+              <div class="section" v-if="contentFor(c, 'zh').essence">
+                <div class="section-title">{{ sectionLabel('zh', 'essence') }}</div>
+                <div class="prose" v-html="contentFor(c, 'zh').essence"></div>
+              </div>
+
+              <div class="insight" v-if="contentFor(c, 'zh').insight">
+                <span class="insight-icon">⚡</span>
+                <span v-html="contentFor(c, 'zh').insight"></span>
+              </div>
+
+              <div v-if="contentFor(c, 'zh').code" class="code-block" v-html="contentFor(c, 'zh').code"></div>
+
+              <div v-if="contentFor(c, 'zh').table" class="section">
+                <div class="section-title">{{ contentFor(c, 'zh').table.title }}</div>
+                <table class="compare-table">
+                  <thead>
+                    <tr><th v-for="h in contentFor(c, 'zh').table.headers" :key="h">{{ h }}</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(row, ri) in contentFor(c, 'zh').table.rows" :key="ri">
+                      <td v-for="(cell, ci) in row" :key="ci" v-html="cell"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div v-if="contentFor(c, 'zh').tokenSaving" class="section">
+                <div class="section-title">{{ contentFor(c, 'zh').tokenSaving.title }}</div>
+                <table class="compare-table">
+                  <thead>
+                    <tr><th v-for="h in contentFor(c, 'zh').tokenSaving.headers" :key="h">{{ h }}</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(row, ri) in contentFor(c, 'zh').tokenSaving.rows" :key="ri">
+                      <td v-for="(cell, ci) in row" :key="ci" v-html="cell"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div v-if="contentFor(c, 'zh').instructions" class="section">
+                <div class="section-title">{{ contentFor(c, 'zh').instructions.title }}</div>
+                <p class="prose" style="margin-bottom:16px" v-html="contentFor(c, 'zh').instructions.intro"></p>
+                <div class="instruction-card" v-for="(item, ii) in contentFor(c, 'zh').instructions.items" :key="ii">
+                  <div class="instruction-icon">{{ item.icon }}</div>
+                  <div class="instruction-body">
+                    <div class="instruction-title">{{ item.title }}</div>
+                    <div class="instruction-text" v-html="item.body"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dual-col">
+              <div class="dual-col-head">{{ columnLabel('en') }}</div>
+
+              <div class="diagram-wrap" v-if="c.getSvg" v-html="buildSvg(c, 'en')"></div>
+
+              <div class="def-block" v-if="contentFor(c, 'en').definition">
+                <div class="def-label">{{ sectionLabel('en', 'definition') }}</div>
+                <div class="def-text" v-html="contentFor(c, 'en').definition"></div>
+              </div>
+
+              <div class="section" v-if="contentFor(c, 'en').essence">
+                <div class="section-title">{{ sectionLabel('en', 'essence') }}</div>
+                <div class="prose" v-html="contentFor(c, 'en').essence"></div>
+              </div>
+
+              <div class="insight" v-if="contentFor(c, 'en').insight">
+                <span class="insight-icon">⚡</span>
+                <span v-html="contentFor(c, 'en').insight"></span>
+              </div>
+
+              <div v-if="contentFor(c, 'en').code" class="code-block" v-html="contentFor(c, 'en').code"></div>
+
+              <div v-if="contentFor(c, 'en').table" class="section">
+                <div class="section-title">{{ contentFor(c, 'en').table.title }}</div>
+                <table class="compare-table">
+                  <thead>
+                    <tr><th v-for="h in contentFor(c, 'en').table.headers" :key="h">{{ h }}</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(row, ri) in contentFor(c, 'en').table.rows" :key="ri">
+                      <td v-for="(cell, ci) in row" :key="ci" v-html="cell"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div v-if="contentFor(c, 'en').tokenSaving" class="section">
+                <div class="section-title">{{ contentFor(c, 'en').tokenSaving.title }}</div>
+                <table class="compare-table">
+                  <thead>
+                    <tr><th v-for="h in contentFor(c, 'en').tokenSaving.headers" :key="h">{{ h }}</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(row, ri) in contentFor(c, 'en').tokenSaving.rows" :key="ri">
+                      <td v-for="(cell, ci) in row" :key="ci" v-html="cell"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div v-if="contentFor(c, 'en').instructions" class="section">
+                <div class="section-title">{{ contentFor(c, 'en').instructions.title }}</div>
+                <p class="prose" style="margin-bottom:16px" v-html="contentFor(c, 'en').instructions.intro"></p>
+                <div class="instruction-card" v-for="(item, ii) in contentFor(c, 'en').instructions.items" :key="ii">
+                  <div class="instruction-icon">{{ item.icon }}</div>
+                  <div class="instruction-body">
+                    <div class="instruction-title">{{ item.title }}</div>
+                    <div class="instruction-text" v-html="item.body"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div v-else class="card-body">
             <div class="diagram-wrap" v-if="c.getSvg" v-html="buildSvg(c)"></div>
 
-            <!-- DEFINITION -->
             <div class="def-block" v-if="content(c).definition">
-              <div class="def-label">{{ lang === 'zh' ? '核心定义' : 'Definition' }}</div>
+              <div class="def-label">{{ sectionLabel(lang, 'definition') }}</div>
               <div class="def-text" v-html="content(c).definition"></div>
             </div>
 
-            <!-- ESSENCE -->
             <div class="section" v-if="content(c).essence">
-              <div class="section-title">{{ lang === 'zh' ? '本质解析' : 'Essence' }}</div>
+              <div class="section-title">{{ sectionLabel(lang, 'essence') }}</div>
               <div class="prose" v-html="content(c).essence"></div>
             </div>
 
-            <!-- INSIGHT -->
             <div class="insight" v-if="content(c).insight">
               <span class="insight-icon">⚡</span>
               <span v-html="content(c).insight"></span>
             </div>
 
-            <!-- CODE -->
             <div v-if="content(c).code" class="code-block" v-html="content(c).code"></div>
 
-            <!-- TABLE -->
             <div v-if="content(c).table" class="section">
               <div class="section-title">{{ content(c).table.title }}</div>
               <table class="compare-table">
@@ -805,7 +952,6 @@
               </table>
             </div>
 
-            <!-- TOKEN SAVING TABLE -->
             <div v-if="content(c).tokenSaving" class="section">
               <div class="section-title">{{ content(c).tokenSaving.title }}</div>
               <table class="compare-table">
@@ -820,7 +966,6 @@
               </table>
             </div>
 
-            <!-- INSTRUCTIONS -->
             <div v-if="content(c).instructions" class="section">
               <div class="section-title">{{ content(c).instructions.title }}</div>
               <p class="prose" style="margin-bottom:16px" v-html="content(c).instructions.intro"></p>
@@ -862,6 +1007,7 @@ createApp({
     const cardRefs  = ref({});
     const searchQuery = ref('');
     const activeFilter = ref('all');
+    const dualMode = ref(false);
 
     const LANGS     = window.AgentSpec.LANGS;
     const LANG_NAMES = window.AgentSpec.LANG_NAMES;
@@ -877,19 +1023,32 @@ createApp({
     // ── helpers ──
     const t = (field) => window.AgentSpec.t(field, lang.value);
 
-    const content = (c) => {
+    const contentFor = (c, locale) => {
       const ct = c.content || {};
-      return ct[lang.value] || ct['en'] || {};
+      return ct[locale] || ct['en'] || {};
     };
 
-    const buildSvg = (c) => {
+    const content = (c) => contentFor(c, lang.value);
+
+    const SECTION_LABELS = {
+      zh: { definition: '核心定义', essence: '本质解析' },
+      en: { definition: 'Definition', essence: 'Essence' }
+    };
+
+    const sectionLabel = (locale, key) => {
+      return SECTION_LABELS[locale]?.[key] || SECTION_LABELS.en[key] || '';
+    };
+
+    const columnLabel = (locale) => locale === 'zh' ? '中文' : 'English';
+
+    const buildSvg = (c, locale = lang.value) => {
       const vb = c.viewBox || '0 0 760 280';
       const parts = vb.split(' ');
       const w = parseInt(parts[2]);
       const h = parseInt(parts[3]);
       const pad = 40;
       const expandedVb = `0 0 ${w} ${h + pad * 2}`;
-      const inner = c.getSvg ? c.getSvg(lang.value) : '';
+      const inner = c.getSvg ? c.getSvg(locale) : '';
       return `<svg viewBox="${expandedVb}" xmlns="http://www.w3.org/2000/svg"
         style="width:100%;height:auto;display:block;overflow:visible">
         <g transform="translate(0,${pad})">${inner}</g>
@@ -925,6 +1084,10 @@ createApp({
 
     function setFilter(value) {
       activeFilter.value = value;
+    }
+
+    function toggleDualMode() {
+      dualMode.value = !dualMode.value;
     }
 
     function setCardRef(id, el) {
@@ -988,9 +1151,10 @@ createApp({
 
     return {
       lang, loading, chapters, activeId, mainEl, cardRefs,
-      searchQuery, activeFilter, filteredChapters, visibleCountLabel,
+      searchQuery, activeFilter, filteredChapters, visibleCountLabel, dualMode,
       LANGS, LANG_NAMES, FILTERS,
-      t, content, buildSvg, setLang, setFilter, setCardRef, scrollTo, onScroll
+      t, content, contentFor, buildSvg, sectionLabel, columnLabel,
+      setLang, setFilter, toggleDualMode, setCardRef, scrollTo, onScroll
     };
   }
 }).mount('#app');
