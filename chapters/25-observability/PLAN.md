@@ -1,0 +1,30 @@
+# 25-observability · Phase B Plan
+
+- 目标：保留现有可观测性四大支柱和工具对比，补齐 Phase B 扩展字段与维护文档。
+- 保留：链路、Token、延迟、审计四个支柱与工具表。
+- 新增字段：
+  - `content.en.perspective2026`
+  - `content.zh.perspective2026`
+  - `content.en.pitfalls` / `content.zh.pitfalls`
+  - `content.en.furtherReading` / `content.zh.furtherReading`
+  - `content.en.crossRefs` / `content.zh.crossRefs`
+- 2026 视角重点：
+  - 从简单日志升级为跨 Agent 链路、成本预算、回放与审计体系
+  - 重点是可定位、可复盘、可归因，而不只是能看见
+- 常见误区：
+  - 只记录最终回复
+  - 没有成本和延迟归因
+  - 过度采集却不做脱敏和保留策略
+- 交叉引用：
+  - `24-memory-arch`
+  - `26-guardrails`
+  - `27-evaluation`
+- 参考资料：
+  - https://www.anthropic.com/engineering
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://openai.com/blog
+- 文档同步：
+  - 更新 `CHAPTER.md` 顶部日期与变更说明
+  - 新建 `WORKLOG.md`
+- 验证：
+  - `node --check chapters/25-observability/chapter.js`
