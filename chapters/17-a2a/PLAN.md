@@ -1,0 +1,25 @@
+# 17-a2a Phase B Plan
+
+- 目标：补齐 A2A 章节的 Phase B 元数据，并修复占位版 `CHAPTER.md`。
+- 保留：现有 A2A 图示、定义、核心概念、表格。
+- 新增字段：
+  - `content.en/zh.perspective2026`
+  - `content.en/zh.pitfalls`
+  - `content.en/zh.furtherReading`
+  - `content.en/zh.crossRefs`
+- 内容重点：
+  - 强调多 Agent 协作、跨组织边界、任务委派
+  - 明确 A2A 与 MCP 的分工
+- 交叉引用：
+  - `16-mcp`
+  - `19-protocol-stack`
+- 延伸阅读：
+  - `https://google.github.io/A2A`
+  - `https://microsoft.github.io/autogen`
+  - `https://langchain-ai.github.io/langgraph`
+- 文档更新：
+  - `CHAPTER.md` 顶部加 `上次更新：2026-04-08`
+  - 补全占位模板为可交接文档
+- 验证：
+  - `node --check chapters/17-a2a/chapter.js`
+  - Node `vm` 注册执行 + 静态服务可访问性检查
