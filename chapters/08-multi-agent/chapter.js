@@ -78,14 +78,56 @@
 
     content: {
       en: {
+        perspective2026: 'In the last 12 months, multi-agent systems have moved from demo-stage "agents talking to each other" narratives to more concrete supervisor-worker patterns, sub-agent delegation, and resumable parallel execution. The winning pattern is not free-form conversation; it is controlled handoff with explicit contracts.',
         definition: 'Agents <strong>cannot communicate directly</strong>. What is called "multi-Agent conversation" is really: A\'s output → workflow program reads → constructs new context → B\'s input.',
         essence: 'This is the most misunderstood concept. Many believe that in a multi-Agent system, Agents are "chatting" — in reality they are completely unaware of each other\'s existence.\n\nAll each Agent sees is: a context (task + previous Agent\'s output). It processes and outputs. The <em>workflow program</em> is what chains everything together.\n\n<strong>File transfer:</strong> A writes a file, B reads it (good for large data, batch)\n<strong>Pipe transfer:</strong> A\'s stdout feeds directly to B\'s stdin (good for real-time streaming)',
-        insight: 'Think of multi-Agent systems as an assembly line, not a team meeting. Each worker (Agent) focuses on their station, receives material from upstream, processes it, passes downstream. They don\'t know each other and don\'t need to.'
+        insight: 'Think of multi-Agent systems as an assembly line, not a team meeting. Each worker (Agent) focuses on their station, receives material from upstream, processes it, passes downstream. They don\'t know each other and don\'t need to.',
+        pitfalls: [
+          'Anthropomorphizing the system as a group chat. That framing hides the real need for explicit relay logic and contracts.',
+          'Adding more agents before fixing decomposition. Extra agents increase coordination cost faster than they increase capability.',
+          'Skipping schemas for inter-step artifacts. If handoffs are loosely structured, downstream failures multiply.'
+        ],
+        furtherReading: [
+          { title: 'Microsoft AutoGen', url: 'https://microsoft.github.io/autogen' },
+          { title: 'LangGraph', url: 'https://langchain-ai.github.io/langgraph' },
+          { title: 'Building Effective Agents', url: 'https://www.anthropic.com/research/building-effective-agents' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '07-aware',
+            reason: 'Once many agents run in parallel, an awareness layer is what tells you which one is stale, broken, or blocked.'
+          },
+          {
+            chapterId: '09-deploy',
+            reason: 'Deploying multi-agent systems forces you to operationalize queues, artifacts, retries, and environment boundaries.'
+          }
+        ]
       },
       zh: {
+        perspective2026: '过去 12 个月里，多 Agent 系统已经从“几个 Agent 在互相聊天”的演示叙事，走向更具体的 supervisor-worker、子 Agent 委派和可恢复的并行执行。真正胜出的不是自由对话，而是带明确契约的受控交接。',
         definition: 'Agent 之间<strong>不能直接通信</strong>。所谓"多 Agent 对话"，本质是：A 的输出 → 工作流程序读取 → 构造新的 context → B 的输入。',
         essence: '这是最容易被误解的概念。很多人以为多 Agent 系统里 Agent 们在"聊天"——实际上它们完全不知道对方的存在。\n\n它们看到的只是：一个 context（包含任务 + 上一步的产出），处理后输出结果。是<em>工作流程序</em>在串联这一切。\n\n<strong>文件传递</strong>：A 写入文件，B 读取文件（适合大数据量、批处理）\n<strong>管道传递</strong>：A 的 stdout 直接接 B 的 stdin（适合实时流式处理）',
-        insight: '把多 Agent 系统理解成"工厂流水线"比"团队讨论"更准确：每个工人（Agent）只专注自己的工位，拿到上游传过来的物料，加工后传给下游，互相不认识也不需要认识。'
+        insight: '把多 Agent 系统理解成"工厂流水线"比"团队讨论"更准确：每个工人（Agent）只专注自己的工位，拿到上游传过来的物料，加工后传给下游，互相不认识也不需要认识。',
+        pitfalls: [
+          '把系统拟人化成群聊。这个想象会掩盖真正需要的中继逻辑和输入输出契约。',
+          '在任务拆分没做好之前就盲目增加 Agent 数量。协调成本上涨往往比能力提升更快。',
+          '不为交接产物定义 Schema。只要交接结构松散，下游失败就会指数放大。'
+        ],
+        furtherReading: [
+          { title: 'Microsoft AutoGen', url: 'https://microsoft.github.io/autogen' },
+          { title: 'LangGraph', url: 'https://langchain-ai.github.io/langgraph' },
+          { title: 'Anthropic：构建高效 Agent', url: 'https://www.anthropic.com/research/building-effective-agents' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '07-aware',
+            reason: '当多个 Agent 并行运行时，感知层负责告诉你谁卡住了、谁失效了、谁需要升级处理。'
+          },
+          {
+            chapterId: '09-deploy',
+            reason: '一旦要把多 Agent 真正部署到生产，就必须把队列、产物、重试和环境边界都运维化。'
+          }
+        ]
       }
     }
   });

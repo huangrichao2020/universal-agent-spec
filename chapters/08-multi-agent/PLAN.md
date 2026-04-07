@@ -1,0 +1,23 @@
+# 08-multi-agent · Phase B Plan
+
+- 目标：保留现有“没有闲聊，只有交接”的主旨，只补 Phase B 扩展字段。
+- 保留：现有左右对照 SVG、definition/essence/insight。
+- 新增 section：
+  - `perspective2026`
+  - `pitfalls`
+  - `furtherReading`
+  - `crossRefs`
+- 2026 视角重点：多 Agent 已从概念演示走向 supervisor-worker、子 Agent 委派和可恢复并行执行。
+- 误区重点：
+  - 把多 Agent 想成群聊
+  - 盲目增加 Agent 数量
+  - 不定义交接 Schema
+- 交叉引用：
+  - `07-aware`
+  - `09-deploy`
+- 参考资料：
+  - https://microsoft.github.io/autogen
+  - https://langchain-ai.github.io/langgraph
+  - https://www.anthropic.com/research/building-effective-agents
+- 文档同步：更新 `CHAPTER.md` 顶部日期与说明，新建 `WORKLOG.md`。
+- 验证：`node --check chapters/08-multi-agent/chapter.js`
