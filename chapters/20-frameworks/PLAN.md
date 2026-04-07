@@ -1,0 +1,30 @@
+# 20-frameworks · Phase B Plan
+
+- 目标：在保留现有框架对比内容的前提下，补齐 Phase B 扩展字段与维护文档。
+- 保留：`id/order/nav/title/subtitle/tag/tagClass/viewBox/getSvg/content` 原有结构与现有文案。
+- 新增字段：
+  - `content.en.perspective2026`
+  - `content.zh.perspective2026`
+  - `content.en.pitfalls` / `content.zh.pitfalls`
+  - `content.en.furtherReading` / `content.zh.furtherReading`
+  - `content.en.crossRefs` / `content.zh.crossRefs`
+- 2026 视角重点：
+  - 框架能力从“封装调用”转向“长期运行、检查点、人工介入、评测与部署边界”
+  - 选型开始受状态模型、可观测性、评测与生态兼容性驱动
+- 常见误区：
+  - 把框架当成架构替代品
+  - 在需求未稳定前过早绑定重框架
+  - 误以为多 Agent 框架天然提升质量
+- 交叉引用：
+  - `22-arch-patterns`
+  - `23-graph-orchestration`
+  - `28-coding-agents`
+- 参考资料：
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://langchain-ai.github.io/langgraph
+  - https://microsoft.github.io/autogen
+- 文档同步：
+  - 更新 `CHAPTER.md` 顶部日期与变更说明
+  - 新建 `WORKLOG.md` 记录改动、验证与风险
+- 验证：
+  - `node --check chapters/20-frameworks/chapter.js`
