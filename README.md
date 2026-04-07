@@ -1,7 +1,7 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/version-2.0.0-00c8ff?style=for-the-badge&labelColor=070b14" />
-<img src="https://img.shields.io/badge/concepts-12-ffb800?style=for-the-badge&labelColor=070b14" />
+<img src="https://img.shields.io/badge/version-3.0.0-00c8ff?style=for-the-badge&labelColor=070b14" />
+<img src="https://img.shields.io/badge/concepts-42-ffb800?style=for-the-badge&labelColor=070b14" />
 <img src="https://img.shields.io/badge/lang-中文%20%7C%20EN-00e599?style=for-the-badge&labelColor=070b14" />
 <img src="https://img.shields.io/badge/license-MIT-a78bfa?style=for-the-badge&labelColor=070b14" />
 <img src="https://img.shields.io/badge/ClawHub-whatisagent-ff4d6d?style=for-the-badge&labelColor=070b14" />
@@ -11,8 +11,8 @@
 
 # 🌐 在线交互演示
 
-### 12 个核心 Agent 概念 · 中英双语 · SVG 图示 · 零安装
-### 12 core Agent concepts · Bilingual ZH/EN · SVG diagrams · Zero install
+### 42 个核心 Agent 概念 · 中英双语 · SVG 图示 · 零安装
+### 42 core Agent concepts · Bilingual ZH/EN · SVG diagrams · Zero install
 
 **直接用浏览器打开 — 无需配置，无需服务器，离线可用**
 **Open in your browser right now — no setup, no server, works offline**
@@ -69,7 +69,7 @@
 
 ## ⚡ 包含什么
 
-12 个严格定义的核心概念，每个概念包含：
+42 个严格定义的核心概念，每个概念包含：
 - 📐 **精确定义** — 它*究竟*是什么，不是营销话术
 - 🧠 **本质解析** — *为什么*这样设计
 - 🎨 **SVG 图示** — 可视化说明，中英双语一键切换
@@ -90,6 +90,36 @@
 | 09 | **Local vs Cloud** | 数据主权 vs 用户体验，有意识地选择 |
 | 10 | **Light vs Heavy** | 两种范式，选错就从头重建 |
 | 11 | **Business Model** | ToB 卖大脑，ToC 卖服务 |
+| 12 | **Tool Use** | 函数调用是 Agent 的双手 |
+| 13 | **Reasoning** | CoT / ToT / GoT，思考的拓扑学 |
+| 14 | **ReAct** | 思考-行动-观察，Agent 的呼吸循环 |
+| 15 | **Plan & Execute** | 强规划器 + 快执行器，分而治之 |
+| 16 | **MCP** | 工具连接的 USB-C，JSON-RPC 2.0 |
+| 17 | **A2A** | Agent 到 Agent，发现-协商-协作 |
+| 18 | **AG-UI** | Agent 到用户，16 种事件流 |
+| 19 | **Protocol Stack** | MCP + A2A + AG-UI 三层协议栈 |
+| 20 | **Frameworks** | LangGraph / CrewAI / OpenAI SDK / AutoGen / ADK |
+| 21 | **Low-Code** | Dify / Coze / n8n，拖拽构建 Agent |
+| 22 | **Architecture Patterns** | Supervisor / 层级 / Swarm / Mesh / Pipeline |
+| 23 | **Graph Orchestration** | StateGraph、检查点、时间旅行 |
+| 24 | **Memory Architecture** | 5 类记忆 × 3 种存储后端 |
+| 25 | **Observability** | Trace / Token / 延迟 / 决策审计 |
+| 26 | **Guardrails** | 输入 / 输出 / 执行三道防线 |
+| 27 | **Evaluation** | 基准测试、指标、评估驱动开发 |
+| 28 | **Coding Agents** | Cursor / Codex / Devin / Claude 对比 |
+| 29 | **Case Studies** | 客服 / 研究 / 数据分析实战 |
+| 30 | **Formal Spec** | 8 个标准接口，形式化定义 |
+| 31 | **Learning Path** | 入门 → 进阶 → 专家路线图 |
+| 32 | **Computer Use** | API 不通时的最后一公里 |
+| 33 | **Skills System** | 能力不是 prompt，而是可加载资产 |
+| 34 | **Context Engineering** | 上下文质量常比模型大小更重要 |
+| 35 | **Long-Horizon Tasks** | 没有 checkpoint，就没有长程自治 |
+| 36 | **Sandboxing** | 没有沙盒的自主执行不该上线 |
+| 37 | **Cost Routing** | 优化的是成功结果成本，不是单次调用成本 |
+| 38 | **Agent Harness** | 外壳常比底模更决定生产力 |
+| 39 | **SWE-bench** | 分数之外更重要的是失败簇 |
+| 40 | **Failure Modes** | 先让失败可见，再谈成功放大 |
+| 41 | **Team Topology** | 不是替代人，而是重画责任边界 |
 
 ---
 
@@ -150,6 +180,14 @@ universal-agent-spec/
 │   ├── helpers.js          ← SVG 绘图 API (S.box / S.label / S.arrow)
 │   └── styles.css          ← 设计系统
 ├── chapters/
+│   ├── 00-llm-api/ … 11-business/   ← 基础概念 (0-11)
+│   ├── 12-tool-use/ … 15-plan-exec/  ← 核心模式 (12-15)
+│   ├── 16-mcp/ … 19-protocol-stack/  ← 协议层 (16-19)
+│   ├── 20-frameworks/ … 23-graph/     ← 框架与编排 (20-23)
+│   ├── 24-memory/ … 27-evaluation/    ← 生产就绪 (24-27)
+│   ├── 28-coding/ … 31-learning/      ← 实践与进阶 (28-31)
+│   ├── 32-computer-use/ … 35-long-horizon/ ← 2026 前沿模式 (32-35)
+│   ├── 36-sandboxing/ … 41-team-topology/  ← 生产治理与组织层 (36-41)
 │   └── XX-concept/
 │       ├── chapter.js      ← 自注册，双语，隔离
 │       └── CHAPTER.md      ← 每章节修改指南
@@ -174,7 +212,7 @@ universal-agent-spec/
 欢迎任何能让规范更清晰、更准确、更完整的贡献
 
 **添加新概念：**
-1. `mkdir chapters/12-your-concept`
+1. `mkdir chapters/42-your-concept`
 2. 从 `CONTRIBUTING.md` 复制模板
 3. 在 `manifest.js` 添加一行
 
@@ -194,7 +232,7 @@ universal-agent-spec/
 
 ## 📊 关键词地图
 
-`LLM` · `AI Agent` · `Multi-Agent` · `Agentic AI` · `LLM Orchestration` · `Agent Framework` · `Autonomous Agent` · `Claude` · `GPT` · `OpenAI` · `Anthropic` · `LangChain` · `LangGraph` · `AutoGPT` · `AgentGPT` · `CrewAI` · `Dify` · `n8n` · `Workflow Automation` · `RAG` · `Tool Use` · `Function Calling` · `Memory` · `Long-term Memory` · `Vector Database` · `Prompt Engineering` · `System Prompt` · `Context Window` · `AI Infrastructure` · `MLOps` · `AI Native` · `Foundation Model` · `Claude Code` · `Codex` · `Copilot` · `AI Assistant` · `Chatbot` · `Reasoning Model` · `Chain of Thought` · `ReAct` · `Plan and Execute` · `Skill` · `Handoff` · `Heartbeat` · `Observability`
+`LLM` · `AI Agent` · `Multi-Agent` · `Agentic AI` · `LLM Orchestration` · `Agent Framework` · `Autonomous Agent` · `Claude` · `GPT` · `OpenAI` · `Anthropic` · `LangChain` · `LangGraph` · `AutoGPT` · `CrewAI` · `Dify` · `Coze` · `n8n` · `MCP` · `A2A` · `AG-UI` · `Model Context Protocol` · `Tool Use` · `Function Calling` · `Memory` · `Vector Database` · `Graph Orchestration` · `StateGraph` · `Guardrails` · `Evaluation` · `Google ADK` · `AutoGen` · `Swarm` · `Cursor` · `Devin` · `Codex` · `Copilot` · `Chain of Thought` · `Tree of Thought` · `ReAct` · `Reflexion` · `LATS` · `Plan and Execute` · `Reasoning Model` · `Skill` · `Handoff` · `Heartbeat` · `Observability` · `RAG` · `Prompt Engineering` · `AI Infrastructure` · `MLOps`
 
 ---
 
@@ -266,7 +304,7 @@ Universal Agent Spec is the **engineering-grade, battle-tested, zero-bullshit re
 
 ## ⚡ What's Inside
 
-12 rigorously defined concepts, each with:
+42 rigorously defined concepts, each with:
 - 📐 **Precise definition** — what it *actually* is, not marketing speak
 - 🧠 **Essence analysis** — *why* it's designed this way
 - 🎨 **SVG diagram** — visual illustration, bilingual (ZH/EN toggle)
@@ -287,6 +325,36 @@ Universal Agent Spec is the **engineering-grade, battle-tested, zero-bullshit re
 | 09 | **Local vs Cloud** | Data sovereignty vs UX. Choose consciously |
 | 10 | **Light vs Heavy** | Two paradigms. Pick wrong and rebuild from scratch |
 | 11 | **Business Model** | ToB sells the brain. ToC sells the service |
+| 12 | **Tool Use** | Function calling is the Agent's hands |
+| 13 | **Reasoning** | CoT / ToT / GoT — the topology of thought |
+| 14 | **ReAct** | Think-Act-Observe, the Agent's breathing cycle |
+| 15 | **Plan & Execute** | Strong planner + fast executor, divide and conquer |
+| 16 | **MCP** | USB-C for tool connections, JSON-RPC 2.0 |
+| 17 | **A2A** | Agent-to-Agent: discover, negotiate, collaborate |
+| 18 | **AG-UI** | Agent-to-User: 16 event types streaming |
+| 19 | **Protocol Stack** | MCP + A2A + AG-UI, three-layer stack |
+| 20 | **Frameworks** | LangGraph / CrewAI / OpenAI SDK / AutoGen / ADK |
+| 21 | **Low-Code** | Dify / Coze / n8n, drag-and-drop Agent building |
+| 22 | **Architecture Patterns** | Supervisor / Hierarchical / Swarm / Mesh / Pipeline |
+| 23 | **Graph Orchestration** | StateGraph, checkpoints, time travel |
+| 24 | **Memory Architecture** | 5 memory types × 3 storage backends |
+| 25 | **Observability** | Traces / tokens / latency / decision audit |
+| 26 | **Guardrails** | Input / output / execution — three lines of defense |
+| 27 | **Evaluation** | Benchmarks, metrics, evaluation-driven development |
+| 28 | **Coding Agents** | Cursor / Codex / Devin / Claude compared |
+| 29 | **Case Studies** | Customer service / research / data analysis |
+| 30 | **Formal Spec** | 8 standard interfaces, formally defined |
+| 31 | **Learning Path** | Beginner → Intermediate → Expert roadmap |
+| 32 | **Computer Use** | The last mile when APIs are unavailable |
+| 33 | **Skills System** | Capabilities are loadable assets, not prompts |
+| 34 | **Context Engineering** | Better context often beats a bigger model |
+| 35 | **Long-Horizon Tasks** | No checkpoints, no durable autonomy |
+| 36 | **Sandboxing** | Autonomous execution without a sandbox should not ship |
+| 37 | **Cost Routing** | Optimize cost per successful result, not per call |
+| 38 | **Agent Harness** | The harness often matters more than the base model |
+| 39 | **SWE-bench** | Failure clusters matter more than a single score |
+| 40 | **Failure Modes** | Make failure visible before you try to scale success |
+| 41 | **Team Topology** | Don't replace humans blindly; redraw responsibility |
 
 ---
 
@@ -347,6 +415,14 @@ universal-agent-spec/
 │   ├── helpers.js          ← SVG drawing API (S.box / S.label / S.arrow)
 │   └── styles.css          ← Design system
 ├── chapters/
+│   ├── 00-llm-api/ … 11-business/   ← Foundations (0-11)
+│   ├── 12-tool-use/ … 15-plan-exec/  ← Core patterns (12-15)
+│   ├── 16-mcp/ … 19-protocol-stack/  ← Protocol layer (16-19)
+│   ├── 20-frameworks/ … 23-graph/     ← Frameworks & orchestration (20-23)
+│   ├── 24-memory/ … 27-evaluation/    ← Production readiness (24-27)
+│   ├── 28-coding/ … 31-learning/      ← Practice & beyond (28-31)
+│   ├── 32-computer-use/ … 35-long-horizon/ ← Frontier patterns for 2026 (32-35)
+│   ├── 36-sandboxing/ … 41-team-topology/  ← Production governance & org design (36-41)
 │   └── XX-concept/
 │       ├── chapter.js      ← Self-registering. Bilingual. Isolated
 │       └── CHAPTER.md      ← Per-chapter modification guide
@@ -371,7 +447,7 @@ Built for the global AI engineering community, where the most important Agent re
 We welcome contributions that clarify, correct, or extend the spec.
 
 **To add a new concept:**
-1. `mkdir chapters/12-your-concept`
+1. `mkdir chapters/42-your-concept`
 2. Copy the template from `CONTRIBUTING.md`
 3. Add one line to `manifest.js`
 
@@ -391,7 +467,7 @@ Most Agent frameworks give you tools. This spec gives you **mental models** — 
 
 ## 📊 Keyword Map
 
-`LLM` · `AI Agent` · `Multi-Agent` · `Agentic AI` · `LLM Orchestration` · `Agent Framework` · `Autonomous Agent` · `Claude` · `GPT` · `OpenAI` · `Anthropic` · `LangChain` · `LangGraph` · `AutoGPT` · `AgentGPT` · `CrewAI` · `Dify` · `n8n` · `Workflow Automation` · `RAG` · `Tool Use` · `Function Calling` · `Memory` · `Long-term Memory` · `Vector Database` · `Prompt Engineering` · `System Prompt` · `Context Window` · `AI Infrastructure` · `MLOps` · `AI Native` · `Foundation Model` · `Claude Code` · `Codex` · `Copilot` · `AI Assistant` · `Chatbot` · `Reasoning Model` · `Chain of Thought` · `ReAct` · `Plan and Execute` · `Skill` · `Handoff` · `Heartbeat` · `Observability`
+`LLM` · `AI Agent` · `Multi-Agent` · `Agentic AI` · `LLM Orchestration` · `Agent Framework` · `Autonomous Agent` · `Claude` · `GPT` · `OpenAI` · `Anthropic` · `LangChain` · `LangGraph` · `AutoGPT` · `CrewAI` · `Dify` · `Coze` · `n8n` · `MCP` · `A2A` · `AG-UI` · `Model Context Protocol` · `Tool Use` · `Function Calling` · `Memory` · `Vector Database` · `Graph Orchestration` · `StateGraph` · `Guardrails` · `Evaluation` · `Google ADK` · `AutoGen` · `Swarm` · `Cursor` · `Devin` · `Codex` · `Copilot` · `Chain of Thought` · `Tree of Thought` · `ReAct` · `Reflexion` · `LATS` · `Plan and Execute` · `Reasoning Model` · `Skill` · `Handoff` · `Heartbeat` · `Observability` · `RAG` · `Prompt Engineering` · `AI Infrastructure` · `MLOps`
 
 ---
 

@@ -6,7 +6,7 @@
  * 框架会按 order 字段排序，与数组顺序无关。
  */
 window.AGENT_SPEC_MANIFEST = {
-  version: '2.0.0',
+  version: '3.0.0',
   chapters: [
     { id: '00-llm-api',      path: 'chapters/00-llm-api/chapter.js' },
     { id: '01-invocation',   path: 'chapters/01-invocation/chapter.js' },
