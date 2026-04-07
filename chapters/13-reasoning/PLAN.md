@@ -1,0 +1,25 @@
+# 13-reasoning Phase B Plan
+
+- 目标：补齐本章 2026 视角元数据，不改既有推理模式讲解。
+- 保留：四种模式 SVG、definition、essence、insight、table。
+- 新增字段：
+  - `content.en/zh.perspective2026`
+  - `content.en/zh.pitfalls`
+  - `content.en/zh.furtherReading`
+  - `content.en/zh.crossRefs`
+- 内容聚焦：
+  - 强调推理预算、test-time compute、成本与可靠性权衡
+  - 不与 `14-react` 的行动循环混淆
+- 交叉引用：
+  - `12-tool-use`
+  - `14-react`
+- 延伸阅读：
+  - `https://arxiv.org/abs/2210.03629`
+  - `https://arxiv.org/abs/2305.04091`
+  - `https://arxiv.org/abs/2303.11366`
+- 文档更新：
+  - `CHAPTER.md` 顶部加 `上次更新：2026-04-08`
+  - 补充 Phase B 变更说明
+- 验证：
+  - `node --check chapters/13-reasoning/chapter.js`
+  - Node `vm` 注册执行 + 静态服务可访问性检查
