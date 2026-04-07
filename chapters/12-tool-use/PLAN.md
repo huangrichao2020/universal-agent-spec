@@ -1,0 +1,26 @@
+# 12-tool-use Phase B Plan
+
+- 目标：在不删除原有字段的前提下，为本章补齐 2026 视角相关元数据。
+- 保留：现有 SVG、definition、essence、insight、code、table 全部不动。
+- 新增字段：
+  - `content.en.perspective2026`
+  - `content.en.pitfalls`
+  - `content.en.furtherReading`
+  - `content.en.crossRefs`
+  - `content.zh.perspective2026`
+  - `content.zh.pitfalls`
+  - `content.zh.furtherReading`
+  - `content.zh.crossRefs`
+- 交叉引用目标：
+  - `13-reasoning`：工具选择依赖推理策略
+  - `16-mcp`：工具接口标准化
+- 延伸阅读来源：
+  - `https://www.anthropic.com/research/building-effective-agents`
+  - `https://docs.claude.com/en/docs/claude-code`
+  - `https://modelcontextprotocol.io`
+- 文档更新：
+  - `CHAPTER.md` 顶部补 `上次更新：2026-04-08`
+  - 增加本次 Phase B 变更说明
+- 验证：
+  - `node --check chapters/12-tool-use/chapter.js`
+  - 本地静态服务加载章节并检查控制台
