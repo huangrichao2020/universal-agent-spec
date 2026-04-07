@@ -1,0 +1,23 @@
+# 10-light-heavy · Phase B Plan
+
+- 目标：在保留现有轻/重 Agent 对照图和选型表的前提下，补齐 Phase B 扩展字段。
+- 保留：饼图主视觉、选型参考表、核心选型建议。
+- 新增 section：
+  - `perspective2026`
+  - `pitfalls`
+  - `furtherReading`
+  - `crossRefs`
+- 2026 视角重点：重 Agent 产品更热，但大量可落地商业化产品依旧从轻 Agent 起步并逐步加深。
+- 误区重点：
+  - 认为重 Agent 天然更高级
+  - 轻 Agent 就不需要工作流和记忆
+  - 按 hype 选型而不是按任务结构
+- 交叉引用：
+  - `09-deploy`
+  - `11-business`
+- 参考资料：
+  - https://docs.claude.com/en/docs/claude-code
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://openai.com/blog
+- 文档同步：更新 `CHAPTER.md` 顶部日期与说明，新建 `WORKLOG.md`。
+- 验证：`node --check chapters/10-light-heavy/chapter.js`
