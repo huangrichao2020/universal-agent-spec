@@ -81,9 +81,30 @@
 
     content: {
       en: {
+        perspective2026: 'Over the last 12 months, "agent" has stopped meaning a prompt-wrapped chatbot and started meaning a bounded runtime that can coordinate tools, memory, approvals, retries, and specialist sub-agents. The important shift is architectural: the model is only one component inside the agent system.',
         definition: '<strong>Agent = Shell Program + Memory File Collection (including Skills).</strong> The shell program handles API calls; memory files provide continuity and specialized context. Neither works without the other.',
         essence: 'An Agent has three states:<br><br><strong>① Dormant:</strong> Just a pile of files, no consciousness — like a closed book.<br><strong>② Active:</strong> The shell program is triggered, bundles memory files + current task, sends to the LLM API. The Agent "temporarily wakes up," reasons, and acts.<br><strong>③ Archived:</strong> Results are written back to memory files. The Agent becomes dormant again.\n\n<em>Key insight:</em> An Agent is not "a living program." It is a combination of "files + invocation program." The LLM API produces the intelligence; the Agent provides <strong>continuity</strong> and <strong>specialized context</strong>.',
         insight: 'An Agent\'s most valuable asset is its <strong>domain memory</strong> — the knowledge, experiences, and patterns accumulated in a specific field. An Agent with 6 months of deep domain memory far outvalues any Prompt template. That is the real moat.',
+        pitfalls: [
+          'Reducing the Agent to a single model call. An invocation is only one step inside the system that actually carries state and execution logic.',
+          'Shipping a chat UI and calling it an Agent without durable memory, tool use, or update loops.',
+          'Optimizing for autonomy alone. Real agents need boundaries, approvals, retries, and observability to stay reliable.'
+        ],
+        furtherReading: [
+          { title: 'Building Effective Agents', url: 'https://www.anthropic.com/research/building-effective-agents' },
+          { title: 'Claude Code Documentation', url: 'https://docs.claude.com/en/docs/claude-code' },
+          { title: 'OpenAI News', url: 'https://openai.com/blog' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '02-skill',
+            reason: 'Skills are one of the memory assets that turn a generic runtime into a capable Agent.'
+          },
+          {
+            chapterId: '04-shell',
+            reason: 'The next chapter zooms into the shell program that activates the Agent, drives tools, and writes state back.'
+          }
+        ],
         table: {
           title: 'Agent Maturity Levels',
           headers: ['Level', 'Characteristics', 'Memory', 'Skills'],
@@ -142,9 +163,30 @@ main_agent = <span class="fn">create_agent</span>(
         }
       },
       zh: {
+        perspective2026: '过去 12 个月里，“Agent”这个词已经不再只是“套了提示词的聊天机器人”，而更像一个受边界约束的运行时系统：它能协调工具、记忆、审批、重试和专项子 Agent。真正的变化不在模型，而在架构层面，模型只是 Agent 系统中的一个部件。',
         definition: '<strong>Agent = UI 界面程序 + 长期记忆文件集合（含 Skills）</strong>。UI 界面程序负责调用 API；记忆文件负责提供持续性和专业上下文。两者缺一不可。',
         essence: 'Agent 有三种状态：<br><br><strong>① 静止态</strong>：只是一堆文件，没有意识，像一本合上的书。<br><strong>② 激活态</strong>：UI 界面程序被触发，将记忆文件 + 当前任务打包发给大模型 API，Agent "临时清醒"，产生推理和行动。<br><strong>③ 归档态</strong>：工作成果写回记忆文件，Agent 再次静止。\n\n<em>关键认知</em>：Agent 本质不是"活的程序"，而是"文件 + 调用程序"的组合。真正产生智能的是大模型 API，Agent 提供的是<strong>持续性</strong>和<strong>专业化上下文</strong>。',
         insight: 'Agent 最值钱的是<strong>行业记忆</strong>——那些在特定领域积累的知识、经验、处理模式。一个有 6 个月深度工作记忆的 Agent，其价值远超任何 Prompt 模板。这才是真正的护城河。',
+        pitfalls: [
+          '把 Agent 缩减成一次模型调用。调用只是系统里的一个瞬间，真正承载状态和执行逻辑的是外层系统。',
+          '只有聊天 UI，却没有持久记忆、工具使用和状态回写机制，还把它叫 Agent。',
+          '只追求自主，不设计边界。真正可靠的 Agent 必须有审批、重试、约束和可观测性。'
+        ],
+        furtherReading: [
+          { title: 'Anthropic：构建高效 Agent', url: 'https://www.anthropic.com/research/building-effective-agents' },
+          { title: 'Claude Code 文档', url: 'https://docs.claude.com/en/docs/claude-code' },
+          { title: 'OpenAI 新闻与博客', url: 'https://openai.com/blog' }
+        ],
+        crossRefs: [
+          {
+            chapterId: '02-skill',
+            reason: 'Skill 是把通用运行时升级成“有专业能力的 Agent”的关键记忆资产之一。'
+          },
+          {
+            chapterId: '04-shell',
+            reason: '下一章会专门放大 Shell Program 这一层，看它如何激活 Agent、驱动工具并把状态写回。'
+          }
+        ],
         table: {
           title: 'Agent 成熟度等级',
           headers: ['等级', '特征', '记忆量', '技能数'],

@@ -1,0 +1,23 @@
+# 03-agent · Phase B Plan
+
+- 目标：保持现有 Agent 定义、成熟度表和常驻指令不变，只补 Phase B 扩展字段。
+- 保留：`instructions` 卡片、成熟度等级表、代码示例、SVG 架构图。
+- 新增 section：
+  - `perspective2026`
+  - `pitfalls`
+  - `furtherReading`
+  - `crossRefs`
+- 2026 视角重点：Agent 已从“套壳聊天机器人”演进为带工具、记忆、审批和子 Agent 的运行时系统。
+- 误区重点：
+  - 把 Agent 等同一次模型调用
+  - 只有聊天 UI 没有状态/执行层
+  - 一味追求自主而忽视边界和可观测性
+- 交叉引用：
+  - `02-skill`
+  - `04-shell`
+- 参考资料：
+  - https://www.anthropic.com/research/building-effective-agents
+  - https://docs.claude.com/en/docs/claude-code
+  - https://openai.com/blog
+- 文档同步：更新 `CHAPTER.md` 顶部日期与说明，新建 `WORKLOG.md`。
+- 验证：`node --check chapters/03-agent/chapter.js`
