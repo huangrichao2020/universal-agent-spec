@@ -3,7 +3,7 @@
 <img src="https://img.shields.io/badge/version-3.0.0-00c8ff?style=for-the-badge&labelColor=070b14" />
 <img src="https://img.shields.io/badge/concepts-42-ffb800?style=for-the-badge&labelColor=070b14" />
 <img src="https://img.shields.io/badge/lang-中文%20%7C%20EN-00e599?style=for-the-badge&labelColor=070b14" />
-<img src="https://img.shields.io/badge/license-MIT-a78bfa?style=for-the-badge&labelColor=070b14" />
+<img src="https://img.shields.io/badge/rights-All%20Rights%20Reserved-ff4d6d?style=for-the-badge&labelColor=070b14" />
 <img src="https://img.shields.io/badge/ClawHub-whatisagent-ff4d6d?style=for-the-badge&labelColor=070b14" />
 <img src="https://img.shields.io/github/stars/huangrichao2020/universal-agent-spec?style=for-the-badge&color=ffb800&labelColor=070b14" />
 
@@ -50,6 +50,19 @@
 [**▶ 在线演示**](https://huangrichao2020.github.io/universal-agent-spec) · [**⭐ Star 此仓库**](https://github.com/huangrichao2020/universal-agent-spec) · [**📖 English**](#english)
 
 </div>
+
+---
+
+## 版权与授权声明
+
+本项目不是开源项目。
+
+允许个人基于非商业目的进行研究、学习、阅读、下载和本地测试。
+未经作者事先书面授权，禁止将本项目或其衍生内容用于任何商业用途，包括但不限于产品集成、SaaS/API 服务、企业内部生产、商业培训、咨询交付、销售、转授权和再分发。
+
+商业授权联系微信：`huangyibo181`
+
+详见 [LICENSE.md](./LICENSE.md) 与 [COMMERCIAL-LICENSE.md](./COMMERCIAL-LICENSE.md)。
 
 ---
 
@@ -446,6 +459,8 @@ Built for the global AI engineering community, where the most important Agent re
 
 We welcome contributions that clarify, correct, or extend the spec.
 
+This repository is not open source. Any contribution, suggestion, issue, or pull request is submitted voluntarily and does not change the licensing terms of this repository. Commercial use still requires separate written authorization.
+
 **To add a new concept:**
 1. `mkdir chapters/42-your-concept`
 2. Copy the template from `CONTRIBUTING.md`
@@ -492,6 +507,17 @@ If this spec saved you from a bad architecture decision, a useless team debate, 
 Two programmers who got tired of watching the AI industry drown in its own jargon and decided to do something about it.
 
 > *"Before you build the next Agent, make sure you know what one is."*
+
+---
+
+## License
+
+Copyright (c) 2026 Huang Richao. All Rights Reserved.
+
+This repository is source-available only for personal, non-commercial research, learning, reading, and evaluation.
+Commercial use requires prior written authorization.
+
+Commercial licensing contact WeChat: `huangyibo181`
 
 ---
 
