@@ -3,7 +3,9 @@
 <img src="https://img.shields.io/badge/version-3.0.0-00c8ff?style=for-the-badge&labelColor=070b14" />
 <img src="https://img.shields.io/badge/concepts-42-ffb800?style=for-the-badge&labelColor=070b14" />
 <img src="https://img.shields.io/badge/lang-中文%20%7C%20EN-00e599?style=for-the-badge&labelColor=070b14" />
-<img src="https://img.shields.io/badge/rights-All%20Rights%20Reserved-ff4d6d?style=for-the-badge&labelColor=070b14" />
+<img src="https://img.shields.io/badge/license-Proprietary-ff4d6d?style=for-the-badge&labelColor=070b14" />
+<img src="https://img.shields.io/badge/use-Non--Commercial%20Only-a78bfa?style=for-the-badge&labelColor=070b14" />
+<img src="https://img.shields.io/badge/commercial-License%20Required-f97316?style=for-the-badge&labelColor=070b14" />
 <img src="https://img.shields.io/badge/ClawHub-whatisagent-ff4d6d?style=for-the-badge&labelColor=070b14" />
 <img src="https://img.shields.io/github/stars/huangrichao2020/universal-agent-spec?style=for-the-badge&color=ffb800&labelColor=070b14" />
 
@@ -512,8 +514,9 @@ Two programmers who got tired of watching the AI industry drown in its own jargo
 
 Copyright (c) 2026 Huang Richao. All Rights Reserved.
 
-This repository is source-available only for personal, non-commercial research, learning, reading, and evaluation.
-Commercial use requires prior written authorization.
+This repository is proprietary and not open source.
+Permission is limited to personal, non-commercial research, learning, reading, and evaluation.
+Any commercial use, redistribution, sublicensing, hosted service, product integration, consulting delivery, or training use requires prior written authorization.
 
 Commercial licensing contact email: `471055446@qq.com`
 
