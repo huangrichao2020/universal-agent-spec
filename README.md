@@ -166,7 +166,7 @@ Skill 教会你的 Agent：
 
 商业授权联系邮箱：`471055446@qq.com`
 
-详见 [LICENSE.md](./LICENSE.md) 与 [COMMERCIAL-LICENSE.md](./COMMERCIAL-LICENSE.md)。
+详见 [LICENSE.md](./LICENSE.md)。如需商业授权，请通过邮箱联系。
 
 ---
 
@@ -414,7 +414,7 @@ Any commercial use, including product integration, SaaS/API service, internal bu
 
 Commercial licensing contact email: `471055446@qq.com`
 
-See [LICENSE.md](./LICENSE.md) and [COMMERCIAL-LICENSE.md](./COMMERCIAL-LICENSE.md).
+See [LICENSE.md](./LICENSE.md). For commercial authorization, contact by email.
 
 ---
 
