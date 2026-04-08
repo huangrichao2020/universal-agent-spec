@@ -51,21 +51,6 @@
 
 </div>
 
----
-
-## 版权与授权声明
-
-本项目不是开源项目。
-
-允许个人基于非商业目的进行研究、学习、阅读、下载和本地测试。
-未经作者事先书面授权，禁止将本项目或其衍生内容用于任何商业用途，包括但不限于产品集成、SaaS/API 服务、企业内部生产、商业培训、咨询交付、销售、转授权和再分发。
-
-商业授权联系微信：`huangyibo181`
-
-详见 [LICENSE.md](./LICENSE.md) 与 [COMMERCIAL-LICENSE.md](./COMMERCIAL-LICENSE.md)。
-
----
-
 ## 🔥 为什么要做这个
 
 每一周，都有成千上万的开发者上线所谓的"AI Agent"——本质上不过是**一个 for 循环套着一次 API 调用**
@@ -167,6 +152,19 @@ Skill 教会你的 Agent：
 - 记忆文件如何工作，为什么消耗 token
 - 4 条常驻规则：交接文档、调用链注释、文件操作记录、先计划后执行
 - 12 概念快速参考，每句都是真相
+
+---
+
+## 版权与授权声明
+
+本项目不是开源项目。
+
+允许个人基于非商业目的进行研究、学习、阅读、下载和本地测试。
+未经作者事先书面授权，禁止将本项目或其衍生内容用于任何商业用途，包括但不限于产品集成、SaaS/API 服务、企业内部生产、商业培训、咨询交付、销售、转授权和再分发。
+
+商业授权联系邮箱：`471055446@qq.com`
+
+详见 [LICENSE.md](./LICENSE.md) 与 [COMMERCIAL-LICENSE.md](./COMMERCIAL-LICENSE.md)。
 
 ---
 
@@ -517,7 +515,7 @@ Copyright (c) 2026 Huang Richao. All Rights Reserved.
 This repository is source-available only for personal, non-commercial research, learning, reading, and evaluation.
 Commercial use requires prior written authorization.
 
-Commercial licensing contact WeChat: `huangyibo181`
+Commercial licensing contact email: `471055446@qq.com`
 
 ---
 
