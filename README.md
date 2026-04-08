@@ -405,6 +405,19 @@ What the skill teaches your Agent on load:
 
 ---
 
+## Commercial Licensing
+
+This repository is proprietary and not open source.
+
+Personal, non-commercial research, learning, reading, download, and local evaluation are permitted.
+Any commercial use, including product integration, SaaS/API service, internal business use, consulting delivery, training, redistribution, or sublicensing, requires prior written authorization.
+
+Commercial licensing contact email: `471055446@qq.com`
+
+See [LICENSE.md](./LICENSE.md) and [COMMERCIAL-LICENSE.md](./COMMERCIAL-LICENSE.md).
+
+---
+
 ## 🎯 Who This Is For
 
 - **AI/LLM Engineers** building production Agent systems who are tired of reinventing vocabulary
