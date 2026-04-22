@@ -11,6 +11,8 @@
 
 <br/><br/>
 
+![Universal Agent Spec](./hero.jpg)
+
 # 🌐 在线交互演示
 
 ### 42 个核心 Agent 概念 · 中英双语 · SVG 图示 · 零安装
